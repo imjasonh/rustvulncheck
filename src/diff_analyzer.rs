@@ -36,8 +36,10 @@ pub fn extract_symbols(diff: &PatchDiff) -> Vec<VulnerableSymbol> {
     )
     .unwrap();
     let hunk_header_re = Regex::new(r"^@@.*@@\s*(.*)$").unwrap();
+    // Match impl blocks, allowing nested generics (e.g. impl<T: Foo<Bar>> Type<T>)
+    // We match `impl` then skip everything up to the last `>>` or `>` before the type name.
     let impl_re =
-        Regex::new(r"impl(?:<[^>]*>)?\s+(?:([a-zA-Z_][a-zA-Z0-9_:]*)\s+for\s+)?([a-zA-Z_][a-zA-Z0-9_:<>, ]*)").unwrap();
+        Regex::new(r"impl\b(?:<.*>)?\s+(?:([a-zA-Z_][a-zA-Z0-9_:]*)\s+for\s+)?([a-zA-Z_][a-zA-Z0-9_:<>, ]*)").unwrap();
 
     for file_patch in &diff.files {
         // Skip test files — they aren't callable library code
@@ -113,7 +115,7 @@ pub fn extract_symbols(diff: &PatchDiff) -> Vec<VulnerableSymbol> {
                     });
                 }
             } else if is_added || is_removed {
-                // Changed line inside a known function context
+                // Changed line inside a function body
                 let content = &line[1..];
                 if content.trim().is_empty() || content.trim_start().starts_with("//") {
                     continue;
@@ -121,6 +123,20 @@ pub fn extract_symbols(diff: &PatchDiff) -> Vec<VulnerableSymbol> {
                 if let Some(ref ctx_fn) = current_context_fn {
                     let qualified =
                         qualify_fn_name(&module_path, &current_impl_type, ctx_fn);
+                    if !symbols.iter().any(|s| s.function == qualified) {
+                        symbols.push(VulnerableSymbol {
+                            file: file_patch.filename.clone(),
+                            function: qualified,
+                            change_type: ChangeType::Modified,
+                        });
+                    }
+                } else if current_impl_type.is_some() {
+                    // We have code changes inside an impl block but the fn
+                    // declaration is too far above for git to include it in
+                    // the hunk header or context. Still record the change at
+                    // the impl-type level rather than silently dropping it.
+                    let qualified =
+                        qualify_fn_name(&module_path, &current_impl_type, "<method>");
                     if !symbols.iter().any(|s| s.function == qualified) {
                         symbols.push(VulnerableSymbol {
                             file: file_patch.filename.clone(),
@@ -259,29 +275,24 @@ mod tests {
 
     #[test]
     fn test_consecutive_hunks_preserve_fn_context() {
-        // Reproduces the xof.rs scenario: two hunks in the same function,
-        // where hunk 1 header shows `fn squeeze` and hunk 2 header shows
-        // `impl KeccakXofState` (git chose the impl as the nearest scope).
+        // When consecutive hunks are in the same function and hunk 1 header
+        // shows `fn foo`, hunk 2 (with `impl` header) should preserve context.
         let diff = PatchDiff {
-            commit_sha: "6bbe15ec".to_string(),
+            commit_sha: "abc123".to_string(),
             files: vec![crate::github::FilePatch {
-                filename: "crates/algorithms/sha3/src/generic_keccak/xof.rs".to_string(),
+                filename: "src/keccak/xof.rs".to_string(),
                 patch: concat!(
-                    "@@ -290,6 +290,12 @@ pub(crate) fn squeeze<const PARALLEL_LANES: usize>(\n",
-                    "     out: &mut [u8],\n",
-                    "+    /// NOTE: calling squeeze multiple times only gives correct output\n",
-                    "+    /// if all squeezed chunks (except the last) are RATE bytes long.\n",
-                    " ) {\n",
-                    "@@ -322,20 +330,25 @@ impl<const RATE: usize, const PARALLEL_LANES: usize> KeccakXofState<RATE, PARALLEL_LANES>\n",
+                    "@@ -100,6 +100,8 @@ pub(crate) fn squeeze(out: &mut [u8]) {\n",
+                    "     let x = 1;\n",
+                    "+    let y = 2;\n",
+                    " }\n",
+                    "@@ -200,10 +202,12 @@ impl<const RATE: usize> KeccakXofState<RATE> {\n",
                     "     let blocks = out_len / RATE;\n",
                     "-        for i in 0..blocks {\n",
-                    "-            self.inner.keccakf1600();\n",
-                    "+        // Extract first block without permutation\n",
-                    "+        self.inner.squeeze(0, RATE);\n",
                     "+        for i in 1..blocks {\n",
-                    "+            self.inner.keccakf1600();\n",
                     "         }\n",
-                ).to_string(),
+                )
+                .to_string(),
             }],
         };
 
@@ -289,6 +300,49 @@ mod tests {
         assert!(
             symbols.iter().any(|s| s.function.contains("squeeze")),
             "Expected squeeze to be found, got: {:?}",
+            symbols
+        );
+    }
+
+    #[test]
+    fn test_impl_body_changes_without_fn_context() {
+        // Reproduces the real xof.rs scenario: BOTH hunk headers show `impl`,
+        // fn declaration is too far above for git to include. Changes should
+        // still be captured at the impl-type level.
+        let diff = PatchDiff {
+            commit_sha: "6bbe15ec".to_string(),
+            files: vec![crate::github::FilePatch {
+                filename: "crates/algorithms/sha3/src/generic_keccak/xof.rs".to_string(),
+                patch: concat!(
+                    "@@ -290,6 +290,12 @@ impl<const PARALLEL_LANES: usize, const RATE: usize> KeccakState<PARALLEL_LANES>\n",
+                    " /// Squeeze\n",
+                    "+/// Note that calling squeeze multiple times will only give correct\n",
+                    "+/// output if all sqeezed chunks are RATE bytes long.\n",
+                    " #[hax_lib::attributes]\n",
+                    "@@ -316,42 +322,38 @@ impl<const RATE: usize, STATE: KeccakItem<1>> KeccakXofState<1, RATE, STATE> {\n",
+                    "             self.inner.keccakf1600();\n",
+                    "         }\n",
+                    " \n",
+                    "-        if out_len <= RATE {\n",
+                    "-            self.inner.squeeze::<RATE>(out, 0, out_len);\n",
+                    "+        if out_len > 0 {\n",
+                    "+            let blocks = out_len / RATE;\n",
+                    "+            self.inner.squeeze::<RATE>(out, 0, RATE);\n",
+                    "+            for i in 1..blocks {\n",
+                    "         }\n",
+                )
+                .to_string(),
+            }],
+        };
+
+        let symbols = extract_symbols(&diff);
+        assert!(
+            !symbols.is_empty(),
+            "Expected symbols from impl body changes, got none"
+        );
+        assert!(
+            symbols.iter().any(|s| s.function.contains("KeccakXofState")),
+            "Expected KeccakXofState in symbol, got: {:?}",
             symbols
         );
     }

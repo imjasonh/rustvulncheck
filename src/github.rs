@@ -71,33 +71,67 @@ impl GithubClient {
                 repo,
                 number,
             } => {
-                // Get the merge commit SHA from the PR
-                let url = format!(
-                    "https://api.github.com/repos/{}/{}/pulls/{}",
-                    owner, repo, number
-                );
-                let resp: PrResponse = self
-                    .get(&url)
-                    .send()
-                    .context("fetching PR metadata")?
-                    .error_for_status()
-                    .context("PR API error")?
-                    .json()
-                    .context("parsing PR response")?;
-
-                if let Some(sha) = resp.merge_commit_sha {
-                    let diff = self.fetch_commit_diff(owner, repo, &sha)?;
-                    Ok(Some(diff))
-                } else {
-                    eprintln!("  PR {}/{}/pull/{} has no merge commit", owner, repo, number);
-                    Ok(None)
-                }
+                // Use the PR files endpoint to get all changes across the PR,
+                // rather than a single commit which may miss changes (e.g. if
+                // the merge commit is a version bump, or changes span multiple
+                // commits).
+                let diff = self.fetch_pr_diff(owner, repo, *number)?;
+                Ok(Some(diff))
             }
             GithubRef::Issue { .. } => {
                 // Issues don't have diffs directly; skip.
                 Ok(None)
             }
         }
+    }
+
+    /// Fetch all .rs file changes from a PR using the PR files endpoint.
+    /// This captures all changes across the PR, not just a single commit.
+    fn fetch_pr_diff(&self, owner: &str, repo: &str, number: u64) -> Result<PatchDiff> {
+        // Get merge commit SHA for the entry metadata
+        let pr_url = format!(
+            "https://api.github.com/repos/{}/{}/pulls/{}",
+            owner, repo, number
+        );
+        let pr_resp: PrResponse = self
+            .get(&pr_url)
+            .send()
+            .context("fetching PR metadata")?
+            .error_for_status()
+            .context("PR API error")?
+            .json()
+            .context("parsing PR response")?;
+
+        let commit_sha = pr_resp
+            .merge_commit_sha
+            .unwrap_or_else(|| format!("pr-{}", number));
+
+        // Fetch all files changed in the PR (paginated, up to 300 files)
+        let files_url = format!(
+            "https://api.github.com/repos/{}/{}/pulls/{}/files?per_page=100",
+            owner, repo, number
+        );
+        let resp = self
+            .get(&files_url)
+            .send()
+            .context("fetching PR files")?
+            .error_for_status()
+            .context("PR files API error")?;
+
+        let pr_files: Vec<CommitFile> = resp.json().context("parsing PR files response")?;
+
+        let files = pr_files
+            .into_iter()
+            .filter(|f| f.filename.ends_with(".rs"))
+            .filter_map(|f| {
+                f.patch.map(|patch| FilePatch {
+                    filename: f.filename,
+                    patch,
+                })
+            })
+            .collect();
+
+        Ok(PatchDiff { commit_sha, files })
     }
 
     fn fetch_commit_diff(&self, owner: &str, repo: &str, sha: &str) -> Result<PatchDiff> {
