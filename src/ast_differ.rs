@@ -13,7 +13,7 @@ use crate::diff_analyzer::{ChangeType, VulnerableSymbol};
 
 /// A function symbol extracted from a parsed AST.
 #[derive(Debug, Clone)]
-struct FnSymbol {
+pub struct FnSymbol {
     /// Fully qualified name: `module::Type::method` or `module::free_fn`
     qualified_name: String,
     /// Hash of the function body tokens for detecting modifications

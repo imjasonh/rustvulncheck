@@ -1,6 +1,9 @@
-//! Analyze unified diffs to extract modified Rust function signatures.
-
-use regex::Regex;
+//! Extract modified Rust function symbols from GitHub commit diffs.
+//!
+//! Uses AST parsing via `syn` to precisely identify Added, Modified, and
+//! Deleted function symbols. For each changed `.rs` file, fetches the full
+//! before/after contents from GitHub, parses both with `syn::parse_file`,
+//! and diffs the function sets.
 
 use crate::github::PatchDiff;
 
@@ -22,18 +25,35 @@ pub enum ChangeType {
     Deleted,
 }
 
-/// Extract function signatures using AST parsing where possible, with regex fallback.
+/// Extract function signatures by fetching full file contents and AST-diffing.
 ///
-/// For each changed `.rs` file, fetches the full before/after contents from GitHub,
-/// parses them with `syn`, and diffs the function sets to find Added/Modified/Deleted
-/// symbols. Falls back to regex-based extraction per-file when AST parsing fails
-/// (syntax errors, macro-heavy files) or when file contents can't be fetched.
+/// For each changed `.rs` file in the diff, fetches the before (parent) and
+/// after (commit) versions from GitHub, parses both with `syn`, and diffs
+/// the function sets. Files that fail to parse are skipped with a warning.
 pub fn extract_symbols(
     diff: &PatchDiff,
     gh: &crate::github::GithubClient,
 ) -> Vec<VulnerableSymbol> {
     let mut all_symbols = Vec::new();
-    let has_metadata = !diff.owner.is_empty() && !diff.repo.is_empty();
+
+    let parent_sha = match &diff.parent_sha {
+        Some(sha) => sha,
+        None => {
+            eprintln!(
+                "Warning: no parent SHA for commit {}, cannot diff files",
+                &diff.commit_sha[..7.min(diff.commit_sha.len())]
+            );
+            return all_symbols;
+        }
+    };
+
+    if diff.owner.is_empty() || diff.repo.is_empty() {
+        eprintln!(
+            "Warning: missing owner/repo metadata for commit {}, cannot fetch files",
+            &diff.commit_sha[..7.min(diff.commit_sha.len())]
+        );
+        return all_symbols;
+    }
 
     for file_patch in &diff.files {
         if is_test_file(&file_patch.filename) {
@@ -42,398 +62,40 @@ pub fn extract_symbols(
 
         let module_path = file_path_to_module(&file_patch.filename);
 
-        // Try AST-based extraction if we have the metadata to fetch files
-        if has_metadata {
-            if let Some(parent) = &diff.parent_sha {
-                let before = gh
-                    .fetch_file_contents(
-                        &diff.owner,
-                        &diff.repo,
-                        &file_patch.filename,
-                        parent,
-                    )
-                    .ok()
-                    .flatten();
+        let before = gh
+            .fetch_file_contents(&diff.owner, &diff.repo, &file_patch.filename, parent_sha)
+            .ok()
+            .flatten();
 
-                let after = gh
-                    .fetch_file_contents(
-                        &diff.owner,
-                        &diff.repo,
-                        &file_patch.filename,
-                        &diff.commit_sha,
-                    )
-                    .ok()
-                    .flatten();
+        let after = gh
+            .fetch_file_contents(
+                &diff.owner,
+                &diff.repo,
+                &file_patch.filename,
+                &diff.commit_sha,
+            )
+            .ok()
+            .flatten();
 
-                if let Some(ast_symbols) = crate::ast_differ::ast_diff_symbols(
-                    before.as_deref(),
-                    after.as_deref(),
-                    &module_path,
-                    &file_patch.filename,
-                ) {
-                    if !ast_symbols.is_empty() || before.is_some() || after.is_some() {
-                        // AST succeeded — use its results (even if empty means no changes)
-                        all_symbols.extend(ast_symbols);
-                        continue;
-                    }
-                }
+        match crate::ast_differ::ast_diff_symbols(
+            before.as_deref(),
+            after.as_deref(),
+            &module_path,
+            &file_patch.filename,
+        ) {
+            Some(symbols) => {
+                all_symbols.extend(symbols);
+            }
+            None => {
+                eprintln!(
+                    "  Warning: AST parsing failed for {}, skipping",
+                    file_patch.filename
+                );
             }
         }
-
-        // Fallback: regex-based extraction for this file
-        let file_diff = PatchDiff {
-            commit_sha: diff.commit_sha.clone(),
-            owner: String::new(),
-            repo: String::new(),
-            parent_sha: None,
-            files: vec![file_patch.clone()],
-        };
-        all_symbols.extend(extract_symbols_regex(&file_diff));
     }
 
     all_symbols
-}
-
-/// Regex-based fallback for extracting function signatures from unified diffs.
-///
-/// Used when AST parsing fails or file contents can't be fetched.
-pub(crate) fn extract_symbols_regex(diff: &PatchDiff) -> Vec<VulnerableSymbol> {
-    let mut symbols: Vec<VulnerableSymbol> = Vec::new();
-    let fn_decl_re = Regex::new(
-        r"(?:pub\s+(?:\(crate\)\s+)?)?(?:unsafe\s+)?(?:async\s+)?fn\s+([a-zA-Z_][a-zA-Z0-9_]*)",
-    )
-    .unwrap();
-    let hunk_header_re = Regex::new(r"^@@.*@@\s*(.*)$").unwrap();
-
-    for file_patch in &diff.files {
-        // Skip test files — they aren't callable library code
-        if is_test_file(&file_patch.filename) {
-            continue;
-        }
-        let module_path = file_path_to_module(&file_patch.filename);
-
-        let mut current_context_fn: Option<String> = None;
-        let mut current_impl_type: Option<String> = None;
-        let mut seen_test_attr = false;
-
-        for line in file_patch.patch.lines() {
-            // Track hunk headers - they often show the enclosing function
-            if let Some(caps) = hunk_header_re.captures(line) {
-                let context = &caps[1];
-                let has_fn = fn_decl_re.captures(context);
-                let has_impl = parse_impl_type(context);
-
-                if let Some(impl_type) = has_impl {
-                    current_impl_type = Some(impl_type);
-                }
-
-                if let Some(fcaps) = has_fn {
-                    // Hunk header explicitly names a fn — use it
-                    current_context_fn = Some(fcaps[1].to_string());
-                }
-                // If the hunk header shows only `impl` (no fn), do NOT clear
-                // current_context_fn. Git picks the nearest enclosing scope
-                // line for hunk headers, and consecutive hunks in the same
-                // long method can alternate between showing `fn foo` and
-                // `impl Foo`. Clearing would silently drop body-only changes.
-                // current_context_fn will be properly reset when we encounter
-                // an actual fn declaration in context/changed lines.
-                continue;
-            }
-
-            // Track impl blocks in context lines
-            if line.starts_with(' ') || line.starts_with('+') || line.starts_with('-') {
-                let content = &line[1..];
-                if let Some(impl_type) = parse_impl_type(content) {
-                    if !content.trim_start().starts_with("//") {
-                        current_impl_type = Some(impl_type);
-                        // In a context/changed line showing impl, we're entering
-                        // a new impl block — clear the fn context.
-                        current_context_fn = None;
-                    }
-                }
-
-                // Track #[test] and #[cfg(test)] attributes
-                let trimmed = content.trim();
-                if trimmed == "#[test]" || trimmed.starts_with("#[cfg(test)]") {
-                    seen_test_attr = true;
-                }
-            }
-
-            // Look for fn declarations in changed lines
-            let is_added = line.starts_with('+') && !line.starts_with("+++");
-            let is_removed = line.starts_with('-') && !line.starts_with("---");
-
-            if (is_added || is_removed) && line.contains("fn ") {
-                let content = &line[1..];
-                // Skip comments
-                if content.trim_start().starts_with("//") || content.trim_start().starts_with("*")
-                {
-                    continue;
-                }
-                if let Some(caps) = fn_decl_re.captures(content) {
-                    let fn_name = &caps[1];
-                    // Skip test functions (marked with #[test] or named test_*)
-                    if seen_test_attr || fn_name.starts_with("test_") {
-                        seen_test_attr = false;
-                        continue;
-                    }
-                    let qualified = qualify_fn_name(&module_path, &current_impl_type, fn_name);
-                    // Dedup: if the same fn is both deleted (-) and added (+), it's Modified
-                    if let Some(existing) = symbols.iter_mut().find(|s| s.function == qualified) {
-                        // Upgrade to Modified when we see both + and - for the same fn
-                        existing.change_type = ChangeType::Modified;
-                    } else {
-                        let change_type = if is_added {
-                            ChangeType::Added
-                        } else {
-                            ChangeType::Deleted
-                        };
-                        symbols.push(VulnerableSymbol {
-                            file: file_patch.filename.clone(),
-                            function: qualified,
-                            change_type,
-                        });
-                    }
-                }
-            } else if is_added || is_removed {
-                // Changed line inside a function body
-                let content = &line[1..];
-                if content.trim().is_empty() || content.trim_start().starts_with("//") {
-                    continue;
-                }
-                if let Some(ref ctx_fn) = current_context_fn {
-                    let qualified =
-                        qualify_fn_name(&module_path, &current_impl_type, ctx_fn);
-                    if !symbols.iter().any(|s| s.function == qualified) {
-                        symbols.push(VulnerableSymbol {
-                            file: file_patch.filename.clone(),
-                            function: qualified,
-                            change_type: ChangeType::Modified,
-                        });
-                    }
-                } else if current_impl_type.is_some() {
-                    // We have code changes inside an impl block but the fn
-                    // declaration is too far above for git to include it in
-                    // the hunk header or context. Still record the change at
-                    // the impl-type level rather than silently dropping it.
-                    let qualified =
-                        qualify_fn_name(&module_path, &current_impl_type, "<method>");
-                    if !symbols.iter().any(|s| s.function == qualified) {
-                        symbols.push(VulnerableSymbol {
-                            file: file_patch.filename.clone(),
-                            function: qualified,
-                            change_type: ChangeType::Modified,
-                        });
-                    }
-                }
-            }
-
-            // Update current function context from context/added lines
-            if !line.starts_with('-') {
-                let content = if line.starts_with('+') || line.starts_with(' ') {
-                    &line[1..]
-                } else {
-                    line
-                };
-                if content.contains("fn ") && !content.trim_start().starts_with("//") {
-                    if let Some(caps) = fn_decl_re.captures(content) {
-                        let fn_name = &caps[1];
-                        if seen_test_attr || fn_name.starts_with("test_") {
-                            // Don't track test functions as context
-                            seen_test_attr = false;
-                            current_context_fn = None;
-                        } else {
-                            current_context_fn = Some(fn_name.to_string());
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    symbols
-}
-
-/// Parse an `impl` line and extract the implementing type name.
-///
-/// Handles nested generics correctly by counting `<>` brackets instead of
-/// using a greedy regex. This avoids the `for` and `where` keyword leaks
-/// that occur when `<.*>` over-matches nested generics like
-/// `impl<T> From<Py<T>> for PyObject where T: AsRef<PyAny>`.
-fn parse_impl_type(s: &str) -> Option<String> {
-    // Find the `impl` keyword (must be word-bounded)
-    let impl_pos = s.find("impl")?;
-    // Make sure `impl` is at a word boundary (not part of "implement" etc.)
-    if impl_pos > 0 {
-        let prev = s.as_bytes()[impl_pos - 1];
-        if prev.is_ascii_alphanumeric() || prev == b'_' {
-            return None;
-        }
-    }
-    let after_impl = &s[impl_pos + 4..];
-    // Check trailing boundary: next char must be <, whitespace, or end of string
-    if let Some(next) = after_impl.as_bytes().first() {
-        if next.is_ascii_alphanumeric() || *next == b'_' {
-            return None;
-        }
-    }
-
-    // Skip impl's own generic params (balanced <>)
-    let rest = skip_balanced_angles(after_impl);
-    let rest = rest.trim_start();
-
-    if rest.is_empty() {
-        return None;
-    }
-
-    // Now rest is either "Trait<...> for Type<...> ..." or "Type<...> ..."
-    // Find " for " at the top level (not inside <>) to split trait from type
-    let has_for = find_top_level_keyword(rest, " for ");
-    let type_str = if let Some(pos) = has_for {
-        rest[pos + 5..].trim_start()
-    } else {
-        rest
-    };
-
-    // Stop at `where` clause (top-level) or `{`
-    let type_str = if let Some(pos) = find_top_level_keyword(type_str, " where ") {
-        &type_str[..pos]
-    } else {
-        type_str
-    };
-    let type_str = type_str.split('{').next().unwrap_or(type_str);
-    let type_str = type_str.trim();
-
-    if type_str.is_empty() {
-        return None;
-    }
-
-    // When there's no `for` keyword, we might be seeing a trait impl where
-    // `for Type` was cut off by the hunk header (e.g. `impl From<X>` without
-    // the ` for MyType` part). If the captured "type" is a well-known trait
-    // name, it's almost certainly wrong — return None rather than recording
-    // the trait name as the implementing type.
-    if has_for.is_none() {
-        let base_name = type_str.split('<').next().unwrap_or(type_str).trim();
-        if is_std_trait(base_name) {
-            return None;
-        }
-    }
-
-    Some(type_str.to_string())
-}
-
-/// Returns true if the name is a well-known standard library trait that
-/// would never be an implementing type in `impl Trait { ... }`.
-/// Used to detect truncated hunk headers like `impl From<X>` where
-/// `for ActualType` was cut off.
-fn is_std_trait(name: &str) -> bool {
-    matches!(
-        name,
-        "From"
-            | "Into"
-            | "TryFrom"
-            | "TryInto"
-            | "AsRef"
-            | "AsMut"
-            | "Borrow"
-            | "BorrowMut"
-            | "Clone"
-            | "Copy"
-            | "Debug"
-            | "Default"
-            | "Deref"
-            | "DerefMut"
-            | "Display"
-            | "Drop"
-            | "Eq"
-            | "Fn"
-            | "FnMut"
-            | "FnOnce"
-            | "Hash"
-            | "Index"
-            | "IndexMut"
-            | "IntoIterator"
-            | "Iterator"
-            | "Ord"
-            | "PartialEq"
-            | "PartialOrd"
-            | "Read"
-            | "Write"
-            | "Seek"
-            | "ToString"
-            | "Add"
-            | "AddAssign"
-            | "Sub"
-            | "SubAssign"
-            | "Mul"
-            | "MulAssign"
-            | "Div"
-            | "DivAssign"
-            | "Rem"
-            | "RemAssign"
-            | "Neg"
-            | "Not"
-            | "BitAnd"
-            | "BitOr"
-            | "BitXor"
-            | "Shl"
-            | "Shr"
-            | "Serialize"
-            | "Deserialize"
-            | "Future"
-            | "Stream"
-            | "Sink"
-            | "Unpin"
-            | "Send"
-            | "Sync"
-    )
-}
-
-/// Skip past balanced `<...>` generics at the start of a string.
-/// Returns the remainder after the closing `>`, or the original string
-/// if it doesn't start with `<`.
-fn skip_balanced_angles(s: &str) -> &str {
-    if !s.starts_with('<') {
-        return s;
-    }
-    let mut depth = 0;
-    for (i, c) in s.char_indices() {
-        match c {
-            '<' => depth += 1,
-            '>' => {
-                depth -= 1;
-                if depth == 0 {
-                    return &s[i + 1..];
-                }
-            }
-            _ => {}
-        }
-    }
-    s // unbalanced — return as-is
-}
-
-/// Find a keyword (like " for " or " where ") at the top level of a string,
-/// i.e. not nested inside `<>` brackets.
-fn find_top_level_keyword(s: &str, keyword: &str) -> Option<usize> {
-    let mut depth: i32 = 0;
-    let bytes = s.as_bytes();
-    for i in 0..bytes.len() {
-        match bytes[i] {
-            b'<' => depth += 1,
-            b'>' => {
-                if depth > 0 {
-                    depth -= 1;
-                }
-            }
-            _ if depth == 0 && s[i..].starts_with(keyword) => {
-                return Some(i);
-            }
-            _ => {}
-        }
-    }
-    None
 }
 
 /// Convert a file path like `src/http/request.rs` to a module path like `http::request`.
@@ -441,7 +103,7 @@ fn find_top_level_keyword(s: &str, keyword: &str) -> Option<usize> {
 /// Handles workspace layouts like `crates/foo/src/bar.rs` → `foo::bar`
 /// and top-level `src/bar.rs` → `bar`. Replaces hyphens with underscores
 /// to match Rust crate naming conventions.
-fn file_path_to_module(path: &str) -> String {
+pub(crate) fn file_path_to_module(path: &str) -> String {
     // Split into components
     let parts: Vec<&str> = path.split('/').collect();
 
@@ -483,7 +145,7 @@ fn file_path_to_module(path: &str) -> String {
 /// Returns true if the file path looks like a non-library file
 /// (tests, examples, benchmarks, build scripts) that downstream
 /// code wouldn't call.
-fn is_test_file(path: &str) -> bool {
+pub(crate) fn is_test_file(path: &str) -> bool {
     let parts: Vec<&str> = path.split('/').collect();
     // Any path component named tests, test, examples, benches, or fuzz
     if parts.iter().any(|&p| {
@@ -504,23 +166,6 @@ fn is_test_file(path: &str) -> bool {
     false
 }
 
-/// Build a qualified function name from module path, optional impl type, and fn name.
-fn qualify_fn_name(module: &str, impl_type: &Option<String>, fn_name: &str) -> String {
-    let type_part = impl_type.as_ref().map(|ty| {
-        // Clean up generic parameters for the type name
-        ty.split('<').next().unwrap_or(ty).trim().to_string()
-    });
-
-    // Build path parts, skipping empty segments to avoid leading `::`
-    let parts: Vec<&str> = [Some(module), type_part.as_deref(), Some(fn_name)]
-        .into_iter()
-        .flatten()
-        .filter(|s| !s.is_empty())
-        .collect();
-
-    parts.join("::")
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -530,31 +175,15 @@ mod tests {
         assert_eq!(file_path_to_module("src/http/request.rs"), "http::request");
         assert_eq!(file_path_to_module("src/lib.rs"), "");
         assert_eq!(file_path_to_module("src/net/tcp/mod.rs"), "net::tcp");
-        // Workspace crate paths
         assert_eq!(
             file_path_to_module("crates/algorithms/sha3/src/simd/avx2.rs"),
             "sha3::simd::avx2"
         );
-        // Hyphens become underscores
         assert_eq!(
             file_path_to_module("pyo3-ffi/src/object.rs"),
             "pyo3_ffi::object"
         );
-        // src/lib.rs should produce empty module path
         assert_eq!(file_path_to_module("src/lib.rs"), "");
-    }
-
-    #[test]
-    fn test_qualify_fn_name_empty_module() {
-        // When module is empty (src/lib.rs), no leading ::
-        let empty = "".to_string();
-        let impl_ty = Some("Context".to_string());
-        assert_eq!(qualify_fn_name(&empty, &impl_ty, "seal"), "Context::seal");
-        assert_eq!(qualify_fn_name(&empty, &None, "main"), "main");
-        assert_eq!(
-            qualify_fn_name("foo::bar", &impl_ty, "baz"),
-            "foo::bar::Context::baz"
-        );
     }
 
     #[test]
@@ -569,415 +198,5 @@ mod tests {
         assert!(is_test_file("benches/bench.rs"));
         assert!(!is_test_file("src/lib.rs"));
         assert!(!is_test_file("src/http/request.rs"));
-    }
-
-    #[test]
-    fn test_consecutive_hunks_preserve_fn_context() {
-        // When consecutive hunks are in the same function and hunk 1 header
-        // shows `fn foo`, hunk 2 (with `impl` header) should preserve context.
-        let diff = PatchDiff::for_test("abc123",
-            vec![crate::github::FilePatch {
-                filename: "src/keccak/xof.rs".to_string(),
-                patch: concat!(
-                    "@@ -100,6 +100,8 @@ pub(crate) fn squeeze(out: &mut [u8]) {\n",
-                    "     let x = 1;\n",
-                    "+    let y = 2;\n",
-                    " }\n",
-                    "@@ -200,10 +202,12 @@ impl<const RATE: usize> KeccakXofState<RATE> {\n",
-                    "     let blocks = out_len / RATE;\n",
-                    "-        for i in 0..blocks {\n",
-                    "+        for i in 1..blocks {\n",
-                    "         }\n",
-                )
-                .to_string(),
-            }],
-        );
-
-        let symbols = extract_symbols_regex(&diff);
-        assert!(
-            symbols.iter().any(|s| s.function.contains("squeeze")),
-            "Expected squeeze to be found, got: {:?}",
-            symbols
-        );
-    }
-
-    #[test]
-    fn test_impl_body_changes_without_fn_context() {
-        // Reproduces the real xof.rs scenario: BOTH hunk headers show `impl`,
-        // fn declaration is too far above for git to include. Changes should
-        // still be captured at the impl-type level.
-        let diff = PatchDiff::for_test("6bbe15ec",
-            vec![crate::github::FilePatch {
-                filename: "crates/algorithms/sha3/src/generic_keccak/xof.rs".to_string(),
-                patch: concat!(
-                    "@@ -290,6 +290,12 @@ impl<const PARALLEL_LANES: usize, const RATE: usize> KeccakState<PARALLEL_LANES>\n",
-                    " /// Squeeze\n",
-                    "+/// Note that calling squeeze multiple times will only give correct\n",
-                    "+/// output if all sqeezed chunks are RATE bytes long.\n",
-                    " #[hax_lib::attributes]\n",
-                    "@@ -316,42 +322,38 @@ impl<const RATE: usize, STATE: KeccakItem<1>> KeccakXofState<1, RATE, STATE> {\n",
-                    "             self.inner.keccakf1600();\n",
-                    "         }\n",
-                    " \n",
-                    "-        if out_len <= RATE {\n",
-                    "-            self.inner.squeeze::<RATE>(out, 0, out_len);\n",
-                    "+        if out_len > 0 {\n",
-                    "+            let blocks = out_len / RATE;\n",
-                    "+            self.inner.squeeze::<RATE>(out, 0, RATE);\n",
-                    "+            for i in 1..blocks {\n",
-                    "         }\n",
-                )
-                .to_string(),
-            }],
-        );
-
-        let symbols = extract_symbols_regex(&diff);
-        assert!(
-            !symbols.is_empty(),
-            "Expected symbols from impl body changes, got none"
-        );
-        assert!(
-            symbols.iter().any(|s| s.function.contains("KeccakXofState")),
-            "Expected KeccakXofState in symbol, got: {:?}",
-            symbols
-        );
-    }
-
-    #[test]
-    fn test_extract_fn_from_diff() {
-        let diff = PatchDiff::for_test("abc123",
-            vec![crate::github::FilePatch {
-                filename: "src/http/request.rs".to_string(),
-                patch: r#"@@ -10,6 +10,8 @@ impl Request {
-     pub fn parse(buf: &[u8]) -> Result<Self> {
--        let old_code = true;
-+        let new_code = true;
-+        let extra = false;
-     }
-"#
-                .to_string(),
-            }],
-        );
-
-        let symbols = extract_symbols_regex(&diff);
-        assert!(!symbols.is_empty());
-        assert!(symbols.iter().any(|s| s.function.contains("parse")));
-    }
-
-    #[test]
-    fn test_parse_impl_type_simple() {
-        assert_eq!(parse_impl_type("impl Request {"), Some("Request".into()));
-        assert_eq!(
-            parse_impl_type("impl<T> Vec<T> {"),
-            Some("Vec<T>".into())
-        );
-    }
-
-    #[test]
-    fn test_parse_impl_type_trait_for() {
-        // This was the core bug: greedy <.*> consumed across nested generics
-        assert_eq!(
-            parse_impl_type("impl<T> std::convert::From<Py<T>> for PyObject"),
-            Some("PyObject".into())
-        );
-        assert_eq!(
-            parse_impl_type("impl<T> From<T> for NotNan<T>"),
-            Some("NotNan<T>".into())
-        );
-        assert_eq!(
-            parse_impl_type("impl AddAssign for NotNan<f64>"),
-            Some("NotNan<f64>".into())
-        );
-    }
-
-    #[test]
-    fn test_parse_impl_type_where_clause() {
-        // where clause should be stripped
-        assert_eq!(
-            parse_impl_type("impl<T> From<Py<T>> for PyObject where T: AsRef<PyAny> {"),
-            Some("PyObject".into())
-        );
-        assert_eq!(
-            parse_impl_type("impl<T: HasAfEnum> Array<T> where T: Clone {"),
-            Some("Array<T>".into())
-        );
-    }
-
-    #[test]
-    fn test_parse_impl_type_not_in_word() {
-        // "implement" shouldn't match
-        assert_eq!(parse_impl_type("fn implement_thing()"), None);
-    }
-
-    #[test]
-    fn test_for_keyword_no_longer_leaks_into_symbol() {
-        // Reproduces the pyo3 RUSTSEC-2020-0074 bug
-        let diff = PatchDiff::for_test("abc123",
-            vec![crate::github::FilePatch {
-                filename: "src/instance.rs".to_string(),
-                patch: concat!(
-                    "@@ -495,7 +495,9 @@ impl<T> std::convert::From<Py<T>> for PyObject\n",
-                    "     fn from(ob: Py<T>) -> Self {\n",
-                    "-        let old = ob.0;\n",
-                    "+        unsafe { ob.into_non_null() }\n",
-                    "     }\n",
-                )
-                .to_string(),
-            }],
-        );
-
-        let symbols = extract_symbols_regex(&diff);
-        for s in &symbols {
-            assert!(
-                !s.function.contains("for "),
-                "Symbol should not contain 'for ': got '{}'",
-                s.function
-            );
-        }
-        // Should find the `from` function under `PyObject`, not `for PyObject`
-        assert!(
-            symbols.iter().any(|s| s.function.contains("PyObject::from")),
-            "Expected PyObject::from, got: {:?}",
-            symbols
-        );
-    }
-
-    #[test]
-    fn test_where_clause_no_longer_leaks_into_symbol() {
-        // Reproduces the lock_api RUSTSEC-2020-0070 bug
-        let diff = PatchDiff::for_test("abc123",
-            vec![crate::github::FilePatch {
-                filename: "lock_api/src/mutex.rs".to_string(),
-                patch: concat!(
-                    "@@ -100,6 +100,8 @@ impl<R: RawMutex, T: ?Sized> Mutex<R, T> where R: Send {\n",
-                    "-    let old = self.0;\n",
-                    "+    let new = self.0;\n",
-                )
-                .to_string(),
-            }],
-        );
-
-        let symbols = extract_symbols_regex(&diff);
-        for s in &symbols {
-            assert!(
-                !s.function.contains("where"),
-                "Symbol should not contain 'where': got '{}'",
-                s.function
-            );
-        }
-        assert!(
-            symbols
-                .iter()
-                .any(|s| s.function.contains("Mutex") && !s.function.contains("where")),
-            "Expected clean Mutex symbol, got: {:?}",
-            symbols
-        );
-    }
-
-    #[test]
-    fn test_test_functions_filtered_by_attribute() {
-        // #[test] functions in library source should be skipped
-        let diff = PatchDiff::for_test("abc123",
-            vec![crate::github::FilePatch {
-                filename: "src/pycell/impl_.rs".to_string(),
-                patch: concat!(
-                    "@@ -100,6 +100,12 @@ impl PyCell {\n",
-                    "     pub fn new() -> Self {\n",
-                    "-        let old = 1;\n",
-                    "+        let new = 2;\n",
-                    "     }\n",
-                    "+    #[test]\n",
-                    "+    fn test_inherited_size() {\n",
-                    "+        assert_eq!(1, 1);\n",
-                    "+    }\n",
-                )
-                .to_string(),
-            }],
-        );
-
-        let symbols = extract_symbols_regex(&diff);
-        assert!(
-            !symbols.iter().any(|s| s.function.contains("test_inherited")),
-            "test_ functions should be filtered out, got: {:?}",
-            symbols
-        );
-        // The real function should still be present
-        assert!(
-            symbols.iter().any(|s| s.function.contains("new")),
-            "Expected new() to be found, got: {:?}",
-            symbols
-        );
-    }
-
-    #[test]
-    fn test_test_functions_filtered_by_name_prefix() {
-        // test_ prefix functions should be filtered even without #[test] attribute
-        let diff = PatchDiff::for_test("abc123",
-            vec![crate::github::FilePatch {
-                filename: "src/lib.rs".to_string(),
-                patch: concat!(
-                    "@@ -10,6 +10,8 @@\n",
-                    "+fn test_combine_uuids() {\n",
-                    "+    assert!(true);\n",
-                    "+}\n",
-                    "+pub fn real_function() {\n",
-                    "+    do_work();\n",
-                    "+}\n",
-                )
-                .to_string(),
-            }],
-        );
-
-        let symbols = extract_symbols_regex(&diff);
-        assert!(
-            !symbols.iter().any(|s| s.function.contains("test_combine")),
-            "test_ prefix functions should be filtered, got: {:?}",
-            symbols
-        );
-        assert!(
-            symbols.iter().any(|s| s.function.contains("real_function")),
-            "Non-test functions should be kept, got: {:?}",
-            symbols
-        );
-    }
-
-    #[test]
-    fn test_cfg_test_functions_filtered() {
-        // Functions after #[cfg(test)] should be filtered
-        let diff = PatchDiff::for_test("abc123",
-            vec![crate::github::FilePatch {
-                filename: "src/core.rs".to_string(),
-                patch: concat!(
-                    "@@ -200,6 +200,10 @@\n",
-                    " #[cfg(test)]\n",
-                    "+fn helper_for_tests() {\n",
-                    "+    setup();\n",
-                    "+}\n",
-                )
-                .to_string(),
-            }],
-        );
-
-        let symbols = extract_symbols_regex(&diff);
-        assert!(
-            !symbols.iter().any(|s| s.function.contains("helper_for_tests")),
-            "#[cfg(test)] functions should be filtered, got: {:?}",
-            symbols
-        );
-    }
-
-    #[test]
-    fn test_duplicate_fn_deduped_as_modified() {
-        // When a fn is both removed (-) and added (+), it should appear once as Modified
-        let diff = PatchDiff::for_test("abc123",
-            vec![crate::github::FilePatch {
-                filename: "src/reader.rs".to_string(),
-                patch: concat!(
-                    "@@ -10,6 +10,8 @@ impl Reader {\n",
-                    "-    pub fn open_mmap(path: &str) -> Self {\n",
-                    "-        let old = 1;\n",
-                    "+    pub fn open_mmap(path: &Path) -> Result<Self> {\n",
-                    "+        let new = 2;\n",
-                    "     }\n",
-                )
-                .to_string(),
-            }],
-        );
-
-        let symbols = extract_symbols_regex(&diff);
-        let open_mmap_syms: Vec<_> = symbols
-            .iter()
-            .filter(|s| s.function.contains("open_mmap"))
-            .collect();
-        assert_eq!(
-            open_mmap_syms.len(),
-            1,
-            "Expected exactly 1 open_mmap symbol (deduped), got {}: {:?}",
-            open_mmap_syms.len(),
-            open_mmap_syms
-        );
-        assert!(
-            matches!(open_mmap_syms[0].change_type, ChangeType::Modified),
-            "Expected Modified when fn is both deleted and added, got {:?}",
-            open_mmap_syms[0].change_type
-        );
-    }
-
-    #[test]
-    fn test_trait_name_not_captured_as_type() {
-        // When hunk header shows `impl From<X>` without `for Type`,
-        // the trait name should NOT be used as the implementing type
-        assert_eq!(
-            parse_impl_type("impl From<Error> {"),
-            None,
-            "From is a trait, not a type"
-        );
-        assert_eq!(
-            parse_impl_type("impl<T> Into<Vec<T>> {"),
-            None,
-            "Into is a trait, not a type"
-        );
-        assert_eq!(
-            parse_impl_type("impl TryFrom<String> {"),
-            None,
-            "TryFrom is a trait, not a type"
-        );
-        assert_eq!(
-            parse_impl_type("impl Default {"),
-            None,
-            "Default is a trait, not a type"
-        );
-        // But with `for`, the trait should be skipped and the type extracted
-        assert_eq!(
-            parse_impl_type("impl From<Error> for MyError {"),
-            Some("MyError".into())
-        );
-        // Regular types should still work
-        assert_eq!(
-            parse_impl_type("impl MyStruct {"),
-            Some("MyStruct".into())
-        );
-    }
-
-    #[test]
-    fn test_trait_as_type_not_in_symbols() {
-        // End-to-end: hunk header with trait impl truncated should not
-        // produce symbols with trait name as type
-        let diff = PatchDiff::for_test("abc123",
-            vec![crate::github::FilePatch {
-                filename: "src/util.rs".to_string(),
-                patch: concat!(
-                    "@@ -10,6 +10,8 @@ impl From<Error>\n",
-                    "-    fn from(e: Error) -> Self {\n",
-                    "+    fn from(e: Error) -> Self {\n",
-                    "+        Self::new(e)\n",
-                    "     }\n",
-                )
-                .to_string(),
-            }],
-        );
-
-        let symbols = extract_symbols_regex(&diff);
-        for s in &symbols {
-            assert!(
-                !s.function.contains("From::"),
-                "Trait name should not appear as type in symbol: '{}'",
-                s.function
-            );
-        }
-    }
-
-    #[test]
-    fn test_is_std_trait() {
-        assert!(is_std_trait("From"));
-        assert!(is_std_trait("Into"));
-        assert!(is_std_trait("TryFrom"));
-        assert!(is_std_trait("Default"));
-        assert!(is_std_trait("Clone"));
-        assert!(is_std_trait("Iterator"));
-        assert!(!is_std_trait("MyStruct"));
-        assert!(!is_std_trait("Request"));
-        assert!(!is_std_trait("Vec")); // Vec is a type, not a trait
-        assert!(!is_std_trait("HashMap"));
     }
 }

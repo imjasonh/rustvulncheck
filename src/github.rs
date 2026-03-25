@@ -44,21 +44,9 @@ pub struct PatchDiff {
 #[derive(Debug, Clone)]
 pub struct FilePatch {
     pub filename: String,
+    /// The unified diff patch text from the GitHub API.
+    #[allow(dead_code)]
     pub patch: String,
-}
-
-impl PatchDiff {
-    /// Create a PatchDiff for testing (no owner/repo/parent metadata).
-    #[cfg(test)]
-    pub fn for_test(commit_sha: &str, files: Vec<FilePatch>) -> Self {
-        Self {
-            commit_sha: commit_sha.to_string(),
-            owner: String::new(),
-            repo: String::new(),
-            parent_sha: None,
-            files,
-        }
-    }
 }
 
 impl GithubClient {
