@@ -10,6 +10,8 @@ use std::path::{Path, PathBuf};
 
 use regex::Regex;
 
+use crate::type_tracker::{self, ImportMap, TypeBinding};
+
 /// Confidence that a call site actually invokes the vulnerable symbol.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Confidence {
@@ -78,7 +80,16 @@ pub fn scan_for_symbols(project_root: &Path, symbols: &[&str]) -> Vec<CallSite> 
             .to_path_buf();
 
         let imports = extract_imports(&content);
-        let sites = find_call_sites(&rel_path, &content, &imports, symbols);
+
+        // Build import map for type resolution and extract type bindings
+        let syn_import_map: ImportMap = imports
+            .iter()
+            .filter(|i| i.local_name != "*")
+            .map(|i| (i.local_name.clone(), i.full_path.clone()))
+            .collect();
+        let type_bindings = type_tracker::extract_type_bindings(&content, &syn_import_map);
+
+        let sites = find_call_sites(&rel_path, &content, &imports, &type_bindings, symbols);
         all_sites.extend(sites);
     }
 
@@ -173,6 +184,7 @@ fn find_call_sites(
     file_path: &Path,
     source: &str,
     imports: &[Import],
+    type_bindings: &[TypeBinding],
     symbols: &[&str],
 ) -> Vec<CallSite> {
     let mut sites = Vec::new();
@@ -261,15 +273,38 @@ fn find_call_sites(
                 continue;
             }
 
-            // Check for method-style calls (Medium confidence)
-            // Only flag if the type is imported in this file
+            // Check for method-style calls: `.foo(`
+            // Use type bindings to determine confidence level.
             if type_is_imported && line.contains(&method_pattern) {
+                // Try to extract the receiver variable name from `receiver.method(`
+                let confidence = if let Some(receiver_var) =
+                    extract_method_receiver(trimmed, fn_name)
+                {
+                    // Check if we know this variable's type via syn-based tracking
+                    let receiver_matches = type_bindings.iter().any(|b| {
+                        b.var_name == receiver_var && b.type_path == parent_path
+                    });
+                    // Also check self.field patterns against struct field bindings
+                    let field_matches = receiver_var.starts_with("self.")
+                        && type_bindings.iter().any(|b| {
+                            b.var_name.ends_with(&format!(".{}", &receiver_var[5..]))
+                                && b.type_path == parent_path
+                        });
+                    if receiver_matches || field_matches {
+                        Confidence::High
+                    } else {
+                        Confidence::Medium
+                    }
+                } else {
+                    Confidence::Medium
+                };
+
                 sites.push(CallSite {
                     file: file_path.to_path_buf(),
                     line: line_num + 1,
                     snippet: trimmed.to_string(),
                     symbol: symbol.to_string(),
-                    confidence: Confidence::Medium,
+                    confidence,
                 });
             }
         }
@@ -285,6 +320,50 @@ fn find_call_sites(
     sites.dedup_by(|a, b| a.file == b.file && a.line == b.line && a.symbol == b.symbol);
 
     sites
+}
+
+/// Extract the receiver variable name from a method call like `receiver.method(`.
+///
+/// Handles common patterns:
+/// - `foo.method(` → Some("foo")
+/// - `self.field.method(` → Some("self.field")
+/// - `foo.bar.method(` → Some("bar") (last segment before method)
+/// - `foo.method().chain(` → None (chained calls)
+/// - `(expr).method(` → None (complex expressions)
+fn extract_method_receiver(line: &str, method_name: &str) -> Option<String> {
+    let pattern = format!(".{}(", method_name);
+    let pos = line.find(&pattern)?;
+    let before = &line[..pos];
+
+    // Walk backwards to find the receiver token
+    let before = before.trim_end();
+    if before.is_empty() {
+        return None;
+    }
+
+    // Skip chained calls: if there's a `)` right before, it's a chain
+    if before.ends_with(')') || before.ends_with('}') || before.ends_with(']') {
+        return None;
+    }
+
+    // Extract the last identifier chain (e.g., `self.field` or `variable`)
+    let receiver: String = before
+        .chars()
+        .rev()
+        .take_while(|c| c.is_alphanumeric() || *c == '_' || *c == '.')
+        .collect::<String>()
+        .chars()
+        .rev()
+        .collect();
+
+    // Clean up: remove leading dots
+    let receiver = receiver.trim_start_matches('.').to_string();
+
+    if receiver.is_empty() || receiver.starts_with('.') {
+        return None;
+    }
+
+    Some(receiver)
 }
 
 #[cfg(test)]
@@ -336,10 +415,17 @@ fn handler() {
 }
 "#;
         let imports = extract_imports(source);
+        let imap: ImportMap = imports
+            .iter()
+            .filter(|i| i.local_name != "*")
+            .map(|i| (i.local_name.clone(), i.full_path.clone()))
+            .collect();
+        let bindings = type_tracker::extract_type_bindings(source, &imap);
         let sites = find_call_sites(
             Path::new("src/main.rs"),
             source,
             &imports,
+            &bindings,
             &["hyper::http::Request::parse"],
         );
         assert_eq!(sites.len(), 1);
@@ -356,10 +442,17 @@ fn handler() {
 }
 "#;
         let imports = extract_imports(source);
+        let imap: ImportMap = imports
+            .iter()
+            .filter(|i| i.local_name != "*")
+            .map(|i| (i.local_name.clone(), i.full_path.clone()))
+            .collect();
+        let bindings = type_tracker::extract_type_bindings(source, &imap);
         let sites = find_call_sites(
             Path::new("src/main.rs"),
             source,
             &imports,
+            &bindings,
             &["hyper::http::Request::parse"],
         );
         assert_eq!(sites.len(), 1);
@@ -367,7 +460,9 @@ fn handler() {
     }
 
     #[test]
-    fn test_find_method_call_medium_confidence() {
+    fn test_method_call_promoted_to_high_with_type_info() {
+        // With syn-based type tracking, fn parameter `req: Request` gives us
+        // enough info to promote the method call to High confidence.
         let source = r#"
 use hyper::http::Request;
 
@@ -376,10 +471,46 @@ fn handler(req: Request) {
 }
 "#;
         let imports = extract_imports(source);
+        let imap: ImportMap = imports
+            .iter()
+            .filter(|i| i.local_name != "*")
+            .map(|i| (i.local_name.clone(), i.full_path.clone()))
+            .collect();
+        let bindings = type_tracker::extract_type_bindings(source, &imap);
         let sites = find_call_sites(
             Path::new("src/main.rs"),
             source,
             &imports,
+            &bindings,
+            &["hyper::http::Request::parse"],
+        );
+        assert_eq!(sites.len(), 1);
+        assert_eq!(sites[0].confidence, Confidence::High);
+    }
+
+    #[test]
+    fn test_method_call_stays_medium_without_type_info() {
+        // If we can't determine the receiver's type, stays Medium.
+        let source = r#"
+use hyper::http::Request;
+
+fn handler() {
+    let req = get_something();
+    let result = req.parse(data);
+}
+"#;
+        let imports = extract_imports(source);
+        let imap: ImportMap = imports
+            .iter()
+            .filter(|i| i.local_name != "*")
+            .map(|i| (i.local_name.clone(), i.full_path.clone()))
+            .collect();
+        let bindings = type_tracker::extract_type_bindings(source, &imap);
+        let sites = find_call_sites(
+            Path::new("src/main.rs"),
+            source,
+            &imports,
+            &bindings,
             &["hyper::http::Request::parse"],
         );
         assert_eq!(sites.len(), 1);
@@ -395,10 +526,17 @@ fn handler(s: String) {
 }
 "#;
         let imports = extract_imports(source);
+        let imap: ImportMap = imports
+            .iter()
+            .filter(|i| i.local_name != "*")
+            .map(|i| (i.local_name.clone(), i.full_path.clone()))
+            .collect();
+        let bindings = type_tracker::extract_type_bindings(source, &imap);
         let sites = find_call_sites(
             Path::new("src/main.rs"),
             source,
             &imports,
+            &bindings,
             &["hyper::http::Request::parse"],
         );
         assert!(sites.is_empty());
@@ -414,10 +552,17 @@ fn handler() {
 }
 "#;
         let imports = extract_imports(source);
+        let imap: ImportMap = imports
+            .iter()
+            .filter(|i| i.local_name != "*")
+            .map(|i| (i.local_name.clone(), i.full_path.clone()))
+            .collect();
+        let bindings = type_tracker::extract_type_bindings(source, &imap);
         let sites = find_call_sites(
             Path::new("src/main.rs"),
             source,
             &imports,
+            &bindings,
             &["hyper::http::Request::parse"],
         );
         assert_eq!(sites.len(), 1);
@@ -435,12 +580,60 @@ fn handler() {
 }
 "#;
         let imports = extract_imports(source);
+        let imap: ImportMap = imports
+            .iter()
+            .filter(|i| i.local_name != "*")
+            .map(|i| (i.local_name.clone(), i.full_path.clone()))
+            .collect();
+        let bindings = type_tracker::extract_type_bindings(source, &imap);
         let sites = find_call_sites(
             Path::new("src/main.rs"),
             source,
             &imports,
+            &bindings,
             &["hyper::http::Request::parse"],
         );
         assert!(sites.is_empty());
+    }
+
+    #[test]
+    fn test_extract_method_receiver() {
+        assert_eq!(extract_method_receiver("req.parse(data)", "parse"), Some("req".to_string()));
+        assert_eq!(extract_method_receiver("self.client.send(msg)", "send"), Some("self.client".to_string()));
+        assert_eq!(extract_method_receiver("  foo.bar.method(x)", "method"), Some("foo.bar".to_string()));
+        // Chained calls: can't determine receiver
+        assert_eq!(extract_method_receiver("get_req().parse(data)", "parse"), None);
+        // Complex expression
+        assert_eq!(extract_method_receiver("(a + b).parse(data)", "parse"), None);
+    }
+
+    #[test]
+    fn test_constructor_promotes_to_high() {
+        let source = r#"
+use hyper::http::Request;
+
+fn handler() {
+    let req = Request::new(body);
+    req.parse(data);
+}
+"#;
+        let imports = extract_imports(source);
+        let imap: ImportMap = imports
+            .iter()
+            .filter(|i| i.local_name != "*")
+            .map(|i| (i.local_name.clone(), i.full_path.clone()))
+            .collect();
+        let bindings = type_tracker::extract_type_bindings(source, &imap);
+        let sites = find_call_sites(
+            Path::new("src/main.rs"),
+            source,
+            &imports,
+            &bindings,
+            &["hyper::http::Request::parse"],
+        );
+        // Should find 2 sites: the Request::new (high, qualified) and req.parse (high, type-tracked)
+        let method_sites: Vec<_> = sites.iter().filter(|s| s.snippet.contains(".parse")).collect();
+        assert_eq!(method_sites.len(), 1);
+        assert_eq!(method_sites[0].confidence, Confidence::High);
     }
 }

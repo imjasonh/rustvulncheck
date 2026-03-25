@@ -5,6 +5,7 @@ mod diff_analyzer;
 mod github;
 mod lockfile;
 mod scanner;
+mod type_tracker;
 
 use std::path::{Path, PathBuf};
 use std::process;
