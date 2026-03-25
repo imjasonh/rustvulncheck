@@ -11,7 +11,7 @@ pub struct VulnDb {
 }
 
 /// A single vulnerability entry with function-level detail.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct VulnEntry {
     pub advisory_id: String,
     pub package: String,
@@ -42,7 +42,24 @@ impl VulnDb {
     }
 
     pub fn write_json(&self, path: &Path) -> anyhow::Result<()> {
-        let json = serde_json::to_string_pretty(self)?;
+        // Sort for deterministic output to minimize diff noise
+        let mut sorted = self.entries.clone();
+        sorted.sort_by(|a, b| a.advisory_id.cmp(&b.advisory_id));
+        for entry in &mut sorted {
+            entry.vulnerable_symbols.sort_by(|a, b| {
+                a.file
+                    .cmp(&b.file)
+                    .then(a.function.cmp(&b.function))
+                    .then(a.change_type.cmp(&b.change_type))
+            });
+        }
+
+        let sorted_db = VulnDb {
+            generated_at: self.generated_at.clone(),
+            entries: sorted,
+        };
+        let mut json = serde_json::to_string_pretty(&sorted_db)?;
+        json.push('\n');
         std::fs::write(path, json)?;
         Ok(())
     }

@@ -1,5 +1,6 @@
 mod advisory;
 mod analyzer;
+mod ast_differ;
 mod db;
 mod diff_analyzer;
 mod github;
@@ -64,6 +65,12 @@ struct EnrichArgs {
     /// Path to an existing enriched DB to resume from (skips already-enriched advisories).
     #[arg(long)]
     existing_db: Option<PathBuf>,
+
+    /// Re-enrich existing entries by re-fetching diffs and re-extracting symbols
+    /// with the current code. Requires --existing-db. Processes up to --limit entries
+    /// that have a commit_sha.
+    #[arg(long)]
+    re_enrich: bool,
 
     /// Stop processing after this many seconds (for CI time-boxing).
     #[arg(long)]
@@ -153,16 +160,132 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
         _ => VulnDb::new(),
     };
 
+    // Step 3: Parse advisories
+    println!("Parsing advisory database...");
+    let all_advisories = parse_advisory_db(&db_path)?;
+    println!("Found {} total advisories", all_advisories.len());
+
+    // Build advisory lookup by ID for re-enrichment
+    let advisory_by_id: std::collections::HashMap<&str, &Advisory> = all_advisories
+        .iter()
+        .map(|a| (a.id.as_str(), a))
+        .collect();
+
+    let gh = GithubClient::new(args.github_token);
+
+    // Helper closure to check timeout
+    let timed_out = |start: &Instant, t: &Option<Duration>| -> bool {
+        if let Some(t) = t {
+            if start.elapsed() >= *t {
+                println!(
+                    "Timeout reached after {} seconds, stopping.",
+                    start.elapsed().as_secs()
+                );
+                return true;
+            }
+        }
+        false
+    };
+
+    // Step 4: Re-enrich existing entries if --re-enrich is set
+    let mut re_enriched_count = 0usize;
+
+    if args.re_enrich {
+        // Find existing entries that have commit SHAs and matching advisories
+        let re_enrich_indices: Vec<usize> = vuln_db
+            .entries
+            .iter()
+            .enumerate()
+            .filter(|(_, e)| {
+                e.commit_sha.is_some() && advisory_by_id.contains_key(e.advisory_id.as_str())
+            })
+            .map(|(i, _)| i)
+            .collect();
+
+        let re_enrich_target = args.limit.min(re_enrich_indices.len());
+        println!(
+            "Re-enriching up to {} of {} existing entries...\n",
+            re_enrich_target,
+            re_enrich_indices.len()
+        );
+
+        for &idx in &re_enrich_indices {
+            if re_enriched_count >= args.limit {
+                println!(
+                    "Reached --limit of {} re-enriched entries, stopping.",
+                    args.limit
+                );
+                break;
+            }
+            if timed_out(&start_time, &timeout) {
+                break;
+            }
+
+            let entry = &vuln_db.entries[idx];
+            let adv = advisory_by_id[entry.advisory_id.as_str()];
+            let old_symbol_count = entry.vulnerable_symbols.len();
+
+            println!(
+                "[{}/{}] Re-enriching {} ({})",
+                re_enriched_count + 1,
+                re_enrich_target,
+                entry.advisory_id,
+                entry.package,
+            );
+
+            let gh_refs = adv.github_refs();
+            let mut new_symbols = Vec::new();
+            let mut new_sha = entry.commit_sha.clone();
+
+            for gh_ref in &gh_refs {
+                match gh.fetch_diff(gh_ref) {
+                    Ok(Some(diff)) => {
+                        println!(
+                            "  Fetched commit {} ({} .rs files)",
+                            &diff.commit_sha[..7.min(diff.commit_sha.len())],
+                            diff.files.len()
+                        );
+                        new_sha = Some(diff.commit_sha.clone());
+                        new_symbols = extract_symbols(&diff, &gh);
+                        break;
+                    }
+                    Ok(None) => {
+                        println!("  Ref returned no diff, trying next...");
+                    }
+                    Err(e) => {
+                        eprintln!("  Error fetching diff: {}", e);
+                    }
+                }
+            }
+
+            let new_symbol_count = new_symbols.len();
+            if new_symbol_count != old_symbol_count {
+                println!(
+                    "  Symbols: {} -> {} (changed)",
+                    old_symbol_count, new_symbol_count
+                );
+            } else {
+                println!("  Symbols: {} (unchanged)", new_symbol_count);
+            }
+            for sym in &new_symbols {
+                println!("    - {} ({:?})", sym.function, sym.change_type);
+            }
+
+            // Update the entry in-place
+            let entry_mut = &mut vuln_db.entries[idx];
+            entry_mut.commit_sha = new_sha;
+            entry_mut.vulnerable_symbols = new_symbols;
+            re_enriched_count += 1;
+            println!();
+        }
+    }
+
+    // Step 5: Process new (unenriched) advisories
     let already_enriched: HashSet<String> = vuln_db
         .entries
         .iter()
         .map(|e| e.advisory_id.clone())
         .collect();
-
-    // Step 3: Parse advisories
-    println!("Parsing advisory database...");
-    let all_advisories = parse_advisory_db(&db_path)?;
-    println!("Found {} total advisories", all_advisories.len());
 
     // Filter to advisories with GitHub refs unless --include-all
     let candidates: Vec<&Advisory> = if args.include_all {
@@ -188,30 +311,28 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
         unenriched.len()
     );
 
-    let target = args.limit.min(unenriched.len());
-    println!(
-        "Processing advisories (collecting up to {} new enriched entries)...\n",
-        target
-    );
+    let new_limit = if args.re_enrich {
+        // When re-enriching, don't also add new entries (separate concerns)
+        0
+    } else {
+        args.limit
+    };
+    let target = new_limit.min(unenriched.len());
+    if target > 0 {
+        println!(
+            "Processing advisories (collecting up to {} new enriched entries)...\n",
+            target
+        );
+    }
 
-    // Step 4: Fetch diffs and extract symbols
-    let gh = GithubClient::new(args.github_token);
     let mut new_count = 0usize;
 
     for adv in &unenriched {
-        if new_count >= args.limit {
-            println!("Reached --limit of {} new entries, stopping.", args.limit);
+        if new_count >= new_limit {
             break;
         }
-
-        if let Some(t) = timeout {
-            if start_time.elapsed() >= t {
-                println!(
-                    "Timeout reached after {} seconds, stopping.",
-                    start_time.elapsed().as_secs()
-                );
-                break;
-            }
+        if timed_out(&start_time, &timeout) {
+            break;
         }
 
         let gh_refs = adv.github_refs();
@@ -248,7 +369,7 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
                         diff.files.len()
                     );
                     entry.commit_sha = Some(diff.commit_sha.clone());
-                    let symbols = extract_symbols(&diff);
+                    let symbols = extract_symbols(&diff, &gh);
                     if symbols.is_empty() {
                         println!("  No function signatures extracted from diff");
                     } else {
@@ -274,21 +395,32 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
         println!();
     }
 
-    // Update timestamp
-    vuln_db.update_timestamp();
+    // Only update timestamp if we actually changed something
+    if new_count > 0 || re_enriched_count > 0 {
+        vuln_db.update_timestamp();
+    }
 
-    // Step 5: Write output
+    // Step 6: Write output
     let entries_with_symbols = vuln_db
         .entries
         .iter()
         .filter(|e| !e.vulnerable_symbols.is_empty())
         .count();
-    println!(
-        "Done! Added {} new entries ({} total, {} with symbols).",
-        new_count,
-        vuln_db.entries.len(),
-        entries_with_symbols,
-    );
+    if args.re_enrich {
+        println!(
+            "Done! Re-enriched {} entries ({} total, {} with symbols).",
+            re_enriched_count,
+            vuln_db.entries.len(),
+            entries_with_symbols,
+        );
+    } else {
+        println!(
+            "Done! Added {} new entries ({} total, {} with symbols).",
+            new_count,
+            vuln_db.entries.len(),
+            entries_with_symbols,
+        );
+    }
 
     vuln_db.write_json(&args.output)?;
     println!("Wrote enriched database to {}", args.output.display());
