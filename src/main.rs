@@ -395,8 +395,10 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
         println!();
     }
 
-    // Update timestamp
-    vuln_db.update_timestamp();
+    // Only update timestamp if we actually changed something
+    if new_count > 0 || re_enriched_count > 0 {
+        vuln_db.update_timestamp();
+    }
 
     // Step 6: Write output
     let entries_with_symbols = vuln_db

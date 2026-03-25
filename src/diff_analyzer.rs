@@ -18,11 +18,11 @@ pub struct VulnerableSymbol {
     pub change_type: ChangeType,
 }
 
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, serde::Serialize, serde::Deserialize)]
 pub enum ChangeType {
-    Modified,
     Added,
     Deleted,
+    Modified,
 }
 
 /// Extract function signatures by fetching full file contents and AST-diffing.

@@ -93,6 +93,14 @@ pub fn diff_symbols(
         }
     }
 
+    // Sort for deterministic output: by file, then function, then change_type
+    results.sort_by(|a, b| {
+        a.file
+            .cmp(&b.file)
+            .then(a.function.cmp(&b.function))
+            .then(a.change_type.cmp(&b.change_type))
+    });
+
     results
 }
 
