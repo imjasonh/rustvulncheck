@@ -1,5 +1,6 @@
 mod advisory;
 mod analyzer;
+mod ast_differ;
 mod db;
 mod diff_analyzer;
 mod github;
@@ -245,7 +246,7 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
                             diff.files.len()
                         );
                         new_sha = Some(diff.commit_sha.clone());
-                        new_symbols = extract_symbols(&diff);
+                        new_symbols = extract_symbols(&diff, &gh);
                         break;
                     }
                     Ok(None) => {
@@ -368,7 +369,7 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
                         diff.files.len()
                     );
                     entry.commit_sha = Some(diff.commit_sha.clone());
-                    let symbols = extract_symbols(&diff);
+                    let symbols = extract_symbols(&diff, &gh);
                     if symbols.is_empty() {
                         println!("  No function signatures extracted from diff");
                     } else {

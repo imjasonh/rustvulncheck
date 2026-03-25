@@ -104,6 +104,7 @@ dependencies = [
  "anyhow",
  "clap",
  "git2",
+ "quote",
  "regex",
  "reqwest",
  "semver",

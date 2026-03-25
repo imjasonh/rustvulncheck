@@ -22,14 +22,82 @@ pub enum ChangeType {
     Deleted,
 }
 
-/// Extract function signatures from a patch diff.
+/// Extract function signatures using AST parsing where possible, with regex fallback.
 ///
-/// Strategy:
-/// 1. Look at unified diff hunk headers (`@@ ... @@ fn ...`) which often contain
-///    the enclosing function name.
-/// 2. Look at added/removed lines containing `fn ` declarations.
-/// 3. Infer module path from the file path.
-pub fn extract_symbols(diff: &PatchDiff) -> Vec<VulnerableSymbol> {
+/// For each changed `.rs` file, fetches the full before/after contents from GitHub,
+/// parses them with `syn`, and diffs the function sets to find Added/Modified/Deleted
+/// symbols. Falls back to regex-based extraction per-file when AST parsing fails
+/// (syntax errors, macro-heavy files) or when file contents can't be fetched.
+pub fn extract_symbols(
+    diff: &PatchDiff,
+    gh: &crate::github::GithubClient,
+) -> Vec<VulnerableSymbol> {
+    let mut all_symbols = Vec::new();
+    let has_metadata = !diff.owner.is_empty() && !diff.repo.is_empty();
+
+    for file_patch in &diff.files {
+        if is_test_file(&file_patch.filename) {
+            continue;
+        }
+
+        let module_path = file_path_to_module(&file_patch.filename);
+
+        // Try AST-based extraction if we have the metadata to fetch files
+        if has_metadata {
+            if let Some(parent) = &diff.parent_sha {
+                let before = gh
+                    .fetch_file_contents(
+                        &diff.owner,
+                        &diff.repo,
+                        &file_patch.filename,
+                        parent,
+                    )
+                    .ok()
+                    .flatten();
+
+                let after = gh
+                    .fetch_file_contents(
+                        &diff.owner,
+                        &diff.repo,
+                        &file_patch.filename,
+                        &diff.commit_sha,
+                    )
+                    .ok()
+                    .flatten();
+
+                if let Some(ast_symbols) = crate::ast_differ::ast_diff_symbols(
+                    before.as_deref(),
+                    after.as_deref(),
+                    &module_path,
+                    &file_patch.filename,
+                ) {
+                    if !ast_symbols.is_empty() || before.is_some() || after.is_some() {
+                        // AST succeeded — use its results (even if empty means no changes)
+                        all_symbols.extend(ast_symbols);
+                        continue;
+                    }
+                }
+            }
+        }
+
+        // Fallback: regex-based extraction for this file
+        let file_diff = PatchDiff {
+            commit_sha: diff.commit_sha.clone(),
+            owner: String::new(),
+            repo: String::new(),
+            parent_sha: None,
+            files: vec![file_patch.clone()],
+        };
+        all_symbols.extend(extract_symbols_regex(&file_diff));
+    }
+
+    all_symbols
+}
+
+/// Regex-based fallback for extracting function signatures from unified diffs.
+///
+/// Used when AST parsing fails or file contents can't be fetched.
+pub(crate) fn extract_symbols_regex(diff: &PatchDiff) -> Vec<VulnerableSymbol> {
     let mut symbols: Vec<VulnerableSymbol> = Vec::new();
     let fn_decl_re = Regex::new(
         r"(?:pub\s+(?:\(crate\)\s+)?)?(?:unsafe\s+)?(?:async\s+)?fn\s+([a-zA-Z_][a-zA-Z0-9_]*)",
@@ -507,9 +575,8 @@ mod tests {
     fn test_consecutive_hunks_preserve_fn_context() {
         // When consecutive hunks are in the same function and hunk 1 header
         // shows `fn foo`, hunk 2 (with `impl` header) should preserve context.
-        let diff = PatchDiff {
-            commit_sha: "abc123".to_string(),
-            files: vec![crate::github::FilePatch {
+        let diff = PatchDiff::for_test("abc123",
+            vec![crate::github::FilePatch {
                 filename: "src/keccak/xof.rs".to_string(),
                 patch: concat!(
                     "@@ -100,6 +100,8 @@ pub(crate) fn squeeze(out: &mut [u8]) {\n",
@@ -524,9 +591,9 @@ mod tests {
                 )
                 .to_string(),
             }],
-        };
+        );
 
-        let symbols = extract_symbols(&diff);
+        let symbols = extract_symbols_regex(&diff);
         assert!(
             symbols.iter().any(|s| s.function.contains("squeeze")),
             "Expected squeeze to be found, got: {:?}",
@@ -539,9 +606,8 @@ mod tests {
         // Reproduces the real xof.rs scenario: BOTH hunk headers show `impl`,
         // fn declaration is too far above for git to include. Changes should
         // still be captured at the impl-type level.
-        let diff = PatchDiff {
-            commit_sha: "6bbe15ec".to_string(),
-            files: vec![crate::github::FilePatch {
+        let diff = PatchDiff::for_test("6bbe15ec",
+            vec![crate::github::FilePatch {
                 filename: "crates/algorithms/sha3/src/generic_keccak/xof.rs".to_string(),
                 patch: concat!(
                     "@@ -290,6 +290,12 @@ impl<const PARALLEL_LANES: usize, const RATE: usize> KeccakState<PARALLEL_LANES>\n",
@@ -563,9 +629,9 @@ mod tests {
                 )
                 .to_string(),
             }],
-        };
+        );
 
-        let symbols = extract_symbols(&diff);
+        let symbols = extract_symbols_regex(&diff);
         assert!(
             !symbols.is_empty(),
             "Expected symbols from impl body changes, got none"
@@ -579,9 +645,8 @@ mod tests {
 
     #[test]
     fn test_extract_fn_from_diff() {
-        let diff = PatchDiff {
-            commit_sha: "abc123".to_string(),
-            files: vec![crate::github::FilePatch {
+        let diff = PatchDiff::for_test("abc123",
+            vec![crate::github::FilePatch {
                 filename: "src/http/request.rs".to_string(),
                 patch: r#"@@ -10,6 +10,8 @@ impl Request {
      pub fn parse(buf: &[u8]) -> Result<Self> {
@@ -592,9 +657,9 @@ mod tests {
 "#
                 .to_string(),
             }],
-        };
+        );
 
-        let symbols = extract_symbols(&diff);
+        let symbols = extract_symbols_regex(&diff);
         assert!(!symbols.is_empty());
         assert!(symbols.iter().any(|s| s.function.contains("parse")));
     }
@@ -647,9 +712,8 @@ mod tests {
     #[test]
     fn test_for_keyword_no_longer_leaks_into_symbol() {
         // Reproduces the pyo3 RUSTSEC-2020-0074 bug
-        let diff = PatchDiff {
-            commit_sha: "abc123".to_string(),
-            files: vec![crate::github::FilePatch {
+        let diff = PatchDiff::for_test("abc123",
+            vec![crate::github::FilePatch {
                 filename: "src/instance.rs".to_string(),
                 patch: concat!(
                     "@@ -495,7 +495,9 @@ impl<T> std::convert::From<Py<T>> for PyObject\n",
@@ -660,9 +724,9 @@ mod tests {
                 )
                 .to_string(),
             }],
-        };
+        );
 
-        let symbols = extract_symbols(&diff);
+        let symbols = extract_symbols_regex(&diff);
         for s in &symbols {
             assert!(
                 !s.function.contains("for "),
@@ -681,9 +745,8 @@ mod tests {
     #[test]
     fn test_where_clause_no_longer_leaks_into_symbol() {
         // Reproduces the lock_api RUSTSEC-2020-0070 bug
-        let diff = PatchDiff {
-            commit_sha: "abc123".to_string(),
-            files: vec![crate::github::FilePatch {
+        let diff = PatchDiff::for_test("abc123",
+            vec![crate::github::FilePatch {
                 filename: "lock_api/src/mutex.rs".to_string(),
                 patch: concat!(
                     "@@ -100,6 +100,8 @@ impl<R: RawMutex, T: ?Sized> Mutex<R, T> where R: Send {\n",
@@ -692,9 +755,9 @@ mod tests {
                 )
                 .to_string(),
             }],
-        };
+        );
 
-        let symbols = extract_symbols(&diff);
+        let symbols = extract_symbols_regex(&diff);
         for s in &symbols {
             assert!(
                 !s.function.contains("where"),
@@ -714,9 +777,8 @@ mod tests {
     #[test]
     fn test_test_functions_filtered_by_attribute() {
         // #[test] functions in library source should be skipped
-        let diff = PatchDiff {
-            commit_sha: "abc123".to_string(),
-            files: vec![crate::github::FilePatch {
+        let diff = PatchDiff::for_test("abc123",
+            vec![crate::github::FilePatch {
                 filename: "src/pycell/impl_.rs".to_string(),
                 patch: concat!(
                     "@@ -100,6 +100,12 @@ impl PyCell {\n",
@@ -731,9 +793,9 @@ mod tests {
                 )
                 .to_string(),
             }],
-        };
+        );
 
-        let symbols = extract_symbols(&diff);
+        let symbols = extract_symbols_regex(&diff);
         assert!(
             !symbols.iter().any(|s| s.function.contains("test_inherited")),
             "test_ functions should be filtered out, got: {:?}",
@@ -750,9 +812,8 @@ mod tests {
     #[test]
     fn test_test_functions_filtered_by_name_prefix() {
         // test_ prefix functions should be filtered even without #[test] attribute
-        let diff = PatchDiff {
-            commit_sha: "abc123".to_string(),
-            files: vec![crate::github::FilePatch {
+        let diff = PatchDiff::for_test("abc123",
+            vec![crate::github::FilePatch {
                 filename: "src/lib.rs".to_string(),
                 patch: concat!(
                     "@@ -10,6 +10,8 @@\n",
@@ -765,9 +826,9 @@ mod tests {
                 )
                 .to_string(),
             }],
-        };
+        );
 
-        let symbols = extract_symbols(&diff);
+        let symbols = extract_symbols_regex(&diff);
         assert!(
             !symbols.iter().any(|s| s.function.contains("test_combine")),
             "test_ prefix functions should be filtered, got: {:?}",
@@ -783,9 +844,8 @@ mod tests {
     #[test]
     fn test_cfg_test_functions_filtered() {
         // Functions after #[cfg(test)] should be filtered
-        let diff = PatchDiff {
-            commit_sha: "abc123".to_string(),
-            files: vec![crate::github::FilePatch {
+        let diff = PatchDiff::for_test("abc123",
+            vec![crate::github::FilePatch {
                 filename: "src/core.rs".to_string(),
                 patch: concat!(
                     "@@ -200,6 +200,10 @@\n",
@@ -796,9 +856,9 @@ mod tests {
                 )
                 .to_string(),
             }],
-        };
+        );
 
-        let symbols = extract_symbols(&diff);
+        let symbols = extract_symbols_regex(&diff);
         assert!(
             !symbols.iter().any(|s| s.function.contains("helper_for_tests")),
             "#[cfg(test)] functions should be filtered, got: {:?}",
@@ -809,9 +869,8 @@ mod tests {
     #[test]
     fn test_duplicate_fn_deduped_as_modified() {
         // When a fn is both removed (-) and added (+), it should appear once as Modified
-        let diff = PatchDiff {
-            commit_sha: "abc123".to_string(),
-            files: vec![crate::github::FilePatch {
+        let diff = PatchDiff::for_test("abc123",
+            vec![crate::github::FilePatch {
                 filename: "src/reader.rs".to_string(),
                 patch: concat!(
                     "@@ -10,6 +10,8 @@ impl Reader {\n",
@@ -823,9 +882,9 @@ mod tests {
                 )
                 .to_string(),
             }],
-        };
+        );
 
-        let symbols = extract_symbols(&diff);
+        let symbols = extract_symbols_regex(&diff);
         let open_mmap_syms: Vec<_> = symbols
             .iter()
             .filter(|s| s.function.contains("open_mmap"))
@@ -884,9 +943,8 @@ mod tests {
     fn test_trait_as_type_not_in_symbols() {
         // End-to-end: hunk header with trait impl truncated should not
         // produce symbols with trait name as type
-        let diff = PatchDiff {
-            commit_sha: "abc123".to_string(),
-            files: vec![crate::github::FilePatch {
+        let diff = PatchDiff::for_test("abc123",
+            vec![crate::github::FilePatch {
                 filename: "src/util.rs".to_string(),
                 patch: concat!(
                     "@@ -10,6 +10,8 @@ impl From<Error>\n",
@@ -897,9 +955,9 @@ mod tests {
                 )
                 .to_string(),
             }],
-        };
+        );
 
-        let symbols = extract_symbols(&diff);
+        let symbols = extract_symbols_regex(&diff);
         for s in &symbols {
             assert!(
                 !s.function.contains("From::"),
