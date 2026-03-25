@@ -53,15 +53,24 @@ pub fn extract_symbols(diff: &PatchDiff) -> Vec<VulnerableSymbol> {
             // Track hunk headers - they often show the enclosing function
             if let Some(caps) = hunk_header_re.captures(line) {
                 let context = &caps[1];
-                // Check if the hunk header contains an impl block
-                if let Some(icaps) = impl_re.captures(context) {
+                let has_fn = fn_decl_re.captures(context);
+                let has_impl = impl_re.captures(context);
+
+                if let Some(icaps) = has_impl {
                     current_impl_type = Some(icaps[2].trim().to_string());
-                    current_context_fn = None;
                 }
-                // Check if hunk header mentions a fn
-                if let Some(fcaps) = fn_decl_re.captures(context) {
+
+                if let Some(fcaps) = has_fn {
+                    // Hunk header explicitly names a fn — use it
                     current_context_fn = Some(fcaps[1].to_string());
                 }
+                // If the hunk header shows only `impl` (no fn), do NOT clear
+                // current_context_fn. Git picks the nearest enclosing scope
+                // line for hunk headers, and consecutive hunks in the same
+                // long method can alternate between showing `fn foo` and
+                // `impl Foo`. Clearing would silently drop body-only changes.
+                // current_context_fn will be properly reset when we encounter
+                // an actual fn declaration in context/changed lines.
                 continue;
             }
 
@@ -71,6 +80,8 @@ pub fn extract_symbols(diff: &PatchDiff) -> Vec<VulnerableSymbol> {
                 if let Some(icaps) = impl_re.captures(content) {
                     if !content.trim_start().starts_with("//") {
                         current_impl_type = Some(icaps[2].trim().to_string());
+                        // In a context/changed line showing impl, we're entering
+                        // a new impl block — clear the fn context.
                         current_context_fn = None;
                     }
                 }
@@ -244,6 +255,42 @@ mod tests {
         assert!(is_test_file("src/my_test.rs"));
         assert!(!is_test_file("src/lib.rs"));
         assert!(!is_test_file("src/http/request.rs"));
+    }
+
+    #[test]
+    fn test_consecutive_hunks_preserve_fn_context() {
+        // Reproduces the xof.rs scenario: two hunks in the same function,
+        // where hunk 1 header shows `fn squeeze` and hunk 2 header shows
+        // `impl KeccakXofState` (git chose the impl as the nearest scope).
+        let diff = PatchDiff {
+            commit_sha: "6bbe15ec".to_string(),
+            files: vec![crate::github::FilePatch {
+                filename: "crates/algorithms/sha3/src/generic_keccak/xof.rs".to_string(),
+                patch: concat!(
+                    "@@ -290,6 +290,12 @@ pub(crate) fn squeeze<const PARALLEL_LANES: usize>(\n",
+                    "     out: &mut [u8],\n",
+                    "+    /// NOTE: calling squeeze multiple times only gives correct output\n",
+                    "+    /// if all squeezed chunks (except the last) are RATE bytes long.\n",
+                    " ) {\n",
+                    "@@ -322,20 +330,25 @@ impl<const RATE: usize, const PARALLEL_LANES: usize> KeccakXofState<RATE, PARALLEL_LANES>\n",
+                    "     let blocks = out_len / RATE;\n",
+                    "-        for i in 0..blocks {\n",
+                    "-            self.inner.keccakf1600();\n",
+                    "+        // Extract first block without permutation\n",
+                    "+        self.inner.squeeze(0, RATE);\n",
+                    "+        for i in 1..blocks {\n",
+                    "+            self.inner.keccakf1600();\n",
+                    "         }\n",
+                ).to_string(),
+            }],
+        };
+
+        let symbols = extract_symbols(&diff);
+        assert!(
+            symbols.iter().any(|s| s.function.contains("squeeze")),
+            "Expected squeeze to be found, got: {:?}",
+            symbols
+        );
     }
 
     #[test]
