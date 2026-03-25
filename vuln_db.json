@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1774452157",
+  "generated_at": "unix:1774452629",
   "entries": [
     {
       "advisory_id": "RUSTSEC-2026-0037",
@@ -169,11 +169,6 @@
         {
           "file": "src/impl_/pymodule.rs",
           "function": "impl_::pymodule::ModuleDef::init_multi_phase",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/pycell/impl_.rs",
-          "function": "pycell::impl_::test_inherited_size",
           "change_type": "Modified"
         },
         {
@@ -511,7 +506,7 @@
         },
         {
           "file": "libcrux-psq/src/handshake/initiator/registration.rs",
-          "function": "libcrux_psq::handshake::initiator::registration::for RegistrationInitiator::<method>",
+          "function": "libcrux_psq::handshake::initiator::registration::RegistrationInitiator::<method>",
           "change_type": "Modified"
         }
       ]
@@ -601,11 +596,6 @@
           "file": "src/buf.rs",
           "function": "buf::Buf::deref_mut",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/buf.rs",
-          "function": "buf::Buf::empty_buf",
-          "change_type": "Added"
         }
       ]
     },
@@ -718,11 +708,6 @@
           "file": "src/lib.rs",
           "function": "IterMut::<method>",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "IterMut::iter_mut_stacked_borrows_violation",
-          "change_type": "Added"
         }
       ]
     },
@@ -1643,11 +1628,6 @@
           "change_type": "Modified"
         },
         {
-          "file": "openssl/src/cipher.rs",
-          "function": "openssl::cipher::CipherRef::test_cipher_fetch_properties",
-          "change_type": "Added"
-        },
-        {
           "file": "openssl/src/md.rs",
           "function": "openssl::md::Md::<method>",
           "change_type": "Modified"
@@ -1656,11 +1636,6 @@
           "file": "openssl/src/md.rs",
           "function": "openssl::md::MdRef::<method>",
           "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/md.rs",
-          "function": "openssl::md::MdRef::test_md_fetch_properties",
-          "change_type": "Added"
         }
       ]
     },
@@ -2219,7 +2194,7 @@
         },
         {
           "file": "services/shellchat/src/cmds/test.rs",
-          "function": "shellchat::cmds::test::for Test::<method>",
+          "function": "shellchat::cmds::test::Test::<method>",
           "change_type": "Modified"
         },
         {
@@ -2372,21 +2347,6 @@
           "change_type": "Added"
         },
         {
-          "file": "fyrox-core/src/lib.rs",
-          "function": "fyrox_core::test_combine_uuids",
-          "change_type": "Modified"
-        },
-        {
-          "file": "fyrox-core/src/lib.rs",
-          "function": "fyrox_core::test_transmute_vec_as_bytes_length_new_f32",
-          "change_type": "Added"
-        },
-        {
-          "file": "fyrox-core/src/lib.rs",
-          "function": "fyrox_core::test_transmute_vec_as_bytes_length_new_usize",
-          "change_type": "Added"
-        },
-        {
           "file": "fyrox-impl/src/scene/mesh/surface.rs",
           "function": "fyrox_impl::scene::mesh::surface::BlendShapesContainer::<method>",
           "change_type": "Modified"
@@ -2497,11 +2457,6 @@
         {
           "file": "src/collector.rs",
           "function": "collector::TempFdArray::add_map",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/collector.rs",
-          "function": "collector::TempFdArray::collector_align_test",
           "change_type": "Added"
         },
         {
@@ -2647,22 +2602,17 @@
         },
         {
           "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for Bound::get_object",
+          "function": "types::weakref::anyref::Bound::get_object",
           "change_type": "Added"
         },
         {
           "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for Bound::get_object_borrowed",
+          "function": "types::weakref::anyref::Bound::get_object_borrowed",
           "change_type": "Modified"
         },
         {
           "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for Bound::test_weakref_upgrade_borrowed_as",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for Bound::inner",
+          "function": "types::weakref::anyref::Bound::inner",
           "change_type": "Deleted"
         },
         {
@@ -2677,7 +2627,7 @@
         },
         {
           "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for::test_weakref_upgrade_borrowed_as_unchecked",
+          "function": "types::weakref::anyref::for::inner",
           "change_type": "Deleted"
         },
         {
@@ -2687,7 +2637,7 @@
         },
         {
           "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for::test_weakref_upgrade_borrowed",
+          "function": "types::weakref::anyref::for::inner",
           "change_type": "Deleted"
         },
         {
@@ -2697,47 +2647,12 @@
         },
         {
           "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for::test_weakref_get_object_borrowed",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/types/weakref/anyref.rs",
           "function": "types::weakref::anyref::for::inner",
           "change_type": "Deleted"
         },
         {
           "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for::test_weakref_upgrade_borrowed_as",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/types/weakref/anyref.rs",
           "function": "types::weakref::anyref::for::inner",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for::test_weakref_upgrade_borrowed_as_unchecked",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for::inner",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for::test_weakref_upgrade_borrowed",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for::inner",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/types/weakref/anyref.rs",
-          "function": "types::weakref::anyref::for::test_weakref_get_object_borrowed",
           "change_type": "Deleted"
         },
         {
@@ -2747,62 +2662,32 @@
         },
         {
           "file": "src/types/weakref/proxy.rs",
-          "function": "types::weakref::proxy::for Bound::get_object",
+          "function": "types::weakref::proxy::Bound::get_object",
           "change_type": "Added"
         },
         {
           "file": "src/types/weakref/proxy.rs",
-          "function": "types::weakref::proxy::for Bound::get_object_borrowed",
+          "function": "types::weakref::proxy::Bound::get_object_borrowed",
           "change_type": "Modified"
         },
         {
           "file": "src/types/weakref/proxy.rs",
-          "function": "types::weakref::proxy::for Bound::test_weakref_upgrade_borrowed",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/types/weakref/proxy.rs",
-          "function": "types::weakref::proxy::for Bound::test_weakref_get_object_borrowed",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/types/weakref/proxy.rs",
-          "function": "types::weakref::proxy::for Bound::test_weakref_upgrade_borrowed_as",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/types/weakref/proxy.rs",
-          "function": "types::weakref::proxy::for Bound::test_weakref_upgrade_borrowed_as_unchecked",
+          "function": "types::weakref::proxy::Bound::<method>",
           "change_type": "Modified"
         },
         {
           "file": "src/types/weakref/reference.rs",
-          "function": "types::weakref::reference::for Bound::get_object",
+          "function": "types::weakref::reference::Bound::get_object",
           "change_type": "Added"
         },
         {
           "file": "src/types/weakref/reference.rs",
-          "function": "types::weakref::reference::for Bound::get_object_borrowed",
+          "function": "types::weakref::reference::Bound::get_object_borrowed",
           "change_type": "Modified"
         },
         {
           "file": "src/types/weakref/reference.rs",
-          "function": "types::weakref::reference::for Bound::test_weakref_upgrade_borrowed_as",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/types/weakref/reference.rs",
-          "function": "types::weakref::reference::for Bound::test_weakref_upgrade_borrowed_as_unchecked",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/types/weakref/reference.rs",
-          "function": "types::weakref::reference::for Bound::test_weakref_upgrade_borrowed",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/types/weakref/reference.rs",
-          "function": "types::weakref::reference::for Bound::test_weakref_get_object_borrowed",
+          "function": "types::weakref::reference::Bound::<method>",
           "change_type": "Modified"
         }
       ]
@@ -2992,12 +2877,22 @@
         },
         {
           "file": "diesel/src/mysql/types/date_and_time/chrono.rs",
-          "function": "diesel::mysql::types::date_and_time::chrono::ToSql::to_sql",
+          "function": "diesel::mysql::types::date_and_time::chrono::NaiveDateTime::to_sql",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/mysql/types/date_and_time/chrono.rs",
-          "function": "diesel::mysql::types::date_and_time::chrono::FromSql::from_sql",
+          "function": "diesel::mysql::types::date_and_time::chrono::NaiveDateTime::from_sql",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/types/date_and_time/chrono.rs",
+          "function": "diesel::mysql::types::date_and_time::chrono::NaiveDate::to_sql",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/types/date_and_time/chrono.rs",
+          "function": "diesel::mysql::types::date_and_time::chrono::NaiveDate::from_sql",
           "change_type": "Modified"
         },
         {
@@ -3007,22 +2902,57 @@
         },
         {
           "file": "diesel/src/mysql/types/date_and_time/time.rs",
-          "function": "diesel::mysql::types::date_and_time::time::ToSql::to_sql",
+          "function": "diesel::mysql::types::date_and_time::time::PrimitiveDateTime::to_sql",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/types/date_and_time/time.rs",
+          "function": "diesel::mysql::types::date_and_time::time::NaiveDate::to_sql",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/mysql/types/mod.rs",
-          "function": "diesel::mysql::types::FromSql::from_sql",
+          "function": "diesel::mysql::types::i8::from_sql",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/mysql/types/mod.rs",
-          "function": "diesel::mysql::types::ToSql::to_sql",
+          "function": "diesel::mysql::types::u8::to_sql",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/mysql/types/mod.rs",
-          "function": "diesel::mysql::types::FromSql::<method>",
+          "function": "diesel::mysql::types::u8::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/types/mod.rs",
+          "function": "diesel::mysql::types::u16::to_sql",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/types/mod.rs",
+          "function": "diesel::mysql::types::u16::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/types/mod.rs",
+          "function": "diesel::mysql::types::u32::to_sql",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/types/mod.rs",
+          "function": "diesel::mysql::types::u32::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/types/mod.rs",
+          "function": "diesel::mysql::types::u64::to_sql",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/types/mod.rs",
+          "function": "diesel::mysql::types::u64::<method>",
           "change_type": "Modified"
         },
         {
@@ -3032,7 +2962,7 @@
         },
         {
           "file": "diesel/src/mysql/types/primitives.rs",
-          "function": "diesel::mysql::types::primitives::FromSql::f64_to_i64",
+          "function": "diesel::mysql::types::primitives::f32::f64_to_i64",
           "change_type": "Modified"
         },
         {
@@ -3102,32 +3032,37 @@
         },
         {
           "file": "diesel/src/pg/types/date_and_time/chrono.rs",
-          "function": "diesel::pg::types::date_and_time::chrono::ToSql::to_sql",
+          "function": "diesel::pg::types::date_and_time::chrono::NaiveDate::to_sql",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/pg/types/date_and_time/std_time.rs",
-          "function": "diesel::pg::types::date_and_time::std_time::ToSql::<method>",
+          "function": "diesel::pg::types::date_and_time::std_time::SystemTime::<method>",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/pg/types/date_and_time/time.rs",
-          "function": "diesel::pg::types::date_and_time::time::ToSql::<method>",
+          "function": "diesel::pg::types::date_and_time::time::PrimitiveDateTime::<method>",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/pg/types/date_and_time/time.rs",
-          "function": "diesel::pg::types::date_and_time::time::ToSql::to_sql",
+          "function": "diesel::pg::types::date_and_time::time::NaiveTime::to_sql",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/types/date_and_time/time.rs",
+          "function": "diesel::pg::types::date_and_time::time::NaiveDate::to_sql",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/pg/types/floats/mod.rs",
-          "function": "diesel::pg::types::floats::ToSql::<method>",
+          "function": "diesel::pg::types::floats::PgNumeric::<method>",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/pg/types/numeric.rs",
-          "function": "diesel::pg::types::numeric::for PgNumeric::<method>",
+          "function": "diesel::pg::types::numeric::PgNumeric::<method>",
           "change_type": "Modified"
         },
         {
@@ -3142,7 +3077,7 @@
         },
         {
           "file": "diesel/src/sqlite/connection/functions.rs",
-          "function": "diesel::sqlite::connection::functions::for FunctionRow::<method>",
+          "function": "diesel::sqlite::connection::functions::FunctionRow::<method>",
           "change_type": "Modified"
         },
         {
@@ -3152,12 +3087,12 @@
         },
         {
           "file": "diesel/src/sqlite/connection/owned_row.rs",
-          "function": "diesel::sqlite::connection::owned_row::for OwnedSqliteRow::<method>",
+          "function": "diesel::sqlite::connection::owned_row::OwnedSqliteRow::<method>",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/sqlite/connection/owned_row.rs",
-          "function": "diesel::sqlite::connection::owned_row::for OwnedSqliteField::field_name",
+          "function": "diesel::sqlite::connection::owned_row::OwnedSqliteField::field_name",
           "change_type": "Modified"
         },
         {
@@ -3202,12 +3137,12 @@
         },
         {
           "file": "diesel/src/sqlite/connection/row.rs",
-          "function": "diesel::sqlite::connection::row::for SqliteRow::<method>",
+          "function": "diesel::sqlite::connection::row::SqliteRow::<method>",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/sqlite/connection/row.rs",
-          "function": "diesel::sqlite::connection::row::for SqliteField::field_name",
+          "function": "diesel::sqlite::connection::row::SqliteField::field_name",
           "change_type": "Modified"
         },
         {
@@ -3247,7 +3182,7 @@
         },
         {
           "file": "diesel/src/sqlite/types/date_and_time/mod.rs",
-          "function": "diesel::sqlite::types::date_and_time::ToSql::<method>",
+          "function": "diesel::sqlite::types::date_and_time::String::<method>",
           "change_type": "Modified"
         },
         {
@@ -3257,12 +3192,12 @@
         },
         {
           "file": "diesel/src/sqlite/types/mod.rs",
-          "function": "diesel::sqlite::types::Queryable::<method>",
+          "function": "diesel::sqlite::types::*const [u8]::<method>",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/sqlite/types/mod.rs",
-          "function": "diesel::sqlite::types::FromSql::from_sql",
+          "function": "diesel::sqlite::types::i64::from_sql",
           "change_type": "Modified"
         }
       ]
@@ -3457,11 +3392,6 @@
           "file": "openssl/src/bio.rs",
           "function": "openssl::bio::MemBio::<method>",
           "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/bio.rs",
-          "function": "openssl::bio::MemBio::test_mem_bio_get_buf_empty",
-          "change_type": "Added"
         }
       ]
     },
@@ -3508,11 +3438,6 @@
         {
           "file": "cggmp21-keygen/src/rng.rs",
           "function": "cggmp21_keygen::rng::HashRng::try_fill_bytes",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "cggmp21-keygen/src/rng.rs",
-          "function": "cggmp21_keygen::rng::HashRng::generate_bytes",
           "change_type": "Deleted"
         },
         {
@@ -3579,16 +3504,6 @@
           "file": "cggmp21/src/zk/ring_pedersen_parameters.rs",
           "function": "cggmp21::zk::ring_pedersen_parameters::rand_core::RngCore,::verify",
           "change_type": "Added"
-        },
-        {
-          "file": "cggmp21/src/zk/ring_pedersen_parameters.rs",
-          "function": "cggmp21::zk::ring_pedersen_parameters::udigest::Digestable,::passing",
-          "change_type": "Modified"
-        },
-        {
-          "file": "cggmp21/src/zk/ring_pedersen_parameters.rs",
-          "function": "cggmp21::zk::ring_pedersen_parameters::udigest::Digestable,::failing",
-          "change_type": "Modified"
         }
       ]
     },
@@ -3645,11 +3560,6 @@
         {
           "file": "src/common/rng.rs",
           "function": "common::rng::HashRng::try_fill_bytes",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/common/rng.rs",
-          "function": "common::rng::HashRng::generate_bytes",
           "change_type": "Deleted"
         },
         {
@@ -3718,26 +3628,6 @@
           "change_type": "Added"
         },
         {
-          "file": "src/group_element_vs_paillier_encryption_in_range.rs",
-          "function": "group_element_vs_paillier_encryption_in_range::udigest::Digestable,::passing_p256",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/group_element_vs_paillier_encryption_in_range.rs",
-          "function": "group_element_vs_paillier_encryption_in_range::udigest::Digestable,::failing_p256",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/group_element_vs_paillier_encryption_in_range.rs",
-          "function": "group_element_vs_paillier_encryption_in_range::udigest::Digestable,::passing_million",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/group_element_vs_paillier_encryption_in_range.rs",
-          "function": "group_element_vs_paillier_encryption_in_range::udigest::Digestable,::failing_million",
-          "change_type": "Modified"
-        },
-        {
           "file": "src/no_small_factor.rs",
           "function": "no_small_factor::prove",
           "change_type": "Deleted"
@@ -3776,16 +3666,6 @@
           "file": "src/no_small_factor.rs",
           "function": "no_small_factor::udigest::Digestable,::verify",
           "change_type": "Added"
-        },
-        {
-          "file": "src/no_small_factor.rs",
-          "function": "no_small_factor::udigest::Digestable,::passing",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/no_small_factor.rs",
-          "function": "no_small_factor::udigest::Digestable,::failing",
-          "change_type": "Modified"
         },
         {
           "file": "src/paillier_affine_operation_in_range.rs",
@@ -3868,36 +3748,6 @@
           "change_type": "Added"
         },
         {
-          "file": "src/paillier_affine_operation_in_range.rs",
-          "function": "paillier_affine_operation_in_range::udigest::Digestable,::passing_p256",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/paillier_affine_operation_in_range.rs",
-          "function": "paillier_affine_operation_in_range::udigest::Digestable,::failing_p256_add",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/paillier_affine_operation_in_range.rs",
-          "function": "paillier_affine_operation_in_range::udigest::Digestable,::failing_p256_mul",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/paillier_affine_operation_in_range.rs",
-          "function": "paillier_affine_operation_in_range::udigest::Digestable,::passing_million",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/paillier_affine_operation_in_range.rs",
-          "function": "paillier_affine_operation_in_range::udigest::Digestable,::failing_million_add",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/paillier_affine_operation_in_range.rs",
-          "function": "paillier_affine_operation_in_range::udigest::Digestable,::failing_million_mul",
-          "change_type": "Modified"
-        },
-        {
           "file": "src/paillier_blum_modulus.rs",
           "function": "paillier_blum_modulus::prove",
           "change_type": "Deleted"
@@ -3938,11 +3788,6 @@
           "change_type": "Added"
         },
         {
-          "file": "src/paillier_blum_modulus.rs",
-          "function": "paillier_blum_modulus::udigest::Digestable,::passing",
-          "change_type": "Modified"
-        },
-        {
           "file": "src/paillier_encryption_in_range.rs",
           "function": "paillier_encryption_in_range::prove",
           "change_type": "Deleted"
@@ -3981,11 +3826,6 @@
           "file": "src/paillier_encryption_in_range.rs",
           "function": "paillier_encryption_in_range::udigest::Digestable,::verify",
           "change_type": "Added"
-        },
-        {
-          "file": "src/paillier_encryption_in_range.rs",
-          "function": "paillier_encryption_in_range::udigest::Digestable,::run_with",
-          "change_type": "Deleted"
         },
         {
           "file": "src/paillier_encryption_in_range.rs",
@@ -4042,11 +3882,6 @@
         {
           "file": "cggmp21-keygen/src/rng.rs",
           "function": "cggmp21_keygen::rng::HashRng::try_fill_bytes",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "cggmp21-keygen/src/rng.rs",
-          "function": "cggmp21_keygen::rng::HashRng::generate_bytes",
           "change_type": "Deleted"
         },
         {
@@ -4113,16 +3948,6 @@
           "file": "cggmp21/src/zk/ring_pedersen_parameters.rs",
           "function": "cggmp21::zk::ring_pedersen_parameters::rand_core::RngCore,::verify",
           "change_type": "Added"
-        },
-        {
-          "file": "cggmp21/src/zk/ring_pedersen_parameters.rs",
-          "function": "cggmp21::zk::ring_pedersen_parameters::udigest::Digestable,::passing",
-          "change_type": "Modified"
-        },
-        {
-          "file": "cggmp21/src/zk/ring_pedersen_parameters.rs",
-          "function": "cggmp21::zk::ring_pedersen_parameters::udigest::Digestable,::failing",
-          "change_type": "Modified"
         }
       ]
     },
@@ -4227,87 +4052,87 @@
         },
         {
           "file": "opentelemetry-proto/src/transform/common.rs",
-          "function": "opentelemetry_proto::transform::common::From::<method>",
+          "function": "opentelemetry_proto::transform::common::Attributes::<method>",
           "change_type": "Modified"
         },
         {
           "file": "opentelemetry-proto/src/transform/common.rs",
-          "function": "opentelemetry_proto::transform::common::From::from",
+          "function": "opentelemetry_proto::transform::common::Attributes::from",
           "change_type": "Deleted"
         },
         {
           "file": "opentelemetry-proto/src/transform/common.rs",
-          "function": "opentelemetry_proto::transform::common::From::from",
+          "function": "opentelemetry_proto::transform::common::Attributes::from",
           "change_type": "Added"
         },
         {
           "file": "opentelemetry-proto/src/transform/common.rs",
-          "function": "opentelemetry_proto::transform::common::From::resource_attributes",
+          "function": "opentelemetry_proto::transform::common::Attributes::resource_attributes",
           "change_type": "Modified"
         },
         {
           "file": "opentelemetry-proto/src/transform/common.rs",
-          "function": "opentelemetry_proto::transform::common::From::from",
+          "function": "opentelemetry_proto::transform::common::Attributes::from",
           "change_type": "Deleted"
         },
         {
           "file": "opentelemetry-proto/src/transform/common.rs",
-          "function": "opentelemetry_proto::transform::common::From::from",
+          "function": "opentelemetry_proto::transform::common::Attributes::from",
           "change_type": "Added"
         },
         {
           "file": "opentelemetry-proto/src/transform/logs.rs",
-          "function": "opentelemetry_proto::transform::logs::From::<method>",
+          "function": "opentelemetry_proto::transform::logs::LogRecord::<method>",
           "change_type": "Modified"
         },
         {
           "file": "opentelemetry-proto/src/transform/logs.rs",
-          "function": "opentelemetry_proto::transform::logs::From::from",
+          "function": "opentelemetry_proto::transform::logs::LogRecord::from",
           "change_type": "Deleted"
         },
         {
           "file": "opentelemetry-proto/src/transform/logs.rs",
-          "function": "opentelemetry_proto::transform::logs::From::from",
+          "function": "opentelemetry_proto::transform::logs::LogRecord::from",
           "change_type": "Added"
         },
         {
           "file": "opentelemetry-proto/src/transform/logs.rs",
-          "function": "opentelemetry_proto::transform::logs::From::from",
+          "function": "opentelemetry_proto::transform::logs::LogRecord::from",
           "change_type": "Deleted"
         },
         {
           "file": "opentelemetry-proto/src/transform/logs.rs",
-          "function": "opentelemetry_proto::transform::logs::From::from",
+          "function": "opentelemetry_proto::transform::logs::LogRecord::from",
           "change_type": "Added"
         },
         {
           "file": "opentelemetry-proto/src/transform/metrics.rs",
-          "function": "opentelemetry_proto::transform::metrics::From::<method>",
+          "function": "opentelemetry_proto::transform::metrics::KeyValue::<method>",
           "change_type": "Modified"
         },
         {
           "file": "opentelemetry-proto/src/transform/metrics.rs",
-          "function": "opentelemetry_proto::transform::metrics::From::from",
+          "function": "opentelemetry_proto::transform::metrics::KeyValue::from",
           "change_type": "Deleted"
         },
         {
           "file": "opentelemetry-proto/src/transform/metrics.rs",
-          "function": "opentelemetry_proto::transform::metrics::From::from",
+          "function": "opentelemetry_proto::transform::metrics::KeyValue::from",
           "change_type": "Added"
         },
         {
           "file": "opentelemetry-proto/src/transform/metrics.rs",
-          "function": "opentelemetry_proto::transform::metrics::From::from",
+          "function": "opentelemetry_proto::transform::metrics::KeyValue::from",
           "change_type": "Deleted"
         },
         {
           "file": "opentelemetry-proto/src/transform/metrics.rs",
-          "function": "opentelemetry_proto::transform::metrics::From::from",
+          "function": "opentelemetry_proto::transform::metrics::KeyValue::from",
           "change_type": "Added"
         },
         {
           "file": "opentelemetry-proto/src/transform/trace.rs",
-          "function": "opentelemetry_proto::transform::trace::From::<method>",
+          "function": "opentelemetry_proto::transform::trace::span::SpanKind::<method>",
           "change_type": "Modified"
         },
         {
@@ -4366,11 +4191,6 @@
           "change_type": "Modified"
         },
         {
-          "file": "opentelemetry-sdk/src/trace/id_generator/aws.rs",
-          "function": "opentelemetry_sdk::trace::id_generator::aws::XrayIdGenerator::test_trace_id_generation",
-          "change_type": "Modified"
-        },
-        {
           "file": "opentelemetry-sdk/src/trace/provider.rs",
           "function": "opentelemetry_sdk::trace::provider::TracerProvider::<method>",
           "change_type": "Modified"
@@ -4408,16 +4228,6 @@
         {
           "file": "opentelemetry-sdk/src/trace/span.rs",
           "function": "opentelemetry_sdk::trace::span::Span::init",
-          "change_type": "Modified"
-        },
-        {
-          "file": "opentelemetry-sdk/src/trace/span.rs",
-          "function": "opentelemetry_sdk::trace::span::Span::end_with_timestamp",
-          "change_type": "Modified"
-        },
-        {
-          "file": "opentelemetry-sdk/src/trace/span.rs",
-          "function": "opentelemetry_sdk::trace::span::Span::end_only_once",
           "change_type": "Modified"
         },
         {
@@ -4485,16 +4295,6 @@
           "file": "src/btreemap.rs",
           "function": "btreemap::merge",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/btreemap.rs",
-          "function": "btreemap::deallocating_node_with_overflows",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/btreemap.rs",
-          "function": "btreemap::repeatedly_deallocating_nodes_with_overflows",
-          "change_type": "Added"
         },
         {
           "file": "src/btreemap/node.rs",
@@ -4757,11 +4557,6 @@
           "file": "rust/src/webhooks.rs",
           "function": "rust::webhooks::Webhook::<method>",
           "change_type": "Modified"
-        },
-        {
-          "file": "rust/src/webhooks.rs",
-          "function": "rust::webhooks::Webhook::test_verify_partial_signature",
-          "change_type": "Added"
         }
       ]
     },
@@ -4870,22 +4665,12 @@
         },
         {
           "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::From::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::From::from",
+          "function": "support::atomic_str::AtomicStr::from",
           "change_type": "Added"
         },
         {
           "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::AsRef::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::AsRef::as_ref",
+          "function": "support::atomic_str::AtomicStr::as_ref",
           "change_type": "Deleted"
         },
         {
@@ -4895,33 +4680,18 @@
         },
         {
           "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::for AtomicStr::<method>",
+          "function": "support::atomic_str::AtomicStr::from",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/support/src/atomic_str.rs",
+          "function": "support::atomic_str::Arc::<method>",
           "change_type": "Modified"
-        },
-        {
-          "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::for AtomicStr::from",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::From::from",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::From::test_str",
-          "change_type": "Added"
         },
         {
           "file": "crates/support/src/atomic_str.rs",
           "function": "support::atomic_str::AtomicStr::fmt",
           "change_type": "Deleted"
-        },
-        {
-          "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::AtomicStr::test_atomic_str",
-          "change_type": "Added"
         },
         {
           "file": "src/lib.rs",
@@ -4945,7 +4715,7 @@
         },
         {
           "file": "src/lib.rs",
-          "function": "Deref::test_locale",
+          "function": "Deref::<method>",
           "change_type": "Modified"
         }
       ]
@@ -5027,7 +4797,7 @@
         },
         {
           "file": "rust/candid/src/types/value.rs",
-          "function": "candid::types::value::for IDLValueVisitor::<method>",
+          "function": "candid::types::value::IDLValueVisitor::<method>",
           "change_type": "Modified"
         }
       ]
@@ -5123,6 +4893,16 @@
           "change_type": "Modified"
         },
         {
+          "file": "rosenpass/src/msgs.rs",
+          "function": "rosenpass::msgs::&'a [u8]::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rosenpass/src/msgs.rs",
+          "function": "rosenpass::msgs::&'a mut [u8]::<method>",
+          "change_type": "Modified"
+        },
+        {
           "file": "rosenpass/src/protocol.rs",
           "function": "rosenpass::protocol::CryptoServer::initiate_handshake",
           "change_type": "Modified"
@@ -5130,21 +4910,6 @@
         {
           "file": "rosenpass/src/protocol.rs",
           "function": "rosenpass::protocol::CryptoServer::init_crypto_server",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "rosenpass/src/protocol.rs",
-          "function": "rosenpass::protocol::CryptoServer::handles_incorrect_size_messages",
-          "change_type": "Added"
-        },
-        {
-          "file": "rosenpass/src/protocol.rs",
-          "function": "rosenpass::protocol::CryptoServer::test_incorrect_sizes_for_msg",
-          "change_type": "Added"
-        },
-        {
-          "file": "rosenpass/src/protocol.rs",
-          "function": "rosenpass::protocol::CryptoServer::handle_empty_message",
           "change_type": "Deleted"
         },
         {
@@ -5319,26 +5084,6 @@
           "change_type": "Modified"
         },
         {
-          "file": "gix-transport/src/client/blocking_io/ssh/tests.rs",
-          "function": "gix_transport::client::blocking_io::ssh::tests::ambiguous_host_is_allowed_with_user",
-          "change_type": "Added"
-        },
-        {
-          "file": "gix-transport/src/client/blocking_io/ssh/tests.rs",
-          "function": "gix_transport::client::blocking_io::ssh::tests::ambiguous_host_is_disallowed",
-          "change_type": "Added"
-        },
-        {
-          "file": "gix-transport/src/client/blocking_io/ssh/tests.rs",
-          "function": "gix_transport::client::blocking_io::ssh::tests::simple_cannot_handle_any_arguments",
-          "change_type": "Modified"
-        },
-        {
-          "file": "gix-transport/src/client/git/mod.rs",
-          "function": "gix_transport::client::git::with_strange_host_and_port",
-          "change_type": "Added"
-        },
-        {
           "file": "gix-url/src/lib.rs",
           "function": "gix_url::Url::host_argument_safe",
           "change_type": "Added"
@@ -5393,17 +5138,17 @@
         },
         {
           "file": "quinn-proto/src/frame.rs",
-          "function": "quinn_proto::frame::From::<method>",
+          "function": "quinn_proto::frame::TransportError::<method>",
           "change_type": "Modified"
         },
         {
           "file": "quinn-proto/src/frame.rs",
-          "function": "quinn_proto::frame::From::from",
+          "function": "quinn_proto::frame::TransportError::from",
           "change_type": "Added"
         },
         {
           "file": "quinn-proto/src/frame.rs",
-          "function": "quinn_proto::frame::From::frames",
+          "function": "quinn_proto::frame::TransportError::frames",
           "change_type": "Modified"
         }
       ]
@@ -5429,11 +5174,6 @@
         {
           "file": "src/decoder.rs",
           "function": "decoder::Decoder::update_max_dynamic_size",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/decoder.rs",
-          "function": "decoder::Decoder::test_invalid_dynamic_size_update",
           "change_type": "Added"
         }
       ]
@@ -5524,11 +5264,6 @@
         },
         {
           "file": "src/oid.rs",
-          "function": "oid::Component::take_and_skip_primitive",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/oid.rs",
           "function": "oid::Component::check",
           "change_type": "Added"
         },
@@ -5541,11 +5276,6 @@
           "file": "src/string/bit.rs",
           "function": "string::bit::BitSliceEncoder::new",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/string/bit.rs",
-          "function": "string::bit::BitSliceEncoder::bitstring_from_der_content",
-          "change_type": "Added"
         },
         {
           "file": "src/string/bit.rs",
@@ -5655,17 +5385,22 @@
         },
         {
           "file": "src/lib.rs",
-          "function": "Iter::registry",
+          "function": "$ty::registry",
           "change_type": "Deleted"
         },
         {
           "file": "src/lib.rs",
-          "function": "Iter::registry",
+          "function": "$ty::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "$ty::registry",
           "change_type": "Added"
         },
         {
           "file": "src/lib.rs",
-          "function": "Iter::__init",
+          "function": "$ty::__init",
           "change_type": "Modified"
         }
       ]
@@ -5748,11 +5483,6 @@
           "file": "src/protocol.rs",
           "function": "protocol::decrypt_query",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/protocol.rs",
-          "function": "protocol::parse_encapsulated_key",
-          "change_type": "Added"
         }
       ]
     },
@@ -5787,23 +5517,18 @@
         },
         {
           "file": "src/internal.rs",
-          "function": "internal::From::from",
+          "function": "internal::Slice::from",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/internal.rs",
-          "function": "internal::From::as_slice",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/internal.rs",
-          "function": "internal::From::as_slice",
-          "change_type": "Added"
         },
         {
           "file": "src/internal.rs",
           "function": "internal::Slice::as_slice",
-          "change_type": "Modified"
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/internal.rs",
+          "function": "internal::Slice::as_slice",
+          "change_type": "Added"
         },
         {
           "file": "src/internal.rs",
@@ -5828,21 +5553,6 @@
         {
           "file": "src/internal.rs",
           "function": "internal::PinBox::fmt",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/internal.rs",
-          "function": "internal::PinBox::test_drop",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/internal.rs",
-          "function": "internal::PinBox::test_as_ref",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/internal.rs",
-          "function": "internal::PinBox::test_debug_format",
           "change_type": "Added"
         }
       ]
@@ -6214,21 +5924,6 @@
           "file": "openssl/src/x509/tests.rs",
           "function": "openssl::x509::tests::x509_builder",
           "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/tests.rs",
-          "function": "openssl::x509::tests::x509_extension_new",
-          "change_type": "Added"
-        },
-        {
-          "file": "openssl/src/x509/tests.rs",
-          "function": "openssl::x509::tests::x509_extension_to_der",
-          "change_type": "Added"
-        },
-        {
-          "file": "openssl/src/x509/tests.rs",
-          "function": "openssl::x509::tests::eku_invalid_other",
-          "change_type": "Added"
         }
       ]
     },
@@ -6466,21 +6161,6 @@
           "file": "openssl/src/x509/tests.rs",
           "function": "openssl::x509::tests::x509_builder",
           "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/tests.rs",
-          "function": "openssl::x509::tests::x509_extension_new",
-          "change_type": "Added"
-        },
-        {
-          "file": "openssl/src/x509/tests.rs",
-          "function": "openssl::x509::tests::x509_extension_to_der",
-          "change_type": "Added"
-        },
-        {
-          "file": "openssl/src/x509/tests.rs",
-          "function": "openssl::x509::tests::eku_invalid_other",
-          "change_type": "Added"
         }
       ]
     },
@@ -6718,21 +6398,6 @@
           "file": "openssl/src/x509/tests.rs",
           "function": "openssl::x509::tests::x509_builder",
           "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/tests.rs",
-          "function": "openssl::x509::tests::x509_extension_new",
-          "change_type": "Added"
-        },
-        {
-          "file": "openssl/src/x509/tests.rs",
-          "function": "openssl::x509::tests::x509_extension_to_der",
-          "change_type": "Added"
-        },
-        {
-          "file": "openssl/src/x509/tests.rs",
-          "function": "openssl::x509::tests::eku_invalid_other",
-          "change_type": "Added"
         }
       ]
     },
@@ -6799,37 +6464,42 @@
       "vulnerable_symbols": [
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::<method>",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::<method>",
           "change_type": "Modified"
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::release_depth_first",
+          "function": "cargo_smart_release::command::release::traverse::Options::<method>",
           "change_type": "Modified"
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::assure_crates_index_is_uptodate",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::release_depth_first",
           "change_type": "Modified"
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::present_and_validate_dependencies",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::assure_crates_index_is_uptodate",
           "change_type": "Modified"
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::perform_release",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::present_and_validate_dependencies",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cargo-smart-release/src/command/release/mod.rs",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::perform_release",
           "change_type": "Deleted"
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::perform_release",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::perform_release",
           "change_type": "Added"
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::section_to_string",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::section_to_string",
           "change_type": "Modified"
         },
         {
@@ -6874,42 +6544,7 @@
         },
         {
           "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::decode",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
           "function": "git_actor::signature::decode::signature",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::tz_minus",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::tz_plus",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::negative_offset_0000",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::empty_name_and_email",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::invalid_signature",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::invalid_time",
           "change_type": "Deleted"
         },
         {
@@ -7194,17 +6829,12 @@
         },
         {
           "file": "git-commitgraph/src/file/init.rs",
-          "function": "git_commitgraph::file::init::TryFrom::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "git-commitgraph/src/file/init.rs",
-          "function": "git_commitgraph::file::init::TryFrom::try_from",
+          "function": "git_commitgraph::file::init::File::try_from",
           "change_type": "Deleted"
         },
         {
           "file": "git-commitgraph/src/file/init.rs",
-          "function": "git_commitgraph::file::init::TryFrom::read_fan",
+          "function": "git_commitgraph::file::init::File::read_fan",
           "change_type": "Deleted"
         },
         {
@@ -7344,12 +6974,7 @@
         },
         {
           "file": "git-commitgraph/src/graph/init.rs",
-          "function": "git_commitgraph::graph::init::TryFrom::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "git-commitgraph/src/graph/init.rs",
-          "function": "git_commitgraph::graph::init::TryFrom::try_from",
+          "function": "git_commitgraph::graph::init::Graph::try_from",
           "change_type": "Deleted"
         },
         {
@@ -7364,7 +6989,7 @@
         },
         {
           "file": "git-commitgraph/src/graph/verify.rs",
-          "function": "git_commitgraph::graph::verify::FnMut::<method>",
+          "function": "git_commitgraph::graph::verify::FnMut(&file::Commit::<method>",
           "change_type": "Modified"
         },
         {
@@ -7379,23 +7004,18 @@
         },
         {
           "file": "git-config-value/src/boolean.rs",
-          "function": "git_config_value::boolean::TryFrom::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "git-config-value/src/boolean.rs",
-          "function": "git_config_value::boolean::TryFrom::try_from",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-config-value/src/boolean.rs",
-          "function": "git_config_value::boolean::TryFrom::try_from",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-config-value/src/boolean.rs",
           "function": "git_config_value::boolean::Boolean::<method>",
           "change_type": "Modified"
+        },
+        {
+          "file": "git-config-value/src/boolean.rs",
+          "function": "git_config_value::boolean::Boolean::try_from",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "git-config-value/src/boolean.rs",
+          "function": "git_config_value::boolean::Boolean::try_from",
+          "change_type": "Deleted"
         },
         {
           "file": "git-config-value/src/boolean.rs",
@@ -7404,7 +7024,7 @@
         },
         {
           "file": "git-config-value/src/boolean.rs",
-          "function": "git_config_value::boolean::TryFrom::try_from",
+          "function": "git_config_value::boolean::Boolean::try_from",
           "change_type": "Deleted"
         },
         {
@@ -7414,12 +7034,12 @@
         },
         {
           "file": "git-config-value/src/boolean.rs",
-          "function": "git_config_value::boolean::From::<method>",
+          "function": "git_config_value::boolean::bool::<method>",
           "change_type": "Modified"
         },
         {
           "file": "git-config-value/src/boolean.rs",
-          "function": "git_config_value::boolean::From::from",
+          "function": "git_config_value::boolean::bool::from",
           "change_type": "Deleted"
         },
         {
@@ -7459,17 +7079,12 @@
         },
         {
           "file": "git-config-value/src/color.rs",
-          "function": "git_config_value::color::TryFrom::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "git-config-value/src/color.rs",
-          "function": "git_config_value::color::TryFrom::try_from",
+          "function": "git_config_value::color::Color::try_from",
           "change_type": "Deleted"
         },
         {
           "file": "git-config-value/src/color.rs",
-          "function": "git_config_value::color::TryFrom::try_from",
+          "function": "git_config_value::color::Color::try_from",
           "change_type": "Deleted"
         },
         {
@@ -7494,7 +7109,7 @@
         },
         {
           "file": "git-config-value/src/color.rs",
-          "function": "git_config_value::color::TryFrom::try_from",
+          "function": "git_config_value::color::Name::try_from",
           "change_type": "Deleted"
         },
         {
@@ -7519,7 +7134,7 @@
         },
         {
           "file": "git-config-value/src/color.rs",
-          "function": "git_config_value::color::TryFrom::try_from",
+          "function": "git_config_value::color::Attribute::try_from",
           "change_type": "Deleted"
         },
         {
@@ -7554,17 +7169,12 @@
         },
         {
           "file": "git-config-value/src/integer.rs",
-          "function": "git_config_value::integer::TryFrom::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "git-config-value/src/integer.rs",
-          "function": "git_config_value::integer::TryFrom::try_from",
+          "function": "git_config_value::integer::Integer::try_from",
           "change_type": "Deleted"
         },
         {
           "file": "git-config-value/src/integer.rs",
-          "function": "git_config_value::integer::TryFrom::try_from",
+          "function": "git_config_value::integer::Integer::try_from",
           "change_type": "Deleted"
         },
         {
@@ -7594,7 +7204,7 @@
         },
         {
           "file": "git-config-value/src/integer.rs",
-          "function": "git_config_value::integer::TryFrom::try_from",
+          "function": "git_config_value::integer::Suffix::try_from",
           "change_type": "Deleted"
         },
         {
@@ -7644,22 +7254,17 @@
         },
         {
           "file": "git-config-value/src/path.rs",
-          "function": "git_config_value::path::for Path::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "git-config-value/src/path.rs",
-          "function": "git_config_value::path::for Path::as_ref",
+          "function": "git_config_value::path::Path::as_ref",
           "change_type": "Deleted"
         },
         {
           "file": "git-config-value/src/path.rs",
-          "function": "git_config_value::path::for Path::as_ref",
+          "function": "git_config_value::path::Path::as_ref",
           "change_type": "Deleted"
         },
         {
           "file": "git-config-value/src/path.rs",
-          "function": "git_config_value::path::for Path::from",
+          "function": "git_config_value::path::Path::from",
           "change_type": "Deleted"
         },
         {
@@ -8134,22 +7739,22 @@
         },
         {
           "file": "git-config/src/file/mod.rs",
-          "function": "git_config::file::Add::<method>",
+          "function": "git_config::file::Index::<method>",
           "change_type": "Modified"
         },
         {
           "file": "git-config/src/file/mod.rs",
-          "function": "git_config::file::Add::add",
+          "function": "git_config::file::Index::add",
           "change_type": "Deleted"
         },
         {
           "file": "git-config/src/file/mod.rs",
-          "function": "git_config::file::AddAssign::<method>",
+          "function": "git_config::file::Size::<method>",
           "change_type": "Modified"
         },
         {
           "file": "git-config/src/file/mod.rs",
-          "function": "git_config::file::AddAssign::add_assign",
+          "function": "git_config::file::Size::add_assign",
           "change_type": "Deleted"
         },
         {
@@ -8204,22 +7809,22 @@
         },
         {
           "file": "git-config/src/file/section/mod.rs",
-          "function": "git_config::file::section::std::io::Write::write_to",
+          "function": "git_config::file::section::std::io::Write) -> std::io::Result::write_to",
           "change_type": "Deleted"
         },
         {
           "file": "git-config/src/file/section/mod.rs",
-          "function": "git_config::file::section::std::io::Write::<method>",
+          "function": "git_config::file::section::std::io::Write) -> std::io::Result::<method>",
           "change_type": "Modified"
         },
         {
           "file": "git-config/src/file/section/mod.rs",
-          "function": "git_config::file::section::std::io::Write::meta",
+          "function": "git_config::file::section::std::io::Write) -> std::io::Result::meta",
           "change_type": "Deleted"
         },
         {
           "file": "git-config/src/file/section/mod.rs",
-          "function": "git_config::file::section::std::io::Write::to_mut",
+          "function": "git_config::file::section::std::io::Write) -> std::io::Result::to_mut",
           "change_type": "Deleted"
         },
         {
@@ -8254,37 +7859,42 @@
       "vulnerable_symbols": [
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::<method>",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::<method>",
           "change_type": "Modified"
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::release_depth_first",
+          "function": "cargo_smart_release::command::release::traverse::Options::<method>",
           "change_type": "Modified"
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::assure_crates_index_is_uptodate",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::release_depth_first",
           "change_type": "Modified"
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::present_and_validate_dependencies",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::assure_crates_index_is_uptodate",
           "change_type": "Modified"
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::perform_release",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::present_and_validate_dependencies",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cargo-smart-release/src/command/release/mod.rs",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::perform_release",
           "change_type": "Deleted"
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::perform_release",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::perform_release",
           "change_type": "Added"
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::From::section_to_string",
+          "function": "cargo_smart_release::command::release::crate::traverse::Options::section_to_string",
           "change_type": "Modified"
         },
         {
@@ -8329,42 +7939,7 @@
         },
         {
           "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::decode",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
           "function": "git_actor::signature::decode::signature",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::tz_minus",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::tz_plus",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::negative_offset_0000",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::empty_name_and_email",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::invalid_signature",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-actor/src/signature/decode.rs",
-          "function": "git_actor::signature::decode::invalid_time",
           "change_type": "Deleted"
         },
         {
@@ -8649,17 +8224,12 @@
         },
         {
           "file": "git-commitgraph/src/file/init.rs",
-          "function": "git_commitgraph::file::init::TryFrom::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "git-commitgraph/src/file/init.rs",
-          "function": "git_commitgraph::file::init::TryFrom::try_from",
+          "function": "git_commitgraph::file::init::File::try_from",
           "change_type": "Deleted"
         },
         {
           "file": "git-commitgraph/src/file/init.rs",
-          "function": "git_commitgraph::file::init::TryFrom::read_fan",
+          "function": "git_commitgraph::file::init::File::read_fan",
           "change_type": "Deleted"
         },
         {
@@ -8799,12 +8369,7 @@
         },
         {
           "file": "git-commitgraph/src/graph/init.rs",
-          "function": "git_commitgraph::graph::init::TryFrom::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "git-commitgraph/src/graph/init.rs",
-          "function": "git_commitgraph::graph::init::TryFrom::try_from",
+          "function": "git_commitgraph::graph::init::Graph::try_from",
           "change_type": "Deleted"
         },
         {
@@ -8819,7 +8384,7 @@
         },
         {
           "file": "git-commitgraph/src/graph/verify.rs",
-          "function": "git_commitgraph::graph::verify::FnMut::<method>",
+          "function": "git_commitgraph::graph::verify::FnMut(&file::Commit::<method>",
           "change_type": "Modified"
         },
         {
@@ -8834,23 +8399,18 @@
         },
         {
           "file": "git-config-value/src/boolean.rs",
-          "function": "git_config_value::boolean::TryFrom::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "git-config-value/src/boolean.rs",
-          "function": "git_config_value::boolean::TryFrom::try_from",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-config-value/src/boolean.rs",
-          "function": "git_config_value::boolean::TryFrom::try_from",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "git-config-value/src/boolean.rs",
           "function": "git_config_value::boolean::Boolean::<method>",
           "change_type": "Modified"
+        },
+        {
+          "file": "git-config-value/src/boolean.rs",
+          "function": "git_config_value::boolean::Boolean::try_from",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "git-config-value/src/boolean.rs",
+          "function": "git_config_value::boolean::Boolean::try_from",
+          "change_type": "Deleted"
         },
         {
           "file": "git-config-value/src/boolean.rs",
@@ -8859,7 +8419,7 @@
         },
         {
           "file": "git-config-value/src/boolean.rs",
-          "function": "git_config_value::boolean::TryFrom::try_from",
+          "function": "git_config_value::boolean::Boolean::try_from",
           "change_type": "Deleted"
         },
         {
@@ -8869,12 +8429,12 @@
         },
         {
           "file": "git-config-value/src/boolean.rs",
-          "function": "git_config_value::boolean::From::<method>",
+          "function": "git_config_value::boolean::bool::<method>",
           "change_type": "Modified"
         },
         {
           "file": "git-config-value/src/boolean.rs",
-          "function": "git_config_value::boolean::From::from",
+          "function": "git_config_value::boolean::bool::from",
           "change_type": "Deleted"
         },
         {
@@ -8914,17 +8474,12 @@
         },
         {
           "file": "git-config-value/src/color.rs",
-          "function": "git_config_value::color::TryFrom::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "git-config-value/src/color.rs",
-          "function": "git_config_value::color::TryFrom::try_from",
+          "function": "git_config_value::color::Color::try_from",
           "change_type": "Deleted"
         },
         {
           "file": "git-config-value/src/color.rs",
-          "function": "git_config_value::color::TryFrom::try_from",
+          "function": "git_config_value::color::Color::try_from",
           "change_type": "Deleted"
         },
         {
@@ -8949,7 +8504,7 @@
         },
         {
           "file": "git-config-value/src/color.rs",
-          "function": "git_config_value::color::TryFrom::try_from",
+          "function": "git_config_value::color::Name::try_from",
           "change_type": "Deleted"
         },
         {
@@ -8974,7 +8529,7 @@
         },
         {
           "file": "git-config-value/src/color.rs",
-          "function": "git_config_value::color::TryFrom::try_from",
+          "function": "git_config_value::color::Attribute::try_from",
           "change_type": "Deleted"
         },
         {
@@ -9009,17 +8564,12 @@
         },
         {
           "file": "git-config-value/src/integer.rs",
-          "function": "git_config_value::integer::TryFrom::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "git-config-value/src/integer.rs",
-          "function": "git_config_value::integer::TryFrom::try_from",
+          "function": "git_config_value::integer::Integer::try_from",
           "change_type": "Deleted"
         },
         {
           "file": "git-config-value/src/integer.rs",
-          "function": "git_config_value::integer::TryFrom::try_from",
+          "function": "git_config_value::integer::Integer::try_from",
           "change_type": "Deleted"
         },
         {
@@ -9049,7 +8599,7 @@
         },
         {
           "file": "git-config-value/src/integer.rs",
-          "function": "git_config_value::integer::TryFrom::try_from",
+          "function": "git_config_value::integer::Suffix::try_from",
           "change_type": "Deleted"
         },
         {
@@ -9099,22 +8649,17 @@
         },
         {
           "file": "git-config-value/src/path.rs",
-          "function": "git_config_value::path::for Path::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "git-config-value/src/path.rs",
-          "function": "git_config_value::path::for Path::as_ref",
+          "function": "git_config_value::path::Path::as_ref",
           "change_type": "Deleted"
         },
         {
           "file": "git-config-value/src/path.rs",
-          "function": "git_config_value::path::for Path::as_ref",
+          "function": "git_config_value::path::Path::as_ref",
           "change_type": "Deleted"
         },
         {
           "file": "git-config-value/src/path.rs",
-          "function": "git_config_value::path::for Path::from",
+          "function": "git_config_value::path::Path::from",
           "change_type": "Deleted"
         },
         {
@@ -9589,22 +9134,22 @@
         },
         {
           "file": "git-config/src/file/mod.rs",
-          "function": "git_config::file::Add::<method>",
+          "function": "git_config::file::Index::<method>",
           "change_type": "Modified"
         },
         {
           "file": "git-config/src/file/mod.rs",
-          "function": "git_config::file::Add::add",
+          "function": "git_config::file::Index::add",
           "change_type": "Deleted"
         },
         {
           "file": "git-config/src/file/mod.rs",
-          "function": "git_config::file::AddAssign::<method>",
+          "function": "git_config::file::Size::<method>",
           "change_type": "Modified"
         },
         {
           "file": "git-config/src/file/mod.rs",
-          "function": "git_config::file::AddAssign::add_assign",
+          "function": "git_config::file::Size::add_assign",
           "change_type": "Deleted"
         },
         {
@@ -9659,22 +9204,22 @@
         },
         {
           "file": "git-config/src/file/section/mod.rs",
-          "function": "git_config::file::section::std::io::Write::write_to",
+          "function": "git_config::file::section::std::io::Write) -> std::io::Result::write_to",
           "change_type": "Deleted"
         },
         {
           "file": "git-config/src/file/section/mod.rs",
-          "function": "git_config::file::section::std::io::Write::<method>",
+          "function": "git_config::file::section::std::io::Write) -> std::io::Result::<method>",
           "change_type": "Modified"
         },
         {
           "file": "git-config/src/file/section/mod.rs",
-          "function": "git_config::file::section::std::io::Write::meta",
+          "function": "git_config::file::section::std::io::Write) -> std::io::Result::meta",
           "change_type": "Deleted"
         },
         {
           "file": "git-config/src/file/section/mod.rs",
-          "function": "git_config::file::section::std::io::Write::to_mut",
+          "function": "git_config::file::section::std::io::Write) -> std::io::Result::to_mut",
           "change_type": "Deleted"
         },
         {
@@ -9906,22 +9451,7 @@
         },
         {
           "file": "src/lib.rs",
-          "function": "expect_failure",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/lib.rs",
           "function": "prep",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "mkdir_rm",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "ensure_rm",
           "change_type": "Added"
         },
         {
@@ -9936,22 +9466,7 @@
         },
         {
           "file": "src/portable.rs",
-          "function": "portable::expect_failure",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/portable.rs",
           "function": "portable::prep",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/portable.rs",
-          "function": "portable::mkdir_rm",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/portable.rs",
-          "function": "portable::ensure_rm",
           "change_type": "Deleted"
         },
         {
@@ -10289,21 +9804,6 @@
           "file": "tokio/src/net/windows/named_pipe.rs",
           "function": "tokio::net::windows::named_pipe::ServerOptions::named_pipe_info",
           "change_type": "Modified"
-        },
-        {
-          "file": "tokio/src/net/windows/named_pipe.rs",
-          "function": "tokio::net::windows::named_pipe::ServerOptions::opts_default_pipe_mode",
-          "change_type": "Added"
-        },
-        {
-          "file": "tokio/src/net/windows/named_pipe.rs",
-          "function": "tokio::net::windows::named_pipe::ServerOptions::opts_unset_reject_remote",
-          "change_type": "Added"
-        },
-        {
-          "file": "tokio/src/net/windows/named_pipe.rs",
-          "function": "tokio::net::windows::named_pipe::ServerOptions::opts_set_pipe_mode_maintains_reject_remote_clients",
-          "change_type": "Added"
         }
       ]
     },
@@ -10424,17 +9924,17 @@
         },
         {
           "file": "src/context.rs",
-          "function": "context::for AllPreallocated::<method>",
+          "function": "context::AllPreallocated::<method>",
           "change_type": "Modified"
         },
         {
           "file": "src/context.rs",
-          "function": "context::for SignOnlyPreallocated::<method>",
+          "function": "context::SignOnlyPreallocated::<method>",
           "change_type": "Modified"
         },
         {
           "file": "src/context.rs",
-          "function": "context::for VerifyOnlyPreallocated::<method>",
+          "function": "context::VerifyOnlyPreallocated::<method>",
           "change_type": "Modified"
         }
       ]
@@ -10671,27 +10171,22 @@
         },
         {
           "file": "axum-core/src/extract/default_body_limit.rs",
-          "function": "axum_core::extract::default_body_limit::for DefaultBodyLimit::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "axum-core/src/extract/default_body_limit.rs",
-          "function": "axum_core::extract::default_body_limit::for DefaultBodyLimit::layer",
+          "function": "axum_core::extract::default_body_limit::DefaultBodyLimit::layer",
           "change_type": "Added"
         },
         {
           "file": "axum-core/src/extract/default_body_limit.rs",
-          "function": "axum_core::extract::default_body_limit::for DefaultBodyLimitService::<method>",
+          "function": "axum_core::extract::default_body_limit::DefaultBodyLimitService::<method>",
           "change_type": "Modified"
         },
         {
           "file": "axum-core/src/extract/default_body_limit.rs",
-          "function": "axum_core::extract::default_body_limit::for DefaultBodyLimitService::poll_ready",
+          "function": "axum_core::extract::default_body_limit::DefaultBodyLimitService::poll_ready",
           "change_type": "Added"
         },
         {
           "file": "axum-core/src/extract/default_body_limit.rs",
-          "function": "axum_core::extract::default_body_limit::for DefaultBodyLimitService::call",
+          "function": "axum_core::extract::default_body_limit::DefaultBodyLimitService::call",
           "change_type": "Added"
         },
         {
@@ -10815,12 +10310,12 @@
         },
         {
           "file": "src/client/src/errors.rs",
-          "function": "client::src::errors::From::<method>",
+          "function": "client::src::errors::SlackClientError::<method>",
           "change_type": "Modified"
         },
         {
           "file": "src/client/src/errors.rs",
-          "function": "client::src::errors::From::from",
+          "function": "client::src::errors::SlackClientError::from",
           "change_type": "Added"
         },
         {
@@ -10876,11 +10371,6 @@
         {
           "file": "src/client/src/signature_verifier.rs",
           "function": "client::src::signature_verifier::SlackEventSignatureVerifier::test_precoded_data",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/client/src/signature_verifier.rs",
-          "function": "client::src::signature_verifier::SlackEventSignatureVerifier::check_empty_secret_error_test",
           "change_type": "Modified"
         },
         {
@@ -11730,11 +11220,6 @@
           "file": "src/lib.rs",
           "function": "clean_text",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "clean_text_spaces_test",
-          "change_type": "Added"
         }
       ]
     },
@@ -12039,7 +11524,7 @@
         },
         {
           "file": "tremor-script/src/ast/raw.rs",
-          "function": "tremor_script::ast::raw::for ExprRaw::<method>",
+          "function": "tremor_script::ast::raw::ExprRaw::<method>",
           "change_type": "Modified"
         },
         {
@@ -12269,22 +11754,7 @@
         },
         {
           "file": "src/groups/curves/short_weierstrass/non_zero_affine.rs",
-          "function": "groups::curves::short_weierstrass::non_zero_affine::test_non_zero_affine_cost",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/groups/curves/short_weierstrass/non_zero_affine.rs",
           "function": "groups::curves::short_weierstrass::non_zero_affine::correctness_test_1",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/groups/curves/short_weierstrass/non_zero_affine.rs",
-          "function": "groups::curves::short_weierstrass::non_zero_affine::correctness_test_2",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/groups/curves/short_weierstrass/non_zero_affine.rs",
-          "function": "groups::curves::short_weierstrass::non_zero_affine::soundness_test",
           "change_type": "Added"
         }
       ]
@@ -12324,16 +11794,6 @@
           "file": "src/lib.rs",
           "function": "Builder::is_url_relative",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "Builder::ns_svg",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "Builder::ns_mathml",
-          "change_type": "Added"
         }
       ]
     },
@@ -13264,13 +12724,8 @@
       "vulnerable_symbols": [
         {
           "file": "src/util.rs",
-          "function": "util::T where T: io::BufRead::discard_exact",
+          "function": "util::T::discard_exact",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/util.rs",
-          "function": "util::T where T: io::BufRead::discard_exact",
-          "change_type": "Added"
         }
       ]
     },
@@ -13471,7 +12926,7 @@
         },
         {
           "file": "src/id.rs",
-          "function": "id::Sealed for::<method>",
+          "function": "id::$ty::<method>",
           "change_type": "Modified"
         },
         {
@@ -13697,27 +13152,27 @@
       "vulnerable_symbols": [
         {
           "file": "src/lib.rs",
-          "function": "for NotNan::add_assign",
+          "function": "NotNan::add_assign",
           "change_type": "Modified"
         },
         {
           "file": "src/lib.rs",
-          "function": "for NotNan::sub_assign",
+          "function": "NotNan::sub_assign",
           "change_type": "Modified"
         },
         {
           "file": "src/lib.rs",
-          "function": "for NotNan::mul_assign",
+          "function": "NotNan::mul_assign",
           "change_type": "Modified"
         },
         {
           "file": "src/lib.rs",
-          "function": "for NotNan::div_assign",
+          "function": "NotNan::div_assign",
           "change_type": "Modified"
         },
         {
           "file": "src/lib.rs",
-          "function": "for NotNan::rem_assign",
+          "function": "NotNan::rem_assign",
           "change_type": "Modified"
         }
       ]
@@ -13787,18 +13242,13 @@
       "vulnerable_symbols": [
         {
           "file": "src/instance.rs",
-          "function": "instance::for PyObject::<method>",
+          "function": "instance::PyObject::<method>",
           "change_type": "Modified"
         },
         {
           "file": "src/instance.rs",
-          "function": "instance::for PyObject::from",
+          "function": "instance::PyObject::from",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/instance.rs",
-          "function": "instance::for PyObject::pyobject_from_py",
-          "change_type": "Added"
         }
       ]
     },
@@ -14145,7 +13595,7 @@
         },
         {
           "file": "lock_api/src/mutex.rs",
-          "function": "lock_api::mutex::where::<method>",
+          "function": "lock_api::mutex::MappedMutexGuard::<method>",
           "change_type": "Modified"
         },
         {
@@ -14160,7 +13610,12 @@
         },
         {
           "file": "lock_api/src/rwlock.rs",
-          "function": "lock_api::rwlock::where::<method>",
+          "function": "lock_api::rwlock::MappedRwLockReadGuard::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockWriteGuard::<method>",
           "change_type": "Modified"
         }
       ]
@@ -14341,7 +13796,7 @@
       "vulnerable_symbols": [
         {
           "file": "cipher/src/stream.rs",
-          "function": "cipher::stream::SyncStreamCipher for::<method>",
+          "function": "cipher::stream::&mut C::<method>",
           "change_type": "Modified"
         },
         {
@@ -14371,7 +13826,7 @@
       "vulnerable_symbols": [
         {
           "file": "cipher/src/stream.rs",
-          "function": "cipher::stream::SyncStreamCipher for::<method>",
+          "function": "cipher::stream::&mut C::<method>",
           "change_type": "Modified"
         },
         {
@@ -14475,11 +13930,6 @@
         {
           "file": "src/lib.rs",
           "function": "Personnummer::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "Personnummer::test_valid_date_invalid_digits",
           "change_type": "Modified"
         }
       ]
@@ -15071,7 +14521,12 @@
         },
         {
           "file": "lucet-runtime/lucet-runtime-internals/src/c_api.rs",
-          "function": "lucet_runtime_internals::c_api::From::<method>",
+          "function": "lucet_runtime_internals::c_api::lucet_alloc_limits::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "lucet-runtime/lucet-runtime-internals/src/c_api.rs",
+          "function": "lucet_runtime_internals::c_api::Limits::<method>",
           "change_type": "Modified"
         },
         {
@@ -15111,18 +14566,8 @@
         },
         {
           "file": "lucet-runtime/lucet-runtime-tests/src/guest_fault.rs",
-          "function": "lucet_runtime_tests::guest_fault::fatal_abort",
-          "change_type": "Modified"
-        },
-        {
-          "file": "lucet-runtime/lucet-runtime-tests/src/guest_fault.rs",
           "function": "lucet_runtime_tests::guest_fault::handler",
           "change_type": "Modified"
-        },
-        {
-          "file": "lucet-runtime/lucet-runtime-tests/src/guest_fault.rs",
-          "function": "lucet_runtime_tests::guest_fault::hit_sigstack_guard_page",
-          "change_type": "Added"
         },
         {
           "file": "lucet-runtime/lucet-runtime-tests/src/guest_fault.rs",
@@ -15474,11 +14919,6 @@
           "file": "src/crypto/generichash/digest.rs",
           "function": "crypto::generichash::digest::Digest::<method>",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/crypto/generichash/mod.rs",
-          "function": "crypto::generichash::test_digest_equality",
-          "change_type": "Added"
         }
       ]
     },
@@ -15943,7 +15383,7 @@
         },
         {
           "file": "pulse-binding/src/mainloop/api.rs",
-          "function": "pulse_binding::mainloop::api::for::once_cb_proxy",
+          "function": "pulse_binding::mainloop::api::*const ApiInternal::once_cb_proxy",
           "change_type": "Modified"
         },
         {
@@ -16091,17 +15531,17 @@
         },
         {
           "file": "src/array.rs",
-          "function": "array::where T: HasAfEnum::af_get_strides",
+          "function": "array::Array::af_get_strides",
           "change_type": "Modified"
         },
         {
           "file": "src/array.rs",
-          "function": "array::where T: HasAfEnum::get_backend",
+          "function": "array::Array::get_backend",
           "change_type": "Modified"
         },
         {
           "file": "src/array.rs",
-          "function": "array::where T: HasAfEnum::get_type",
+          "function": "array::Array::get_type",
           "change_type": "Modified"
         },
         {
@@ -16576,67 +16016,92 @@
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::<method>",
+          "function": "util::DType::<method>",
           "change_type": "Modified"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::DType::from",
           "change_type": "Deleted"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::DType::from",
           "change_type": "Added"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::InterpType::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::InterpType::from",
           "change_type": "Deleted"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::InterpType::from",
           "change_type": "Added"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::ConvMode::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::ConvMode::from",
           "change_type": "Deleted"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::ConvMode::from",
           "change_type": "Added"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::ConvDomain::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::ConvDomain::from",
           "change_type": "Deleted"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::ConvDomain::from",
           "change_type": "Added"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::MatchType::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::MatchType::from",
           "change_type": "Deleted"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::MatchType::from",
           "change_type": "Added"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::ColorMap::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::ColorMap::from",
           "change_type": "Deleted"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::ColorMap::from",
           "change_type": "Added"
         },
         {
@@ -16651,32 +16116,47 @@
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::SparseFormat::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::SparseFormat::from",
           "change_type": "Deleted"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::SparseFormat::from",
           "change_type": "Added"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::BinaryOp::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::BinaryOp::from",
           "change_type": "Deleted"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::BinaryOp::from",
           "change_type": "Added"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::RandomEngineType::<method>",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::RandomEngineType::from",
           "change_type": "Deleted"
         },
         {
           "file": "src/util.rs",
-          "function": "util::From::from",
+          "function": "util::RandomEngineType::from",
           "change_type": "Added"
         },
         {
@@ -16779,16 +16259,6 @@
           "file": "src/scanner.rs",
           "function": "scanner::Scanner::increase_flow_level",
           "change_type": "Added"
-        },
-        {
-          "file": "src/yaml.rs",
-          "function": "yaml::test_recursion_depth_check_objects",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/yaml.rs",
-          "function": "yaml::test_recursion_depth_check_arrays",
-          "change_type": "Added"
         }
       ]
     },
@@ -16814,17 +16284,17 @@
         },
         {
           "file": "src/de.rs",
-          "function": "de::for SeqAccess::visit_scalar",
+          "function": "de::SeqAccess::visit_scalar",
           "change_type": "Modified"
         },
         {
           "file": "src/de.rs",
-          "function": "de::for MapAccess::visit_scalar",
+          "function": "de::MapAccess::visit_scalar",
           "change_type": "Modified"
         },
         {
           "file": "src/de.rs",
-          "function": "de::for EnumAccess::visit_scalar",
+          "function": "de::EnumAccess::visit_scalar",
           "change_type": "Modified"
         },
         {
@@ -17017,11 +16487,6 @@
           "file": "src/parse.rs",
           "function": "parse::parse_inner",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/parse.rs",
-          "function": "parse::do_not_panic_on_large_max_ages",
-          "change_type": "Added"
         }
       ]
     },
@@ -17054,21 +16519,6 @@
           "file": "src/lib.rs",
           "function": "encode_config_buf",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "encoded_size_correct",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "encoded_size_correct_mime",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "encoded_size_overflow",
-          "change_type": "Added"
         }
       ]
     },
@@ -17096,11 +16546,6 @@
           "file": "security-framework/src/policy.rs",
           "function": "security_framework::policy::SecPolicy::create_ssl",
           "change_type": "Added"
-        },
-        {
-          "file": "security-framework/src/policy.rs",
-          "function": "security_framework::policy::SecPolicy::for_ssl",
-          "change_type": "Deleted"
         },
         {
           "file": "security-framework/src/policy.rs",
@@ -17176,11 +16621,6 @@
           "file": "security-framework/src/trust.rs",
           "function": "security_framework::trust::SecTrust::create_with_certificates",
           "change_type": "Modified"
-        },
-        {
-          "file": "security-framework/src/trust.rs",
-          "function": "security_framework::trust::SecTrust::set_policy",
-          "change_type": "Added"
         }
       ]
     },
