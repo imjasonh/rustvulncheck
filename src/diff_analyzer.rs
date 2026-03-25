@@ -210,11 +210,15 @@ fn file_path_to_module(path: &str) -> String {
     result_parts.join("::").replace('-', "_")
 }
 
-/// Returns true if the file path looks like a test file.
+/// Returns true if the file path looks like a non-library file
+/// (tests, examples, benchmarks, build scripts) that downstream
+/// code wouldn't call.
 fn is_test_file(path: &str) -> bool {
     let parts: Vec<&str> = path.split('/').collect();
-    // Any path component named "tests" or "test"
-    if parts.iter().any(|&p| p == "tests" || p == "test") {
+    // Any path component named tests, test, examples, benches, or fuzz
+    if parts.iter().any(|&p| {
+        matches!(p, "tests" | "test" | "examples" | "example" | "benches" | "fuzz")
+    }) {
         return true;
     }
     // Files named *_test.rs or test_*.rs
@@ -223,24 +227,28 @@ fn is_test_file(path: &str) -> bool {
             return true;
         }
     }
+    // Top-level perf/ directories (e.g. quinn's perf/src/server.rs)
+    if parts.first() == Some(&"perf") {
+        return true;
+    }
     false
 }
 
 /// Build a qualified function name from module path, optional impl type, and fn name.
 fn qualify_fn_name(module: &str, impl_type: &Option<String>, fn_name: &str) -> String {
-    match impl_type {
-        Some(ty) => {
-            // Clean up generic parameters for the type name
-            let clean_ty = ty
-                .split('<')
-                .next()
-                .unwrap_or(ty)
-                .trim()
-                .to_string();
-            format!("{}::{}::{}", module, clean_ty, fn_name)
-        }
-        None => format!("{}::{}", module, fn_name),
-    }
+    let type_part = impl_type.as_ref().map(|ty| {
+        // Clean up generic parameters for the type name
+        ty.split('<').next().unwrap_or(ty).trim().to_string()
+    });
+
+    // Build path parts, skipping empty segments to avoid leading `::`
+    let parts: Vec<&str> = [Some(module), type_part.as_deref(), Some(fn_name)]
+        .into_iter()
+        .flatten()
+        .filter(|s| !s.is_empty())
+        .collect();
+
+    parts.join("::")
 }
 
 #[cfg(test)]
@@ -262,6 +270,21 @@ mod tests {
             file_path_to_module("pyo3-ffi/src/object.rs"),
             "pyo3_ffi::object"
         );
+        // src/lib.rs should produce empty module path
+        assert_eq!(file_path_to_module("src/lib.rs"), "");
+    }
+
+    #[test]
+    fn test_qualify_fn_name_empty_module() {
+        // When module is empty (src/lib.rs), no leading ::
+        let empty = "".to_string();
+        let impl_ty = Some("Context".to_string());
+        assert_eq!(qualify_fn_name(&empty, &impl_ty, "seal"), "Context::seal");
+        assert_eq!(qualify_fn_name(&empty, &None, "main"), "main");
+        assert_eq!(
+            qualify_fn_name("foo::bar", &impl_ty, "baz"),
+            "foo::bar::Context::baz"
+        );
     }
 
     #[test]
@@ -269,6 +292,11 @@ mod tests {
         assert!(is_test_file("tests/integration.rs"));
         assert!(is_test_file("crates/foo/tests/rfc7539.rs"));
         assert!(is_test_file("src/my_test.rs"));
+        assert!(is_test_file("examples/server.rs"));
+        assert!(is_test_file("quinn/examples/server.rs"));
+        assert!(is_test_file("fuzz/fuzz_targets/params.rs"));
+        assert!(is_test_file("perf/src/server.rs"));
+        assert!(is_test_file("benches/bench.rs"));
         assert!(!is_test_file("src/lib.rs"));
         assert!(!is_test_file("src/http/request.rs"));
     }
