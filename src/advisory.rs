@@ -1,0 +1,240 @@
+//! Parser for RustSec advisory-db TOML files.
+
+use anyhow::{Context, Result};
+use serde::Deserialize;
+use std::path::Path;
+use walkdir::WalkDir;
+
+/// Raw TOML structure of a RustSec advisory file.
+#[derive(Debug, Deserialize)]
+pub struct AdvisoryFile {
+    pub advisory: AdvisoryMeta,
+    #[serde(default)]
+    pub versions: VersionInfo,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct AdvisoryMeta {
+    pub id: String,
+    #[serde(default)]
+    pub package: String,
+    #[serde(default)]
+    pub date: String,
+    #[serde(default)]
+    pub url: Option<String>,
+    #[serde(default)]
+    pub references: Vec<String>,
+    #[serde(default)]
+    pub title: Option<String>,
+    #[serde(default)]
+    #[allow(dead_code)]
+    pub description: Option<String>,
+}
+
+#[derive(Debug, Default, Deserialize)]
+pub struct VersionInfo {
+    #[serde(default)]
+    pub patched: Vec<String>,
+    #[serde(default)]
+    #[allow(dead_code)]
+    pub unaffected: Vec<String>,
+}
+
+/// Parsed advisory with extracted GitHub references.
+#[derive(Debug, Clone)]
+pub struct Advisory {
+    pub id: String,
+    pub package: String,
+    pub date: String,
+    pub title: String,
+    pub patched_versions: Vec<String>,
+    pub github_urls: Vec<String>,
+}
+
+impl Advisory {
+    /// Extract GitHub PR/issue/commit URLs from advisory references and URL fields.
+    pub fn github_refs(&self) -> Vec<GithubRef> {
+        let mut refs = Vec::new();
+        for url in &self.github_urls {
+            if let Some(r) = GithubRef::parse(url) {
+                refs.push(r);
+            }
+        }
+        refs
+    }
+}
+
+/// A parsed GitHub reference (PR, issue, or commit).
+#[derive(Debug, Clone)]
+pub enum GithubRef {
+    PullRequest {
+        owner: String,
+        repo: String,
+        number: u64,
+    },
+    #[allow(dead_code)]
+    Issue {
+        owner: String,
+        repo: String,
+        number: u64,
+    },
+    Commit {
+        owner: String,
+        repo: String,
+        sha: String,
+    },
+}
+
+impl GithubRef {
+    pub fn parse(url: &str) -> Option<Self> {
+        let url = url.trim_end_matches('/');
+
+        // Match: github.com/owner/repo/pull/123
+        if let Some(caps) = regex::Regex::new(
+            r"github\.com/([^/]+)/([^/]+)/pull/(\d+)",
+        )
+        .ok()?
+        .captures(url)
+        {
+            return Some(GithubRef::PullRequest {
+                owner: caps[1].to_string(),
+                repo: caps[2].to_string(),
+                number: caps[3].parse().ok()?,
+            });
+        }
+
+        // Match: github.com/owner/repo/issues/123
+        if let Some(caps) = regex::Regex::new(
+            r"github\.com/([^/]+)/([^/]+)/issues/(\d+)",
+        )
+        .ok()?
+        .captures(url)
+        {
+            return Some(GithubRef::Issue {
+                owner: caps[1].to_string(),
+                repo: caps[2].to_string(),
+                number: caps[3].parse().ok()?,
+            });
+        }
+
+        // Match: github.com/owner/repo/commit/<sha>
+        if let Some(caps) = regex::Regex::new(
+            r"github\.com/([^/]+)/([^/]+)/commit/([0-9a-f]+)",
+        )
+        .ok()?
+        .captures(url)
+        {
+            return Some(GithubRef::Commit {
+                owner: caps[1].to_string(),
+                repo: caps[2].to_string(),
+                sha: caps[3].to_string(),
+            });
+        }
+
+        None
+    }
+}
+
+/// Scan a directory of RustSec advisory TOML files and parse them.
+pub fn parse_advisory_db(db_path: &Path) -> Result<Vec<Advisory>> {
+    let crates_dir = db_path.join("crates");
+    if !crates_dir.exists() {
+        anyhow::bail!(
+            "advisory-db 'crates' directory not found at {}",
+            crates_dir.display()
+        );
+    }
+
+    let mut advisories = Vec::new();
+
+    for entry in WalkDir::new(&crates_dir)
+        .into_iter()
+        .filter_map(|e| e.ok())
+    {
+        let path = entry.path();
+        // Advisory-db uses .md files with TOML in a fenced code block
+        if path.extension().map_or(true, |ext| ext != "md") {
+            continue;
+        }
+
+        match parse_advisory_file(path) {
+            Ok(adv) => advisories.push(adv),
+            Err(e) => {
+                eprintln!("Warning: skipping {}: {}", path.display(), e);
+            }
+        }
+    }
+
+    // Sort by date descending (most recent first)
+    advisories.sort_by(|a, b| b.date.cmp(&a.date));
+
+    Ok(advisories)
+}
+
+fn parse_advisory_file(path: &Path) -> Result<Advisory> {
+    let content =
+        std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
+
+    // Advisory-db .md files have TOML inside a ```toml ... ``` fenced block
+    let toml_content = extract_toml_block(&content)
+        .with_context(|| format!("no TOML block found in {}", path.display()))?;
+
+    let file: AdvisoryFile =
+        toml::from_str(&toml_content).with_context(|| format!("parsing {}", path.display()))?;
+
+    let mut github_urls = Vec::new();
+
+    // Collect URLs from the `url` field
+    if let Some(ref url) = file.advisory.url {
+        if url.contains("github.com") {
+            github_urls.push(url.clone());
+        }
+    }
+
+    // Collect URLs from `references`
+    for r in &file.advisory.references {
+        if r.contains("github.com") {
+            github_urls.push(r.clone());
+        }
+    }
+
+    // Fall back to the first markdown heading if TOML title is missing
+    let title = file
+        .advisory
+        .title
+        .unwrap_or_else(|| extract_markdown_title(&content).unwrap_or_else(|| "(no title)".to_string()));
+
+    Ok(Advisory {
+        id: file.advisory.id,
+        package: file.advisory.package,
+        date: file.advisory.date,
+        title,
+        patched_versions: file.versions.patched,
+        github_urls,
+    })
+}
+
+/// Extract the TOML content from a markdown file with a ```toml fenced block.
+fn extract_toml_block(content: &str) -> Option<String> {
+    let start = content.find("```toml\n")? + "```toml\n".len();
+    let end = content[start..].find("```")? + start;
+    Some(content[start..end].to_string())
+}
+
+/// Extract the first markdown heading (# Title) from the content after the TOML block.
+fn extract_markdown_title(content: &str) -> Option<String> {
+    // Find end of TOML block, then look for first heading
+    let toml_end = content.find("```toml\n")?;
+    let after_toml_start = content[toml_end + "```toml\n".len()..].find("```")?;
+    let after_toml = &content[toml_end + "```toml\n".len() + after_toml_start + 3..];
+    for line in after_toml.lines() {
+        let trimmed = line.trim();
+        if let Some(heading) = trimmed.strip_prefix("# ") {
+            let title = heading.trim();
+            if !title.is_empty() {
+                return Some(title.to_string());
+            }
+        }
+    }
+    None
+}
