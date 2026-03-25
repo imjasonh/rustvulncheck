@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   test:
@@ -35,10 +35,15 @@ jobs:
       - name: Run tests
         run: cargo test --verbose
 
-  enrichment-dry-run:
+  enrich:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
@@ -55,15 +60,36 @@ jobs:
             ${{ runner.os }}-cargo-
 
       - name: Build
-        run: cargo build
+        run: cargo build --release
 
-      - name: Run enrichment pipeline (10 advisories)
+      - name: Run enrichment pipeline
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: cargo run -- enrich --limit 10 --output vuln_db.json
+        run: |
+          EXISTING_FLAG=""
+          if [ -f vuln_db.json ]; then
+            EXISTING_FLAG="--existing-db vuln_db.json"
+          fi
 
-      - name: Show output
-        run: cat vuln_db.json
+          cargo run --release -- enrich \
+            --limit 20 \
+            --timeout-secs 1500 \
+            $EXISTING_FLAG \
+            --output vuln_db.json
+
+      - name: Commit updated vuln_db.json if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add vuln_db.json
+          if git diff --cached --quiet; then
+            echo "No changes to vuln_db.json, skipping commit."
+          else
+            TOTAL=$(jq '.entries | length' vuln_db.json)
+            WITH_SYMBOLS=$(jq '[.entries[] | select(.vulnerable_symbols | length > 0)] | length' vuln_db.json)
+            git commit -m "chore: enrich vuln db from CI (${TOTAL} entries, ${WITH_SYMBOLS} with symbols)"
+            git push
+          fi
 
       - name: Upload enriched DB artifact
         uses: actions/upload-artifact@v4
