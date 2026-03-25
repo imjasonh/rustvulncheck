@@ -31,6 +31,10 @@ impl VulnDb {
         }
     }
 
+    pub fn update_timestamp(&mut self) {
+        self.generated_at = chrono_lite_now();
+    }
+
     pub fn load(path: &Path) -> anyhow::Result<Self> {
         let data = std::fs::read_to_string(path)?;
         let db: VulnDb = serde_json::from_str(&data)?;
