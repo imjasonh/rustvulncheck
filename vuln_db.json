@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1774455904",
+  "generated_at": "unix:1774463779",
   "entries": [
     {
       "advisory_id": "RUSTSEC-2016-0003",
@@ -10032,7 +10032,58 @@
         ">= 3.0.1"
       ],
       "commit_sha": "22e0609591a2c08930f52a0e6bc860f02a0e88c0",
-      "vulnerable_symbols": []
+      "vulnerable_symbols": [
+        {
+          "file": "crates/support/src/atomic_str.rs",
+          "function": "support::atomic_str::Arc::from",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/support/src/atomic_str.rs",
+          "function": "support::atomic_str::AtomicStr::as_ref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/support/src/atomic_str.rs",
+          "function": "support::atomic_str::AtomicStr::as_str",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/support/src/atomic_str.rs",
+          "function": "support::atomic_str::AtomicStr::clone_string",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/support/src/atomic_str.rs",
+          "function": "support::atomic_str::AtomicStr::drop",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/support/src/atomic_str.rs",
+          "function": "support::atomic_str::AtomicStr::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/support/src/atomic_str.rs",
+          "function": "support::atomic_str::AtomicStr::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/support/src/atomic_str.rs",
+          "function": "support::atomic_str::AtomicStr::replace",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/support/src/atomic_str.rs",
+          "function": "support::atomic_str::GuardedStr::deref",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "locale",
+          "change_type": "Modified"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2024-0010",
@@ -10202,7 +10253,28 @@
         ">= 0.10.2"
       ],
       "commit_sha": "4978e32654235f569062f2cad6c7361e410f1254",
-      "vulnerable_symbols": []
+      "vulnerable_symbols": [
+        {
+          "file": "object_store/src/aws/credential.rs",
+          "function": "object_store::aws::credential::web_identity",
+          "change_type": "Modified"
+        },
+        {
+          "file": "object_store/src/client/retry.rs",
+          "function": "object_store::client::retry::RequestBuilder::retryable",
+          "change_type": "Modified"
+        },
+        {
+          "file": "object_store/src/client/retry.rs",
+          "function": "object_store::client::retry::RetryableRequest::send",
+          "change_type": "Modified"
+        },
+        {
+          "file": "object_store/src/client/retry.rs",
+          "function": "object_store::client::retry::RetryableRequest::sensitive",
+          "change_type": "Added"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2024-0359",
