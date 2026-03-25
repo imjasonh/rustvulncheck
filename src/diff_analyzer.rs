@@ -30,7 +30,7 @@ pub enum ChangeType {
 /// 2. Look at added/removed lines containing `fn ` declarations.
 /// 3. Infer module path from the file path.
 pub fn extract_symbols(diff: &PatchDiff) -> Vec<VulnerableSymbol> {
-    let mut symbols = Vec::new();
+    let mut symbols: Vec<VulnerableSymbol> = Vec::new();
     let fn_decl_re = Regex::new(
         r"(?:pub\s+(?:\(crate\)\s+)?)?(?:unsafe\s+)?(?:async\s+)?fn\s+([a-zA-Z_][a-zA-Z0-9_]*)",
     )
@@ -111,16 +111,22 @@ pub fn extract_symbols(diff: &PatchDiff) -> Vec<VulnerableSymbol> {
                         continue;
                     }
                     let qualified = qualify_fn_name(&module_path, &current_impl_type, fn_name);
-                    let change_type = if is_added {
-                        ChangeType::Added
+                    // Dedup: if the same fn is both deleted (-) and added (+), it's Modified
+                    if let Some(existing) = symbols.iter_mut().find(|s| s.function == qualified) {
+                        // Upgrade to Modified when we see both + and - for the same fn
+                        existing.change_type = ChangeType::Modified;
                     } else {
-                        ChangeType::Deleted
-                    };
-                    symbols.push(VulnerableSymbol {
-                        file: file_patch.filename.clone(),
-                        function: qualified,
-                        change_type,
-                    });
+                        let change_type = if is_added {
+                            ChangeType::Added
+                        } else {
+                            ChangeType::Deleted
+                        };
+                        symbols.push(VulnerableSymbol {
+                            file: file_patch.filename.clone(),
+                            function: qualified,
+                            change_type,
+                        });
+                    }
                 }
             } else if is_added || is_removed {
                 // Changed line inside a function body
@@ -215,7 +221,8 @@ fn parse_impl_type(s: &str) -> Option<String> {
 
     // Now rest is either "Trait<...> for Type<...> ..." or "Type<...> ..."
     // Find " for " at the top level (not inside <>) to split trait from type
-    let type_str = if let Some(pos) = find_top_level_keyword(rest, " for ") {
+    let has_for = find_top_level_keyword(rest, " for ");
+    let type_str = if let Some(pos) = has_for {
         rest[pos + 5..].trim_start()
     } else {
         rest
@@ -231,10 +238,89 @@ fn parse_impl_type(s: &str) -> Option<String> {
     let type_str = type_str.trim();
 
     if type_str.is_empty() {
-        None
-    } else {
-        Some(type_str.to_string())
+        return None;
     }
+
+    // When there's no `for` keyword, we might be seeing a trait impl where
+    // `for Type` was cut off by the hunk header (e.g. `impl From<X>` without
+    // the ` for MyType` part). If the captured "type" is a well-known trait
+    // name, it's almost certainly wrong — return None rather than recording
+    // the trait name as the implementing type.
+    if has_for.is_none() {
+        let base_name = type_str.split('<').next().unwrap_or(type_str).trim();
+        if is_std_trait(base_name) {
+            return None;
+        }
+    }
+
+    Some(type_str.to_string())
+}
+
+/// Returns true if the name is a well-known standard library trait that
+/// would never be an implementing type in `impl Trait { ... }`.
+/// Used to detect truncated hunk headers like `impl From<X>` where
+/// `for ActualType` was cut off.
+fn is_std_trait(name: &str) -> bool {
+    matches!(
+        name,
+        "From"
+            | "Into"
+            | "TryFrom"
+            | "TryInto"
+            | "AsRef"
+            | "AsMut"
+            | "Borrow"
+            | "BorrowMut"
+            | "Clone"
+            | "Copy"
+            | "Debug"
+            | "Default"
+            | "Deref"
+            | "DerefMut"
+            | "Display"
+            | "Drop"
+            | "Eq"
+            | "Fn"
+            | "FnMut"
+            | "FnOnce"
+            | "Hash"
+            | "Index"
+            | "IndexMut"
+            | "IntoIterator"
+            | "Iterator"
+            | "Ord"
+            | "PartialEq"
+            | "PartialOrd"
+            | "Read"
+            | "Write"
+            | "Seek"
+            | "ToString"
+            | "Add"
+            | "AddAssign"
+            | "Sub"
+            | "SubAssign"
+            | "Mul"
+            | "MulAssign"
+            | "Div"
+            | "DivAssign"
+            | "Rem"
+            | "RemAssign"
+            | "Neg"
+            | "Not"
+            | "BitAnd"
+            | "BitOr"
+            | "BitXor"
+            | "Shl"
+            | "Shr"
+            | "Serialize"
+            | "Deserialize"
+            | "Future"
+            | "Stream"
+            | "Sink"
+            | "Unpin"
+            | "Send"
+            | "Sync"
+    )
 }
 
 /// Skip past balanced `<...>` generics at the start of a string.
@@ -718,5 +804,122 @@ mod tests {
             "#[cfg(test)] functions should be filtered, got: {:?}",
             symbols
         );
+    }
+
+    #[test]
+    fn test_duplicate_fn_deduped_as_modified() {
+        // When a fn is both removed (-) and added (+), it should appear once as Modified
+        let diff = PatchDiff {
+            commit_sha: "abc123".to_string(),
+            files: vec![crate::github::FilePatch {
+                filename: "src/reader.rs".to_string(),
+                patch: concat!(
+                    "@@ -10,6 +10,8 @@ impl Reader {\n",
+                    "-    pub fn open_mmap(path: &str) -> Self {\n",
+                    "-        let old = 1;\n",
+                    "+    pub fn open_mmap(path: &Path) -> Result<Self> {\n",
+                    "+        let new = 2;\n",
+                    "     }\n",
+                )
+                .to_string(),
+            }],
+        };
+
+        let symbols = extract_symbols(&diff);
+        let open_mmap_syms: Vec<_> = symbols
+            .iter()
+            .filter(|s| s.function.contains("open_mmap"))
+            .collect();
+        assert_eq!(
+            open_mmap_syms.len(),
+            1,
+            "Expected exactly 1 open_mmap symbol (deduped), got {}: {:?}",
+            open_mmap_syms.len(),
+            open_mmap_syms
+        );
+        assert!(
+            matches!(open_mmap_syms[0].change_type, ChangeType::Modified),
+            "Expected Modified when fn is both deleted and added, got {:?}",
+            open_mmap_syms[0].change_type
+        );
+    }
+
+    #[test]
+    fn test_trait_name_not_captured_as_type() {
+        // When hunk header shows `impl From<X>` without `for Type`,
+        // the trait name should NOT be used as the implementing type
+        assert_eq!(
+            parse_impl_type("impl From<Error> {"),
+            None,
+            "From is a trait, not a type"
+        );
+        assert_eq!(
+            parse_impl_type("impl<T> Into<Vec<T>> {"),
+            None,
+            "Into is a trait, not a type"
+        );
+        assert_eq!(
+            parse_impl_type("impl TryFrom<String> {"),
+            None,
+            "TryFrom is a trait, not a type"
+        );
+        assert_eq!(
+            parse_impl_type("impl Default {"),
+            None,
+            "Default is a trait, not a type"
+        );
+        // But with `for`, the trait should be skipped and the type extracted
+        assert_eq!(
+            parse_impl_type("impl From<Error> for MyError {"),
+            Some("MyError".into())
+        );
+        // Regular types should still work
+        assert_eq!(
+            parse_impl_type("impl MyStruct {"),
+            Some("MyStruct".into())
+        );
+    }
+
+    #[test]
+    fn test_trait_as_type_not_in_symbols() {
+        // End-to-end: hunk header with trait impl truncated should not
+        // produce symbols with trait name as type
+        let diff = PatchDiff {
+            commit_sha: "abc123".to_string(),
+            files: vec![crate::github::FilePatch {
+                filename: "src/util.rs".to_string(),
+                patch: concat!(
+                    "@@ -10,6 +10,8 @@ impl From<Error>\n",
+                    "-    fn from(e: Error) -> Self {\n",
+                    "+    fn from(e: Error) -> Self {\n",
+                    "+        Self::new(e)\n",
+                    "     }\n",
+                )
+                .to_string(),
+            }],
+        };
+
+        let symbols = extract_symbols(&diff);
+        for s in &symbols {
+            assert!(
+                !s.function.contains("From::"),
+                "Trait name should not appear as type in symbol: '{}'",
+                s.function
+            );
+        }
+    }
+
+    #[test]
+    fn test_is_std_trait() {
+        assert!(is_std_trait("From"));
+        assert!(is_std_trait("Into"));
+        assert!(is_std_trait("TryFrom"));
+        assert!(is_std_trait("Default"));
+        assert!(is_std_trait("Clone"));
+        assert!(is_std_trait("Iterator"));
+        assert!(!is_std_trait("MyStruct"));
+        assert!(!is_std_trait("Request"));
+        assert!(!is_std_trait("Vec")); // Vec is a type, not a trait
+        assert!(!is_std_trait("HashMap"));
     }
 }

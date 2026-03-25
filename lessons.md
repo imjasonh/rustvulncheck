@@ -44,11 +44,29 @@ Not everything was broken. Several entries verified correctly against their actu
 - **RUSTSEC-2022-0022 (hyper):** `Client::record_header_indices` — correctly identified from `MaybeUninit` safety fix. Impl types `Server`/`Client` properly tracked.
 - **RUSTSEC-2023-0001 (tokio):** Named pipe functions (`pipe_mode`, `opts_default_pipe_mode`) plausible for `reject_remote_clients` fix.
 
+## Bug 4: Duplicate symbols within entries (~43 entries, 195 extra symbols)
+
+**Symptom:** The same function appearing 2+ times in an entry, e.g. `open_mmap` x2.
+
+**Root cause:** When a function signature is both removed (`-fn foo(old: X)`) and added (`+fn foo(new: Y)`), both lines match `fn_decl_re` independently, each producing a symbol. The existing dedup check (`symbols.iter().any(...)`) only applied to the body-change code path (lines 131-154), not the fn-declaration code path (lines 106-124).
+
+**Fix:** Added dedup to the fn-declaration path: when a symbol with the same qualified name already exists, upgrade its `change_type` to `Modified` instead of adding a duplicate. This is semantically correct — if a fn is both deleted and added, it was modified.
+
+## Bug 5: Trait name captured as implementing type (~146 symbols)
+
+**Symptom:** Symbols like `From::from`, `Into::new`, `TryFrom::try_from` where a standard trait name appears where the implementing type should be.
+
+**Root cause:** Hunk headers often show truncated `impl` lines like `impl From<Error>` without the ` for ActualType` part (which is on the next line or beyond the context window). `parse_impl_type` correctly extracted the text after `impl<generics>`, but without a `for`, it captured the trait name as the type.
+
+**Fix:** Added `is_std_trait()` blocklist — when `parse_impl_type` finds no `for` keyword and the captured type name is a well-known trait (`From`, `Into`, `TryFrom`, `Clone`, `Default`, `Iterator`, operator traits, serde traits, etc.), it returns `None` instead of the trait name. This causes the symbol to fall through to the `<method>` placeholder, which is less precise but at least not wrong.
+
+**Lesson:** When parsing partial/truncated context (like git hunk headers), a wrong answer is worse than no answer. The `<method>` placeholder is imprecise but correct; `From::from` is precise but wrong and will never match real call sites.
+
 ## Remaining Known Limitations
 
 These are documented in CLAUDE.md but not yet fixed:
 
-- **`<method>` placeholders (~90 entries):** When git hunk headers don't include the fn declaration, the tool records `Type::<method>`. This is a fundamental limitation of diff-based analysis — the fn context depends on git's hunk header generation, which uses a limited window.
+- **`<method>` placeholders (~90+ entries):** When git hunk headers don't include the fn declaration, the tool records `Type::<method>`. This is a fundamental limitation of diff-based analysis — the fn context depends on git's hunk header generation, which uses a limited window. The trait-name fix increases this count slightly (trait impls now fall through to `<method>` instead of `Trait::method`).
 - **Missing crate name prefix:** For non-workspace repos, `src/foo/bar.rs` → `foo::bar` instead of `crate_name::foo::bar`. The crate name isn't available from the file path alone; fixing this would require reading `Cargo.toml` from the repo.
 - **Empty symbol lists (495/642):** Many advisories lack GitHub commit references, or the referenced commits don't contain extractable Rust function changes (version bumps only, C code, etc.).
 
@@ -60,4 +78,8 @@ Each fix has targeted regression tests using synthetic diffs that reproduce the 
 - `test_test_functions_filtered_by_attribute` — `#[test]` fn inside library source
 - `test_test_functions_filtered_by_name_prefix` — `test_*` naming convention
 - `test_cfg_test_functions_filtered` — `#[cfg(test)]` attribute
-- `test_parse_impl_type_*` — unit tests for the new bracket-counting parser
+- `test_parse_impl_type_*` — unit tests for the bracket-counting parser
+- `test_duplicate_fn_deduped_as_modified` — dedup when same fn is both `+` and `-`
+- `test_trait_name_not_captured_as_type` — blocklist prevents `From`/`Into` as type
+- `test_trait_as_type_not_in_symbols` — end-to-end with truncated hunk header
+- `test_is_std_trait` — unit test for the trait blocklist
