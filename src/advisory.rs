@@ -198,14 +198,17 @@ fn parse_advisory_file(path: &Path) -> Result<Advisory> {
         }
     }
 
+    // Fall back to the first markdown heading if TOML title is missing
+    let title = file
+        .advisory
+        .title
+        .unwrap_or_else(|| extract_markdown_title(&content).unwrap_or_else(|| "(no title)".to_string()));
+
     Ok(Advisory {
         id: file.advisory.id,
         package: file.advisory.package,
         date: file.advisory.date,
-        title: file
-            .advisory
-            .title
-            .unwrap_or_else(|| "(no title)".to_string()),
+        title,
         patched_versions: file.versions.patched,
         github_urls,
     })
@@ -216,4 +219,22 @@ fn extract_toml_block(content: &str) -> Option<String> {
     let start = content.find("```toml\n")? + "```toml\n".len();
     let end = content[start..].find("```")? + start;
     Some(content[start..end].to_string())
+}
+
+/// Extract the first markdown heading (# Title) from the content after the TOML block.
+fn extract_markdown_title(content: &str) -> Option<String> {
+    // Find end of TOML block, then look for first heading
+    let toml_end = content.find("```toml\n")?;
+    let after_toml_start = content[toml_end + "```toml\n".len()..].find("```")?;
+    let after_toml = &content[toml_end + "```toml\n".len() + after_toml_start + 3..];
+    for line in after_toml.lines() {
+        let trimmed = line.trim();
+        if let Some(heading) = trimmed.strip_prefix("# ") {
+            let title = heading.trim();
+            if !title.is_empty() {
+                return Some(title.to_string());
+            }
+        }
+    }
+    None
 }

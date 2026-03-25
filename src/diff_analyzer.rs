@@ -40,6 +40,10 @@ pub fn extract_symbols(diff: &PatchDiff) -> Vec<VulnerableSymbol> {
         Regex::new(r"impl(?:<[^>]*>)?\s+(?:([a-zA-Z_][a-zA-Z0-9_:]*)\s+for\s+)?([a-zA-Z_][a-zA-Z0-9_:<>, ]*)").unwrap();
 
     for file_patch in &diff.files {
+        // Skip test files — they aren't callable library code
+        if is_test_file(&file_patch.filename) {
+            continue;
+        }
         let module_path = file_path_to_module(&file_patch.filename);
 
         let mut current_context_fn: Option<String> = None;
@@ -136,14 +140,63 @@ pub fn extract_symbols(diff: &PatchDiff) -> Vec<VulnerableSymbol> {
 }
 
 /// Convert a file path like `src/http/request.rs` to a module path like `http::request`.
+///
+/// Handles workspace layouts like `crates/foo/src/bar.rs` → `foo::bar`
+/// and top-level `src/bar.rs` → `bar`. Replaces hyphens with underscores
+/// to match Rust crate naming conventions.
 fn file_path_to_module(path: &str) -> String {
-    let path = path
-        .trim_start_matches("src/")
-        .trim_end_matches(".rs")
-        .trim_end_matches("/mod")
-        .trim_end_matches("/lib");
+    // Split into components
+    let parts: Vec<&str> = path.split('/').collect();
 
-    path.replace('/', "::")
+    // Find the `src` component — everything before it is the crate prefix,
+    // everything after it is the module path.
+    let (crate_parts, mod_parts) = if let Some(src_idx) = parts.iter().position(|&p| p == "src") {
+        (&parts[..src_idx], &parts[src_idx + 1..])
+    } else {
+        // No src/ directory — use the whole path
+        (&[][..], &parts[..])
+    };
+
+    // Build module path from the parts after src/
+    let mut mod_path: Vec<&str> = mod_parts.to_vec();
+
+    // Strip .rs extension from last component and handle mod.rs / lib.rs
+    if let Some(last) = mod_path.last_mut() {
+        *last = last.trim_end_matches(".rs");
+    }
+    // Remove trailing mod or lib (e.g. src/net/mod.rs → net)
+    if mod_path.last() == Some(&"mod") || mod_path.last() == Some(&"lib") {
+        mod_path.pop();
+    }
+
+    // For workspace crates, use the last crate directory as prefix
+    // e.g. crates/algorithms/sha3/src/simd/avx2.rs → sha3::simd::avx2
+    let crate_name = crate_parts.last().copied().unwrap_or("");
+
+    let mut result_parts: Vec<&str> = Vec::new();
+    if !crate_name.is_empty() {
+        result_parts.push(crate_name);
+    }
+    result_parts.extend(mod_path);
+
+    // Join and replace hyphens with underscores (Rust crate convention)
+    result_parts.join("::").replace('-', "_")
+}
+
+/// Returns true if the file path looks like a test file.
+fn is_test_file(path: &str) -> bool {
+    let parts: Vec<&str> = path.split('/').collect();
+    // Any path component named "tests" or "test"
+    if parts.iter().any(|&p| p == "tests" || p == "test") {
+        return true;
+    }
+    // Files named *_test.rs or test_*.rs
+    if let Some(filename) = parts.last() {
+        if filename.ends_with("_test.rs") || filename.starts_with("test_") {
+            return true;
+        }
+    }
+    false
 }
 
 /// Build a qualified function name from module path, optional impl type, and fn name.
@@ -170,11 +223,27 @@ mod tests {
     #[test]
     fn test_file_path_to_module() {
         assert_eq!(file_path_to_module("src/http/request.rs"), "http::request");
-        assert_eq!(file_path_to_module("src/lib.rs"), "lib");
+        assert_eq!(file_path_to_module("src/lib.rs"), "");
+        assert_eq!(file_path_to_module("src/net/tcp/mod.rs"), "net::tcp");
+        // Workspace crate paths
         assert_eq!(
-            file_path_to_module("src/net/tcp/mod.rs"),
-            "net::tcp"
+            file_path_to_module("crates/algorithms/sha3/src/simd/avx2.rs"),
+            "sha3::simd::avx2"
         );
+        // Hyphens become underscores
+        assert_eq!(
+            file_path_to_module("pyo3-ffi/src/object.rs"),
+            "pyo3_ffi::object"
+        );
+    }
+
+    #[test]
+    fn test_is_test_file() {
+        assert!(is_test_file("tests/integration.rs"));
+        assert!(is_test_file("crates/foo/tests/rfc7539.rs"));
+        assert!(is_test_file("src/my_test.rs"));
+        assert!(!is_test_file("src/lib.rs"));
+        assert!(!is_test_file("src/http/request.rs"));
     }
 
     #[test]
