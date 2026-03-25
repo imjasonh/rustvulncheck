@@ -13,3 +13,8 @@ regex = "1"
 git2 = "0.19"
 walkdir = "2"
 anyhow = "1"
+semver = "1"
+syn = { version = "2", features = ["full", "visit"] }
+
+[dev-dependencies]
+tempfile = "3"

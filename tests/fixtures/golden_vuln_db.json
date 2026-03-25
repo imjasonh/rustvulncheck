@@ -1,0 +1,105 @@
+{
+  "generated_at": "unix:1700000000",
+  "entries": [
+    {
+      "advisory_id": "RUSTSEC-2024-0001",
+      "package": "hyper",
+      "title": "Lenient HTTP header parsing allows request smuggling",
+      "date": "2024-01-15",
+      "patched_versions": [">= 1.0.0"],
+      "commit_sha": "abc123",
+      "vulnerable_symbols": [
+        {
+          "file": "src/proto/h1/role.rs",
+          "function": "hyper::proto::h1::role::Client::encode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/proto/h1/decode.rs",
+          "function": "hyper::proto::h1::decode::Decoder::decode",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0010",
+      "package": "smallvec",
+      "title": "Buffer overflow in SmallVec::insert_many",
+      "date": "2024-02-20",
+      "patched_versions": [">= 1.11.0"],
+      "commit_sha": "def456",
+      "vulnerable_symbols": [
+        {
+          "file": "src/lib.rs",
+          "function": "smallvec::SmallVec::insert_many",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0020",
+      "package": "tokio",
+      "title": "Race condition in task abort",
+      "date": "2024-03-01",
+      "patched_versions": [">= 1.38.0"],
+      "commit_sha": "ghi789",
+      "vulnerable_symbols": [
+        {
+          "file": "src/runtime/task/mod.rs",
+          "function": "tokio::runtime::task::JoinHandle::abort",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0030",
+      "package": "regex",
+      "title": "ReDoS in regex compilation",
+      "date": "2024-04-01",
+      "patched_versions": [">= 1.10.0"],
+      "commit_sha": "jkl012",
+      "vulnerable_symbols": [
+        {
+          "file": "src/compile.rs",
+          "function": "regex::compile::Compiler::compile",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0040",
+      "package": "serde_json",
+      "title": "Stack overflow on deeply nested input",
+      "date": "2024-05-01",
+      "patched_versions": [">= 1.0.100"],
+      "commit_sha": "mno345",
+      "vulnerable_symbols": [
+        {
+          "file": "src/de.rs",
+          "function": "serde_json::de::Deserializer::parse",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0050",
+      "package": "cookie",
+      "title": "Cookie parsing allows header injection",
+      "date": "2024-06-01",
+      "patched_versions": [">= 0.18.0", ">= 0.17.1, < 0.18.0"],
+      "commit_sha": "pqr678",
+      "vulnerable_symbols": [
+        {
+          "file": "src/parse.rs",
+          "function": "cookie::parse::parse_cookie",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/jar.rs",
+          "function": "cookie::jar::CookieJar::add",
+          "change_type": "Modified"
+        }
+      ]
+    }
+  ]
+}
