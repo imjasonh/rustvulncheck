@@ -32,8 +32,8 @@ This isn't perfect, of course -- if a fixed version `v1.2.4` included a hundred 
 
 ### Status
 
-The enriched database is currently being built, by periodically scraping some of RustSec's advisories and doing the diff analysis to determine affected symbols. When that's done, it would probably be useful for humans/agents to spot-check some and even manually tweak the findings. The idea isn't to replace the experts with good taste, it's to give them a leg up on the backlog.
+The enriched database is available at [`./vuln_db.json`], and is continuously rebuilt by periodically scraping RustSec's advisories and doing the diff analysis to determine affected symbols. It would probably be useful for humans/agents to spot-check some and even manually tweak the findings. The idea isn't to replace the experts with good taste, it's to give them a leg up on the backlog.
 
 The call analysis code could probably also be improved to both find more cases, and to filter out negatives better.
 
-Ultimately I don't really even need this exact code to become The Thing, I just want The Thing to exist, and this was a useful experiment to see what it would take.
+Ultimately I don't really even need this exact code to become The Thing, I just want The Thing to exist, and this was a useful experiment to see what it would take. If this inspires you to do better, _please do_!
