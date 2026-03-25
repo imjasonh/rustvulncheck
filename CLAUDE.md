@@ -39,7 +39,8 @@ cargo-deep-audit enrich \
   --advisory-db /path/to/advisory-db \
   --output vuln_db.json \
   --github-token <token> \
-  [--limit N] [--include-all] [--existing-db existing.json]
+  [--limit N] [--include-all] [--existing-db existing.json] \
+  [--re-enrich] [--timeout-secs N]
 
 # Phase 2: Analyze a project
 cargo-deep-audit analyze \

@@ -62,19 +62,15 @@ jobs:
       - name: Build
         run: cargo build --release
 
-      - name: Run enrichment pipeline
+      - name: Re-enrich vuln_db.json with updated code
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          EXISTING_FLAG=""
-          if [ -f vuln_db.json ]; then
-            EXISTING_FLAG="--existing-db vuln_db.json"
-          fi
-
           cargo run --release -- enrich \
-            --limit 20 \
+            --existing-db vuln_db.json \
+            --re-enrich \
+            --limit 999999 \
             --timeout-secs 1500 \
-            $EXISTING_FLAG \
             --output vuln_db.json
 
       - name: Commit updated vuln_db.json if changed
