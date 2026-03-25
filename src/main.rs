@@ -281,11 +281,27 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
     }
 
     // Step 5: Process new (unenriched) advisories
+    // An entry is considered "enriched" only if it has symbols OR has no commit
+    // to fetch from. Entries with a commit_sha but empty symbols are treated as
+    // incomplete and will be retried.
     let already_enriched: HashSet<String> = vuln_db
         .entries
         .iter()
+        .filter(|e| !e.vulnerable_symbols.is_empty() || e.commit_sha.is_none())
         .map(|e| e.advisory_id.clone())
         .collect();
+    let incomplete_ids: HashSet<String> = vuln_db
+        .entries
+        .iter()
+        .filter(|e| e.commit_sha.is_some() && e.vulnerable_symbols.is_empty())
+        .map(|e| e.advisory_id.clone())
+        .collect();
+    if !incomplete_ids.is_empty() {
+        println!(
+            "{} entries have commit SHAs but no symbols (will retry)",
+            incomplete_ids.len()
+        );
+    }
 
     // Filter to advisories with GitHub refs unless --include-all
     let candidates: Vec<&Advisory> = if args.include_all {
@@ -390,7 +406,19 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
             }
         }
 
-        vuln_db.entries.push(entry);
+        // If this is an incomplete entry being retried, update it in-place
+        if incomplete_ids.contains(&adv.id) {
+            if let Some(existing) = vuln_db
+                .entries
+                .iter_mut()
+                .find(|e| e.advisory_id == adv.id)
+            {
+                existing.commit_sha = entry.commit_sha;
+                existing.vulnerable_symbols = entry.vulnerable_symbols;
+            }
+        } else {
+            vuln_db.entries.push(entry);
+        }
         new_count += 1;
         println!();
     }
