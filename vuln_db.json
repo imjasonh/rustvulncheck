@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1774454059",
+  "generated_at": "unix:1774454474",
   "entries": [
     {
       "advisory_id": "RUSTSEC-2026-0037",
@@ -188,22 +188,22 @@
         },
         {
           "file": "src/dh_kem.rs",
-          "function": "dh_kem::encaps",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/dh_kem.rs",
           "function": "dh_kem::key_gen",
           "change_type": "Modified"
         },
         {
           "file": "src/dh_kem.rs",
-          "function": "dh_kem::auth_encaps",
+          "function": "dh_kem::derive_key_pair",
           "change_type": "Modified"
         },
         {
           "file": "src/dh_kem.rs",
-          "function": "dh_kem::derive_key_pair",
+          "function": "dh_kem::encaps",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/dh_kem.rs",
+          "function": "dh_kem::auth_encaps",
           "change_type": "Modified"
         },
         {
@@ -213,12 +213,7 @@
         },
         {
           "file": "src/kem.rs",
-          "function": "kem::decaps",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/kem.rs",
-          "function": "kem::encaps",
+          "function": "kem::auth_decaps",
           "change_type": "Modified"
         },
         {
@@ -233,17 +228,12 @@
         },
         {
           "file": "src/kem.rs",
-          "function": "kem::auth_decaps",
+          "function": "kem::encaps",
           "change_type": "Modified"
         },
         {
-          "file": "src/lib.rs",
-          "function": "Hpke::derive_key_pair",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "Hpke::generate_key_pair",
+          "file": "src/kem.rs",
+          "function": "kem::decaps",
           "change_type": "Modified"
         },
         {
@@ -253,8 +243,23 @@
         },
         {
           "file": "src/lib.rs",
+          "function": "Hpke::generate_key_pair",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
           "function": "Context::open",
           "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "Hpke::derive_key_pair",
+          "change_type": "Modified"
+        },
+        {
+          "file": "traits/src/types.rs",
+          "function": "traits::types::KdfAlgorithm::zeroize",
+          "change_type": "Added"
         },
         {
           "file": "traits/src/types.rs",
@@ -264,11 +269,6 @@
         {
           "file": "traits/src/types.rs",
           "function": "traits::types::AeadAlgorithm::zeroize",
-          "change_type": "Added"
-        },
-        {
-          "file": "traits/src/types.rs",
-          "function": "traits::types::KdfAlgorithm::zeroize",
           "change_type": "Added"
         }
       ]
@@ -300,7 +300,7 @@
         },
         {
           "file": "src/dh_kem.rs",
-          "function": "dh_kem::derive_key_pair",
+          "function": "dh_kem::auth_encaps",
           "change_type": "Modified"
         },
         {
@@ -310,22 +310,17 @@
         },
         {
           "file": "src/dh_kem.rs",
-          "function": "dh_kem::auth_encaps",
+          "function": "dh_kem::encaps",
           "change_type": "Modified"
         },
         {
           "file": "src/dh_kem.rs",
-          "function": "dh_kem::encaps",
+          "function": "dh_kem::derive_key_pair",
           "change_type": "Modified"
         },
         {
           "file": "src/kdf.rs",
           "function": "kdf::labeled_expand",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/kem.rs",
-          "function": "kem::auth_decaps",
           "change_type": "Modified"
         },
         {
@@ -340,7 +335,7 @@
         },
         {
           "file": "src/kem.rs",
-          "function": "kem::encaps",
+          "function": "kem::auth_decaps",
           "change_type": "Modified"
         },
         {
@@ -349,8 +344,8 @@
           "change_type": "Modified"
         },
         {
-          "file": "src/lib.rs",
-          "function": "Context::open",
+          "file": "src/kem.rs",
+          "function": "kem::encaps",
           "change_type": "Modified"
         },
         {
@@ -360,7 +355,7 @@
         },
         {
           "file": "src/lib.rs",
-          "function": "Hpke::generate_key_pair",
+          "function": "Context::open",
           "change_type": "Modified"
         },
         {
@@ -369,9 +364,9 @@
           "change_type": "Modified"
         },
         {
-          "file": "traits/src/types.rs",
-          "function": "traits::types::KemAlgorithm::zeroize",
-          "change_type": "Added"
+          "file": "src/lib.rs",
+          "function": "Hpke::generate_key_pair",
+          "change_type": "Modified"
         },
         {
           "file": "traits/src/types.rs",
@@ -381,6 +376,11 @@
         {
           "file": "traits/src/types.rs",
           "function": "traits::types::AeadAlgorithm::zeroize",
+          "change_type": "Added"
+        },
+        {
+          "file": "traits/src/types.rs",
+          "function": "traits::types::KemAlgorithm::zeroize",
           "change_type": "Added"
         }
       ]
@@ -470,12 +470,12 @@
       "vulnerable_symbols": [
         {
           "file": "src/buf.rs",
-          "function": "buf::Buf::deref_mut",
+          "function": "buf::Buf::deref",
           "change_type": "Modified"
         },
         {
           "file": "src/buf.rs",
-          "function": "buf::Buf::deref",
+          "function": "buf::Buf::deref_mut",
           "change_type": "Modified"
         }
       ]
@@ -567,12 +567,12 @@
       "vulnerable_symbols": [
         {
           "file": "src/lib.rs",
-          "function": "IterMut::next",
+          "function": "IterMut::next_back",
           "change_type": "Modified"
         },
         {
           "file": "src/lib.rs",
-          "function": "IterMut::next_back",
+          "function": "IterMut::next",
           "change_type": "Modified"
         }
       ]
@@ -1274,12 +1274,12 @@
       "vulnerable_symbols": [
         {
           "file": "src/base.rs",
-          "function": "base::Connection::connect_with_fd_and_extensions",
+          "function": "base::Connection::connect_with_fd",
           "change_type": "Added"
         },
         {
           "file": "src/base.rs",
-          "function": "base::Connection::connect_with_fd",
+          "function": "base::Connection::connect_with_fd_and_extensions",
           "change_type": "Added"
         },
         {
@@ -1423,37 +1423,12 @@
       "vulnerable_symbols": [
         {
           "file": "tokio/src/sync/broadcast.rs",
-          "function": "tokio::sync::broadcast::Recv::new",
-          "change_type": "Modified"
-        },
-        {
-          "file": "tokio/src/sync/broadcast.rs",
-          "function": "tokio::sync::broadcast::RecvGuard::clone_value",
-          "change_type": "Modified"
-        },
-        {
-          "file": "tokio/src/sync/broadcast.rs",
           "function": "tokio::sync::broadcast::Sender::is_empty",
           "change_type": "Modified"
         },
         {
           "file": "tokio/src/sync/broadcast.rs",
-          "function": "tokio::sync::broadcast::Recv::project",
-          "change_type": "Modified"
-        },
-        {
-          "file": "tokio/src/sync/broadcast.rs",
-          "function": "tokio::sync::broadcast::Sender::send",
-          "change_type": "Modified"
-        },
-        {
-          "file": "tokio/src/sync/broadcast.rs",
           "function": "tokio::sync::broadcast::Sender::new_with_receiver_count",
-          "change_type": "Modified"
-        },
-        {
-          "file": "tokio/src/sync/broadcast.rs",
-          "function": "tokio::sync::broadcast::Sender::len",
           "change_type": "Modified"
         },
         {
@@ -1464,6 +1439,31 @@
         {
           "file": "tokio/src/sync/broadcast.rs",
           "function": "tokio::sync::broadcast::Receiver::recv_ref",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/sync/broadcast.rs",
+          "function": "tokio::sync::broadcast::RecvGuard::clone_value",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/sync/broadcast.rs",
+          "function": "tokio::sync::broadcast::Sender::send",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/sync/broadcast.rs",
+          "function": "tokio::sync::broadcast::Recv::project",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/sync/broadcast.rs",
+          "function": "tokio::sync::broadcast::Recv::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/sync/broadcast.rs",
+          "function": "tokio::sync::broadcast::Sender::len",
           "change_type": "Modified"
         },
         {
@@ -1524,28 +1524,7 @@
       "date": "2025-03-27",
       "patched_versions": [],
       "commit_sha": "20e260a42a8279aac5bccdcaa56daefc20d852d3",
-      "vulnerable_symbols": [
-        {
-          "file": "src/lib.rs",
-          "function": "ScanIter::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "Match::ptr",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "Match::<method>",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "Match::get",
-          "change_type": "Modified"
-        }
-      ]
+      "vulnerable_symbols": []
     },
     {
       "advisory_id": "RUSTSEC-2025-0018",
@@ -1629,12 +1608,12 @@
         },
         {
           "file": "src/error.rs",
-          "function": "error::WebPushError::fmt",
+          "function": "error::WebPushError::short_description",
           "change_type": "Modified"
         },
         {
           "file": "src/error.rs",
-          "function": "error::WebPushError::short_description",
+          "function": "error::WebPushError::fmt",
           "change_type": "Modified"
         }
       ]
@@ -1709,17 +1688,17 @@
       "vulnerable_symbols": [
         {
           "file": "apps/transientdisk/src/flash_drive.rs",
-          "function": "transientdisk::flash_drive::FlashDrive::read_inner",
-          "change_type": "Modified"
-        },
-        {
-          "file": "apps/transientdisk/src/flash_drive.rs",
-          "function": "transientdisk::flash_drive::FlashDrive::write_inner",
-          "change_type": "Modified"
-        },
-        {
-          "file": "apps/transientdisk/src/flash_drive.rs",
           "function": "transientdisk::flash_drive::FlashDrive::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "apps/transientdisk/src/flash_drive.rs",
+          "function": "transientdisk::flash_drive::FlashDrive::write",
+          "change_type": "Modified"
+        },
+        {
+          "file": "apps/transientdisk/src/flash_drive.rs",
+          "function": "transientdisk::flash_drive::FlashDrive::read_inner",
           "change_type": "Modified"
         },
         {
@@ -1729,7 +1708,7 @@
         },
         {
           "file": "apps/transientdisk/src/flash_drive.rs",
-          "function": "transientdisk::flash_drive::FlashDrive::write",
+          "function": "transientdisk::flash_drive::FlashDrive::write_inner",
           "change_type": "Modified"
         },
         {
@@ -1759,12 +1738,12 @@
         },
         {
           "file": "services/graphics-server/src/backend/betrusted.rs",
-          "function": "graphics_server::backend::betrusted::XousDisplay::resume",
+          "function": "graphics_server::backend::betrusted::XousDisplay::as_slice",
           "change_type": "Modified"
         },
         {
           "file": "services/graphics-server/src/backend/betrusted.rs",
-          "function": "graphics_server::backend::betrusted::XousDisplay::as_slice",
+          "function": "graphics_server::backend::betrusted::XousDisplay::resume",
           "change_type": "Modified"
         },
         {
@@ -1784,17 +1763,12 @@
         },
         {
           "file": "services/net/src/std_glue.rs",
-          "function": "net::std_glue::respond_with_error",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/net/src/std_glue.rs",
           "function": "net::std_glue::respond_with_connected",
           "change_type": "Modified"
         },
         {
-          "file": "services/net/src/std_tcplistener.rs",
-          "function": "net::std_tcplistener::std_tcp_accept",
+          "file": "services/net/src/std_glue.rs",
+          "function": "net::std_glue::respond_with_error",
           "change_type": "Modified"
         },
         {
@@ -1803,13 +1777,8 @@
           "change_type": "Modified"
         },
         {
-          "file": "services/net/src/std_tcpstream.rs",
-          "function": "net::std_tcpstream::std_tcp_rx",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/net/src/std_tcpstream.rs",
-          "function": "net::std_tcpstream::std_tcp_connect",
+          "file": "services/net/src/std_tcplistener.rs",
+          "function": "net::std_tcplistener::std_tcp_accept",
           "change_type": "Modified"
         },
         {
@@ -1819,12 +1788,17 @@
         },
         {
           "file": "services/net/src/std_tcpstream.rs",
+          "function": "net::std_tcpstream::std_tcp_connect",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/net/src/std_tcpstream.rs",
           "function": "net::std_tcpstream::std_tcp_peek",
           "change_type": "Modified"
         },
         {
-          "file": "services/net/src/std_udp.rs",
-          "function": "net::std_udp::std_udp_tx",
+          "file": "services/net/src/std_tcpstream.rs",
+          "function": "net::std_tcpstream::std_tcp_rx",
           "change_type": "Modified"
         },
         {
@@ -1834,12 +1808,17 @@
         },
         {
           "file": "services/net/src/std_udp.rs",
+          "function": "net::std_udp::std_udp_rx",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/net/src/std_udp.rs",
           "function": "net::std_udp::std_failure",
           "change_type": "Modified"
         },
         {
           "file": "services/net/src/std_udp.rs",
-          "function": "net::std_udp::std_udp_rx",
+          "function": "net::std_udp::std_udp_tx",
           "change_type": "Modified"
         },
         {
@@ -1849,67 +1828,7 @@
         },
         {
           "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::patch_keys",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::mbbb_as_slice",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::static_crypto_data_get",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::fast_space_write",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::patch_pagetable",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::patch_mbbb",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::fast_space_read",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::patch_data",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::checksums",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::pt_as_slice",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::data_decrypt_page",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
           "function": "pddb::backend::hw::PddbOs::pddb_rekey",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::fscb_deref",
           "change_type": "Modified"
         },
         {
@@ -1919,12 +1838,7 @@
         },
         {
           "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::new",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::pt_find_erased_slot",
+          "function": "pddb::backend::hw::PddbOs::patch_fscb",
           "change_type": "Modified"
         },
         {
@@ -1934,12 +1848,77 @@
         },
         {
           "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::fast_space_read",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::patch_keys",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::pt_as_slice",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::fscb_deref",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::patch_mbbb",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::checksums",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::static_crypto_data_get",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
           "function": "pddb::backend::hw::PddbOs::pddb_format",
           "change_type": "Modified"
         },
         {
           "file": "services/pddb/src/backend/hw.rs",
-          "function": "pddb::backend::hw::PddbOs::patch_fscb",
+          "function": "pddb::backend::hw::PddbOs::patch_pagetable",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::pt_find_erased_slot",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::mbbb_as_slice",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::patch_data",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::fast_space_write",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/backend/hw.rs",
+          "function": "pddb::backend::hw::PddbOs::data_decrypt_page",
           "change_type": "Modified"
         },
         {
@@ -1949,22 +1928,22 @@
         },
         {
           "file": "services/pddb/src/libstd/mod.rs",
+          "function": "pddb::libstd::create_dict",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/libstd/mod.rs",
           "function": "pddb::libstd::write_key",
           "change_type": "Modified"
         },
         {
           "file": "services/pddb/src/libstd/mod.rs",
-          "function": "pddb::libstd::list_path",
+          "function": "pddb::libstd::list_basis",
           "change_type": "Modified"
         },
         {
           "file": "services/pddb/src/libstd/mod.rs",
-          "function": "pddb::libstd::delete_key",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/libstd/mod.rs",
-          "function": "pddb::libstd::stat_path",
+          "function": "pddb::libstd::open_key",
           "change_type": "Modified"
         },
         {
@@ -1974,7 +1953,12 @@
         },
         {
           "file": "services/pddb/src/libstd/mod.rs",
-          "function": "pddb::libstd::open_key",
+          "function": "pddb::libstd::delete_key",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/pddb/src/libstd/mod.rs",
+          "function": "pddb::libstd::list_dict",
           "change_type": "Modified"
         },
         {
@@ -1989,17 +1973,12 @@
         },
         {
           "file": "services/pddb/src/libstd/mod.rs",
-          "function": "pddb::libstd::create_dict",
+          "function": "pddb::libstd::stat_path",
           "change_type": "Modified"
         },
         {
           "file": "services/pddb/src/libstd/mod.rs",
-          "function": "pddb::libstd::list_dict",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/pddb/src/libstd/mod.rs",
-          "function": "pddb::libstd::list_basis",
+          "function": "pddb::libstd::list_path",
           "change_type": "Modified"
         },
         {
@@ -2009,7 +1988,7 @@
         },
         {
           "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::loader_code",
+          "function": "root_keys::implementation::RootKeys::populate_sensitive_data",
           "change_type": "Modified"
         },
         {
@@ -2019,57 +1998,12 @@
         },
         {
           "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::kernel",
+          "function": "root_keys::implementation::RootKeys::read_staged_key_256",
           "change_type": "Modified"
         },
         {
           "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::setup_restore_init",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::replace_fpga_key",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::get_salt",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::do_gateware_update",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::do_key_init",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::populate_sensitive_data",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::gateware",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::setup_key_init",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::purge_sensitive_data",
-          "change_type": "Modified"
-        },
-        {
-          "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::staging",
+          "function": "root_keys::implementation::RootKeys::loader_code",
           "change_type": "Modified"
         },
         {
@@ -2079,7 +2013,52 @@
         },
         {
           "file": "services/root-keys/src/implementation.rs",
-          "function": "root_keys::implementation::RootKeys::read_staged_key_256",
+          "function": "root_keys::implementation::RootKeys::do_key_init",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/root-keys/src/implementation.rs",
+          "function": "root_keys::implementation::RootKeys::setup_restore_init",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/root-keys/src/implementation.rs",
+          "function": "root_keys::implementation::RootKeys::staging",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/root-keys/src/implementation.rs",
+          "function": "root_keys::implementation::RootKeys::purge_sensitive_data",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/root-keys/src/implementation.rs",
+          "function": "root_keys::implementation::RootKeys::setup_key_init",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/root-keys/src/implementation.rs",
+          "function": "root_keys::implementation::RootKeys::kernel",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/root-keys/src/implementation.rs",
+          "function": "root_keys::implementation::RootKeys::do_gateware_update",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/root-keys/src/implementation.rs",
+          "function": "root_keys::implementation::RootKeys::get_salt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/root-keys/src/implementation.rs",
+          "function": "root_keys::implementation::RootKeys::gateware",
+          "change_type": "Modified"
+        },
+        {
+          "file": "services/root-keys/src/implementation.rs",
+          "function": "root_keys::implementation::RootKeys::replace_fpga_key",
           "change_type": "Modified"
         },
         {
@@ -2109,27 +2088,7 @@
         },
         {
           "file": "xous-rs/src/definitions.rs",
-          "function": "xous_rs::definitions::MemoryRange::is_empty",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "xous-rs/src/definitions.rs",
           "function": "xous_rs::definitions::MemoryRange::as_ptr",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "xous-rs/src/definitions.rs",
-          "function": "xous_rs::definitions::MemoryRange::as_mut_ptr",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "xous-rs/src/definitions.rs",
-          "function": "xous_rs::definitions::MemoryRange::new",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "xous-rs/src/definitions.rs",
-          "function": "xous_rs::definitions::MemoryRange::len",
           "change_type": "Deleted"
         },
         {
@@ -2139,12 +2098,32 @@
         },
         {
           "file": "xous-rs/src/definitions.rs",
+          "function": "xous_rs::definitions::MemoryRange::len",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "xous-rs/src/definitions.rs",
           "function": "xous_rs::definitions::MemoryRange::as_slice_mut",
           "change_type": "Deleted"
         },
         {
           "file": "xous-rs/src/definitions.rs",
+          "function": "xous_rs::definitions::MemoryRange::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "xous-rs/src/definitions.rs",
+          "function": "xous_rs::definitions::MemoryRange::is_empty",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "xous-rs/src/definitions.rs",
           "function": "xous_rs::definitions::MemoryRange::from_parts",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "xous-rs/src/definitions.rs",
+          "function": "xous_rs::definitions::MemoryRange::as_mut_ptr",
           "change_type": "Deleted"
         },
         {
@@ -2196,12 +2175,12 @@
       "vulnerable_symbols": [
         {
           "file": "libafl/src/observers/map.rs",
-          "function": "libafl::observers::map::hash_slice",
+          "function": "libafl::observers::map::HitcountsMapObserver::post_exec",
           "change_type": "Modified"
         },
         {
           "file": "libafl/src/observers/map.rs",
-          "function": "libafl::observers::map::HitcountsMapObserver::post_exec",
+          "function": "libafl::observers::map::hash_slice",
           "change_type": "Modified"
         },
         {
@@ -2316,12 +2295,12 @@
         },
         {
           "file": "src/collector.rs",
-          "function": "collector::TempFdArray::flush_buffer",
+          "function": "collector::TempFdArray::try_iter",
           "change_type": "Modified"
         },
         {
           "file": "src/collector.rs",
-          "function": "collector::TempFdArray::try_iter",
+          "function": "collector::TempFdArray::flush_buffer",
           "change_type": "Modified"
         },
         {
@@ -2587,12 +2566,12 @@
         },
         {
           "file": "diesel/src/mysql/connection/bind.rs",
-          "function": "diesel::mysql::connection::bind::BindData::value",
+          "function": "diesel::mysql::connection::bind::BindData::update_buffer_length",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/mysql/connection/bind.rs",
-          "function": "diesel::mysql::connection::bind::BindData::update_buffer_length",
+          "function": "diesel::mysql::connection::bind::BindData::value",
           "change_type": "Modified"
         },
         {
@@ -2607,17 +2586,22 @@
         },
         {
           "file": "diesel/src/mysql/connection/stmt/mod.rs",
-          "function": "diesel::mysql::connection::stmt::StatementUse::populate_row_buffers",
-          "change_type": "Modified"
-        },
-        {
-          "file": "diesel/src/mysql/connection/stmt/mod.rs",
           "function": "diesel::mysql::connection::stmt::StatementUse::fetch_column",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/mysql/connection/stmt/mod.rs",
           "function": "diesel::mysql::connection::stmt::StatementUse::affected_rows",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/connection/stmt/mod.rs",
+          "function": "diesel::mysql::connection::stmt::StatementUse::populate_row_buffers",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/types/date_and_time/chrono.rs",
+          "function": "diesel::mysql::types::date_and_time::chrono::NaiveDate::from_sql",
           "change_type": "Modified"
         },
         {
@@ -2636,8 +2620,8 @@
           "change_type": "Modified"
         },
         {
-          "file": "diesel/src/mysql/types/date_and_time/chrono.rs",
-          "function": "diesel::mysql::types::date_and_time::chrono::NaiveDate::from_sql",
+          "file": "diesel/src/mysql/types/date_and_time/time.rs",
+          "function": "diesel::mysql::types::date_and_time::time::NaiveDate::to_sql",
           "change_type": "Modified"
         },
         {
@@ -2646,13 +2630,18 @@
           "change_type": "Modified"
         },
         {
-          "file": "diesel/src/mysql/types/date_and_time/time.rs",
-          "function": "diesel::mysql::types::date_and_time::time::NaiveDate::to_sql",
+          "file": "diesel/src/mysql/types/mod.rs",
+          "function": "diesel::mysql::types::u16::to_sql",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/mysql/types/mod.rs",
           "function": "diesel::mysql::types::i8::from_sql",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/types/mod.rs",
+          "function": "diesel::mysql::types::u8::to_sql",
           "change_type": "Modified"
         },
         {
@@ -2663,16 +2652,6 @@
         {
           "file": "diesel/src/mysql/types/mod.rs",
           "function": "diesel::mysql::types::u32::to_sql",
-          "change_type": "Modified"
-        },
-        {
-          "file": "diesel/src/mysql/types/mod.rs",
-          "function": "diesel::mysql::types::u8::to_sql",
-          "change_type": "Modified"
-        },
-        {
-          "file": "diesel/src/mysql/types/mod.rs",
-          "function": "diesel::mysql::types::u16::to_sql",
           "change_type": "Modified"
         },
         {
@@ -2702,17 +2681,7 @@
         },
         {
           "file": "diesel/src/pg/connection/result.rs",
-          "function": "diesel::pg::connection::result::PgResult::column_count",
-          "change_type": "Modified"
-        },
-        {
-          "file": "diesel/src/pg/connection/result.rs",
-          "function": "diesel::pg::connection::result::PgResult::num_rows",
-          "change_type": "Modified"
-        },
-        {
-          "file": "diesel/src/pg/connection/result.rs",
-          "function": "diesel::pg::connection::result::PgResult::column_type",
+          "function": "diesel::pg::connection::result::PgResult::get",
           "change_type": "Modified"
         },
         {
@@ -2722,7 +2691,17 @@
         },
         {
           "file": "diesel/src/pg/connection/result.rs",
-          "function": "diesel::pg::connection::result::PgResult::get",
+          "function": "diesel::pg::connection::result::PgResult::num_rows",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgResult::column_count",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgResult::column_type",
           "change_type": "Modified"
         },
         {
@@ -2737,12 +2716,12 @@
         },
         {
           "file": "diesel/src/pg/expression/extensions/interval_dsl.rs",
-          "function": "diesel::pg::expression::extensions::interval_dsl::i64::months",
+          "function": "diesel::pg::expression::extensions::interval_dsl::i64::days",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/pg/expression/extensions/interval_dsl.rs",
-          "function": "diesel::pg::expression::extensions::interval_dsl::i64::days",
+          "function": "diesel::pg::expression::extensions::interval_dsl::i64::months",
           "change_type": "Modified"
         },
         {
@@ -2772,12 +2751,12 @@
         },
         {
           "file": "diesel/src/pg/types/date_and_time/time.rs",
-          "function": "diesel::pg::types::date_and_time::time::NaiveTime::to_sql",
+          "function": "diesel::pg::types::date_and_time::time::NaiveDate::to_sql",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/pg/types/date_and_time/time.rs",
-          "function": "diesel::pg::types::date_and_time::time::NaiveDate::to_sql",
+          "function": "diesel::pg::types::date_and_time::time::NaiveTime::to_sql",
           "change_type": "Modified"
         },
         {
@@ -2807,12 +2786,27 @@
         },
         {
           "file": "diesel/src/sqlite/connection/owned_row.rs",
-          "function": "diesel::sqlite::connection::owned_row::OwnedSqliteRow::get",
+          "function": "diesel::sqlite::connection::owned_row::OwnedSqliteField::field_name",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/sqlite/connection/owned_row.rs",
-          "function": "diesel::sqlite::connection::owned_row::OwnedSqliteField::field_name",
+          "function": "diesel::sqlite::connection::owned_row::OwnedSqliteRow::get",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/raw.rs",
+          "function": "diesel::sqlite::connection::raw::run_aggregator_final_function",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/raw.rs",
+          "function": "diesel::sqlite::connection::raw::RawConnection::rows_affected_by_last_query",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/raw.rs",
+          "function": "diesel::sqlite::connection::raw::RawConnection::serialize",
           "change_type": "Modified"
         },
         {
@@ -2827,21 +2821,6 @@
         },
         {
           "file": "diesel/src/sqlite/connection/raw.rs",
-          "function": "diesel::sqlite::connection::raw::RawConnection::register_aggregate_function",
-          "change_type": "Modified"
-        },
-        {
-          "file": "diesel/src/sqlite/connection/raw.rs",
-          "function": "diesel::sqlite::connection::raw::RawConnection::rows_affected_by_last_query",
-          "change_type": "Modified"
-        },
-        {
-          "file": "diesel/src/sqlite/connection/raw.rs",
-          "function": "diesel::sqlite::connection::raw::run_aggregator_final_function",
-          "change_type": "Modified"
-        },
-        {
-          "file": "diesel/src/sqlite/connection/raw.rs",
           "function": "diesel::sqlite::connection::raw::run_aggregator_step",
           "change_type": "Modified"
         },
@@ -2852,12 +2831,7 @@
         },
         {
           "file": "diesel/src/sqlite/connection/raw.rs",
-          "function": "diesel::sqlite::connection::raw::RawConnection::serialize",
-          "change_type": "Modified"
-        },
-        {
-          "file": "diesel/src/sqlite/connection/row.rs",
-          "function": "diesel::sqlite::connection::row::SqliteRow::get",
+          "function": "diesel::sqlite::connection::raw::RawConnection::register_aggregate_function",
           "change_type": "Modified"
         },
         {
@@ -2866,13 +2840,13 @@
           "change_type": "Modified"
         },
         {
-          "file": "diesel/src/sqlite/connection/sqlite_value.rs",
-          "function": "diesel::sqlite::connection::sqlite_value::SqliteValue::from_owned_row",
+          "file": "diesel/src/sqlite/connection/row.rs",
+          "function": "diesel::sqlite::connection::row::SqliteRow::get",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/sqlite/connection/sqlite_value.rs",
-          "function": "diesel::sqlite::connection::sqlite_value::SqliteValue::read_blob",
+          "function": "diesel::sqlite::connection::sqlite_value::SqliteValue::from_owned_row",
           "change_type": "Modified"
         },
         {
@@ -2886,8 +2860,18 @@
           "change_type": "Modified"
         },
         {
+          "file": "diesel/src/sqlite/connection/sqlite_value.rs",
+          "function": "diesel::sqlite::connection::sqlite_value::SqliteValue::read_blob",
+          "change_type": "Modified"
+        },
+        {
           "file": "diesel/src/sqlite/connection/statement_iterator.rs",
           "function": "diesel::sqlite::connection::statement_iterator::StatementIterator::next",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/stmt.rs",
+          "function": "diesel::sqlite::connection::stmt::Statement::bind",
           "change_type": "Modified"
         },
         {
@@ -2897,17 +2881,12 @@
         },
         {
           "file": "diesel/src/sqlite/connection/stmt.rs",
-          "function": "diesel::sqlite::connection::stmt::StatementUse::field_name",
-          "change_type": "Modified"
-        },
-        {
-          "file": "diesel/src/sqlite/connection/stmt.rs",
           "function": "diesel::sqlite::connection::stmt::Statement::prepare",
           "change_type": "Modified"
         },
         {
           "file": "diesel/src/sqlite/connection/stmt.rs",
-          "function": "diesel::sqlite::connection::stmt::Statement::bind",
+          "function": "diesel::sqlite::connection::stmt::StatementUse::field_name",
           "change_type": "Modified"
         },
         {
@@ -2993,12 +2972,12 @@
         },
         {
           "file": "core/engine/src/builtins/async_generator/mod.rs",
-          "function": "engine::builtins::async_generator::AsyncGenerator::await_return",
+          "function": "engine::builtins::async_generator::AsyncGenerator::r#return",
           "change_type": "Modified"
         },
         {
           "file": "core/engine/src/builtins/async_generator/mod.rs",
-          "function": "engine::builtins::async_generator::AsyncGenerator::r#return",
+          "function": "engine::builtins::async_generator::AsyncGenerator::await_return",
           "change_type": "Modified"
         },
         {
@@ -3172,17 +3151,17 @@
         },
         {
           "file": "cggmp21/src/zk/ring_pedersen_parameters.rs",
+          "function": "cggmp21::zk::ring_pedersen_parameters::derive_challenge",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cggmp21/src/zk/ring_pedersen_parameters.rs",
           "function": "cggmp21::zk::ring_pedersen_parameters::verify",
           "change_type": "Modified"
         },
         {
           "file": "cggmp21/src/zk/ring_pedersen_parameters.rs",
           "function": "cggmp21::zk::ring_pedersen_parameters::prove",
-          "change_type": "Modified"
-        },
-        {
-          "file": "cggmp21/src/zk/ring_pedersen_parameters.rs",
-          "function": "cggmp21::zk::ring_pedersen_parameters::derive_challenge",
           "change_type": "Modified"
         }
       ]
@@ -3239,7 +3218,7 @@
         },
         {
           "file": "src/group_element_vs_paillier_encryption_in_range.rs",
-          "function": "group_element_vs_paillier_encryption_in_range::non_interactive::prove",
+          "function": "group_element_vs_paillier_encryption_in_range::non_interactive::challenge",
           "change_type": "Modified"
         },
         {
@@ -3249,7 +3228,7 @@
         },
         {
           "file": "src/group_element_vs_paillier_encryption_in_range.rs",
-          "function": "group_element_vs_paillier_encryption_in_range::non_interactive::challenge",
+          "function": "group_element_vs_paillier_encryption_in_range::non_interactive::prove",
           "change_type": "Modified"
         },
         {
@@ -3259,17 +3238,12 @@
         },
         {
           "file": "src/no_small_factor.rs",
-          "function": "no_small_factor::non_interactive::verify",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/no_small_factor.rs",
           "function": "no_small_factor::non_interactive::prove",
           "change_type": "Modified"
         },
         {
-          "file": "src/paillier_affine_operation_in_range.rs",
-          "function": "paillier_affine_operation_in_range::non_interactive::challenge",
+          "file": "src/no_small_factor.rs",
+          "function": "no_small_factor::non_interactive::verify",
           "change_type": "Modified"
         },
         {
@@ -3279,7 +3253,17 @@
         },
         {
           "file": "src/paillier_affine_operation_in_range.rs",
+          "function": "paillier_affine_operation_in_range::non_interactive::challenge",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/paillier_affine_operation_in_range.rs",
           "function": "paillier_affine_operation_in_range::non_interactive::prove",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/paillier_blum_modulus.rs",
+          "function": "paillier_blum_modulus::non_interactive::prove",
           "change_type": "Modified"
         },
         {
@@ -3290,11 +3274,6 @@
         {
           "file": "src/paillier_blum_modulus.rs",
           "function": "paillier_blum_modulus::non_interactive::challenge",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/paillier_blum_modulus.rs",
-          "function": "paillier_blum_modulus::non_interactive::prove",
           "change_type": "Modified"
         },
         {
@@ -3381,12 +3360,12 @@
         },
         {
           "file": "cggmp21/src/zk/ring_pedersen_parameters.rs",
-          "function": "cggmp21::zk::ring_pedersen_parameters::derive_challenge",
+          "function": "cggmp21::zk::ring_pedersen_parameters::verify",
           "change_type": "Modified"
         },
         {
           "file": "cggmp21/src/zk/ring_pedersen_parameters.rs",
-          "function": "cggmp21::zk::ring_pedersen_parameters::verify",
+          "function": "cggmp21::zk::ring_pedersen_parameters::derive_challenge",
           "change_type": "Modified"
         },
         {
@@ -3467,22 +3446,22 @@
         },
         {
           "file": "opentelemetry-proto/src/transform/common.rs",
-          "function": "opentelemetry_proto::transform::common::grpcio::resource_attributes",
-          "change_type": "Modified"
-        },
-        {
-          "file": "opentelemetry-proto/src/transform/common.rs",
           "function": "opentelemetry_proto::transform::common::tonic::resource_attributes",
           "change_type": "Modified"
         },
         {
-          "file": "opentelemetry-proto/src/transform/metrics.rs",
-          "function": "opentelemetry_proto::transform::metrics::grpcio::AggregationTemporality::from",
+          "file": "opentelemetry-proto/src/transform/common.rs",
+          "function": "opentelemetry_proto::transform::common::grpcio::resource_attributes",
           "change_type": "Modified"
         },
         {
           "file": "opentelemetry-proto/src/transform/metrics.rs",
           "function": "opentelemetry_proto::transform::metrics::tonic::AggregationTemporality::from",
+          "change_type": "Modified"
+        },
+        {
+          "file": "opentelemetry-proto/src/transform/metrics.rs",
+          "function": "opentelemetry_proto::transform::metrics::grpcio::AggregationTemporality::from",
           "change_type": "Modified"
         },
         {
@@ -3497,12 +3476,12 @@
         },
         {
           "file": "opentelemetry-sdk/src/trace/sampler/jaeger_remote/rate_limit.rs",
-          "function": "opentelemetry_sdk::trace::sampler::jaeger_remote::rate_limit::LeakyBucket::check_availability",
+          "function": "opentelemetry_sdk::trace::sampler::jaeger_remote::rate_limit::LeakyBucket::new",
           "change_type": "Modified"
         },
         {
           "file": "opentelemetry-sdk/src/trace/sampler/jaeger_remote/rate_limit.rs",
-          "function": "opentelemetry_sdk::trace::sampler::jaeger_remote::rate_limit::LeakyBucket::new",
+          "function": "opentelemetry_sdk::trace::sampler::jaeger_remote::rate_limit::LeakyBucket::check_availability",
           "change_type": "Modified"
         },
         {
@@ -4023,12 +4002,12 @@
       "vulnerable_symbols": [
         {
           "file": "src/btreemap.rs",
-          "function": "btreemap::BTreeMap::remove_helper",
+          "function": "btreemap::BTreeMap::merge",
           "change_type": "Modified"
         },
         {
           "file": "src/btreemap.rs",
-          "function": "btreemap::BTreeMap::merge",
+          "function": "btreemap::BTreeMap::remove_helper",
           "change_type": "Modified"
         },
         {
@@ -4335,12 +4314,7 @@
         },
         {
           "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::AtomicStr::drop",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::AtomicStr::as_ref",
+          "function": "support::atomic_str::AtomicStr::clone_string",
           "change_type": "Deleted"
         },
         {
@@ -4350,17 +4324,22 @@
         },
         {
           "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::AtomicStr::clone_string",
+          "function": "support::atomic_str::AtomicStr::as_ref",
           "change_type": "Deleted"
         },
         {
           "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::AtomicStr::replace",
+          "function": "support::atomic_str::AtomicStr::drop",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/support/src/atomic_str.rs",
+          "function": "support::atomic_str::AtomicStr::fmt",
           "change_type": "Modified"
         },
         {
           "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::AtomicStr::as_str",
+          "function": "support::atomic_str::AtomicStr::replace",
           "change_type": "Modified"
         },
         {
@@ -4370,7 +4349,7 @@
         },
         {
           "file": "crates/support/src/atomic_str.rs",
-          "function": "support::atomic_str::AtomicStr::fmt",
+          "function": "support::atomic_str::AtomicStr::as_str",
           "change_type": "Modified"
         },
         {
@@ -4478,12 +4457,12 @@
       "vulnerable_symbols": [
         {
           "file": "src/reference/poly.rs",
-          "function": "reference::poly::poly_tomsg",
+          "function": "reference::poly::poly_compress",
           "change_type": "Modified"
         },
         {
           "file": "src/reference/poly.rs",
-          "function": "reference::poly::poly_compress",
+          "function": "reference::poly::poly_tomsg",
           "change_type": "Modified"
         },
         {
@@ -4660,17 +4639,17 @@
         },
         {
           "file": "gix-url/src/lib.rs",
+          "function": "gix_url::Url::host_argument_safe",
+          "change_type": "Added"
+        },
+        {
+          "file": "gix-url/src/lib.rs",
           "function": "gix_url::looks_like_argument",
           "change_type": "Added"
         },
         {
           "file": "gix-url/src/lib.rs",
           "function": "gix_url::Url::path_argument_safe",
-          "change_type": "Added"
-        },
-        {
-          "file": "gix-url/src/lib.rs",
-          "function": "gix_url::Url::host_argument_safe",
           "change_type": "Added"
         }
       ]
@@ -4688,17 +4667,17 @@
       "vulnerable_symbols": [
         {
           "file": "quinn-proto/src/connection/mod.rs",
-          "function": "quinn_proto::connection::Connection::process_payload",
-          "change_type": "Modified"
-        },
-        {
-          "file": "quinn-proto/src/connection/mod.rs",
           "function": "quinn_proto::connection::Connection::process_decrypted_packet",
           "change_type": "Modified"
         },
         {
           "file": "quinn-proto/src/connection/mod.rs",
           "function": "quinn_proto::connection::Connection::process_early_payload",
+          "change_type": "Modified"
+        },
+        {
+          "file": "quinn-proto/src/connection/mod.rs",
+          "function": "quinn_proto::connection::Connection::process_payload",
           "change_type": "Modified"
         },
         {
@@ -4713,12 +4692,12 @@
         },
         {
           "file": "quinn-proto/src/frame.rs",
-          "function": "quinn_proto::frame::Frame::ty",
+          "function": "quinn_proto::frame::Iter::next",
           "change_type": "Modified"
         },
         {
           "file": "quinn-proto/src/frame.rs",
-          "function": "quinn_proto::frame::Iter::next",
+          "function": "quinn_proto::frame::Frame::ty",
           "change_type": "Modified"
         }
       ]
@@ -4733,12 +4712,12 @@
       "vulnerable_symbols": [
         {
           "file": "src/decoder.rs",
-          "function": "decoder::Decoder::decode_with_cb",
+          "function": "decoder::Decoder::update_max_dynamic_size",
           "change_type": "Modified"
         },
         {
           "file": "src/decoder.rs",
-          "function": "decoder::Decoder::update_max_dynamic_size",
+          "function": "decoder::Decoder::decode_with_cb",
           "change_type": "Modified"
         }
       ]
@@ -4779,12 +4758,7 @@
         },
         {
           "file": "src/oid.rs",
-          "function": "oid::Oid::from_primitive",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/oid.rs",
-          "function": "oid::Oid::check_content",
+          "function": "oid::Component::fmt",
           "change_type": "Added"
         },
         {
@@ -4794,22 +4768,22 @@
         },
         {
           "file": "src/oid.rs",
-          "function": "oid::Component::fmt",
+          "function": "oid::Oid::check_content",
           "change_type": "Added"
         },
         {
           "file": "src/oid.rs",
-          "function": "oid::Oid::skip_in",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/oid.rs",
-          "function": "oid::Oid::take_opt_from",
-          "change_type": "Modified"
+          "function": "oid::Oid::from_primitive",
+          "change_type": "Added"
         },
         {
           "file": "src/oid.rs",
           "function": "oid::Oid::skip_opt_in",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/oid.rs",
+          "function": "oid::Oid::fmt",
           "change_type": "Modified"
         },
         {
@@ -4819,12 +4793,17 @@
         },
         {
           "file": "src/oid.rs",
+          "function": "oid::Oid::skip_in",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/oid.rs",
           "function": "oid::Oid::skip_if",
           "change_type": "Modified"
         },
         {
           "file": "src/oid.rs",
-          "function": "oid::Oid::fmt",
+          "function": "oid::Oid::take_opt_from",
           "change_type": "Modified"
         },
         {
@@ -4890,17 +4869,17 @@
         },
         {
           "file": "src/lib.rs",
+          "function": "Registry::submit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
           "function": "Iter::next",
           "change_type": "Modified"
         },
         {
           "file": "src/lib.rs",
           "function": "into_iter",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "Registry::submit",
           "change_type": "Modified"
         }
       ]
@@ -5006,11 +4985,6 @@
         },
         {
           "file": "src/internal.rs",
-          "function": "internal::boxed::PinBox::drop",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/internal.rs",
           "function": "internal::boxed::PinBox::fmt",
           "change_type": "Added"
         },
@@ -5022,6 +4996,11 @@
         {
           "file": "src/internal.rs",
           "function": "internal::boxed::PinBox::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/internal.rs",
+          "function": "internal::boxed::PinBox::drop",
           "change_type": "Added"
         },
         {
@@ -5202,12 +5181,7 @@
       "vulnerable_symbols": [
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::code_signing",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::email_protection",
+          "function": "openssl::x509::extension::SubjectAlternativeName::build",
           "change_type": "Modified"
         },
         {
@@ -5217,27 +5191,7 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_efs",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_sgc",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::build",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::uri",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_ctl_sign",
+          "function": "openssl::x509::extension::SubjectAlternativeName::new",
           "change_type": "Modified"
         },
         {
@@ -5247,12 +5201,27 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::dir_name",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::code_signing",
           "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::other_name",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::server_auth",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::SubjectAlternativeName::ip",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::SubjectAlternativeName::dns",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::SubjectAlternativeName::dir_name",
           "change_type": "Modified"
         },
         {
@@ -5262,17 +5231,22 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::rid",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::other",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::time_stamping",
           "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/extension.rs",
           "function": "openssl::x509::extension::ExtendedKeyUsage::ms_code_com",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::SubjectAlternativeName::other_name",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ns_sgc",
           "change_type": "Modified"
         },
         {
@@ -5287,38 +5261,38 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ns_sgc",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_sgc",
           "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::time_stamping",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::other",
           "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::new",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_efs",
           "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::server_auth",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_ctl_sign",
           "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::dns",
+          "function": "openssl::x509::extension::SubjectAlternativeName::uri",
           "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::ip",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::email_protection",
           "change_type": "Modified"
         },
         {
-          "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::GeneralName::new_rid",
-          "change_type": "Added"
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::SubjectAlternativeName::rid",
+          "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/mod.rs",
@@ -5327,7 +5301,7 @@
         },
         {
           "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::X509Extension::new_internal",
+          "function": "openssl::x509::GeneralName::new_ip",
           "change_type": "Added"
         },
         {
@@ -5342,18 +5316,18 @@
         },
         {
           "file": "openssl/src/x509/mod.rs",
+          "function": "openssl::x509::X509Extension::new_internal",
+          "change_type": "Added"
+        },
+        {
+          "file": "openssl/src/x509/mod.rs",
+          "function": "openssl::x509::GeneralName::new_rid",
+          "change_type": "Added"
+        },
+        {
+          "file": "openssl/src/x509/mod.rs",
           "function": "openssl::x509::GeneralName::new",
           "change_type": "Added"
-        },
-        {
-          "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::GeneralName::new_ip",
-          "change_type": "Added"
-        },
-        {
-          "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::X509Extension::new",
-          "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/mod.rs",
@@ -5363,6 +5337,11 @@
         {
           "file": "openssl/src/x509/mod.rs",
           "function": "openssl::x509::X509Extension::new_nid",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/mod.rs",
+          "function": "openssl::x509::X509Extension::new",
           "change_type": "Modified"
         }
       ]
@@ -5379,12 +5358,7 @@
       "vulnerable_symbols": [
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ns_sgc",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::rid",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_code_com",
           "change_type": "Modified"
         },
         {
@@ -5394,17 +5368,7 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_code_com",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_efs",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::code_signing",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ns_sgc",
           "change_type": "Modified"
         },
         {
@@ -5414,7 +5378,7 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::uri",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_code_ind",
           "change_type": "Modified"
         },
         {
@@ -5424,27 +5388,7 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::build",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::client_auth",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::email",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::email_protection",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::new",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::code_signing",
           "change_type": "Modified"
         },
         {
@@ -5454,7 +5398,32 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::time_stamping",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::other",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::SubjectAlternativeName::ip",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::SubjectAlternativeName::rid",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_ctl_sign",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_efs",
           "change_type": "Modified"
         },
         {
@@ -5469,7 +5438,32 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::ip",
+          "function": "openssl::x509::extension::SubjectAlternativeName::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::email_protection",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::client_auth",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::SubjectAlternativeName::uri",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::time_stamping",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::SubjectAlternativeName::email",
           "change_type": "Modified"
         },
         {
@@ -5478,33 +5472,8 @@
           "change_type": "Modified"
         },
         {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_ctl_sign",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::other",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_code_ind",
-          "change_type": "Modified"
-        },
-        {
           "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::GeneralName::new",
-          "change_type": "Added"
-        },
-        {
-          "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::GeneralName::new_ip",
-          "change_type": "Added"
-        },
-        {
-          "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::GeneralName::new_rid",
+          "function": "openssl::x509::GeneralName::new_dns",
           "change_type": "Added"
         },
         {
@@ -5519,13 +5488,28 @@
         },
         {
           "file": "openssl/src/x509/mod.rs",
+          "function": "openssl::x509::GeneralName::new_rid",
+          "change_type": "Added"
+        },
+        {
+          "file": "openssl/src/x509/mod.rs",
           "function": "openssl::x509::GeneralName::new_email",
           "change_type": "Added"
         },
         {
           "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::GeneralName::new_dns",
+          "function": "openssl::x509::GeneralName::new_ip",
           "change_type": "Added"
+        },
+        {
+          "file": "openssl/src/x509/mod.rs",
+          "function": "openssl::x509::GeneralName::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "openssl/src/x509/mod.rs",
+          "function": "openssl::x509::X509Extension::new_nid",
+          "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/mod.rs",
@@ -5535,11 +5519,6 @@
         {
           "file": "openssl/src/x509/mod.rs",
           "function": "openssl::x509::X509NameBuilder::build",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::X509Extension::new_nid",
           "change_type": "Modified"
         }
       ]
@@ -5556,27 +5535,7 @@
       "vulnerable_symbols": [
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::code_signing",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_sgc",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_ctl_sign",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_code_ind",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::email_protection",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_code_com",
           "change_type": "Modified"
         },
         {
@@ -5586,7 +5545,22 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::new",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_sgc",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_code_ind",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_ctl_sign",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::code_signing",
           "change_type": "Modified"
         },
         {
@@ -5596,12 +5570,57 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::build",
+          "function": "openssl::x509::extension::SubjectAlternativeName::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::SubjectAlternativeName::dir_name",
           "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/extension.rs",
           "function": "openssl::x509::extension::ExtendedKeyUsage::ns_sgc",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::server_auth",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_efs",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::SubjectAlternativeName::email",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::other",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::time_stamping",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/x509/extension.rs",
+          "function": "openssl::x509::extension::SubjectAlternativeName::dns",
           "change_type": "Modified"
         },
         {
@@ -5616,27 +5635,7 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::other",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_code_com",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::dir_name",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::email",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::time_stamping",
+          "function": "openssl::x509::extension::SubjectAlternativeName::build",
           "change_type": "Modified"
         },
         {
@@ -5646,32 +5645,12 @@
         },
         {
           "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::server_auth",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::dns",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::SubjectAlternativeName::build",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::ms_efs",
-          "change_type": "Modified"
-        },
-        {
-          "file": "openssl/src/x509/extension.rs",
-          "function": "openssl::x509::extension::ExtendedKeyUsage::new",
+          "function": "openssl::x509::extension::ExtendedKeyUsage::email_protection",
           "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::GeneralName::new_email",
+          "function": "openssl::x509::GeneralName::new_dns",
           "change_type": "Added"
         },
         {
@@ -5681,7 +5660,7 @@
         },
         {
           "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::GeneralName::new_rid",
+          "function": "openssl::x509::X509Extension::new_internal",
           "change_type": "Added"
         },
         {
@@ -5691,7 +5670,7 @@
         },
         {
           "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::X509Extension::new_internal",
+          "function": "openssl::x509::GeneralName::new_email",
           "change_type": "Added"
         },
         {
@@ -5701,7 +5680,7 @@
         },
         {
           "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::GeneralName::new_dns",
+          "function": "openssl::x509::GeneralName::new_rid",
           "change_type": "Added"
         },
         {
@@ -5711,12 +5690,12 @@
         },
         {
           "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::X509Extension::new",
+          "function": "openssl::x509::X509NameBuilder::build",
           "change_type": "Modified"
         },
         {
           "file": "openssl/src/x509/mod.rs",
-          "function": "openssl::x509::X509NameBuilder::build",
+          "function": "openssl::x509::X509Extension::new",
           "change_type": "Modified"
         }
       ]
@@ -5790,6 +5769,11 @@
       "vulnerable_symbols": [
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
+          "function": "cargo_smart_release::command::release::release_depth_first",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cargo-smart-release/src/command/release/mod.rs",
           "function": "cargo_smart_release::command::release::assure_crates_index_is_uptodate",
           "change_type": "Modified"
         },
@@ -5804,18 +5788,13 @@
           "change_type": "Modified"
         },
         {
-          "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::release_depth_first",
+          "file": "cargo-smart-release/src/traverse.rs",
+          "function": "cargo_smart_release::traverse::forward_propagate_breaking_changes_for_manifest_updates",
           "change_type": "Modified"
         },
         {
           "file": "cargo-smart-release/src/traverse.rs",
           "function": "cargo_smart_release::traverse::EditForPublish::apply",
-          "change_type": "Modified"
-        },
-        {
-          "file": "cargo-smart-release/src/traverse.rs",
-          "function": "cargo_smart_release::traverse::forward_propagate_breaking_changes_for_manifest_updates",
           "change_type": "Modified"
         },
         {
@@ -6820,12 +6799,7 @@
       "vulnerable_symbols": [
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::assure_crates_index_is_uptodate",
-          "change_type": "Modified"
-        },
-        {
-          "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::present_and_validate_dependencies",
+          "function": "cargo_smart_release::command::release::release_depth_first",
           "change_type": "Modified"
         },
         {
@@ -6835,7 +6809,12 @@
         },
         {
           "file": "cargo-smart-release/src/command/release/mod.rs",
-          "function": "cargo_smart_release::command::release::release_depth_first",
+          "function": "cargo_smart_release::command::release::present_and_validate_dependencies",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cargo-smart-release/src/command/release/mod.rs",
+          "function": "cargo_smart_release::command::release::assure_crates_index_is_uptodate",
           "change_type": "Modified"
         },
         {
@@ -7987,12 +7966,12 @@
         },
         {
           "file": "src/lib.rs",
-          "function": "remove_dir_all",
+          "function": "remove_dir_contents",
           "change_type": "Added"
         },
         {
           "file": "src/lib.rs",
-          "function": "remove_dir_contents",
+          "function": "remove_dir_all",
           "change_type": "Added"
         },
         {
@@ -8043,22 +8022,22 @@
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::get_lines_from_stream",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/ftp.rs",
           "function": "ftp::FtpStream::get_welcome_msg",
           "change_type": "Added"
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::rm",
+          "function": "ftp::FtpStream::get_lines_from_stream",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/ftp.rs",
+          "function": "ftp::FtpStream::put_file",
           "change_type": "Modified"
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::login",
+          "function": "ftp::FtpStream::quit",
           "change_type": "Modified"
         },
         {
@@ -8068,27 +8047,17 @@
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::rename",
+          "function": "ftp::FtpStream::pasv",
           "change_type": "Modified"
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::into_insecure",
+          "function": "ftp::FtpStream::login",
           "change_type": "Modified"
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::cdup",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::connect",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::mkdir",
+          "function": "ftp::FtpStream::pwd",
           "change_type": "Modified"
         },
         {
@@ -8098,7 +8067,12 @@
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::list",
+          "function": "ftp::FtpStream::into_insecure",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ftp.rs",
+          "function": "ftp::FtpStream::cwd",
           "change_type": "Modified"
         },
         {
@@ -8108,7 +8082,32 @@
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::quit",
+          "function": "ftp::FtpStream::size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ftp.rs",
+          "function": "ftp::FtpStream::into_secure",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ftp.rs",
+          "function": "ftp::FtpStream::read_response_in",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ftp.rs",
+          "function": "ftp::FtpStream::transfer_type",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ftp.rs",
+          "function": "ftp::FtpStream::rmdir",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ftp.rs",
+          "function": "ftp::FtpStream::noop",
           "change_type": "Modified"
         },
         {
@@ -8123,12 +8122,17 @@
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::into_secure",
+          "function": "ftp::FtpStream::cdup",
           "change_type": "Modified"
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::retr",
+          "function": "ftp::FtpStream::rename",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ftp.rs",
+          "function": "ftp::FtpStream::list",
           "change_type": "Modified"
         },
         {
@@ -8138,57 +8142,32 @@
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::noop",
+          "function": "ftp::FtpStream::connect",
           "change_type": "Modified"
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::pwd",
+          "function": "ftp::FtpStream::retr",
           "change_type": "Modified"
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::size",
+          "function": "ftp::FtpStream::mkdir",
           "change_type": "Modified"
         },
         {
           "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::pasv",
+          "function": "ftp::FtpStream::rm",
           "change_type": "Modified"
-        },
-        {
-          "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::transfer_type",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::put_file",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::read_response_in",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::cwd",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/ftp.rs",
-          "function": "ftp::FtpStream::rmdir",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/types.rs",
-          "function": "types::FtpError::cause",
-          "change_type": "Deleted"
         },
         {
           "file": "src/types.rs",
           "function": "types::FtpError::description",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/types.rs",
+          "function": "types::FtpError::cause",
           "change_type": "Deleted"
         },
         {
@@ -8219,11 +8198,6 @@
       "vulnerable_symbols": [
         {
           "file": "src/cert.rs",
-          "function": "cert::CertHostkey::hostkey",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/cert.rs",
           "function": "cert::SshHostKeyType::name",
           "change_type": "Added"
         },
@@ -8235,6 +8209,11 @@
         {
           "file": "src/cert.rs",
           "function": "cert::CertHostkey::hostkey_type",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/cert.rs",
+          "function": "cert::CertHostkey::hostkey",
           "change_type": "Added"
         },
         {
@@ -8331,12 +8310,22 @@
       "vulnerable_symbols": [
         {
           "file": "src/lib.rs",
+          "function": "Heap::empty",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "Heap::dealloc",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
           "function": "Heap::used",
           "change_type": "Added"
         },
         {
           "file": "src/lib.rs",
-          "function": "Heap::empty",
+          "function": "Heap::free",
           "change_type": "Added"
         },
         {
@@ -8351,22 +8340,7 @@
         },
         {
           "file": "src/lib.rs",
-          "function": "Heap::dealloc",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "Heap::free",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "CortexMHeap::free",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "CortexMHeap::init",
+          "function": "CortexMHeap::empty",
           "change_type": "Deleted"
         },
         {
@@ -8381,12 +8355,17 @@
         },
         {
           "file": "src/lib.rs",
-          "function": "CortexMHeap::dealloc",
+          "function": "CortexMHeap::init",
           "change_type": "Deleted"
         },
         {
           "file": "src/lib.rs",
-          "function": "CortexMHeap::empty",
+          "function": "CortexMHeap::free",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "CortexMHeap::dealloc",
           "change_type": "Deleted"
         }
       ]
@@ -8425,22 +8404,12 @@
       "vulnerable_symbols": [
         {
           "file": "src/context.rs",
-          "function": "context::alloc_only::Secp256k1::gen_new",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/context.rs",
-          "function": "context::Secp256k1::from_raw_verification_only",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/context.rs",
-          "function": "context::Secp256k1::preallocated_gen_new",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/context.rs",
           "function": "context::alloc_only::Secp256k1::clone",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "context::Secp256k1::from_raw_all",
           "change_type": "Modified"
         },
         {
@@ -8450,7 +8419,17 @@
         },
         {
           "file": "src/context.rs",
-          "function": "context::Secp256k1::from_raw_all",
+          "function": "context::Secp256k1::preallocated_gen_new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "context::Secp256k1::from_raw_verification_only",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "context::alloc_only::Secp256k1::gen_new",
           "change_type": "Modified"
         }
       ]
@@ -8557,12 +8536,12 @@
       "vulnerable_symbols": [
         {
           "file": "src/executor/stack/executor.rs",
-          "function": "executor::stack::executor::StackExecutor::call_inner",
+          "function": "executor::stack::executor::StackExecutor::create_inner",
           "change_type": "Modified"
         },
         {
           "file": "src/executor/stack/executor.rs",
-          "function": "executor::stack::executor::StackExecutor::create_inner",
+          "function": "executor::stack::executor::StackExecutor::call_inner",
           "change_type": "Modified"
         }
       ]
@@ -8606,12 +8585,12 @@
         },
         {
           "file": "src/client.rs",
-          "function": "client::SlackClientHttpSessionApi::http_post",
+          "function": "client::SlackClientHttpSessionApi::http_get_uri",
           "change_type": "Modified"
         },
         {
           "file": "src/client.rs",
-          "function": "client::SlackClientHttpSessionApi::http_get",
+          "function": "client::SlackClientHttpSessionApi::http_post",
           "change_type": "Modified"
         },
         {
@@ -8621,17 +8600,17 @@
         },
         {
           "file": "src/client.rs",
-          "function": "client::SlackClientHttpSessionApi::http_get_uri",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/hyper_tokio/connector.rs",
-          "function": "hyper_tokio::connector::SlackClientHyperConnector::send_http_request",
+          "function": "client::SlackClientHttpSessionApi::http_get",
           "change_type": "Modified"
         },
         {
           "file": "src/hyper_tokio/connector.rs",
           "function": "hyper_tokio::connector::SlackClientHyperConnector::http_get_with_client_secret",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/hyper_tokio/connector.rs",
+          "function": "hyper_tokio::connector::SlackClientHyperConnector::send_http_request",
           "change_type": "Modified"
         }
       ]
@@ -8971,7 +8950,7 @@
         },
         {
           "file": "src/db.rs",
-          "function": "db::DBWithThreadMode::flush_wal",
+          "function": "db::DBWithThreadMode::list_cf",
           "change_type": "Modified"
         },
         {
@@ -8986,162 +8965,17 @@
         },
         {
           "file": "src/db.rs",
-          "function": "db::DBWithThreadMode::open_raw",
+          "function": "db::DBWithThreadMode::flush_wal",
           "change_type": "Modified"
         },
         {
           "file": "src/db.rs",
-          "function": "db::DBWithThreadMode::list_cf",
+          "function": "db::DBWithThreadMode::open_raw",
           "change_type": "Modified"
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::Options::set_bottommost_compression_options",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_use_direct_reads",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::FlushOptions::set_wait",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::ReadOptions::set_tailing",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_allow_mmap_writes",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_report_bg_io_stats",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_error_if_exists",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_unordered_write",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::IngestExternalFileOptions::set_snapshot_consistency",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_enable_pipelined_write",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::IngestExternalFileOptions::set_allow_blocking_flush",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::create_missing_column_families",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_is_fd_close_on_exec",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_disable_auto_compactions",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_bottommost_zstd_max_train_bytes",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_advise_random_on_open",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::CuckooTableOptions::set_identity_as_first_hash",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::CuckooTableOptions::set_use_module_hash",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::IngestExternalFileOptions::set_allow_global_seqno",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::CompactOptions::set_change_level",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_skip_stats_update_on_db_open",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::IngestExternalFileOptions::set_move_files",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_memtable_whole_key_filtering",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::ReadOptions::fill_cache",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::IngestExternalFileOptions::set_ingest_behind",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_compaction_readahead_size",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::BlockBasedOptions::set_whole_key_filtering",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_allow_mmap_reads",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_use_fsync",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::ReadOptions::set_total_order_seek",
+          "function": "db_options::Options::set_optimize_filters_for_hits",
           "change_type": "Modified"
         },
         {
@@ -9151,42 +8985,12 @@
         },
         {
           "file": "src/db_options.rs",
+          "function": "db_options::Options::set_enable_write_thread_adaptive_yield",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
           "function": "db_options::Options::set_use_direct_io_for_flush_and_compaction",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_dump_malloc_stats",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::ReadOptions::set_verify_checksums",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_use_adaptive_mutex",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::WriteOptions::set_low_pri",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_atomic_flush",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::WriteOptions::set_sync",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::WriteOptions::disable_wal",
           "change_type": "Modified"
         },
         {
@@ -9196,47 +9000,27 @@
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::WriteOptions::set_ignore_missing_column_families",
+          "function": "db_options::Options::create_if_missing",
           "change_type": "Modified"
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::Options::set_inplace_update_support",
+          "function": "db_options::CompactOptions::set_change_level",
           "change_type": "Modified"
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::ReadOptions::set_prefix_same_as_start",
+          "function": "db_options::CuckooTableOptions::set_use_module_hash",
           "change_type": "Modified"
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::Options::set_enable_write_thread_adaptive_yield",
+          "function": "db_options::BlockBasedOptions::set_whole_key_filtering",
           "change_type": "Modified"
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::Options::set_paranoid_checks",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::WriteOptions::set_memtable_insert_hint_per_batch",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_manual_wal_flush",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::BlockBasedOptions::set_partition_filters",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/db_options.rs",
-          "function": "db_options::Options::set_allow_concurrent_memtable_write",
+          "function": "db_options::Options::set_skip_stats_update_on_db_open",
           "change_type": "Modified"
         },
         {
@@ -9246,12 +9030,52 @@
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::ReadOptions::set_background_purge_on_iterator_cleanup",
+          "function": "db_options::Options::set_inplace_update_support",
           "change_type": "Modified"
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::Options::set_level_compaction_dynamic_level_bytes",
+          "function": "db_options::ReadOptions::set_verify_checksums",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::ReadOptions::set_total_order_seek",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_dump_malloc_stats",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_memtable_whole_key_filtering",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_use_fsync",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_is_fd_close_on_exec",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::IngestExternalFileOptions::set_allow_global_seqno",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_allow_concurrent_memtable_write",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::WriteOptions::set_no_slowdown",
           "change_type": "Modified"
         },
         {
@@ -9261,7 +9085,152 @@
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::BlockBasedOptions::disable_cache",
+          "function": "db_options::Options::set_bottommost_compression_options",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::WriteOptions::disable_wal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_error_if_exists",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::ReadOptions::set_background_purge_on_iterator_cleanup",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_manual_wal_flush",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::WriteOptions::set_sync",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_report_bg_io_stats",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::ReadOptions::set_prefix_same_as_start",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::IngestExternalFileOptions::set_move_files",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_level_compaction_dynamic_level_bytes",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::ReadOptions::set_tailing",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::BlockBasedOptions::set_partition_filters",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_allow_mmap_reads",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_atomic_flush",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::create_missing_column_families",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::IngestExternalFileOptions::set_ingest_behind",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::FlushOptions::set_wait",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_disable_auto_compactions",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_compaction_readahead_size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_skip_checking_sst_file_sizes_on_db_open",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_allow_mmap_writes",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::IngestExternalFileOptions::set_snapshot_consistency",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_unordered_write",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::ReadOptions::fill_cache",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_use_adaptive_mutex",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_paranoid_checks",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::WriteOptions::set_ignore_missing_column_families",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::IngestExternalFileOptions::set_allow_blocking_flush",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::Options::set_enable_pipelined_write",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::WriteOptions::set_memtable_insert_hint_per_batch",
           "change_type": "Modified"
         },
         {
@@ -9276,22 +9245,32 @@
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::Options::create_if_missing",
+          "function": "db_options::BlockBasedOptions::disable_cache",
           "change_type": "Modified"
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::Options::set_skip_checking_sst_file_sizes_on_db_open",
+          "function": "db_options::Options::set_bottommost_zstd_max_train_bytes",
           "change_type": "Modified"
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::WriteOptions::set_no_slowdown",
+          "function": "db_options::Options::set_advise_random_on_open",
           "change_type": "Modified"
         },
         {
           "file": "src/db_options.rs",
-          "function": "db_options::Options::set_optimize_filters_for_hits",
+          "function": "db_options::Options::set_use_direct_reads",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::CuckooTableOptions::set_identity_as_first_hash",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/db_options.rs",
+          "function": "db_options::WriteOptions::set_low_pri",
           "change_type": "Modified"
         },
         {
@@ -9345,6 +9324,11 @@
       "vulnerable_symbols": [
         {
           "file": "crossbeam-channel/src/flavors/array.rs",
+          "function": "crossbeam_channel::flavors::array::Channel::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-channel/src/flavors/array.rs",
           "function": "crossbeam_channel::flavors::array::Channel::write",
           "change_type": "Modified"
         },
@@ -9354,8 +9338,8 @@
           "change_type": "Modified"
         },
         {
-          "file": "crossbeam-channel/src/flavors/array.rs",
-          "function": "crossbeam_channel::flavors::array::Channel::drop",
+          "file": "crossbeam-channel/src/flavors/list.rs",
+          "function": "crossbeam_channel::flavors::list::Channel::read",
           "change_type": "Modified"
         },
         {
@@ -9365,17 +9349,12 @@
         },
         {
           "file": "crossbeam-channel/src/flavors/list.rs",
-          "function": "crossbeam_channel::flavors::list::Channel::read",
+          "function": "crossbeam_channel::flavors::list::Block::new",
           "change_type": "Modified"
         },
         {
           "file": "crossbeam-channel/src/flavors/list.rs",
           "function": "crossbeam_channel::flavors::list::Channel::drop",
-          "change_type": "Modified"
-        },
-        {
-          "file": "crossbeam-channel/src/flavors/list.rs",
-          "function": "crossbeam_channel::flavors::list::Block::new",
           "change_type": "Modified"
         },
         {
@@ -9385,7 +9364,7 @@
         },
         {
           "file": "crossbeam-deque/src/lib.rs",
-          "function": "crossbeam_deque::Injector::steal_batch",
+          "function": "crossbeam_deque::Injector::push",
           "change_type": "Modified"
         },
         {
@@ -9395,17 +9374,17 @@
         },
         {
           "file": "crossbeam-deque/src/lib.rs",
-          "function": "crossbeam_deque::Injector::push",
+          "function": "crossbeam_deque::Injector::steal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-deque/src/lib.rs",
+          "function": "crossbeam_deque::Injector::steal_batch",
           "change_type": "Modified"
         },
         {
           "file": "crossbeam-deque/src/lib.rs",
           "function": "crossbeam_deque::Block::new",
-          "change_type": "Modified"
-        },
-        {
-          "file": "crossbeam-deque/src/lib.rs",
-          "function": "crossbeam_deque::Injector::steal",
           "change_type": "Modified"
         },
         {
@@ -9420,12 +9399,7 @@
         },
         {
           "file": "crossbeam-epoch/src/sync/queue.rs",
-          "function": "crossbeam_epoch::sync::queue::Queue::pop_internal",
-          "change_type": "Modified"
-        },
-        {
-          "file": "crossbeam-epoch/src/sync/queue.rs",
-          "function": "crossbeam_epoch::sync::queue::Queue::new",
+          "function": "crossbeam_epoch::sync::queue::Queue::push",
           "change_type": "Modified"
         },
         {
@@ -9435,12 +9409,17 @@
         },
         {
           "file": "crossbeam-epoch/src/sync/queue.rs",
-          "function": "crossbeam_epoch::sync::queue::Queue::push",
+          "function": "crossbeam_epoch::sync::queue::Queue::pop_internal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-epoch/src/sync/queue.rs",
+          "function": "crossbeam_epoch::sync::queue::Queue::new",
           "change_type": "Modified"
         },
         {
           "file": "crossbeam-queue/src/array_queue.rs",
-          "function": "crossbeam_queue::array_queue::ArrayQueue::push",
+          "function": "crossbeam_queue::array_queue::ArrayQueue::pop",
           "change_type": "Modified"
         },
         {
@@ -9450,12 +9429,17 @@
         },
         {
           "file": "crossbeam-queue/src/array_queue.rs",
-          "function": "crossbeam_queue::array_queue::ArrayQueue::pop",
+          "function": "crossbeam_queue::array_queue::ArrayQueue::push",
           "change_type": "Modified"
         },
         {
           "file": "crossbeam-queue/src/seg_queue.rs",
           "function": "crossbeam_queue::seg_queue::SegQueue::push",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-queue/src/seg_queue.rs",
+          "function": "crossbeam_queue::seg_queue::SegQueue::pop",
           "change_type": "Modified"
         },
         {
@@ -9466,11 +9450,6 @@
         {
           "file": "crossbeam-queue/src/seg_queue.rs",
           "function": "crossbeam_queue::seg_queue::SegQueue::drop",
-          "change_type": "Modified"
-        },
-        {
-          "file": "crossbeam-queue/src/seg_queue.rs",
-          "function": "crossbeam_queue::seg_queue::SegQueue::pop",
           "change_type": "Modified"
         }
       ]
@@ -9487,7 +9466,7 @@
       "vulnerable_symbols": [
         {
           "file": "crossbeam-channel/src/flavors/array.rs",
-          "function": "crossbeam_channel::flavors::array::Channel::write",
+          "function": "crossbeam_channel::flavors::array::Channel::drop",
           "change_type": "Modified"
         },
         {
@@ -9497,12 +9476,7 @@
         },
         {
           "file": "crossbeam-channel/src/flavors/array.rs",
-          "function": "crossbeam_channel::flavors::array::Channel::drop",
-          "change_type": "Modified"
-        },
-        {
-          "file": "crossbeam-channel/src/flavors/list.rs",
-          "function": "crossbeam_channel::flavors::list::Block::new",
+          "function": "crossbeam_channel::flavors::array::Channel::write",
           "change_type": "Modified"
         },
         {
@@ -9521,13 +9495,23 @@
           "change_type": "Modified"
         },
         {
-          "file": "crossbeam-deque/src/lib.rs",
-          "function": "crossbeam_deque::Inner::drop",
+          "file": "crossbeam-channel/src/flavors/list.rs",
+          "function": "crossbeam_channel::flavors::list::Block::new",
           "change_type": "Modified"
         },
         {
           "file": "crossbeam-deque/src/lib.rs",
           "function": "crossbeam_deque::Injector::steal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-deque/src/lib.rs",
+          "function": "crossbeam_deque::Injector::push",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-deque/src/lib.rs",
+          "function": "crossbeam_deque::Injector::steal_batch_and_pop",
           "change_type": "Modified"
         },
         {
@@ -9547,12 +9531,7 @@
         },
         {
           "file": "crossbeam-deque/src/lib.rs",
-          "function": "crossbeam_deque::Injector::steal_batch_and_pop",
-          "change_type": "Modified"
-        },
-        {
-          "file": "crossbeam-deque/src/lib.rs",
-          "function": "crossbeam_deque::Injector::push",
+          "function": "crossbeam_deque::Inner::drop",
           "change_type": "Modified"
         },
         {
@@ -9562,7 +9541,7 @@
         },
         {
           "file": "crossbeam-epoch/src/sync/queue.rs",
-          "function": "crossbeam_epoch::sync::queue::Queue::push",
+          "function": "crossbeam_epoch::sync::queue::Queue::pop_internal",
           "change_type": "Modified"
         },
         {
@@ -9572,12 +9551,12 @@
         },
         {
           "file": "crossbeam-epoch/src/sync/queue.rs",
-          "function": "crossbeam_epoch::sync::queue::Queue::pop_if_internal",
+          "function": "crossbeam_epoch::sync::queue::Queue::push",
           "change_type": "Modified"
         },
         {
           "file": "crossbeam-epoch/src/sync/queue.rs",
-          "function": "crossbeam_epoch::sync::queue::Queue::pop_internal",
+          "function": "crossbeam_epoch::sync::queue::Queue::pop_if_internal",
           "change_type": "Modified"
         },
         {
@@ -9597,22 +9576,22 @@
         },
         {
           "file": "crossbeam-queue/src/seg_queue.rs",
-          "function": "crossbeam_queue::seg_queue::SegQueue::drop",
-          "change_type": "Modified"
-        },
-        {
-          "file": "crossbeam-queue/src/seg_queue.rs",
           "function": "crossbeam_queue::seg_queue::SegQueue::pop",
           "change_type": "Modified"
         },
         {
           "file": "crossbeam-queue/src/seg_queue.rs",
-          "function": "crossbeam_queue::seg_queue::Block::new",
+          "function": "crossbeam_queue::seg_queue::SegQueue::push",
           "change_type": "Modified"
         },
         {
           "file": "crossbeam-queue/src/seg_queue.rs",
-          "function": "crossbeam_queue::seg_queue::SegQueue::push",
+          "function": "crossbeam_queue::seg_queue::SegQueue::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-queue/src/seg_queue.rs",
+          "function": "crossbeam_queue::seg_queue::Block::new",
           "change_type": "Modified"
         }
       ]
@@ -9634,22 +9613,22 @@
         },
         {
           "file": "crossbeam-channel/src/flavors/array.rs",
-          "function": "crossbeam_channel::flavors::array::Channel::write",
-          "change_type": "Modified"
-        },
-        {
-          "file": "crossbeam-channel/src/flavors/array.rs",
           "function": "crossbeam_channel::flavors::array::Channel::drop",
           "change_type": "Modified"
         },
         {
-          "file": "crossbeam-channel/src/flavors/list.rs",
-          "function": "crossbeam_channel::flavors::list::Channel::write",
+          "file": "crossbeam-channel/src/flavors/array.rs",
+          "function": "crossbeam_channel::flavors::array::Channel::write",
           "change_type": "Modified"
         },
         {
           "file": "crossbeam-channel/src/flavors/list.rs",
           "function": "crossbeam_channel::flavors::list::Block::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-channel/src/flavors/list.rs",
+          "function": "crossbeam_channel::flavors::list::Channel::write",
           "change_type": "Modified"
         },
         {
@@ -9664,12 +9643,17 @@
         },
         {
           "file": "crossbeam-deque/src/lib.rs",
+          "function": "crossbeam_deque::Injector::steal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-deque/src/lib.rs",
           "function": "crossbeam_deque::Injector::drop",
           "change_type": "Modified"
         },
         {
           "file": "crossbeam-deque/src/lib.rs",
-          "function": "crossbeam_deque::Injector::steal",
+          "function": "crossbeam_deque::Injector::steal_batch",
           "change_type": "Modified"
         },
         {
@@ -9680,11 +9664,6 @@
         {
           "file": "crossbeam-deque/src/lib.rs",
           "function": "crossbeam_deque::Injector::push",
-          "change_type": "Modified"
-        },
-        {
-          "file": "crossbeam-deque/src/lib.rs",
-          "function": "crossbeam_deque::Injector::steal_batch",
           "change_type": "Modified"
         },
         {
@@ -9704,6 +9683,11 @@
         },
         {
           "file": "crossbeam-epoch/src/sync/queue.rs",
+          "function": "crossbeam_epoch::sync::queue::Queue::pop_if_internal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-epoch/src/sync/queue.rs",
           "function": "crossbeam_epoch::sync::queue::Queue::pop_internal",
           "change_type": "Modified"
         },
@@ -9718,8 +9702,8 @@
           "change_type": "Modified"
         },
         {
-          "file": "crossbeam-epoch/src/sync/queue.rs",
-          "function": "crossbeam_epoch::sync::queue::Queue::pop_if_internal",
+          "file": "crossbeam-queue/src/array_queue.rs",
+          "function": "crossbeam_queue::array_queue::ArrayQueue::pop",
           "change_type": "Modified"
         },
         {
@@ -9733,13 +9717,8 @@
           "change_type": "Modified"
         },
         {
-          "file": "crossbeam-queue/src/array_queue.rs",
-          "function": "crossbeam_queue::array_queue::ArrayQueue::pop",
-          "change_type": "Modified"
-        },
-        {
           "file": "crossbeam-queue/src/seg_queue.rs",
-          "function": "crossbeam_queue::seg_queue::Block::new",
+          "function": "crossbeam_queue::seg_queue::SegQueue::push",
           "change_type": "Modified"
         },
         {
@@ -9749,12 +9728,12 @@
         },
         {
           "file": "crossbeam-queue/src/seg_queue.rs",
-          "function": "crossbeam_queue::seg_queue::SegQueue::drop",
+          "function": "crossbeam_queue::seg_queue::Block::new",
           "change_type": "Modified"
         },
         {
           "file": "crossbeam-queue/src/seg_queue.rs",
-          "function": "crossbeam_queue::seg_queue::SegQueue::push",
+          "function": "crossbeam_queue::seg_queue::SegQueue::drop",
           "change_type": "Modified"
         }
       ]
@@ -9771,17 +9750,17 @@
       "vulnerable_symbols": [
         {
           "file": "src/proto/h1/role.rs",
+          "function": "proto::h1::role::Client::parse",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/proto/h1/role.rs",
           "function": "proto::h1::role::record_header_indices",
           "change_type": "Modified"
         },
         {
           "file": "src/proto/h1/role.rs",
           "function": "proto::h1::role::Server::parse",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/proto/h1/role.rs",
-          "function": "proto::h1::role::Client::parse",
           "change_type": "Modified"
         }
       ]
@@ -9911,22 +9890,22 @@
       "vulnerable_symbols": [
         {
           "file": "tower-http/src/services/fs/serve_dir.rs",
-          "function": "tower_http::services::fs::serve_dir::build_and_validate_path",
-          "change_type": "Modified"
-        },
-        {
-          "file": "tower-http/src/services/fs/serve_dir.rs",
-          "function": "tower_http::services::fs::serve_dir::ResponseFuture::poll",
-          "change_type": "Modified"
-        },
-        {
-          "file": "tower-http/src/services/fs/serve_dir.rs",
           "function": "tower_http::services::fs::serve_dir::ServeDir::call",
           "change_type": "Modified"
         },
         {
           "file": "tower-http/src/services/fs/serve_dir.rs",
+          "function": "tower_http::services::fs::serve_dir::build_and_validate_path",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tower-http/src/services/fs/serve_dir.rs",
           "function": "tower_http::services::fs::serve_dir::maybe_redirect_or_append_path",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tower-http/src/services/fs/serve_dir.rs",
+          "function": "tower_http::services::fs::serve_dir::ResponseFuture::poll",
           "change_type": "Modified"
         }
       ]
@@ -10234,17 +10213,17 @@
       "vulnerable_symbols": [
         {
           "file": "tremor-cli/src/run.rs",
+          "function": "tremor_cli::run::run_tremor_source",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tremor-cli/src/run.rs",
           "function": "tremor_cli::run::run_trickle_source",
           "change_type": "Modified"
         },
         {
           "file": "tremor-cli/src/run.rs",
           "function": "tremor_cli::run::Ingress::process",
-          "change_type": "Modified"
-        },
-        {
-          "file": "tremor-cli/src/run.rs",
-          "function": "tremor_cli::run::run_tremor_source",
           "change_type": "Modified"
         },
         {
@@ -10264,12 +10243,12 @@
         },
         {
           "file": "tremor-script/src/interpreter/expr.rs",
-          "function": "tremor_script::interpreter::expr::Expr::patch_in_place",
+          "function": "tremor_script::interpreter::expr::Expr::merge_in_place",
           "change_type": "Deleted"
         },
         {
           "file": "tremor-script/src/interpreter/expr.rs",
-          "function": "tremor_script::interpreter::expr::Expr::merge_in_place",
+          "function": "tremor_script::interpreter::expr::Expr::patch_in_place",
           "change_type": "Deleted"
         },
         {
@@ -10324,12 +10303,12 @@
       "vulnerable_symbols": [
         {
           "file": "src/mnt/fuse3.rs",
-          "function": "mnt::fuse3::Mount::drop",
+          "function": "mnt::fuse3::Mount::new",
           "change_type": "Modified"
         },
         {
           "file": "src/mnt/fuse3.rs",
-          "function": "mnt::fuse3::Mount::new",
+          "function": "mnt::fuse3::Mount::drop",
           "change_type": "Modified"
         }
       ]
@@ -10421,12 +10400,7 @@
       "vulnerable_symbols": [
         {
           "file": "src/lib.rs",
-          "function": "Signature::parse_standard_slice",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "Signature::parse_standard",
+          "function": "Signature::parse_overflowing_slice",
           "change_type": "Added"
         },
         {
@@ -10436,7 +10410,12 @@
         },
         {
           "file": "src/lib.rs",
-          "function": "Signature::parse_overflowing_slice",
+          "function": "Signature::parse_standard",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "Signature::parse_standard_slice",
           "change_type": "Added"
         },
         {
@@ -11383,12 +11362,12 @@
       "vulnerable_symbols": [
         {
           "file": "rand_core/src/le.rs",
-          "function": "rand_core::le::read_u32_into",
+          "function": "rand_core::le::read_u64_into",
           "change_type": "Modified"
         },
         {
           "file": "rand_core/src/le.rs",
-          "function": "rand_core::le::read_u64_into",
+          "function": "rand_core::le::read_u32_into",
           "change_type": "Modified"
         }
       ]
@@ -11535,17 +11514,17 @@
         },
         {
           "file": "tower-http/src/services/fs/serve_dir.rs",
-          "function": "tower_http::services::fs::serve_dir::maybe_redirect_or_append_path",
-          "change_type": "Modified"
-        },
-        {
-          "file": "tower-http/src/services/fs/serve_dir.rs",
           "function": "tower_http::services::fs::serve_dir::ServeDir::call",
           "change_type": "Modified"
         },
         {
           "file": "tower-http/src/services/fs/serve_dir.rs",
           "function": "tower_http::services::fs::serve_dir::ResponseFuture::poll",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tower-http/src/services/fs/serve_dir.rs",
+          "function": "tower_http::services::fs::serve_dir::maybe_redirect_or_append_path",
           "change_type": "Modified"
         }
       ]
@@ -11800,12 +11779,12 @@
         },
         {
           "file": "src/sniffer.rs",
-          "function": "sniffer::quote_count",
+          "function": "sniffer::Sniffer::get_sample_size",
           "change_type": "Modified"
         },
         {
           "file": "src/sniffer.rs",
-          "function": "sniffer::Sniffer::get_sample_size",
+          "function": "sniffer::quote_count",
           "change_type": "Modified"
         },
         {
@@ -12208,6 +12187,11 @@
       "vulnerable_symbols": [
         {
           "file": "src/lib.rs",
+          "function": "NotNan::rem_assign",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
           "function": "NotNan::div_assign",
           "change_type": "Modified"
         },
@@ -12218,17 +12202,12 @@
         },
         {
           "file": "src/lib.rs",
-          "function": "NotNan::sub_assign",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
-          "function": "NotNan::rem_assign",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/lib.rs",
           "function": "NotNan::mul_assign",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "NotNan::sub_assign",
           "change_type": "Modified"
         }
       ]
@@ -12521,7 +12500,7 @@
       "vulnerable_symbols": [
         {
           "file": "src/transport/sendmail/mod.rs",
-          "function": "transport::sendmail::SendmailTransport::tokio03_command",
+          "function": "transport::sendmail::SendmailTransport::tokio02_command",
           "change_type": "Modified"
         },
         {
@@ -12531,7 +12510,7 @@
         },
         {
           "file": "src/transport/sendmail/mod.rs",
-          "function": "transport::sendmail::SendmailTransport::tokio02_command",
+          "function": "transport::sendmail::SendmailTransport::tokio03_command",
           "change_type": "Modified"
         }
       ]
@@ -13190,12 +13169,12 @@
         },
         {
           "file": "crossbeam-queue/src/array_queue.rs",
-          "function": "crossbeam_queue::array_queue::ArrayQueue::drop",
+          "function": "crossbeam_queue::array_queue::ArrayQueue::new",
           "change_type": "Modified"
         },
         {
           "file": "crossbeam-queue/src/array_queue.rs",
-          "function": "crossbeam_queue::array_queue::ArrayQueue::new",
+          "function": "crossbeam_queue::array_queue::ArrayQueue::drop",
           "change_type": "Modified"
         }
       ]
@@ -13315,12 +13294,12 @@
       "vulnerable_symbols": [
         {
           "file": "tokio-rustls/src/common/mod.rs",
-          "function": "tokio_rustls::common::Stream::handshake",
+          "function": "tokio_rustls::common::Stream::poll_read",
           "change_type": "Modified"
         },
         {
           "file": "tokio-rustls/src/common/mod.rs",
-          "function": "tokio_rustls::common::Stream::poll_read",
+          "function": "tokio_rustls::common::Stream::handshake",
           "change_type": "Modified"
         }
       ]
@@ -13390,58 +13369,7 @@
         ">= 2.0.0"
       ],
       "commit_sha": "2a5a2053bfabdb3ac1aa78e6d2cefc5c2c941984",
-      "vulnerable_symbols": [
-        {
-          "file": "src/windows/mod.rs",
-          "function": "windows::wide_to_wtf8",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/windows/mod.rs",
-          "function": "windows::len_wtf8",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/windows/mod.rs",
-          "function": "windows::encode_wtf8",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/windows/mod.rs",
-          "function": "windows::encode_wide",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/windows/mod.rs",
-          "function": "windows::wtf8_to_wide",
-          "change_type": "Added"
-        },
-        {
-          "file": "src/windows/mod.rs",
-          "function": "windows::decode_utf16",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/windows/mod.rs",
-          "function": "windows::encode_utf16",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "src/windows/mod.rs",
-          "function": "windows::OsString::from_bytes",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/windows/mod.rs",
-          "function": "windows::OsStr::to_bytes",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/windows/mod.rs",
-          "function": "windows::OsString::from_bytes_unchecked",
-          "change_type": "Modified"
-        }
-      ]
+      "vulnerable_symbols": []
     },
     {
       "advisory_id": "RUSTSEC-2020-0009",
@@ -13599,12 +13527,12 @@
       "vulnerable_symbols": [
         {
           "file": "lucet-runtime/lucet-runtime-internals/src/alloc/mod.rs",
-          "function": "lucet_runtime_internals::alloc::AddrLocation::is_fault_fatal",
+          "function": "lucet_runtime_internals::alloc::Alloc::addr_location",
           "change_type": "Added"
         },
         {
           "file": "lucet-runtime/lucet-runtime-internals/src/alloc/mod.rs",
-          "function": "lucet_runtime_internals::alloc::Alloc::addr_location",
+          "function": "lucet_runtime_internals::alloc::AddrLocation::is_fault_fatal",
           "change_type": "Added"
         },
         {
@@ -13614,22 +13542,22 @@
         },
         {
           "file": "lucet-runtime/lucet-runtime-internals/src/alloc/mod.rs",
-          "function": "lucet_runtime_internals::alloc::Alloc::sigstack_mut",
-          "change_type": "Modified"
-        },
-        {
-          "file": "lucet-runtime/lucet-runtime-internals/src/alloc/mod.rs",
-          "function": "lucet_runtime_internals::alloc::Limits::validate",
-          "change_type": "Modified"
-        },
-        {
-          "file": "lucet-runtime/lucet-runtime-internals/src/alloc/mod.rs",
           "function": "lucet_runtime_internals::alloc::Limits::default",
           "change_type": "Modified"
         },
         {
           "file": "lucet-runtime/lucet-runtime-internals/src/alloc/mod.rs",
+          "function": "lucet_runtime_internals::alloc::Alloc::sigstack_mut",
+          "change_type": "Modified"
+        },
+        {
+          "file": "lucet-runtime/lucet-runtime-internals/src/alloc/mod.rs",
           "function": "lucet_runtime_internals::alloc::Limits::total_memory_size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "lucet-runtime/lucet-runtime-internals/src/alloc/mod.rs",
+          "function": "lucet_runtime_internals::alloc::Limits::validate",
           "change_type": "Modified"
         },
         {
@@ -13654,12 +13582,12 @@
         },
         {
           "file": "lucet-runtime/lucet-runtime-internals/src/region/mmap.rs",
-          "function": "lucet_runtime_internals::region::mmap::MmapRegion::new_instance_with",
+          "function": "lucet_runtime_internals::region::mmap::MmapRegion::create_aligned",
           "change_type": "Modified"
         },
         {
           "file": "lucet-runtime/lucet-runtime-internals/src/region/mmap.rs",
-          "function": "lucet_runtime_internals::region::mmap::MmapRegion::create_aligned",
+          "function": "lucet_runtime_internals::region::mmap::MmapRegion::drop_alloc",
           "change_type": "Modified"
         },
         {
@@ -13669,7 +13597,7 @@
         },
         {
           "file": "lucet-runtime/lucet-runtime-internals/src/region/mmap.rs",
-          "function": "lucet_runtime_internals::region::mmap::MmapRegion::drop_alloc",
+          "function": "lucet_runtime_internals::region::mmap::MmapRegion::new_instance_with",
           "change_type": "Modified"
         },
         {
@@ -13767,138 +13695,7 @@
         ">= 1.0.6"
       ],
       "commit_sha": "a67e38b4a07c92a3c81fa833f9eb1e91e74e39b7",
-      "vulnerable_symbols": [
-        {
-          "file": "actix-service/src/and_then.rs",
-          "function": "actix_service::and_then::AndThenService::new",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/and_then.rs",
-          "function": "actix_service::and_then::AndThenService::call",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/and_then.rs",
-          "function": "actix_service::and_then::AndThenService::poll_ready",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/and_then.rs",
-          "function": "actix_service::and_then::AndThenServiceResponse::poll",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/and_then_apply_fn.rs",
-          "function": "actix_service::and_then_apply_fn::AndThenApplyFnFactoryResponse::poll",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/and_then_apply_fn.rs",
-          "function": "actix_service::and_then_apply_fn::AndThenApplyFnFuture::poll",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/and_then_apply_fn.rs",
-          "function": "actix_service::and_then_apply_fn::AndThenApplyFn::new",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/and_then_apply_fn.rs",
-          "function": "actix_service::and_then_apply_fn::AndThenApplyFn::call",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/and_then_apply_fn.rs",
-          "function": "actix_service::and_then_apply_fn::AndThenApplyFn::poll_ready",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/apply_cfg.rs",
-          "function": "actix_service::apply_cfg::ApplyConfigService::new_service",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/apply_cfg.rs",
-          "function": "actix_service::apply_cfg::apply_cfg",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/apply_cfg.rs",
-          "function": "actix_service::apply_cfg::ApplyConfigServiceFactoryResponse::poll",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/apply_cfg.rs",
-          "function": "actix_service::apply_cfg::ApplyConfigServiceFactory::new_service",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/apply_cfg.rs",
-          "function": "actix_service::apply_cfg::apply_cfg_factory",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/cell.rs",
-          "function": "actix_service::cell::Cell::clone",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "actix-service/src/cell.rs",
-          "function": "actix_service::cell::Cell::fmt",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "actix-service/src/cell.rs",
-          "function": "actix_service::cell::Cell::new",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "actix-service/src/cell.rs",
-          "function": "actix_service::cell::Cell::get_ref",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "actix-service/src/cell.rs",
-          "function": "actix_service::cell::Cell::get_mut",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "actix-service/src/cell.rs",
-          "function": "actix_service::cell::Cell::get_mut_unsafe",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "actix-service/src/cell.rs",
-          "function": "actix_service::cell::Cell::poll_ready",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "actix-service/src/cell.rs",
-          "function": "actix_service::cell::Cell::call",
-          "change_type": "Deleted"
-        },
-        {
-          "file": "actix-service/src/then.rs",
-          "function": "actix_service::then::ThenService::poll_ready",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/then.rs",
-          "function": "actix_service::then::ThenService::call",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/then.rs",
-          "function": "actix_service::then::ThenService::new",
-          "change_type": "Modified"
-        },
-        {
-          "file": "actix-service/src/then.rs",
-          "function": "actix_service::then::ThenServiceResponse::poll",
-          "change_type": "Modified"
-        }
-      ]
+      "vulnerable_symbols": []
     },
     {
       "advisory_id": "RUSTSEC-2020-0045",
@@ -14320,12 +14117,12 @@
         },
         {
           "file": "pulse-binding/src/context/ext_device_restore.rs",
-          "function": "pulse_binding::context::ext_device_restore::read_list_cb_proxy",
+          "function": "pulse_binding::context::ext_device_restore::ext_subscribe_cb_proxy",
           "change_type": "Modified"
         },
         {
           "file": "pulse-binding/src/context/ext_device_restore.rs",
-          "function": "pulse_binding::context::ext_device_restore::ext_subscribe_cb_proxy",
+          "function": "pulse_binding::context::ext_device_restore::read_list_cb_proxy",
           "change_type": "Modified"
         },
         {
@@ -14335,22 +14132,7 @@
         },
         {
           "file": "pulse-binding/src/context/introspect.rs",
-          "function": "pulse_binding::context::introspect::get_sink_info_list_cb_proxy",
-          "change_type": "Modified"
-        },
-        {
-          "file": "pulse-binding/src/context/introspect.rs",
-          "function": "pulse_binding::context::introspect::get_server_info_cb_proxy",
-          "change_type": "Modified"
-        },
-        {
-          "file": "pulse-binding/src/context/introspect.rs",
-          "function": "pulse_binding::context::introspect::get_source_info_list_cb_proxy",
-          "change_type": "Modified"
-        },
-        {
-          "file": "pulse-binding/src/context/introspect.rs",
-          "function": "pulse_binding::context::introspect::get_client_info_list_cb_proxy",
+          "function": "pulse_binding::context::introspect::get_stat_info_cb_proxy",
           "change_type": "Modified"
         },
         {
@@ -14360,17 +14142,17 @@
         },
         {
           "file": "pulse-binding/src/context/introspect.rs",
-          "function": "pulse_binding::context::introspect::get_card_info_list_cb_proxy",
+          "function": "pulse_binding::context::introspect::get_sink_info_list_cb_proxy",
           "change_type": "Modified"
         },
         {
           "file": "pulse-binding/src/context/introspect.rs",
-          "function": "pulse_binding::context::introspect::mod_info_list_cb_proxy",
+          "function": "pulse_binding::context::introspect::get_client_info_list_cb_proxy",
           "change_type": "Modified"
         },
         {
           "file": "pulse-binding/src/context/introspect.rs",
-          "function": "pulse_binding::context::introspect::get_stat_info_cb_proxy",
+          "function": "pulse_binding::context::introspect::get_source_info_list_cb_proxy",
           "change_type": "Modified"
         },
         {
@@ -14380,7 +14162,22 @@
         },
         {
           "file": "pulse-binding/src/context/introspect.rs",
+          "function": "pulse_binding::context::introspect::mod_info_list_cb_proxy",
+          "change_type": "Modified"
+        },
+        {
+          "file": "pulse-binding/src/context/introspect.rs",
+          "function": "pulse_binding::context::introspect::get_card_info_list_cb_proxy",
+          "change_type": "Modified"
+        },
+        {
+          "file": "pulse-binding/src/context/introspect.rs",
           "function": "pulse_binding::context::introspect::get_sink_input_info_list_cb_proxy",
+          "change_type": "Modified"
+        },
+        {
+          "file": "pulse-binding/src/context/introspect.rs",
+          "function": "pulse_binding::context::introspect::get_server_info_cb_proxy",
           "change_type": "Modified"
         },
         {
@@ -14400,22 +14197,22 @@
         },
         {
           "file": "pulse-binding/src/context/mod.rs",
-          "function": "pulse_binding::context::success_cb_proxy",
-          "change_type": "Modified"
-        },
-        {
-          "file": "pulse-binding/src/context/mod.rs",
           "function": "pulse_binding::context::notify_cb_proxy_single",
           "change_type": "Modified"
         },
         {
           "file": "pulse-binding/src/context/mod.rs",
-          "function": "pulse_binding::context::event_cb_proxy",
+          "function": "pulse_binding::context::success_cb_proxy",
           "change_type": "Modified"
         },
         {
           "file": "pulse-binding/src/context/mod.rs",
           "function": "pulse_binding::context::ext_test_cb_proxy",
+          "change_type": "Modified"
+        },
+        {
+          "file": "pulse-binding/src/context/mod.rs",
+          "function": "pulse_binding::context::event_cb_proxy",
           "change_type": "Modified"
         },
         {
@@ -14460,22 +14257,22 @@
         },
         {
           "file": "pulse-binding/src/stream.rs",
-          "function": "pulse_binding::stream::event_cb_proxy",
-          "change_type": "Modified"
-        },
-        {
-          "file": "pulse-binding/src/stream.rs",
-          "function": "pulse_binding::stream::success_cb_proxy",
-          "change_type": "Modified"
-        },
-        {
-          "file": "pulse-binding/src/stream.rs",
           "function": "pulse_binding::stream::notify_cb_proxy",
           "change_type": "Modified"
         },
         {
           "file": "pulse-binding/src/stream.rs",
+          "function": "pulse_binding::stream::event_cb_proxy",
+          "change_type": "Modified"
+        },
+        {
+          "file": "pulse-binding/src/stream.rs",
           "function": "pulse_binding::stream::request_cb_proxy",
+          "change_type": "Modified"
+        },
+        {
+          "file": "pulse-binding/src/stream.rs",
+          "function": "pulse_binding::stream::success_cb_proxy",
           "change_type": "Modified"
         }
       ]
@@ -14513,6 +14310,21 @@
         },
         {
           "file": "src/array.rs",
+          "function": "array::Array::get_type",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "array::Array::cast",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "array::Array::new_strided",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/array.rs",
           "function": "array::Array::new_empty",
           "change_type": "Modified"
         },
@@ -14523,27 +14335,7 @@
         },
         {
           "file": "src/array.rs",
-          "function": "array::Array::new_strided",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/array.rs",
-          "function": "array::Array::cast",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/array.rs",
           "function": "array::Array::get_backend",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/array.rs",
-          "function": "array::Array::get_type",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/data/mod.rs",
-          "function": "data::range",
           "change_type": "Modified"
         },
         {
@@ -14557,8 +14349,13 @@
           "change_type": "Modified"
         },
         {
+          "file": "src/data/mod.rs",
+          "function": "data::range",
+          "change_type": "Modified"
+        },
+        {
           "file": "src/image/mod.rs",
-          "function": "image::rotate",
+          "function": "image::load_image_native",
           "change_type": "Modified"
         },
         {
@@ -14568,12 +14365,7 @@
         },
         {
           "file": "src/image/mod.rs",
-          "function": "image::translate",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/image/mod.rs",
-          "function": "image::scale",
+          "function": "image::regions",
           "change_type": "Modified"
         },
         {
@@ -14583,12 +14375,12 @@
         },
         {
           "file": "src/image/mod.rs",
-          "function": "image::skew",
+          "function": "image::transform",
           "change_type": "Modified"
         },
         {
           "file": "src/image/mod.rs",
-          "function": "image::color_space",
+          "function": "image::translate",
           "change_type": "Modified"
         },
         {
@@ -14598,17 +14390,22 @@
         },
         {
           "file": "src/image/mod.rs",
-          "function": "image::regions",
+          "function": "image::skew",
           "change_type": "Modified"
         },
         {
           "file": "src/image/mod.rs",
-          "function": "image::transform",
+          "function": "image::rotate",
           "change_type": "Modified"
         },
         {
           "file": "src/image/mod.rs",
-          "function": "image::load_image_native",
+          "function": "image::color_space",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/image/mod.rs",
+          "function": "image::scale",
           "change_type": "Modified"
         },
         {
@@ -14618,22 +14415,17 @@
         },
         {
           "file": "src/random/mod.rs",
-          "function": "random::random_normal",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/random/mod.rs",
-          "function": "random::RandomEngine::new",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/random/mod.rs",
           "function": "random::RandomEngine::set_type",
           "change_type": "Modified"
         },
         {
           "file": "src/random/mod.rs",
-          "function": "random::RandomEngine::get_type",
+          "function": "random::random_normal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/random/mod.rs",
+          "function": "random::set_default_random_engine_type",
           "change_type": "Modified"
         },
         {
@@ -14643,12 +14435,37 @@
         },
         {
           "file": "src/random/mod.rs",
-          "function": "random::set_default_random_engine_type",
+          "function": "random::RandomEngine::get_type",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/random/mod.rs",
+          "function": "random::RandomEngine::new",
           "change_type": "Modified"
         },
         {
           "file": "src/signal/mod.rs",
           "function": "signal::convolve2_sep",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sparse/mod.rs",
+          "function": "sparse::sparse_from_host",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sparse/mod.rs",
+          "function": "sparse::sparse_get_format",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sparse/mod.rs",
+          "function": "sparse::sparse_from_dense",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sparse/mod.rs",
+          "function": "sparse::sparse_get_info",
           "change_type": "Modified"
         },
         {
@@ -14662,38 +14479,8 @@
           "change_type": "Modified"
         },
         {
-          "file": "src/sparse/mod.rs",
-          "function": "sparse::sparse_get_format",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/sparse/mod.rs",
-          "function": "sparse::sparse_from_host",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/sparse/mod.rs",
-          "function": "sparse::sparse_get_info",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/sparse/mod.rs",
-          "function": "sparse::sparse_from_dense",
-          "change_type": "Modified"
-        },
-        {
           "file": "src/statistics/mod.rs",
           "function": "statistics::topk",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/util.rs",
-          "function": "util::InterpType::from",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/util.rs",
-          "function": "util::ColorMap::from",
           "change_type": "Modified"
         },
         {
@@ -14703,7 +14490,42 @@
         },
         {
           "file": "src/util.rs",
+          "function": "util::get_size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::BinaryOp::from",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::InterpType::from",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::RandomEngineType::from",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
           "function": "util::ConvDomain::from",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::DType::from",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::ColorMap::from",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "util::MatchType::from",
           "change_type": "Modified"
         },
         {
@@ -14714,31 +14536,6 @@
         {
           "file": "src/util.rs",
           "function": "util::SparseFormat::from",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/util.rs",
-          "function": "util::get_size",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/util.rs",
-          "function": "util::DType::from",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/util.rs",
-          "function": "util::MatchType::from",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/util.rs",
-          "function": "util::BinaryOp::from",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/util.rs",
-          "function": "util::RandomEngineType::from",
           "change_type": "Modified"
         },
         {
@@ -14824,12 +14621,12 @@
       "vulnerable_symbols": [
         {
           "file": "src/scanner.rs",
-          "function": "scanner::Scanner::increase_flow_level",
+          "function": "scanner::Scanner::fetch_flow_collection_start",
           "change_type": "Modified"
         },
         {
           "file": "src/scanner.rs",
-          "function": "scanner::Scanner::fetch_flow_collection_start",
+          "function": "scanner::Scanner::increase_flow_level",
           "change_type": "Modified"
         }
       ]
@@ -14856,17 +14653,7 @@
         },
         {
           "file": "src/de.rs",
-          "function": "de::Deserializer::visit_mapping",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/de.rs",
           "function": "de::Deserializer::visit_sequence",
-          "change_type": "Modified"
-        },
-        {
-          "file": "src/de.rs",
-          "function": "de::EnumAccess::variant_seed",
           "change_type": "Modified"
         },
         {
@@ -14885,18 +14672,28 @@
           "change_type": "Modified"
         },
         {
+          "file": "src/de.rs",
+          "function": "de::Deserializer::visit_mapping",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/de.rs",
+          "function": "de::EnumAccess::variant_seed",
+          "change_type": "Modified"
+        },
+        {
           "file": "src/error.rs",
           "function": "error::Error::recursion_limit_exceeded",
           "change_type": "Added"
         },
         {
           "file": "src/error.rs",
-          "function": "error::Error::description",
+          "function": "error::Error::fmt",
           "change_type": "Modified"
         },
         {
           "file": "src/error.rs",
-          "function": "error::Error::fmt",
+          "function": "error::Error::description",
           "change_type": "Modified"
         }
       ]
@@ -14979,12 +14776,12 @@
         },
         {
           "file": "src/entry.rs",
-          "function": "entry::EntryFields::unpack_in",
+          "function": "entry::EntryFields::unpack",
           "change_type": "Modified"
         },
         {
           "file": "src/entry.rs",
-          "function": "entry::EntryFields::unpack",
+          "function": "entry::EntryFields::unpack_in",
           "change_type": "Modified"
         }
       ]
@@ -15099,12 +14896,12 @@
         },
         {
           "file": "src/lib.rs",
-          "function": "encode_config",
+          "function": "encode_config_buf",
           "change_type": "Modified"
         },
         {
           "file": "src/lib.rs",
-          "function": "encode_config_buf",
+          "function": "encode_config",
           "change_type": "Modified"
         }
       ]
@@ -15136,17 +14933,12 @@
         },
         {
           "file": "security-framework/src/secure_transport.rs",
-          "function": "security_framework::secure_transport::SslContext::handshake",
-          "change_type": "Modified"
-        },
-        {
-          "file": "security-framework/src/secure_transport.rs",
           "function": "security_framework::secure_transport::ClientBuilder::handshake",
           "change_type": "Modified"
         },
         {
           "file": "security-framework/src/secure_transport.rs",
-          "function": "security_framework::secure_transport::ClientBuilder::handshake_inner",
+          "function": "security_framework::secure_transport::MidHandshakeClientBuilder::handshake",
           "change_type": "Modified"
         },
         {
@@ -15156,12 +14948,17 @@
         },
         {
           "file": "security-framework/src/secure_transport.rs",
-          "function": "security_framework::secure_transport::ClientBuilder::anchor_certificates",
+          "function": "security_framework::secure_transport::ClientBuilder::handshake_inner",
           "change_type": "Modified"
         },
         {
           "file": "security-framework/src/secure_transport.rs",
-          "function": "security_framework::secure_transport::MidHandshakeClientBuilder::handshake",
+          "function": "security_framework::secure_transport::SslContext::handshake",
+          "change_type": "Modified"
+        },
+        {
+          "file": "security-framework/src/secure_transport.rs",
+          "function": "security_framework::secure_transport::ClientBuilder::anchor_certificates",
           "change_type": "Modified"
         },
         {
