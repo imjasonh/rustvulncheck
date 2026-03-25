@@ -246,7 +246,7 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
                             diff.files.len()
                         );
                         new_sha = Some(diff.commit_sha.clone());
-                        new_symbols = extract_symbols(&diff, &gh);
+                        new_symbols = extract_symbols(&diff, &gh, &adv.package);
                         break;
                     }
                     Ok(None) => {
@@ -385,7 +385,7 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
                         diff.files.len()
                     );
                     entry.commit_sha = Some(diff.commit_sha.clone());
-                    let symbols = extract_symbols(&diff, &gh);
+                    let symbols = extract_symbols(&diff, &gh, &adv.package);
                     if symbols.is_empty() {
                         println!("  No function signatures extracted from diff");
                     } else {
