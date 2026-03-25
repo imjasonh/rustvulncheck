@@ -235,7 +235,15 @@ fn find_call_sites(
             }
         }
 
-        // 4. After `use hyper::http::Request;` and calling as method: foo.parse(...)
+        // 4. Free function import: `use cookie::parse::parse_cookie;` → bare `parse_cookie(...)`
+        //    When the full symbol is imported directly, the bare name is a valid caller.
+        for (local, full) in &import_map {
+            if *full == symbol {
+                local_callers.push(local.to_string());
+            }
+        }
+
+        // 5. After `use hyper::http::Request;` and calling as method: foo.parse(...)
         //    This is lower confidence since we can't verify the receiver type.
         let method_pattern = format!(".{}(", fn_name);
 
@@ -248,12 +256,32 @@ fn find_call_sites(
                     .unwrap_or(false)
             });
 
+        let mut in_block_comment = false;
+
         for (line_num, line) in source.lines().enumerate() {
             let trimmed = line.trim();
 
-            // Skip comments
-            if trimmed.starts_with("//") || trimmed.starts_with("/*") || trimmed.starts_with('*')
-            {
+            // Track block comments: /* ... */
+            if in_block_comment {
+                if trimmed.contains("*/") {
+                    in_block_comment = false;
+                }
+                continue;
+            }
+            if trimmed.starts_with("/*") {
+                if !trimmed.contains("*/") {
+                    in_block_comment = true;
+                }
+                continue;
+            }
+
+            // Skip line comments
+            if trimmed.starts_with("//") || trimmed.starts_with('*') {
+                continue;
+            }
+
+            // Skip `use` statements — they are imports, not calls
+            if trimmed.starts_with("use ") {
                 continue;
             }
 
@@ -290,9 +318,18 @@ fn find_call_sites(
                             b.var_name.ends_with(&format!(".{}", &receiver_var[5..]))
                                 && b.type_path == parent_path
                         });
+
                     if receiver_matches || field_matches {
                         Confidence::High
                     } else {
+                        // If we positively know the receiver's type and it
+                        // doesn't match, suppress the finding entirely.
+                        let type_is_known = type_bindings
+                            .iter()
+                            .any(|b| b.var_name == receiver_var);
+                        if type_is_known {
+                            continue; // Known wrong type — not a match
+                        }
                         Confidence::Medium
                     }
                 } else {
