@@ -5,6 +5,8 @@
 //! before/after contents from GitHub, parses both with `syn::parse_file`,
 //! and diffs the function sets.
 
+use std::collections::HashMap;
+
 use crate::github::PatchDiff;
 
 /// A vulnerable symbol extracted from a patch diff.
@@ -30,9 +32,14 @@ pub enum ChangeType {
 /// For each changed `.rs` file in the diff, fetches the before (parent) and
 /// after (commit) versions from GitHub, parses both with `syn`, and diffs
 /// the function sets. Files that fail to parse are skipped with a warning.
+///
+/// `package_name` is used to:
+/// - Prepend the crate name to symbols from non-workspace repos (e.g. `src/lib.rs`)
+/// - Filter out files belonging to sibling crates in workspace repos
 pub fn extract_symbols(
     diff: &PatchDiff,
     gh: &crate::github::GithubClient,
+    package_name: &str,
 ) -> Vec<VulnerableSymbol> {
     let mut all_symbols = Vec::new();
 
@@ -60,7 +67,22 @@ pub fn extract_symbols(
             continue;
         }
 
-        let module_path = file_path_to_module(&file_patch.filename);
+        if !file_belongs_to_crate(&file_patch.filename, package_name) {
+            continue;
+        }
+
+        let mut module_path = file_path_to_module(&file_patch.filename);
+
+        // For non-workspace repos (files directly under src/), prepend the
+        // package name so symbols get properly qualified crate prefixes.
+        if needs_crate_prefix(&file_patch.filename) && !package_name.is_empty() {
+            let crate_name = package_name.replace('-', "_");
+            if module_path.is_empty() {
+                module_path = crate_name;
+            } else {
+                module_path = format!("{}::{}", crate_name, module_path);
+            }
+        }
 
         let before = gh
             .fetch_file_contents(&diff.owner, &diff.repo, &file_patch.filename, parent_sha)
@@ -95,7 +117,73 @@ pub fn extract_symbols(
         }
     }
 
-    all_symbols
+    dedup_symbols(all_symbols)
+}
+
+/// Returns true when the file path has no workspace crate directory before `src/`,
+/// meaning the package name must be prepended to get a fully qualified module path.
+///
+/// Examples:
+/// - `src/lib.rs` → true (no crate dir prefix)
+/// - `src/parser.rs` → true
+/// - `crates/hyper/src/lib.rs` → false (workspace crate dir `hyper` provides prefix)
+/// - `pyo3-ffi/src/object.rs` → false
+pub(crate) fn needs_crate_prefix(path: &str) -> bool {
+    let parts: Vec<&str> = path.split('/').collect();
+    match parts.iter().position(|&p| p == "src") {
+        Some(0) => true,  // src/ is the first component
+        Some(_) => false, // there are directories before src/
+        None => true,     // no src/ at all — can't determine, include prefix
+    }
+}
+
+/// Returns true if the file at `path` belongs to the crate named `package_name`.
+///
+/// For single-crate repos (files directly under `src/`), always returns true.
+/// For workspace repos, checks that the directory immediately before `src/`
+/// matches the package name (with hyphens normalized to underscores).
+pub(crate) fn file_belongs_to_crate(path: &str, package_name: &str) -> bool {
+    let parts: Vec<&str> = path.split('/').collect();
+    let src_idx = match parts.iter().position(|&p| p == "src") {
+        Some(idx) => idx,
+        None => return true, // no src/ — can't determine, include it
+    };
+    if src_idx == 0 {
+        return true; // src/... at top level — single crate repo, always include
+    }
+    // The directory immediately before src/ is the crate directory
+    let crate_dir = parts[src_idx - 1].replace('-', "_");
+    let target = package_name.replace('-', "_");
+    crate_dir == target
+}
+
+/// Deduplicate symbols by function name, keeping the highest-priority change type.
+///
+/// Priority: Deleted > Modified > Added. When multiple trait impls produce the
+/// same qualified name (e.g., `Value::from` from multiple `impl From<T>`), we
+/// keep only one entry with the most significant change type.
+pub(crate) fn dedup_symbols(symbols: Vec<VulnerableSymbol>) -> Vec<VulnerableSymbol> {
+    fn change_priority(ct: &ChangeType) -> u8 {
+        match ct {
+            ChangeType::Deleted => 0,
+            ChangeType::Modified => 1,
+            ChangeType::Added => 2,
+        }
+    }
+
+    let mut best: HashMap<String, VulnerableSymbol> = HashMap::new();
+    for sym in symbols {
+        best.entry(sym.function.clone())
+            .and_modify(|existing| {
+                if change_priority(&sym.change_type) < change_priority(&existing.change_type) {
+                    *existing = sym.clone();
+                }
+            })
+            .or_insert(sym);
+    }
+    let mut result: Vec<_> = best.into_values().collect();
+    result.sort_by(|a, b| a.file.cmp(&b.file).then(a.function.cmp(&b.function)));
+    result
 }
 
 /// Convert a file path like `src/http/request.rs` to a module path like `http::request`.
@@ -211,5 +299,162 @@ mod tests {
         assert!(!is_test_file("src/lib.rs"));
         assert!(!is_test_file("src/http/request.rs"));
         assert!(!is_test_file("src/testing/trace.rs"));
+    }
+
+    // ── needs_crate_prefix tests ─────────────────────────────────────
+
+    #[test]
+    fn test_needs_crate_prefix() {
+        // Single-crate repos: src/ is at top level, needs prefix
+        assert!(needs_crate_prefix("src/lib.rs"));
+        assert!(needs_crate_prefix("src/parser.rs"));
+        assert!(needs_crate_prefix("src/proto/h1.rs"));
+
+        // Workspace repos: directory before src/ provides the crate name
+        assert!(!needs_crate_prefix("crates/hyper/src/lib.rs"));
+        assert!(!needs_crate_prefix("pyo3-ffi/src/object.rs"));
+        assert!(!needs_crate_prefix("crates/algorithms/sha3/src/simd/avx2.rs"));
+
+        // No src/ in path — needs prefix as fallback
+        assert!(needs_crate_prefix("build.rs"));
+    }
+
+    // ── file_belongs_to_crate tests ──────────────────────────────────
+
+    #[test]
+    fn test_file_belongs_to_crate_single_crate_repo() {
+        // Single-crate repos always match (src/ at top level)
+        assert!(file_belongs_to_crate("src/lib.rs", "hyper"));
+        assert!(file_belongs_to_crate("src/parser.rs", "serde_yaml"));
+    }
+
+    #[test]
+    fn test_file_belongs_to_crate_workspace_match() {
+        // File's crate dir matches the package name
+        assert!(file_belongs_to_crate("crates/hyper/src/lib.rs", "hyper"));
+        assert!(file_belongs_to_crate("tokio/src/net.rs", "tokio"));
+        assert!(file_belongs_to_crate("crates/algorithms/sha3/src/simd.rs", "sha3"));
+    }
+
+    #[test]
+    fn test_file_belongs_to_crate_workspace_mismatch() {
+        // File belongs to a sibling crate, not the target
+        assert!(!file_belongs_to_crate("tokio-util/src/codec.rs", "tokio"));
+        assert!(!file_belongs_to_crate("crates/hyper-util/src/lib.rs", "hyper"));
+        assert!(!file_belongs_to_crate("opentelemetry-sdk/src/testing/trace.rs", "opentelemetry_api"));
+    }
+
+    #[test]
+    fn test_file_belongs_to_crate_hyphen_normalization() {
+        // Hyphens and underscores are interchangeable
+        assert!(file_belongs_to_crate("pyo3-ffi/src/object.rs", "pyo3-ffi"));
+        assert!(file_belongs_to_crate("pyo3-ffi/src/object.rs", "pyo3_ffi"));
+        assert!(file_belongs_to_crate("foo_bar/src/lib.rs", "foo-bar"));
+    }
+
+    #[test]
+    fn test_file_belongs_to_crate_no_src() {
+        // Files without src/ are always included (can't determine crate)
+        assert!(file_belongs_to_crate("build.rs", "hyper"));
+        assert!(file_belongs_to_crate("Cargo.toml", "hyper"));
+    }
+
+    // ── dedup_symbols tests ──────────────────────────────────────────
+
+    #[test]
+    fn test_dedup_symbols_keeps_highest_priority() {
+        let symbols = vec![
+            VulnerableSymbol {
+                file: "src/lib.rs".into(),
+                function: "Value::from".into(),
+                change_type: ChangeType::Added,
+            },
+            VulnerableSymbol {
+                file: "src/lib.rs".into(),
+                function: "Value::from".into(),
+                change_type: ChangeType::Modified,
+            },
+            VulnerableSymbol {
+                file: "src/lib.rs".into(),
+                function: "Value::from".into(),
+                change_type: ChangeType::Deleted,
+            },
+        ];
+
+        let result = dedup_symbols(symbols);
+        assert_eq!(result.len(), 1);
+        assert_eq!(result[0].function, "Value::from");
+        assert_eq!(result[0].change_type, ChangeType::Deleted);
+    }
+
+    #[test]
+    fn test_dedup_symbols_modified_over_added() {
+        let symbols = vec![
+            VulnerableSymbol {
+                file: "src/common.rs".into(),
+                function: "Key::from".into(),
+                change_type: ChangeType::Added,
+            },
+            VulnerableSymbol {
+                file: "src/common.rs".into(),
+                function: "Key::from".into(),
+                change_type: ChangeType::Modified,
+            },
+        ];
+
+        let result = dedup_symbols(symbols);
+        assert_eq!(result.len(), 1);
+        assert_eq!(result[0].change_type, ChangeType::Modified);
+    }
+
+    #[test]
+    fn test_dedup_symbols_preserves_distinct_functions() {
+        let symbols = vec![
+            VulnerableSymbol {
+                file: "src/lib.rs".into(),
+                function: "foo".into(),
+                change_type: ChangeType::Added,
+            },
+            VulnerableSymbol {
+                file: "src/lib.rs".into(),
+                function: "bar".into(),
+                change_type: ChangeType::Modified,
+            },
+            VulnerableSymbol {
+                file: "src/other.rs".into(),
+                function: "baz".into(),
+                change_type: ChangeType::Deleted,
+            },
+        ];
+
+        let result = dedup_symbols(symbols);
+        assert_eq!(result.len(), 3);
+    }
+
+    #[test]
+    fn test_dedup_symbols_across_files() {
+        // Same function name from different files (e.g., re-exports or identical trait impls)
+        let symbols = vec![
+            VulnerableSymbol {
+                file: "src/v1.rs".into(),
+                function: "api::time::now".into(),
+                change_type: ChangeType::Added,
+            },
+            VulnerableSymbol {
+                file: "src/v2.rs".into(),
+                function: "api::time::now".into(),
+                change_type: ChangeType::Deleted,
+            },
+        ];
+
+        let result = dedup_symbols(symbols);
+        assert_eq!(result.len(), 1);
+        assert_eq!(result[0].change_type, ChangeType::Deleted);
+    }
+
+    #[test]
+    fn test_dedup_symbols_empty_input() {
+        let result = dedup_symbols(Vec::new());
+        assert!(result.is_empty());
     }
 }
