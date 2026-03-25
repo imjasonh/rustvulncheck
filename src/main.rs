@@ -25,7 +25,8 @@ struct Args {
     #[arg(long)]
     advisory_db: Option<PathBuf>,
 
-    /// Maximum number of advisories to process (most recent first).
+    /// Maximum number of enriched entries to collect (most recent first).
+    /// Processes advisories until this many have been successfully enriched.
     #[arg(long, default_value = "10")]
     limit: usize,
 
@@ -77,28 +78,33 @@ fn main() -> Result<()> {
         candidates.len()
     );
 
-    let to_process = &candidates[..candidates.len().min(args.limit)];
-    println!("Processing {} advisories...\n", to_process.len());
+    println!(
+        "Processing advisories (collecting up to {} enriched entries)...\n",
+        args.limit
+    );
 
     // Step 3: Fetch diffs and extract symbols
     let gh = GithubClient::new(args.github_token);
     let mut vuln_db = VulnDb::new();
 
-    for (i, adv) in to_process.iter().enumerate() {
+    for adv in &candidates {
+        if vuln_db.entries.len() >= args.limit {
+            break;
+        }
+
+        let gh_refs = adv.github_refs();
+        if gh_refs.is_empty() {
+            continue;
+        }
+
         println!(
             "[{}/{}] {} ({}) - {}",
-            i + 1,
-            to_process.len(),
+            vuln_db.entries.len() + 1,
+            args.limit,
             adv.id,
             adv.package,
             adv.title
         );
-
-        let gh_refs = adv.github_refs();
-        if gh_refs.is_empty() {
-            println!("  No parseable GitHub refs, skipping");
-            continue;
-        }
 
         let mut entry = VulnEntry {
             advisory_id: adv.id.clone(),

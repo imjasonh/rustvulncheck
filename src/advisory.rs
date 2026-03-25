@@ -27,6 +27,7 @@ pub struct AdvisoryMeta {
     #[serde(default)]
     pub title: Option<String>,
     #[serde(default)]
+    #[allow(dead_code)]
     pub description: Option<String>,
 }
 
@@ -35,6 +36,7 @@ pub struct VersionInfo {
     #[serde(default)]
     pub patched: Vec<String>,
     #[serde(default)]
+    #[allow(dead_code)]
     pub unaffected: Vec<String>,
 }
 
@@ -70,6 +72,7 @@ pub enum GithubRef {
         repo: String,
         number: u64,
     },
+    #[allow(dead_code)]
     Issue {
         owner: String,
         repo: String,
@@ -149,7 +152,8 @@ pub fn parse_advisory_db(db_path: &Path) -> Result<Vec<Advisory>> {
         .filter_map(|e| e.ok())
     {
         let path = entry.path();
-        if path.extension().map_or(true, |ext| ext != "toml") {
+        // Advisory-db uses .md files with TOML in a fenced code block
+        if path.extension().map_or(true, |ext| ext != "md") {
             continue;
         }
 
@@ -171,8 +175,12 @@ fn parse_advisory_file(path: &Path) -> Result<Advisory> {
     let content =
         std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
 
+    // Advisory-db .md files have TOML inside a ```toml ... ``` fenced block
+    let toml_content = extract_toml_block(&content)
+        .with_context(|| format!("no TOML block found in {}", path.display()))?;
+
     let file: AdvisoryFile =
-        toml::from_str(&content).with_context(|| format!("parsing {}", path.display()))?;
+        toml::from_str(&toml_content).with_context(|| format!("parsing {}", path.display()))?;
 
     let mut github_urls = Vec::new();
 
@@ -201,4 +209,11 @@ fn parse_advisory_file(path: &Path) -> Result<Advisory> {
         patched_versions: file.versions.patched,
         github_urls,
     })
+}
+
+/// Extract the TOML content from a markdown file with a ```toml fenced block.
+fn extract_toml_block(content: &str) -> Option<String> {
+    let start = content.find("```toml\n")? + "```toml\n".len();
+    let end = content[start..].find("```")? + start;
+    Some(content[start..end].to_string())
 }
