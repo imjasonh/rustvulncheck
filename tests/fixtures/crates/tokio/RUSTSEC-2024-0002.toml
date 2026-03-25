@@ -1,0 +1,10 @@
+[advisory]
+id = "RUSTSEC-2024-0002"
+package = "tokio"
+date = "2024-02-20"
+title = "Race condition in task cancellation"
+url = "https://github.com/tokio-rs/tokio/issues/789"
+references = ["https://github.com/tokio-rs/tokio/commit/deadbeef1234"]
+
+[versions]
+patched = [">= 1.36.0"]

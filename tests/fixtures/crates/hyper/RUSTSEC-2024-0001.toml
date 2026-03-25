@@ -1,0 +1,10 @@
+[advisory]
+id = "RUSTSEC-2024-0001"
+package = "hyper"
+date = "2024-01-15"
+title = "Lenient HTTP header parsing allows request smuggling"
+url = "https://github.com/hyperium/hyper/pull/3456"
+references = ["https://github.com/hyperium/hyper/commit/abc123def456"]
+
+[versions]
+patched = [">= 1.2.0"]
