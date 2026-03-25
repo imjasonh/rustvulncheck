@@ -7,8 +7,10 @@ mod lockfile;
 mod scanner;
 mod type_tracker;
 
+use std::collections::HashSet;
 use std::path::{Path, PathBuf};
 use std::process;
+use std::time::{Duration, Instant};
 
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
@@ -58,6 +60,14 @@ struct EnrichArgs {
     /// Include all advisories, even those without GitHub references.
     #[arg(long)]
     include_all: bool,
+
+    /// Path to an existing enriched DB to resume from (skips already-enriched advisories).
+    #[arg(long)]
+    existing_db: Option<PathBuf>,
+
+    /// Stop processing after this many seconds (for CI time-boxing).
+    #[arg(long)]
+    timeout_secs: Option<u64>,
 }
 
 /// Arguments for the `analyze` subcommand.
@@ -112,6 +122,9 @@ fn run_analyze(args: AnalyzeArgs) -> Result<()> {
 }
 
 fn run_enrich(args: EnrichArgs) -> Result<()> {
+    let start_time = Instant::now();
+    let timeout = args.timeout_secs.map(Duration::from_secs);
+
     // Step 1: Get the advisory-db
     let db_path = match &args.advisory_db {
         Some(path) => {
@@ -125,7 +138,28 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
         }
     };
 
-    // Step 2: Parse advisories
+    // Step 2: Load existing DB if resuming
+    let mut vuln_db = match &args.existing_db {
+        Some(path) if path.exists() => {
+            let existing = VulnDb::load(path)
+                .with_context(|| format!("loading existing DB from {}", path.display()))?;
+            println!(
+                "Loaded existing DB with {} entries from {}",
+                existing.entries.len(),
+                path.display()
+            );
+            existing
+        }
+        _ => VulnDb::new(),
+    };
+
+    let already_enriched: HashSet<String> = vuln_db
+        .entries
+        .iter()
+        .map(|e| e.advisory_id.clone())
+        .collect();
+
+    // Step 3: Parse advisories
     println!("Parsing advisory database...");
     let all_advisories = parse_advisory_db(&db_path)?;
     println!("Found {} total advisories", all_advisories.len());
@@ -144,18 +178,40 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
         candidates.len()
     );
 
+    // Filter out already-enriched advisories
+    let unenriched: Vec<&Advisory> = candidates
+        .into_iter()
+        .filter(|a| !already_enriched.contains(&a.id))
+        .collect();
     println!(
-        "Processing advisories (collecting up to {} enriched entries)...\n",
-        args.limit
+        "{} advisories still need enrichment",
+        unenriched.len()
     );
 
-    // Step 3: Fetch diffs and extract symbols
-    let gh = GithubClient::new(args.github_token);
-    let mut vuln_db = VulnDb::new();
+    let target = args.limit.min(unenriched.len());
+    println!(
+        "Processing advisories (collecting up to {} new enriched entries)...\n",
+        target
+    );
 
-    for adv in &candidates {
-        if vuln_db.entries.len() >= args.limit {
+    // Step 4: Fetch diffs and extract symbols
+    let gh = GithubClient::new(args.github_token);
+    let mut new_count = 0usize;
+
+    for adv in &unenriched {
+        if new_count >= args.limit {
+            println!("Reached --limit of {} new entries, stopping.", args.limit);
             break;
+        }
+
+        if let Some(t) = timeout {
+            if start_time.elapsed() >= t {
+                println!(
+                    "Timeout reached after {} seconds, stopping.",
+                    start_time.elapsed().as_secs()
+                );
+                break;
+            }
         }
 
         let gh_refs = adv.github_refs();
@@ -165,8 +221,8 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
 
         println!(
             "[{}/{}] {} ({}) - {}",
-            vuln_db.entries.len() + 1,
-            args.limit,
+            new_count + 1,
+            target,
             adv.id,
             adv.package,
             adv.title
@@ -214,19 +270,24 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
         }
 
         vuln_db.entries.push(entry);
+        new_count += 1;
         println!();
     }
 
-    // Step 4: Write output
+    // Update timestamp
+    vuln_db.update_timestamp();
+
+    // Step 5: Write output
     let entries_with_symbols = vuln_db
         .entries
         .iter()
         .filter(|e| !e.vulnerable_symbols.is_empty())
         .count();
     println!(
-        "Done! {} of {} entries have extracted symbols.",
+        "Done! Added {} new entries ({} total, {} with symbols).",
+        new_count,
+        vuln_db.entries.len(),
         entries_with_symbols,
-        vuln_db.entries.len()
     );
 
     vuln_db.write_json(&args.output)?;
