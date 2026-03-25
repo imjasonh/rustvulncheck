@@ -1,17 +1,17 @@
 //! Output database: maps advisory IDs to vulnerable function signatures.
 
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use std::path::Path;
 
 /// The enriched vulnerability database.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VulnDb {
     pub generated_at: String,
     pub entries: Vec<VulnEntry>,
 }
 
 /// A single vulnerability entry with function-level detail.
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VulnEntry {
     pub advisory_id: String,
     pub package: String,
@@ -29,6 +29,12 @@ impl VulnDb {
             generated_at: now,
             entries: Vec::new(),
         }
+    }
+
+    pub fn load(path: &Path) -> anyhow::Result<Self> {
+        let data = std::fs::read_to_string(path)?;
+        let db: VulnDb = serde_json::from_str(&data)?;
+        Ok(db)
     }
 
     pub fn write_json(&self, path: &Path) -> anyhow::Result<()> {

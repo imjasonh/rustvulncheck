@@ -1,0 +1,50 @@
+{
+  "generated_at": "unix:1700000000",
+  "entries": [
+    {
+      "advisory_id": "RUSTSEC-2024-0001",
+      "package": "hyper",
+      "title": "Lenient HTTP header parsing allows request smuggling",
+      "date": "2024-01-15",
+      "patched_versions": [">= 1.0.0"],
+      "commit_sha": "abc123",
+      "vulnerable_symbols": [
+        {
+          "file": "src/http/request.rs",
+          "function": "hyper::http::Request::parse",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0002",
+      "package": "tokio",
+      "title": "Race condition in task cancellation",
+      "date": "2024-02-01",
+      "patched_versions": [">= 1.33.0"],
+      "commit_sha": "def456",
+      "vulnerable_symbols": [
+        {
+          "file": "src/runtime/task.rs",
+          "function": "tokio::runtime::task::Task::cancel",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0099",
+      "package": "serde",
+      "title": "Fake advisory for testing",
+      "date": "2024-03-01",
+      "patched_versions": [">= 1.0.180"],
+      "commit_sha": "ghi789",
+      "vulnerable_symbols": [
+        {
+          "file": "src/de.rs",
+          "function": "serde::de::Deserializer::deserialize",
+          "change_type": "Modified"
+        }
+      ]
+    }
+  ]
+}

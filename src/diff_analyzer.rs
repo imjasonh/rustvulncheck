@@ -5,7 +5,7 @@ use regex::Regex;
 use crate::github::PatchDiff;
 
 /// A vulnerable symbol extracted from a patch diff.
-#[derive(Debug, Clone, serde::Serialize)]
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct VulnerableSymbol {
     /// The file path in the repository
     pub file: String,
@@ -15,7 +15,7 @@ pub struct VulnerableSymbol {
     pub change_type: ChangeType,
 }
 
-#[derive(Debug, Clone, serde::Serialize)]
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub enum ChangeType {
     Modified,
     Added,

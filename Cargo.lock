@@ -106,8 +106,10 @@ dependencies = [
  "git2",
  "regex",
  "reqwest",
+ "semver",
  "serde",
  "serde_json",
+ "tempfile",
  "toml",
  "walkdir",
 ]

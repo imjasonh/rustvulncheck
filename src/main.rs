@@ -1,32 +1,48 @@
 mod advisory;
+mod analyzer;
 mod db;
 mod diff_analyzer;
 mod github;
+mod lockfile;
+mod scanner;
 
 use std::path::{Path, PathBuf};
+use std::process;
 
 use anyhow::{Context, Result};
-use clap::Parser;
+use clap::{Parser, Subcommand};
 
 use advisory::{parse_advisory_db, Advisory};
 use db::{VulnDb, VulnEntry};
 use diff_analyzer::extract_symbols;
 use github::GithubClient;
 
-/// cargo deep-audit: Phase 1 - Offline Database Enrichment
-///
-/// Clones the RustSec advisory-db, parses advisories, fetches patch diffs
-/// from GitHub, and extracts vulnerable function signatures.
+/// cargo deep-audit: reachability-based vulnerability scanner for Rust
 #[derive(Parser, Debug)]
 #[command(name = "cargo-deep-audit", version, about)]
 struct Args {
+    #[command(subcommand)]
+    command: Command,
+}
+
+#[derive(Subcommand, Debug)]
+enum Command {
+    /// Enrich the RustSec advisory database with function-level symbols (Phase 1).
+    Enrich(EnrichArgs),
+
+    /// Analyze a Rust project for reachable vulnerable symbols (Phase 2).
+    Analyze(AnalyzeArgs),
+}
+
+/// Arguments for the `enrich` subcommand.
+#[derive(Parser, Debug)]
+struct EnrichArgs {
     /// Path to a local clone of the RustSec advisory-db.
     /// If not provided, the repo will be cloned to a temp directory.
     #[arg(long)]
     advisory_db: Option<PathBuf>,
 
     /// Maximum number of enriched entries to collect (most recent first).
-    /// Processes advisories until this many have been successfully enriched.
     #[arg(long, default_value = "10")]
     limit: usize,
 
@@ -43,9 +59,58 @@ struct Args {
     include_all: bool,
 }
 
+/// Arguments for the `analyze` subcommand.
+#[derive(Parser, Debug)]
+struct AnalyzeArgs {
+    /// Path to the Rust project to analyze (must contain Cargo.lock and src/).
+    #[arg(long, default_value = ".")]
+    project: PathBuf,
+
+    /// Path to the enriched vulnerability database JSON.
+    #[arg(long, default_value = "vuln_db.json")]
+    db: PathBuf,
+}
+
 fn main() -> Result<()> {
     let args = Args::parse();
 
+    match args.command {
+        Command::Enrich(enrich_args) => run_enrich(enrich_args),
+        Command::Analyze(analyze_args) => run_analyze(analyze_args),
+    }
+}
+
+fn run_analyze(args: AnalyzeArgs) -> Result<()> {
+    let project = args.project.canonicalize().with_context(|| {
+        format!("project path '{}' does not exist", args.project.display())
+    })?;
+
+    // Verify the project has the expected structure
+    if !project.join("Cargo.lock").exists() {
+        anyhow::bail!(
+            "No Cargo.lock found in {}. Run `cargo generate-lockfile` first.",
+            project.display()
+        );
+    }
+    if !project.join("src").exists() {
+        anyhow::bail!(
+            "No src/ directory found in {}. Is this a Rust project?",
+            project.display()
+        );
+    }
+
+    let report = analyzer::analyze(&project, &args.db)?;
+    analyzer::print_report(&report);
+
+    // Exit with appropriate code
+    if !report.findings.is_empty() {
+        process::exit(1); // Vulnerable
+    }
+
+    Ok(())
+}
+
+fn run_enrich(args: EnrichArgs) -> Result<()> {
     // Step 1: Get the advisory-db
     let db_path = match &args.advisory_db {
         Some(path) => {

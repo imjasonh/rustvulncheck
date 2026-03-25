@@ -60,7 +60,7 @@ jobs:
       - name: Run enrichment pipeline (10 advisories)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: cargo run -- --limit 10 --output vuln_db.json
+        run: cargo run -- enrich --limit 10 --output vuln_db.json
 
       - name: Show output
         run: cat vuln_db.json
