@@ -119,7 +119,14 @@ impl GithubClient {
             .merge_commit_sha
             .unwrap_or_else(|| format!("pr-{}", number));
 
-        let parent_sha = pr_resp.base.map(|b| b.sha);
+        // For the parent SHA, prefer the merge commit's first parent (the base
+        // branch at merge time) over `base.sha` (which reflects the *current*
+        // branch tip and may have drifted for old PRs).
+        let parent_sha = self
+            .fetch_commit_parent(owner, repo, &commit_sha)
+            .ok()
+            .flatten()
+            .or_else(|| pr_resp.base.map(|b| b.sha));
 
         // Fetch all files changed in the PR (paginated, up to 300 files)
         let files_url = format!(
@@ -153,6 +160,36 @@ impl GithubClient {
             parent_sha,
             files,
         })
+    }
+
+    /// Fetch just the first parent SHA of a commit (lightweight, no file data).
+    fn fetch_commit_parent(&self, owner: &str, repo: &str, sha: &str) -> Result<Option<String>> {
+        let url = format!(
+            "https://api.github.com/repos/{}/{}/commits/{}",
+            owner, repo, sha
+        );
+        let resp = self
+            .get(&url)
+            .send()
+            .context("fetching commit for parent")?
+            .error_for_status()
+            .context("commit API error")?;
+
+        #[derive(Deserialize)]
+        struct ParentOnly {
+            parents: Option<Vec<CommitParentRef>>,
+        }
+        #[derive(Deserialize)]
+        struct CommitParentRef {
+            sha: String,
+        }
+
+        let commit: ParentOnly = resp.json().context("parsing commit for parent")?;
+        Ok(commit
+            .parents
+            .as_ref()
+            .and_then(|p| p.first())
+            .map(|p| p.sha.clone()))
     }
 
     fn fetch_commit_diff(&self, owner: &str, repo: &str, sha: &str) -> Result<PatchDiff> {

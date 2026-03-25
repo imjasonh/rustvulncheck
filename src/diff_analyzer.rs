@@ -153,11 +153,19 @@ pub(crate) fn is_test_file(path: &str) -> bool {
     }) {
         return true;
     }
-    // Files named *_test.rs or test_*.rs
+    // Files named *_test.rs, test_*.rs, or *_tests.rs, or proptests.rs
     if let Some(filename) = parts.last() {
-        if filename.ends_with("_test.rs") || filename.starts_with("test_") {
+        if filename.ends_with("_test.rs")
+            || filename.ends_with("_tests.rs")
+            || filename.starts_with("test_")
+            || *filename == "proptests.rs"
+        {
             return true;
         }
+    }
+    // Path components ending in -tests (e.g. lucet-runtime-tests/src/...)
+    if parts.iter().any(|p| p.ends_with("-tests") || p.ends_with("_tests")) {
+        return true;
     }
     // Top-level perf/ directories (e.g. quinn's perf/src/server.rs)
     if parts.first() == Some(&"perf") {
@@ -196,7 +204,12 @@ mod tests {
         assert!(is_test_file("fuzz/fuzz_targets/params.rs"));
         assert!(is_test_file("perf/src/server.rs"));
         assert!(is_test_file("benches/bench.rs"));
+        assert!(is_test_file("src/btreemap/proptests.rs"));
+        assert!(is_test_file("lucet-runtime/lucet-runtime-tests/src/guest_fault.rs"));
+        assert!(is_test_file("crate/foo_tests/src/bar.rs"));
+        assert!(is_test_file("src/integration_tests.rs"));
         assert!(!is_test_file("src/lib.rs"));
         assert!(!is_test_file("src/http/request.rs"));
+        assert!(!is_test_file("src/testing/trace.rs"));
     }
 }
