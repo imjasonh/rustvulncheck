@@ -237,6 +237,7 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
             let mut new_symbols = Vec::new();
             let mut new_sha = entry.commit_sha.clone();
 
+            let mut fetched = false;
             for gh_ref in &gh_refs {
                 match gh.fetch_diff(gh_ref) {
                     Ok(Some(diff)) => {
@@ -247,6 +248,7 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
                         );
                         new_sha = Some(diff.commit_sha.clone());
                         new_symbols = extract_symbols(&diff, &gh, &adv.package);
+                        fetched = true;
                         break;
                     }
                     Ok(None) => {
@@ -256,6 +258,13 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
                         eprintln!("  Error fetching diff: {}", e);
                     }
                 }
+            }
+
+            if !fetched {
+                println!("  Could not fetch any diff, keeping existing entry unchanged");
+                re_enriched_count += 1;
+                println!();
+                continue;
             }
 
             let new_symbol_count = new_symbols.len();
@@ -376,6 +385,7 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
         };
 
         // Try each ref until we get a diff
+        let mut fetched = false;
         for gh_ref in &gh_refs {
             match gh.fetch_diff(gh_ref) {
                 Ok(Some(diff)) => {
@@ -395,6 +405,7 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
                         }
                     }
                     entry.vulnerable_symbols = symbols;
+                    fetched = true;
                     break;
                 }
                 Ok(None) => {
@@ -406,17 +417,23 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
             }
         }
 
-        // If this is an incomplete entry being retried, update it in-place
+        // If this is an incomplete entry being retried, only update if we got new data
         if incomplete_ids.contains(&adv.id) {
-            if let Some(existing) = vuln_db
-                .entries
-                .iter_mut()
-                .find(|e| e.advisory_id == adv.id)
-            {
-                existing.commit_sha = entry.commit_sha;
-                existing.vulnerable_symbols = entry.vulnerable_symbols;
+            if fetched {
+                if let Some(existing) = vuln_db
+                    .entries
+                    .iter_mut()
+                    .find(|e| e.advisory_id == adv.id)
+                {
+                    existing.commit_sha = entry.commit_sha;
+                    existing.vulnerable_symbols = entry.vulnerable_symbols;
+                }
+            } else {
+                println!("  Could not fetch any diff, keeping existing entry unchanged");
             }
         } else {
+            // New entry: always add to DB (even without symbols) so it's tracked.
+            // It will be retried via the incomplete-entry path on future runs.
             vuln_db.entries.push(entry);
         }
         new_count += 1;
