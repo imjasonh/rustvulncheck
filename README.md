@@ -30,6 +30,40 @@ Next, like `govulncheck`, `rustvulncheck` ingests the enriched database, and cra
 
 This isn't perfect, of course -- if a fixed version `v1.2.4` included a hundred commits changing dozens of symbols, you'll get false positives, but those false positives should at least be _less_ false positive than without symbol-aware enrichment. Without `rustvulncheck` you would have only seen a vulnerable crate as a dependency and assumed you were susceptible.
 
+### Demo
+
+The `demo/` directory contains two small projects that show the difference between a traditional scanner and reachability-aware analysis.
+
+**Reachable vulnerability** — `demo/reachable/` depends on `serde_yaml 0.8.3` and calls `serde_yaml::de::from_str`, which is vulnerable to uncontrolled recursion ([RUSTSEC-2018-0005](https://rustsec.org/advisories/RUSTSEC-2018-0005.html)). The analyzer correctly flags this:
+
+```
+$ cargo-deep-audit analyze --project demo/reachable --db vuln_db.json
+
+  RUSTSEC-2018-0005 (serde_yaml) :: serde_yaml::de::from_str
+  1 call site(s) (1 high confidence, 0 medium confidence)
+    [HIGH] src/main.rs:12 → let value: serde_yaml::Value = from_str(yaml_input).unwrap();
+
+RESULT: VULNERABLE - reachable vulnerable symbols detected
+```
+
+**Not reachable** — `demo/not-reachable/` depends on `base64 0.5.1`, which has a heap buffer overflow in its *encoding* functions ([RUSTSEC-2017-0004](https://rustsec.org/advisories/RUSTSEC-2017-0004.html)). But this project only *decodes*, so the vulnerable symbols are never called:
+
+```
+$ cargo-deep-audit analyze --project demo/not-reachable --db vuln_db.json
+
+  RUSTSEC-2017-0004 base64 @ 0.5.1
+  Vulnerable symbols:
+    - base64::encode_config
+    - base64::encode_config_buf
+    - base64::encoded_size
+
+  None of the 3 vulnerable symbols appear to be called from your code.
+
+RESULT: POSSIBLY SAFE - vulnerable dependencies present but symbols not detected in source
+```
+
+A traditional scanner would flag both projects equally. `rustvulncheck` tells you which one actually matters.
+
 ### Status
 
 The enriched database is available at [`./vuln_db.json`], and is continuously rebuilt by periodically scraping RustSec's advisories and doing the diff analysis to determine affected symbols. Right now I'm having Claude spot-check and improve the enriched DB and add tests for corner cases it discovers. It's going pretty well!
