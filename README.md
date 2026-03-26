@@ -66,9 +66,9 @@ A traditional scanner would flag both projects equally. `rustvulncheck` tells yo
 
 ### Status
 
-The enriched database is available at [`./vuln_db.json`], and is continuously rebuilt by periodically scraping RustSec's advisories and doing the diff analysis to determine affected symbols. Right now I'm having Claude spot-check and improve the enriched DB and add tests for corner cases it discovers. It's going pretty well!
+The enriched database is available at [`./vuln_db.json`](./vuln_db.json), and is continuously rebuilt by periodically scraping RustSec's advisories and doing the diff analysis to determine affected symbols. Right now I'm having Claude spot-check and improve the enriched DB and add tests for corner cases it discovers. It's going pretty well!
 
-Eventually, it would probably be useful for humans/agents to spot-check some and even manually tweak the findings. The idea isn't to replace the experts with good taste, it's to give them a leg up on the backlog and ongoing analysis.
+Eventually, it would probably be useful for humans and more agents to spot-check and tweak the findings. The idea isn't to replace the experts with good taste, it's to give them a leg up on the backlog and ongoing analysis.
 
 The call analysis code could probably also be improved to both find more cases, and to filter out negatives better.
 
