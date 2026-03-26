@@ -35,6 +35,20 @@ jobs:
       - name: Run tests
         run: cargo test --verbose
 
+      - name: Demo check — reachable vuln is detected
+        run: |
+          OUTPUT=$(cargo run -- analyze --project demo/reachable --db vuln_db.json 2>&1 || true)
+          echo "$OUTPUT"
+          echo "$OUTPUT" | grep -q "RESULT: VULNERABLE"
+          echo "$OUTPUT" | grep -q "serde_yaml::de::from_str"
+
+      - name: Demo check — not-reachable vuln is safe
+        run: |
+          OUTPUT=$(cargo run -- analyze --project demo/not-reachable --db vuln_db.json 2>&1 || true)
+          echo "$OUTPUT"
+          echo "$OUTPUT" | grep -q "RESULT: POSSIBLY SAFE"
+          echo "$OUTPUT" | grep -q "base64::encode_config"
+
   enrich:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
