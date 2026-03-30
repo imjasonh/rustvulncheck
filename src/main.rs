@@ -262,7 +262,6 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
 
             if !fetched {
                 println!("  Could not fetch any diff, keeping existing entry unchanged");
-                re_enriched_count += 1;
                 println!();
                 continue;
             }
@@ -280,11 +279,15 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
                 println!("    - {} ({:?})", sym.function, sym.change_type);
             }
 
-            // Update the entry in-place
+            // Only count as re-enriched if data actually changed
             let entry_mut = &mut vuln_db.entries[idx];
-            entry_mut.commit_sha = new_sha;
-            entry_mut.vulnerable_symbols = new_symbols;
-            re_enriched_count += 1;
+            let sha_changed = entry_mut.commit_sha != new_sha;
+            let symbols_changed = entry_mut.vulnerable_symbols != new_symbols;
+            if sha_changed || symbols_changed {
+                entry_mut.commit_sha = new_sha;
+                entry_mut.vulnerable_symbols = new_symbols;
+                re_enriched_count += 1;
+            }
             println!();
         }
     }
@@ -425,8 +428,13 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
                     .iter_mut()
                     .find(|e| e.advisory_id == adv.id)
                 {
+                    let changed = existing.commit_sha != entry.commit_sha
+                        || existing.vulnerable_symbols != entry.vulnerable_symbols;
                     existing.commit_sha = entry.commit_sha;
                     existing.vulnerable_symbols = entry.vulnerable_symbols;
+                    if changed {
+                        new_count += 1;
+                    }
                 }
             } else {
                 println!("  Could not fetch any diff, keeping existing entry unchanged");
@@ -435,8 +443,8 @@ fn run_enrich(args: EnrichArgs) -> Result<()> {
             // New entry: always add to DB (even without symbols) so it's tracked.
             // It will be retried via the incomplete-entry path on future runs.
             vuln_db.entries.push(entry);
+            new_count += 1;
         }
-        new_count += 1;
         println!();
     }
 
