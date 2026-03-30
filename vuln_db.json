@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1774906534",
+  "generated_at": "unix:1774909617",
   "entries": [
     {
       "advisory_id": "RUSTSEC-2016-0003",
@@ -10199,6 +10199,63 @@
         {
           "file": "libcrux-ml-dsa/src/ml_dsa_generic.rs",
           "function": "libcrux_ml_dsa::ml_dsa_generic::generic::verify_internal",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0078",
+      "package": "intaglio",
+      "title": "Symbol confusion after hasher panic in `intaglio` interners",
+      "date": "2026-03-30",
+      "patched_versions": [
+        ">= 1.13.3"
+      ],
+      "commit_sha": "23a8a0920956958c1db6d066bb8bb6de9d439a8e",
+      "vulnerable_symbols": [
+        {
+          "file": "src/bytes.rs",
+          "function": "intaglio::bytes::SymbolTable::intern",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cstr.rs",
+          "function": "intaglio::cstr::SymbolTable::intern",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/osstr.rs",
+          "function": "intaglio::osstr::SymbolTable::intern",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/path.rs",
+          "function": "intaglio::path::SymbolTable::intern",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/rollback.rs",
+          "function": "intaglio::rollback::VecEntryRollbackGuard::defuse",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/rollback.rs",
+          "function": "intaglio::rollback::VecEntryRollbackGuard::drop",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/rollback.rs",
+          "function": "intaglio::rollback::VecEntryRollbackGuard::last",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/rollback.rs",
+          "function": "intaglio::rollback::VecEntryRollbackGuard::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/str.rs",
+          "function": "intaglio::str::SymbolTable::intern",
           "change_type": "Modified"
         }
       ]
