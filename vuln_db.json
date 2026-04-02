@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1775130027",
+  "generated_at": "unix:1775134121",
   "entries": [
     {
       "advisory_id": "RUSTSEC-2016-0003",
@@ -10259,6 +10259,24 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0079",
+      "package": "dyn-future",
+      "title": "`DynFuture` drop can construct a dangling reference",
+      "date": "2026-01-21",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0080",
+      "package": "scaly",
+      "title": "Multiple soundness issues in `scaly` safe APIs",
+      "date": "2026-01-19",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
