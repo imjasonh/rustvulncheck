@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1775635695",
+  "generated_at": "unix:1775642442",
   "entries": [
     {
       "advisory_id": "RUSTSEC-2016-0003",
@@ -10274,6 +10274,24 @@
       "package": "scaly",
       "title": "Multiple soundness issues in `scaly` safe APIs",
       "date": "2026-01-19",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0082",
+      "package": "zantetsu-ffi",
+      "title": "zantetsu-ffi is unmaintained",
+      "date": "2026-04-07",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0083",
+      "package": "zantetsu-trainer",
+      "title": "zantetsu-trainer is unmaintained",
+      "date": "2026-04-07",
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
