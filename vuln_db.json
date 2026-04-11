@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1775906636",
+  "generated_at": "unix:1775910967",
   "entries": [
     {
       "advisory_id": "RUSTSEC-2016-0003",
@@ -10295,6 +10295,24 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0097",
+      "package": "rand",
+      "title": "Rand is unsound with a custom logger using `rand::rng()`",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 0.10.1",
+        "< 0.10.0, >= 0.9.3"
+      ],
+      "commit_sha": "27ff4cb7ced3122a1f677fc248c1a07e59ddc8cd",
+      "vulnerable_symbols": [
+        {
+          "file": "src/rngs/thread.rs",
+          "function": "rand::rngs::thread::ReseedingCore::try_to_reseed",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
