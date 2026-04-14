@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1776161311",
+  "generated_at": "unix:1776167621",
   "entries": [
     {
       "advisory_id": "RUSTSEC-2016-0003",
@@ -9753,6 +9753,15 @@
       "date": "2025-11-17",
       "patched_versions": [],
       "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0161",
+      "package": "libsecp256k1",
+      "title": "libsecp256k1 is unmaintained",
+      "date": "2025-01-14",
+      "patched_versions": [],
+      "commit_sha": "f992b80dedc1da7791b74ac01591e3336c41d893",
       "vulnerable_symbols": []
     },
     {
