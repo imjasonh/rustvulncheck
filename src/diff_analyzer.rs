@@ -10,7 +10,7 @@ use std::collections::HashMap;
 use crate::github::PatchDiff;
 
 /// A vulnerable symbol extracted from a patch diff.
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
 pub struct VulnerableSymbol {
     /// The file path in the repository
     pub file: String,
