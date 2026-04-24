@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1777035594",
+  "generated_at": "unix:1777041933",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -10663,6 +10663,338 @@
       "patched_versions": [],
       "commit_sha": "fdbaa782382087a62af86a3fd1635ecc210f8b0b",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0111",
+      "package": "diesel",
+      "title": "Possible UTF-8 corruption in Diesels SQLite backend",
+      "date": "2026-04-24",
+      "patched_versions": [
+        ">= 2.3.8"
+      ],
+      "commit_sha": "bb17563ca7dd92ceed92d508e3384972b38490c1",
+      "vulnerable_symbols": [
+        {
+          "file": "diesel/src/mysql/connection/bind.rs",
+          "function": "diesel::mysql::connection::bind::BindData::bind_for_truncated_data",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/connection/bind.rs",
+          "function": "diesel::mysql::connection::bind::BindData::clone",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/mysql/types/date_and_time/mod.rs",
+          "function": "diesel::mysql::types::date_and_time::MysqlTime::serialize",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/mysql/types/primitives.rs",
+          "function": "diesel::mysql::types::primitives::str::from_sql",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/pg/connection/mod.rs",
+          "function": "diesel::pg::connection::PgConnection::copy_from",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/mod.rs",
+          "function": "diesel::pg::connection::PgConnection::execute_returning_count",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/raw.rs",
+          "function": "diesel::pg::connection::raw::RawResult::as_ptr",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "diesel/src/pg/connection/raw.rs",
+          "function": "diesel::pg::connection::raw::RawResult::column_count",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/pg/connection/raw.rs",
+          "function": "diesel::pg::connection::raw::RawResult::column_name",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/pg/connection/raw.rs",
+          "function": "diesel::pg::connection::raw::RawResult::column_type",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/pg/connection/raw.rs",
+          "function": "diesel::pg::connection::raw::RawResult::get_bytes",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/pg/connection/raw.rs",
+          "function": "diesel::pg::connection::raw::RawResult::get_result_field",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/pg/connection/raw.rs",
+          "function": "diesel::pg::connection::raw::RawResult::is_null",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/pg/connection/raw.rs",
+          "function": "diesel::pg::connection::raw::RawResult::result_status",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/pg/connection/raw.rs",
+          "function": "diesel::pg::connection::raw::RawResult::row_count",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/pg/connection/raw.rs",
+          "function": "diesel::pg::connection::raw::RawResult::rows_affected",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgErrorInformation::column_name",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgErrorInformation::constraint_name",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgErrorInformation::details",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgErrorInformation::hint",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgErrorInformation::message",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgErrorInformation::statement_position",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgErrorInformation::table_name",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgResult::column_name",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgResult::column_type",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgResult::get",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgResult::is_null",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgResult::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::PgResult::rows_affected",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/connection/result.rs",
+          "function": "diesel::pg::connection::result::get_result_field",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "diesel/src/pg/query_builder/copy/copy_from.rs",
+          "function": "diesel::pg::query_builder::copy::copy_from::CopyFromOptions::walk_ast",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/query_builder/copy/mod.rs",
+          "function": "diesel::pg::query_builder::copy::CommonOptions::walk_ast",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/pg/types/primitives.rs",
+          "function": "diesel::pg::types::primitives::str::from_sql",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/query_builder/debug_query.rs",
+          "function": "diesel::query_builder::debug_query::DebugBinds::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/query_builder/debug_query.rs",
+          "function": "diesel::query_builder::debug_query::DebugBinds::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/query_builder/debug_query.rs",
+          "function": "diesel::query_builder::debug_query::DebugQuery::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/query_builder/debug_query.rs",
+          "function": "diesel::query_builder::debug_query::debug",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/query_builder/debug_query.rs",
+          "function": "diesel::query_builder::debug_query::display",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/query_builder/debug_query.rs",
+          "function": "diesel::query_builder::debug_query::fmt_query",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/query_builder/insert_statement/insert_with_default_for_sqlite.rs",
+          "function": "diesel::query_builder::insert_statement::insert_with_default_for_sqlite::DebugQuery::fmt_debug",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/query_builder/insert_statement/insert_with_default_for_sqlite.rs",
+          "function": "diesel::query_builder::insert_statement::insert_with_default_for_sqlite::DebugQuery::fmt_display",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/query_builder/insert_statement/insert_with_default_for_sqlite.rs",
+          "function": "diesel::query_builder::insert_statement::insert_with_default_for_sqlite::DebugQuery::fmt_helper",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/query_builder/insert_statement/mod.rs",
+          "function": "diesel::query_builder::insert_statement::InsertStatement::walk_ast",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/query_builder/insert_statement/mod.rs",
+          "function": "diesel::query_builder::insert_statement::walk_ast_intern",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/functions.rs",
+          "function": "diesel::sqlite::connection::functions::FunctionArgument::value",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/functions.rs",
+          "function": "diesel::sqlite::connection::functions::FunctionRow::drop",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/functions.rs",
+          "function": "diesel::sqlite::connection::functions::FunctionRow::get",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/functions.rs",
+          "function": "diesel::sqlite::connection::functions::FunctionRow::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/raw.rs",
+          "function": "diesel::sqlite::connection::raw::RawConnection::register_aggregate_function",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/raw.rs",
+          "function": "diesel::sqlite::connection::raw::RawConnection::register_collation_function",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/raw.rs",
+          "function": "diesel::sqlite::connection::raw::RawConnection::register_sql_function",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/raw.rs",
+          "function": "diesel::sqlite::connection::raw::context_error_str",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/raw.rs",
+          "function": "diesel::sqlite::connection::raw::run_aggregator_final_function",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/raw.rs",
+          "function": "diesel::sqlite::connection::raw::run_aggregator_step",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/sqlite_value.rs",
+          "function": "diesel::sqlite::connection::sqlite_value::SqliteValue::as_byte_string",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/sqlite_value.rs",
+          "function": "diesel::sqlite::connection::sqlite_value::SqliteValue::as_utf8_str",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/sqlite_value.rs",
+          "function": "diesel::sqlite::connection::sqlite_value::SqliteValue::from_function_row",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/sqlite_value.rs",
+          "function": "diesel::sqlite::connection::sqlite_value::SqliteValue::from_owned_row",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/sqlite_value.rs",
+          "function": "diesel::sqlite::connection::sqlite_value::SqliteValue::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/sqlite_value.rs",
+          "function": "diesel::sqlite::connection::sqlite_value::SqliteValue::parse_string",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/sqlite_value.rs",
+          "function": "diesel::sqlite::connection::sqlite_value::SqliteValue::read_blob",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/types/mod.rs",
+          "function": "diesel::sqlite::types::str::from_sql",
+          "change_type": "Added"
+        },
+        {
+          "file": "diesel/src/type_impls/primitives.rs",
+          "function": "diesel::type_impls::primitives::String::from_sql",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/type_impls/primitives.rs",
+          "function": "diesel::type_impls::primitives::Vec::from_sql",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
