@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1776296136",
+  "generated_at": "unix:1777026223",
   "entries": [
     {
       "advisory_id": "RUSTSEC-2016-0003",
@@ -10322,6 +10322,15 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0110",
+      "package": "bare-metal",
+      "title": "bare-metal is deprecated",
+      "date": "2026-04-23",
+      "patched_versions": [],
+      "commit_sha": "fdbaa782382087a62af86a3fd1635ecc210f8b0b",
+      "vulnerable_symbols": []
     }
   ]
 }
