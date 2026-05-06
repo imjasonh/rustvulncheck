@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1777041933",
+  "generated_at": "unix:1778081053",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -10995,6 +10995,17 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0121",
+      "package": "steamworks",
+      "title": "Denial of service in Steamworks game clients/servers using P2P authentication",
+      "date": "2026-05-05",
+      "patched_versions": [
+        ">= 0.13.1"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
