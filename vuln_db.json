@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1778081053",
+  "generated_at": "unix:1778495412",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -11006,6 +11006,28 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0122",
+      "package": "rkyv",
+      "title": "Panic safety bugs in `InlineVec::clear` and `SerVec::clear` enable arbitrary code execution",
+      "date": "2026-04-23",
+      "patched_versions": [
+        ">= 0.8.16"
+      ],
+      "commit_sha": "5828cf5c27b664eb4432c4a93d4769e12e5e42fb",
+      "vulnerable_symbols": [
+        {
+          "file": "rkyv/src/util/inline_vec.rs",
+          "function": "rkyv::util::inline_vec::InlineVec::clear",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/util/ser_vec.rs",
+          "function": "rkyv::util::ser_vec::SerVec::clear",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
