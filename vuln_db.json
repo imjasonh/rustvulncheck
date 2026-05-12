@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1778495412",
+  "generated_at": "unix:1778610780",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -11028,6 +11028,17 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0123",
+      "package": "rustdx",
+      "title": "Out-of-bounds read in `bytes_helper` public safe functions",
+      "date": "2026-05-02",
+      "patched_versions": [
+        ">= 0.4.4"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
