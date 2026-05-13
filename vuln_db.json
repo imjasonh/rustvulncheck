@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1778610780",
+  "generated_at": "unix:1778673406",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -11039,6 +11039,121 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0124",
+      "package": "libcrux-chacha20poly1305",
+      "title": "Potential Panic on Overlong Ciphertext Buffer",
+      "date": "2026-03-29",
+      "patched_versions": [
+        ">= 0.0.8"
+      ],
+      "commit_sha": "46cab2e6de2b364d02f89f4f0b62356d846b11a2",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0125",
+      "package": "libcrux-ml-dsa",
+      "title": "Signature Verification on AVX2 Platforms Mishandles Edge Case",
+      "date": "2026-05-05",
+      "patched_versions": [
+        ">= 0.0.9"
+      ],
+      "commit_sha": "b3608803baf501c12e59fe00f08786b756a76fe5",
+      "vulnerable_symbols": [
+        {
+          "file": "libcrux-ml-dsa/src/simd/avx2/arithmetic.rs",
+          "function": "libcrux_ml_dsa::simd::avx2::arithmetic::use_hint",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0126",
+      "package": "libcrux-ml-dsa",
+      "title": "AVX2 Implementation Did Not Fully Reduce Intermediate Values",
+      "date": "2026-04-27",
+      "patched_versions": [
+        ">= 0.0.9"
+      ],
+      "commit_sha": "229ddb8745982af8d7fda29a40f37554eb0bbd8c",
+      "vulnerable_symbols": [
+        {
+          "file": "libcrux-ml-dsa/src/matrix.rs",
+          "function": "libcrux_ml_dsa::matrix::compute_as1_plus_s2",
+          "change_type": "Modified"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/matrix.rs",
+          "function": "libcrux_ml_dsa::matrix::compute_matrix_x_mask",
+          "change_type": "Modified"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/matrix.rs",
+          "function": "libcrux_ml_dsa::matrix::compute_w_approx",
+          "change_type": "Modified"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/ntt.rs",
+          "function": "libcrux_ml_dsa::ntt::reduce",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/polynomial.rs",
+          "function": "libcrux_ml_dsa::polynomial::PolynomialRingElement::barrett_reduce",
+          "change_type": "Added"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/simd/avx2.rs",
+          "function": "libcrux_ml_dsa::simd::avx2::AVX2SIMDUnit::barrett_reduce_simd_unit",
+          "change_type": "Added"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/simd/avx2.rs",
+          "function": "libcrux_ml_dsa::simd::avx2::AVX2SIMDUnit::reduce",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/simd/avx2/arithmetic.rs",
+          "function": "libcrux_ml_dsa::simd::avx2::arithmetic::barrett_reduce_simd_unit",
+          "change_type": "Added"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/simd/avx2/arithmetic.rs",
+          "function": "libcrux_ml_dsa::simd::avx2::arithmetic::shift_left_then_reduce",
+          "change_type": "Modified"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/simd/portable.rs",
+          "function": "libcrux_ml_dsa::simd::portable::Coefficients::barrett_reduce_simd_unit",
+          "change_type": "Added"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/simd/portable.rs",
+          "function": "libcrux_ml_dsa::simd::portable::Coefficients::reduce",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/simd/portable/arithmetic.rs",
+          "function": "libcrux_ml_dsa::simd::portable::arithmetic::barrett_reduce_element",
+          "change_type": "Added"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/simd/portable/arithmetic.rs",
+          "function": "libcrux_ml_dsa::simd::portable::arithmetic::barrett_reduce_simd_unit",
+          "change_type": "Added"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/simd/portable/arithmetic.rs",
+          "function": "libcrux_ml_dsa::simd::portable::arithmetic::reduce_element",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "libcrux-ml-dsa/src/simd/portable/arithmetic.rs",
+          "function": "libcrux_ml_dsa::simd::portable::arithmetic::shift_left_then_reduce",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
