@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1778673406",
+  "generated_at": "unix:1778681198",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -11154,6 +11154,73 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0127",
+      "package": "accessor",
+      "title": "Integer overflow in `array::ReadWrite::new()` leading to potential memory corruption",
+      "date": "2026-05-02",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0128",
+      "package": "emap",
+      "title": "Double-free and use-after-free in `Keys::next()`",
+      "date": "2026-05-02",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0129",
+      "package": "dahl-salso",
+      "title": "Buffer overflow in `Clusterings::from_i32_column_major_order()`",
+      "date": "2026-05-02",
+      "patched_versions": [
+        ">= 0.6.8"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0130",
+      "package": "caja",
+      "title": "Out-of-bounds read/write in `Index` and `IndexMut` implementations",
+      "date": "2026-05-02",
+      "patched_versions": [
+        ">= 0.3.0"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0131",
+      "package": "bitchomp",
+      "title": "Double-free in `Chomp::inner()`",
+      "date": "2026-05-02",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0132",
+      "package": "ssdeep",
+      "title": "Potential out-of-bounds write via public `Context` fields",
+      "date": "2026-05-02",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0133",
+      "package": "auto_vec",
+      "title": "Invalid pointer arithmetic in `iter()` and `iter_mut()`",
+      "date": "2026-05-02",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
