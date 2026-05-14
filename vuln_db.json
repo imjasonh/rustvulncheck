@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1778692290",
+  "generated_at": "unix:1778796144",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -12558,6 +12558,38 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0142",
+      "package": "mutringbuf",
+      "title": "Double-free in `vmem` storage reachable from safe Rust (predecessor of `oneringbuf`)",
+      "date": "2026-05-14",
+      "patched_versions": [],
+      "commit_sha": "5b630b644afd9c97b793024f1d77b7134fd74c69",
+      "vulnerable_symbols": [
+        {
+          "file": "src/ring_buffer/storage_components/alloc/vmem/mod.rs",
+          "function": "mutringbuf::ring_buffer::storage_components::alloc::vmem::VmemStorage::new",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0143",
+      "package": "oneringbuf",
+      "title": "Double-free in `vmem` storage reachable from safe Rust",
+      "date": "2026-05-14",
+      "patched_versions": [
+        ">= 0.7.1"
+      ],
+      "commit_sha": "5b630b644afd9c97b793024f1d77b7134fd74c69",
+      "vulnerable_symbols": [
+        {
+          "file": "src/ring_buffer/storage_components/alloc/vmem/mod.rs",
+          "function": "oneringbuf::ring_buffer::storage_components::alloc::vmem::VmemStorage::new",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
