@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1778796144",
+  "generated_at": "unix:1779172892",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -12590,6 +12590,17 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0146",
+      "package": "anchor-lang",
+      "title": "`InterfaceAccount` allows account substitution between unexpected types",
+      "date": "2026-05-08",
+      "patched_versions": [
+        ">= 1.0.0-rc.2"
+      ],
+      "commit_sha": "3a799e2d32bd708f0b280c60baecac76418248b1",
+      "vulnerable_symbols": []
     }
   ]
 }
