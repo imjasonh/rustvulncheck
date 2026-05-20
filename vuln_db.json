@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1779172892",
+  "generated_at": "unix:1779272461",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -12601,6 +12601,240 @@
       ],
       "commit_sha": "3a799e2d32bd708f0b280c60baecac76418248b1",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0147",
+      "package": "boxlite",
+      "title": "Read-only volume remount bypass via guest CAP_SYS_ADMIN",
+      "date": "2026-05-16",
+      "patched_versions": [
+        ">= 0.9.0"
+      ],
+      "commit_sha": "2c26968ec523d171b5496d74da434199e8b1fb1b",
+      "vulnerable_symbols": [
+        {
+          "file": "src/boxlite/src/vmm/krun/constants.rs",
+          "function": "boxlite::boxlite::src::vmm::krun::constants::TsiFeatures::as_raw",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/boxlite/src/vmm/krun/context.rs",
+          "function": "boxlite::boxlite::src::vmm::krun::context::KrunContext::add_virtiofs",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/vmm/krun/context.rs",
+          "function": "boxlite::boxlite::src::vmm::krun::context::KrunContext::add_vsock",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/boxlite/src/vmm/krun/context.rs",
+          "function": "boxlite::boxlite::src::vmm::krun::context::KrunContext::disable_implicit_vsock",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/boxlite/src/vmm/krun/context.rs",
+          "function": "boxlite::boxlite::src::vmm::krun::context::KrunContext::disable_tsi",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/boxlite/src/vmm/krun/engine.rs",
+          "function": "boxlite::boxlite::src::vmm::krun::engine::Krun::create",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/deps/libkrun-sys/build.rs",
+          "function": "boxlite::deps::libkrun_sys::build::LibBuilder::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/deps/libkrun-sys/build.rs",
+          "function": "boxlite::deps::libkrun_sys::build::LibBuilder::build_init_binary",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/deps/libkrun-sys/build.rs",
+          "function": "boxlite::deps::libkrun_sys::build::LibBuilder::build_libkrun_static",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/deps/libkrun-sys/build.rs",
+          "function": "boxlite::deps::libkrun_sys::build::MacToolchain::into_cc_linux",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/deps/libkrun-sys/build.rs",
+          "function": "boxlite::deps::libkrun_sys::build::MacToolchain::into_make_args",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/deps/libkrun-sys/build.rs",
+          "function": "boxlite::deps::libkrun_sys::build::MacToolchain::resolve",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/deps/libkrun-sys/build.rs",
+          "function": "boxlite::deps::libkrun_sys::build::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/deps/libkrun-sys/build.rs",
+          "function": "boxlite::deps::libkrun_sys::build::download_libkrunfw_prebuilt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/deps/libkrun-sys/build.rs",
+          "function": "boxlite::deps::libkrun_sys::build::download_libkrunfw_so",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/guest/src/container/capabilities.rs",
+          "function": "boxlite::guest::src::container::capabilities::all_capabilities",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/guest/src/container/capabilities.rs",
+          "function": "boxlite::guest::src::container::capabilities::capability_names",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/guest/src/container/capabilities.rs",
+          "function": "boxlite::guest::src::container::capabilities::default_capabilities",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/guest/src/container/spec.rs",
+          "function": "boxlite::guest::src::container::spec::build_default_capabilities",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0148",
+      "package": "boxlite",
+      "title": "OCI layer symlink escape → arbitrary host write",
+      "date": "2026-05-16",
+      "patched_versions": [
+        ">= 0.9.0"
+      ],
+      "commit_sha": "22e54937b3b1526a4554e963297850f320880150",
+      "vulnerable_symbols": [
+        {
+          "file": "src/boxlite/src/images/archive/tar.rs",
+          "function": "boxlite::boxlite::src::images::archive::tar::verify_diff_id",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/boxlite/src/images/object.rs",
+          "function": "boxlite::boxlite::src::images::object::ImageObject::layer_extracted",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/object.rs",
+          "function": "boxlite::boxlite::src::images::object::ImageObject::verify_diff_ids",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/boxlite/src/images/storage.rs",
+          "function": "boxlite::boxlite::src::images::storage::HashingWriter::finalize",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/boxlite/src/images/storage.rs",
+          "function": "boxlite::boxlite::src::images::storage::HashingWriter::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/boxlite/src/images/storage.rs",
+          "function": "boxlite::boxlite::src::images::storage::HashingWriter::poll_flush",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/boxlite/src/images/storage.rs",
+          "function": "boxlite::boxlite::src::images::storage::HashingWriter::poll_shutdown",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/boxlite/src/images/storage.rs",
+          "function": "boxlite::boxlite::src::images::storage::HashingWriter::poll_write",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/boxlite/src/images/storage.rs",
+          "function": "boxlite::boxlite::src::images::storage::ImageStorage::stage_config_download",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/storage.rs",
+          "function": "boxlite::boxlite::src::images::storage::ImageStorage::stage_layer_download",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/storage.rs",
+          "function": "boxlite::boxlite::src::images::storage::StagedDownload::abort",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/storage.rs",
+          "function": "boxlite::boxlite::src::images::storage::StagedDownload::commit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/storage.rs",
+          "function": "boxlite::boxlite::src::images::storage::StagedDownload::file",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/storage.rs",
+          "function": "boxlite::boxlite::src::images::storage::StagedDownload::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/store.rs",
+          "function": "boxlite::boxlite::src::images::store::ImageStore::download_layer",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/store.rs",
+          "function": "boxlite::boxlite::src::images::store::ImageStore::extract_image_manifest",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/store.rs",
+          "function": "boxlite::boxlite::src::images::store::ImageStore::extract_platform_manifest",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/store.rs",
+          "function": "boxlite::boxlite::src::images::store::ImageStore::layers_from_image",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/store.rs",
+          "function": "boxlite::boxlite::src::images::store::ImageStore::load_diff_ids_from_config",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/boxlite/src/images/store.rs",
+          "function": "boxlite::boxlite::src::images::store::ImageStore::load_from_local",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/store.rs",
+          "function": "boxlite::boxlite::src::images::store::ImageStore::load_manifest_from_disk",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/store.rs",
+          "function": "boxlite::boxlite::src::images::store::ImageStore::parse_oci_manifest_from_path",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxlite/src/images/store.rs",
+          "function": "boxlite::boxlite::src::images::store::ImageStore::pull_from_registry",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
