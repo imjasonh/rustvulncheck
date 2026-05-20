@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1779272461",
+  "generated_at": "unix:1779295605",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -10095,6 +10095,23 @@
       "patched_versions": [],
       "commit_sha": "f992b80dedc1da7791b74ac01591e3336c41d893",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0162",
+      "package": "vku",
+      "title": "`VMABuffer::set_data` may allow out-of-bounds writes from safe code",
+      "date": "2025-04-23",
+      "patched_versions": [
+        ">= 0.4.0"
+      ],
+      "commit_sha": "ce02c19ec35e5ee84c00ec5005be9d6d44599b5f",
+      "vulnerable_symbols": [
+        {
+          "file": "src/vma_buffer.rs",
+          "function": "vku::vma_buffer::VMABuffer::set_data",
+          "change_type": "Modified"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2026-0001",
