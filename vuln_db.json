@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1779295605",
+  "generated_at": "unix:1779445086",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -12852,6 +12852,15 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0150",
+      "package": "audiopus_sys",
+      "title": "audiopus_sys is unmaintained",
+      "date": "2026-05-21",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
