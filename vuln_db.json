@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1779445086",
+  "generated_at": "unix:1780325467",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -12861,6 +12861,23 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0152",
+      "package": "oneringbuf",
+      "title": "Use-after-free",
+      "date": "2026-05-27",
+      "patched_versions": [
+        ">= 0.8.0"
+      ],
+      "commit_sha": "643a24b30914068416dff9021a069c12c865a316",
+      "vulnerable_symbols": [
+        {
+          "file": "src/ring_buffer/impls.rs",
+          "function": "oneringbuf::ring_buffer::impls::OneRingBuf::into_ref",
+          "change_type": "Deleted"
+        }
+      ]
     }
   ]
 }
