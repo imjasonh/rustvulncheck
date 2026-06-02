@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1780325467",
+  "generated_at": "unix:1780394610",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -12876,6 +12876,49 @@
           "file": "src/ring_buffer/impls.rs",
           "function": "oneringbuf::ring_buffer::impls::OneRingBuf::into_ref",
           "change_type": "Deleted"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0153",
+      "package": "russh-cryptovec",
+      "title": "Unchecked `CryptoVec` allocation and growth handling",
+      "date": "2026-05-15",
+      "patched_versions": [
+        ">=0.60.3"
+      ],
+      "commit_sha": "a2d48a71fe93d18cbd666c8d53d0882f5ce110c4",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0154",
+      "package": "russh",
+      "title": "Unbounded 32-bit allocation",
+      "date": "2026-05-15",
+      "patched_versions": [
+        ">=0.60.3"
+      ],
+      "commit_sha": "a2d48a71fe93d18cbd666c8d53d0882f5ce110c4",
+      "vulnerable_symbols": [
+        {
+          "file": "russh/src/keys/agent/client.rs",
+          "function": "russh::keys::agent::client::AgentClient::read_frame",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/keys/agent/client.rs",
+          "function": "russh::keys::agent::client::AgentClient::read_response",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/keys/agent/server.rs",
+          "function": "russh::keys::agent::server::Connection::read_frame",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/keys/agent/server.rs",
+          "function": "russh::keys::agent::server::Connection::run",
+          "change_type": "Modified"
         }
       ]
     }
