@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1780394610",
+  "generated_at": "unix:1780489915",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -12921,6 +12921,24 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0156",
+      "package": "metacall",
+      "title": "Bad-free in `MetaCallException::new`",
+      "date": "2026-06-01",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0157",
+      "package": "metacall",
+      "title": "Several memory corruption issues via safe APIs",
+      "date": "2026-06-01",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
