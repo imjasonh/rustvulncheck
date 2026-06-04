@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1780489915",
+  "generated_at": "unix:1780589959",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -12936,6 +12936,87 @@
       "package": "metacall",
       "title": "Several memory corruption issues via safe APIs",
       "date": "2026-06-01",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0160",
+      "package": "pqcrypto-sphincsplus",
+      "title": "`pqcrypto-sphincsplus` is unmaintained: upstream PQClean project being archived",
+      "date": "2026-06-04",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0161",
+      "package": "pqcrypto-mlkem",
+      "title": "`pqcrypto-mlkem` is unmaintained: upstream PQClean project being archived",
+      "date": "2026-06-04",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0162",
+      "package": "pqcrypto-traits",
+      "title": "`pqcrypto-traits` is unmaintained: upstream PQClean project being archived",
+      "date": "2026-06-04",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0163",
+      "package": "pqcrypto-internals",
+      "title": "`pqcrypto-internals` is unmaintained: upstream PQClean project being archived",
+      "date": "2026-06-04",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0164",
+      "package": "pqcrypto",
+      "title": "`pqcrypto` is unmaintained: upstream PQClean project being archived",
+      "date": "2026-06-04",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0165",
+      "package": "pqcrypto-falcon",
+      "title": "`pqcrypto-falcon` is unmaintained: upstream PQClean project being archived",
+      "date": "2026-06-04",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0166",
+      "package": "pqcrypto-mldsa",
+      "title": "`pqcrypto-mldsa` is unmaintained: upstream PQClean project being archived",
+      "date": "2026-06-04",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0167",
+      "package": "pqcrypto-classicmceliece",
+      "title": "`pqcrypto-classicmceliece` is unmaintained: upstream PQClean project being archived",
+      "date": "2026-06-04",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0168",
+      "package": "pqcrypto-hqc",
+      "title": "`pqcrypto-hqc` is unmaintained: upstream PQClean project being archived",
+      "date": "2026-06-04",
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
