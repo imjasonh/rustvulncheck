@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1780589959",
+  "generated_at": "unix:1780600502",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -13016,6 +13016,24 @@
       "advisory_id": "RUSTSEC-2026-0168",
       "package": "pqcrypto-hqc",
       "title": "`pqcrypto-hqc` is unmaintained: upstream PQClean project being archived",
+      "date": "2026-06-04",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0169",
+      "package": "surf",
+      "title": "surf is unmaintained",
+      "date": "2026-06-04",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0170",
+      "package": "tide",
+      "title": "tide is unmaintained",
       "date": "2026-06-04",
       "patched_versions": [],
       "commit_sha": null,
