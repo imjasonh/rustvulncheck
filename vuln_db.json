@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1780600502",
+  "generated_at": "unix:1780651836",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -13038,6 +13038,28 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0172",
+      "package": "diesel",
+      "title": "Possible use after free when deserializing a SQLite database via `SqliteConnection::deserialize_readonly_database`",
+      "date": "2026-06-05",
+      "patched_versions": [
+        ">= 2.3.10"
+      ],
+      "commit_sha": "1bc2ea46d9840e8d9af844239d3c84f37fe7d84b",
+      "vulnerable_symbols": [
+        {
+          "file": "diesel/src/sqlite/connection/mod.rs",
+          "function": "diesel::sqlite::connection::SqliteConnection::deserialize_readonly_database_from_buffer",
+          "change_type": "Modified"
+        },
+        {
+          "file": "diesel/src/sqlite/connection/mod.rs",
+          "function": "diesel::sqlite::connection::SqliteConnection::establish_inner",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
