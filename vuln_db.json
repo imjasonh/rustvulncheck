@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1780651836",
+  "generated_at": "unix:1780758436",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -10112,6 +10112,15 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0163",
+      "package": "trailer",
+      "title": "Unsound issue in Trailer",
+      "date": "2025-05-04",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     },
     {
       "advisory_id": "RUSTSEC-2026-0001",
