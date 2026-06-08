@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1780866109",
+  "generated_at": "unix:1780937196",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -13075,6 +13075,15 @@
       "package": "proc-macro-error2",
       "title": "proc-macro-error2 is unmaintained",
       "date": "2026-06-07",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0174",
+      "package": "http-types",
+      "title": "`Authorization::value` and `WwwAuthenticate::value` can violate ASCII invariants",
+      "date": "2026-03-11",
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
