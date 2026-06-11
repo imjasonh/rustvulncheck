@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1780937196",
+  "generated_at": "unix:1781219757",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -13087,6 +13087,83 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0176",
+      "package": "pyo3",
+      "title": "Out-of-bounds read in `nth` / `nth_back` for `PyList` and `PyTuple` iterators",
+      "date": "2026-06-11",
+      "patched_versions": [
+        ">= 0.29.0"
+      ],
+      "commit_sha": "3d48a540572a86548a8f670ea96fa486036d476a",
+      "vulnerable_symbols": [
+        {
+          "file": "src/types/list.rs",
+          "function": "pyo3::types::list::BoundListIterator::advance_back_by",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/list.rs",
+          "function": "pyo3::types::list::BoundListIterator::advance_by",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/list.rs",
+          "function": "pyo3::types::list::BoundListIterator::nth",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/list.rs",
+          "function": "pyo3::types::list::BoundListIterator::nth_back",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/list.rs",
+          "function": "pyo3::types::list::BoundListIterator::nth_back_locked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/types/list.rs",
+          "function": "pyo3::types::list::BoundListIterator::nth_back_unsynchronized",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/types/list.rs",
+          "function": "pyo3::types::list::BoundListIterator::nth_locked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/types/list.rs",
+          "function": "pyo3::types::list::BoundListIterator::nth_unsynchronized",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/types/tuple.rs",
+          "function": "pyo3::types::tuple::BorrowedTupleIterator::next_back",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/tuple.rs",
+          "function": "pyo3::types::tuple::BoundTupleIterator::advance_back_by",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/tuple.rs",
+          "function": "pyo3::types::tuple::BoundTupleIterator::advance_by",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/tuple.rs",
+          "function": "pyo3::types::tuple::BoundTupleIterator::nth",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/tuple.rs",
+          "function": "pyo3::types::tuple::BoundTupleIterator::nth_back",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
