@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1781219757",
+  "generated_at": "unix:1781231563",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -13164,6 +13164,17 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0177",
+      "package": "pyo3",
+      "title": "Missing `Sync` bound on `PyCFunction::new_closure` closures",
+      "date": "2026-06-11",
+      "patched_versions": [
+        ">= 0.29.0"
+      ],
+      "commit_sha": "9cc78627df2e1268efd2e7973619301ae53c4834",
+      "vulnerable_symbols": []
     }
   ]
 }
