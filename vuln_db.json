@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1781231563",
+  "generated_at": "unix:1781285568",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -13175,6 +13175,62 @@
       ],
       "commit_sha": "9cc78627df2e1268efd2e7973619301ae53c4834",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0178",
+      "package": "tokio-postgres",
+      "title": "Panic on a `DataRow` with fewer fields than columns allows denial of service",
+      "date": "2026-06-12",
+      "patched_versions": [
+        ">= 0.7.18"
+      ],
+      "commit_sha": "7a00ffa9ad4d951ec0a4564b52f1780fa9d353c1",
+      "vulnerable_symbols": [
+        {
+          "file": "tokio-postgres/src/row.rs",
+          "function": "tokio_postgres::row::Row::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio-postgres/src/row.rs",
+          "function": "tokio_postgres::row::SimpleQueryRow::new",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0179",
+      "package": "postgres-protocol",
+      "title": "Unbounded SCRAM iteration count allows a malicious server to cause CPU-exhaustion denial of service",
+      "date": "2026-06-12",
+      "patched_versions": [
+        ">= 0.6.12"
+      ],
+      "commit_sha": "d40097a36a85068ea50a3afbf0ce154ba439e7f0",
+      "vulnerable_symbols": [
+        {
+          "file": "postgres-protocol/src/authentication/sasl.rs",
+          "function": "postgres_protocol::authentication::sasl::ScramSha256::update",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0180",
+      "package": "postgres-protocol",
+      "title": "Panic decoding a malformed `hstore` value allows denial of service",
+      "date": "2026-06-12",
+      "patched_versions": [
+        ">= 0.6.12"
+      ],
+      "commit_sha": "a7cf84b5c46431cbca9d8ff50508c23f446efa7d",
+      "vulnerable_symbols": [
+        {
+          "file": "postgres-protocol/src/types/mod.rs",
+          "function": "postgres_protocol::types::HstoreEntries::next",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
