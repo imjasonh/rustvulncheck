@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1781285568",
+  "generated_at": "unix:1781706517",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -13228,6 +13228,55 @@
         {
           "file": "postgres-protocol/src/types/mod.rs",
           "function": "postgres_protocol::types::HstoreEntries::next",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0183",
+      "package": "git2",
+      "title": "Potential undefined behavior when calling Remote::list()",
+      "date": "2026-05-12",
+      "patched_versions": [
+        ">= 0.21.0"
+      ],
+      "commit_sha": "0d1fde9993a8a544b8ac66414576d032dacd32e3",
+      "vulnerable_symbols": [
+        {
+          "file": "src/remote.rs",
+          "function": "git2::remote::Remote::list",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0184",
+      "package": "git2",
+      "title": "Potential undefined behavior with Signature from a buffer-created BlameHunk",
+      "date": "2026-05-13",
+      "patched_versions": [
+        ">= 0.21.0"
+      ],
+      "commit_sha": "19948b7ba104b2e7b5199f62e0e10247e577cea1",
+      "vulnerable_symbols": [
+        {
+          "file": "src/blame.rs",
+          "function": "git2::blame::BlameHunk::final_committer",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/blame.rs",
+          "function": "git2::blame::BlameHunk::final_signature",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/blame.rs",
+          "function": "git2::blame::BlameHunk::orig_committer",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/blame.rs",
+          "function": "git2::blame::BlameHunk::orig_signature",
           "change_type": "Modified"
         }
       ]
