@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1781706517",
+  "generated_at": "unix:1782132267",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -5715,6 +5715,15 @@
       "patched_versions": [
         ">= 0.1.39"
       ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0104",
+      "package": "structopt",
+      "title": "`structopt` is in maintenance mode",
+      "date": "2022-02-08",
+      "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
     },
