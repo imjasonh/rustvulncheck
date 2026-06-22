@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1782132267",
+  "generated_at": "unix:1782160465",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -13286,6 +13286,164 @@
         {
           "file": "src/blame.rs",
           "function": "git2::blame::BlameHunk::orig_signature",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0185",
+      "package": "quinn-proto",
+      "title": "Remote memory exhaustion in quinn-proto from unbounded out-of-order stream reassembly",
+      "date": "2026-06-22",
+      "patched_versions": [
+        ">= 0.11.15"
+      ],
+      "commit_sha": "a7499b8439e393a6299330111d9c8564cd96c464",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0186",
+      "package": "memmap2",
+      "title": "Unchecked pointer offset in crate `memmap2`",
+      "date": "2026-06-20",
+      "patched_versions": [
+        ">= 0.9.11"
+      ],
+      "commit_sha": "de560435330d29019ad39c473aaaed35011b73d5",
+      "vulnerable_symbols": [
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::Mmap::advise",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::Mmap::advise_range",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::Mmap::map",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::Mmap::unchecked_advise",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::Mmap::unchecked_advise_range",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::MmapMut::advise",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::MmapMut::advise_range",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::MmapMut::map_mut",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::MmapMut::unchecked_advise",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::MmapMut::unchecked_advise_range",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::MmapRaw::advise",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::MmapRaw::advise_range",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::MmapRaw::as_mut_ptr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::MmapRaw::unchecked_advise",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "memmap2::MmapRaw::unchecked_advise_range",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/unix.rs",
+          "function": "memmap2::unix::MmapInner::advise",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/unix.rs",
+          "function": "memmap2::unix::MmapInner::as_mmap_params",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/unix.rs",
+          "function": "memmap2::unix::MmapInner::flush",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/unix.rs",
+          "function": "memmap2::unix::MmapInner::flush_async",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/unix.rs",
+          "function": "memmap2::unix::MmapInner::from_raw_parts",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/unix.rs",
+          "function": "memmap2::unix::MmapInner::mprotect",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/unix.rs",
+          "function": "memmap2::unix::MmapInner::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/unix.rs",
+          "function": "memmap2::unix::MmapInner::remap",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/windows.rs",
+          "function": "memmap2::windows::MmapInner::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/windows.rs",
+          "function": "memmap2::windows::MmapInner::flush_async",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/windows.rs",
+          "function": "memmap2::windows::MmapInner::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/windows.rs",
+          "function": "memmap2::windows::MmapInner::virtual_protect",
           "change_type": "Modified"
         }
       ]
