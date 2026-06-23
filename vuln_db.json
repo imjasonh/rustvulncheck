@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1782160465",
+  "generated_at": "unix:1782221845",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -10129,6 +10129,17 @@
       "date": "2025-05-04",
       "patched_versions": [],
       "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0164",
+      "package": "i_triangle",
+      "title": "`DTriangle` accessors may read out of bounds in affected versions",
+      "date": "2025-04-24",
+      "patched_versions": [
+        ">= 0.29.0"
+      ],
+      "commit_sha": "13e0e9f4d5333e3a815191e5f6f402641997f91b",
       "vulnerable_symbols": []
     },
     {
