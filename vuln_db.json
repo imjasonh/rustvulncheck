@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1782221845",
+  "generated_at": "unix:1782468928",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -13455,6 +13455,73 @@
         {
           "file": "src/windows.rs",
           "function": "memmap2::windows::MmapInner::virtual_protect",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0187",
+      "package": "lopdf",
+      "title": "Stack overflow in lopdf via deeply nested PDF objects",
+      "date": "2026-06-21",
+      "patched_versions": [
+        ">= 0.42.0"
+      ],
+      "commit_sha": "c755394ad7dd651ccfe77c618f90ab779da1dfd9",
+      "vulnerable_symbols": [
+        {
+          "file": "src/parser/mod.rs",
+          "function": "lopdf::parser::_dictionary",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/parser/mod.rs",
+          "function": "lopdf::parser::_direct_object",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/parser/mod.rs",
+          "function": "lopdf::parser::_direct_objects",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/parser/mod.rs",
+          "function": "lopdf::parser::array",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/parser/mod.rs",
+          "function": "lopdf::parser::dict_dup",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/parser/mod.rs",
+          "function": "lopdf::parser::dictionary",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/parser/mod.rs",
+          "function": "lopdf::parser::direct_object",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/parser/mod.rs",
+          "function": "lopdf::parser::inline_image_impl",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/parser/mod.rs",
+          "function": "lopdf::parser::inner_dictionary",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/parser/mod.rs",
+          "function": "lopdf::parser::object",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/parser/mod.rs",
+          "function": "lopdf::parser::operand",
           "change_type": "Modified"
         }
       ]
