@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1782737964",
+  "generated_at": "unix:1782751039",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -10143,6 +10143,368 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2025-0165",
+      "package": "i_tree",
+      "title": "i_tree allowed out-of-bounds access through safe public node accessors",
+      "date": "2025-07-04",
+      "patched_versions": [
+        ">= 0.10.0"
+      ],
+      "commit_sha": "a948b891cf159233bfed5b16bf185268fd9e1985",
+      "vulnerable_symbols": [
+        {
+          "file": "src/array.rs",
+          "function": "i_tree::array::Tree::fill_ordered_list",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "i_tree::array::Tree::fill_ordered_list_with_stack",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "i_tree::array::Tree::first_by_order",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "i_tree::array::Tree::next_by_order",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "i_tree::array::Tree::ordered_list",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "i_tree::array::Tree::with_sorted_array",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/key/array.rs",
+          "function": "i_tree::key::array::KeyExpList::into_ordered_vec",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/array.rs",
+          "function": "i_tree::key::array::KeyExpTree::create_ordered_list",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/array.rs",
+          "function": "i_tree::key::array::KeyExpTree::expire_all",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/array.rs",
+          "function": "i_tree::key::array::KeyExpTree::height",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/array.rs",
+          "function": "i_tree::key::array::KeyExpTree::into_ordered_vec",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/array.rs",
+          "function": "i_tree::key::array::KeyExpTree::is_part_of_the_tree",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/array.rs",
+          "function": "i_tree::key::array::StackNode::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/entity.rs",
+          "function": "i_tree::key::entity::Entity::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/list.rs",
+          "function": "i_tree::key::list::KeyExpList::clear",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/list.rs",
+          "function": "i_tree::key::list::KeyExpList::clear_expired",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/list.rs",
+          "function": "i_tree::key::list::KeyExpList::first_less",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/list.rs",
+          "function": "i_tree::key::list::KeyExpList::first_less_by",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/list.rs",
+          "function": "i_tree::key::list::KeyExpList::get_value",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/list.rs",
+          "function": "i_tree::key::list::KeyExpList::insert",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/list.rs",
+          "function": "i_tree::key::list::KeyExpList::is_empty",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/list.rs",
+          "function": "i_tree::key::list::KeyExpList::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/node.rs",
+          "function": "i_tree::key::node::Node::default",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/node.rs",
+          "function": "i_tree::key::node::Node::is_not_expired",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/pool.rs",
+          "function": "i_tree::key::pool::Pool::get_free_index",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/pool.rs",
+          "function": "i_tree::key::pool::Pool::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/pool.rs",
+          "function": "i_tree::key::pool::Pool::put_back",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/pool.rs",
+          "function": "i_tree::key::pool::Pool::reserve",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::clear",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::create_nil_node",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::delete_index",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::delete_node_with_zero_or_one_child",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::expire_left",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::expire_right",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::expire_root",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::find_left_minimum",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::first_less",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::first_less_by",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::fix_red_black_properties_after_delete",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::fix_red_black_properties_after_insert",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::get_sibling",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::get_uncle",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::get_value",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::handle_black_sibling_with_at_least_one_red_child",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::handle_red_sibling",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::insert",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::insert_entity",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::insert_root",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::insert_with_parent",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::is_black",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::is_empty",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::node",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::node_mut",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::remove_parents_child",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::replace_parents_child",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::rotate_left",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::rotate_right",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::search_first_less",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::search_first_less_by",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/key/tree.rs",
+          "function": "i_tree::key::tree::KeyExpTree::search_value",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "i_tree::i16::max_expiration",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "i_tree::i32::max_expiration",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "i_tree::i64::max_expiration",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "i_tree::i8::max_expiration",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "i_tree::u16::max_expiration",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "i_tree::u32::max_expiration",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "i_tree::u64::max_expiration",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "i_tree::u8::max_expiration",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "i_tree::usize::max_expiration",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2026-0001",
       "package": "rkyv",
       "title": "Potential Undefined Behaviors in `Arc<T>`/`Rc<T>` impls of `from_value` on OOM",
@@ -13595,6 +13957,57 @@
           "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
           "function": "rmcp::transport::streamable_http_server::tower::validate_dns_rebinding_headers",
           "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0190",
+      "package": "anyhow",
+      "title": "Unsoundness in `Error::downcast_mut()`",
+      "date": "2026-06-25",
+      "patched_versions": [
+        ">= 1.0.103"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0191",
+      "package": "solana_rbpf",
+      "title": "`EbpfVm::invoke_function` performs out-of-bounds pointer arithmetic",
+      "date": "2026-05-28",
+      "patched_versions": [],
+      "commit_sha": "27a8346974b8aeb1c2e8314a5fa196c5eb8d964c",
+      "vulnerable_symbols": [
+        {
+          "file": "src/jit.rs",
+          "function": "solana_rbpf::jit::JitCompiler::slot_in_vm",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/jit.rs",
+          "function": "solana_rbpf::jit::JitProgram::invoke",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/vm.rs",
+          "function": "solana_rbpf::vm::EbpfVm::encrypted_host_address",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/vm.rs",
+          "function": "solana_rbpf::vm::EbpfVm::invoke_function",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/vm.rs",
+          "function": "solana_rbpf::vm::EncryptedHostAddressToEbpfVm::with_vm",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/vm.rs",
+          "function": "solana_rbpf::vm::get_runtime_environment_key",
+          "change_type": "Modified"
         }
       ]
     }
