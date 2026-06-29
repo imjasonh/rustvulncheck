@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1782468928",
+  "generated_at": "unix:1782737964",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -13523,6 +13523,78 @@
           "file": "src/parser/mod.rs",
           "function": "lopdf::parser::operand",
           "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0189",
+      "package": "rmcp",
+      "title": "DNS rebinding vulnerability in rmcp Streamable HTTP server transport",
+      "date": "2026-04-29",
+      "patched_versions": [
+        ">= 1.4.0"
+      ],
+      "commit_sha": "8e22aa2de28df5a285eed87c11cd89bf15fa90d3",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::StreamableHttpServerConfig::default",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::StreamableHttpServerConfig::disable_allowed_hosts",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::StreamableHttpServerConfig::with_allowed_hosts",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::StreamableHttpService::handle",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::bad_request_response",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::forbidden_response",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::host_is_allowed",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::normalize_authority",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::normalize_host",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::parse_allowed_authority",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::parse_host_header",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::validate_dns_rebinding_headers",
+          "change_type": "Added"
         }
       ]
     }
