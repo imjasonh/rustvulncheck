@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1782751039",
+  "generated_at": "unix:1782770731",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -14010,6 +14010,15 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0192",
+      "package": "ttf-parser",
+      "title": "`ttf-parser` is unmaintained",
+      "date": "2026-06-28",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
