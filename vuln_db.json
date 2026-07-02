@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1782770731",
+  "generated_at": "unix:1782986037",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -10505,6 +10505,17 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2025-0166",
+      "package": "stackvector",
+      "title": "Multiple soundness issues in `stackvector`",
+      "date": "2025-10-23",
+      "patched_versions": [
+        ">= 2.0.0"
+      ],
+      "commit_sha": "f67b4b98e2aa286f05367d7d7849fc0f0de817d6",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2026-0001",
       "package": "rkyv",
       "title": "Potential Undefined Behaviors in `Arc<T>`/`Rc<T>` impls of `from_value` on OOM",
@@ -14019,6 +14030,100 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0194",
+      "package": "quick-xml",
+      "title": "Quadratic run time when checking a start tag for duplicate attribute names",
+      "date": "2026-06-29",
+      "patched_versions": [
+        ">= 0.41.0"
+      ],
+      "commit_sha": "07f3db8343cf152f5bc3483ef5b3164582489bea",
+      "vulnerable_symbols": [
+        {
+          "file": "src/events/attributes.rs",
+          "function": "quick_xml::events::attributes::IdentityHasher::finish",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/events/attributes.rs",
+          "function": "quick_xml::events::attributes::IdentityHasher::write",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/events/attributes.rs",
+          "function": "quick_xml::events::attributes::IdentityHasher::write_u64",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/events/attributes.rs",
+          "function": "quick_xml::events::attributes::IterState::check_for_duplicates",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/events/attributes.rs",
+          "function": "quick_xml::events::attributes::IterState::check_for_duplicates_hashed",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/events/attributes.rs",
+          "function": "quick_xml::events::attributes::IterState::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/events/attributes.rs",
+          "function": "quick_xml::events::attributes::hash_name",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0195",
+      "package": "quick-xml",
+      "title": "Unbounded namespace-declaration allocation in `NsReader` enables memory-exhaustion denial of service",
+      "date": "2026-06-29",
+      "patched_versions": [
+        ">= 0.41.0"
+      ],
+      "commit_sha": "7ca25266e94987210daa864889ab15c9332c8a2a",
+      "vulnerable_symbols": [
+        {
+          "file": "src/name.rs",
+          "function": "quick_xml::name::NamespaceError::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/name.rs",
+          "function": "quick_xml::name::NamespaceResolver::default",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/name.rs",
+          "function": "quick_xml::name::NamespaceResolver::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/name.rs",
+          "function": "quick_xml::name::NamespaceResolver::max_declarations_per_element",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/name.rs",
+          "function": "quick_xml::name::NamespaceResolver::push",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/name.rs",
+          "function": "quick_xml::name::NamespaceResolver::set_max_declarations_per_element",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/reader/ns_reader.rs",
+          "function": "quick_xml::reader::ns_reader::NsReader::resolver_mut",
+          "change_type": "Added"
+        }
+      ]
     }
   ]
 }
