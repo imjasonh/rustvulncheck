@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1782986037",
+  "generated_at": "unix:1783019497",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -2006,7 +2006,43 @@
         ">= 0.3.6"
       ],
       "commit_sha": "4d54611f93cecab7fb6072db436064e92fefb5e2",
-      "vulnerable_symbols": []
+      "vulnerable_symbols": [
+        {
+          "file": "futures-task/src/waker.rs",
+          "function": "futures_task::waker::clone_arc_raw",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "futures-task/src/waker.rs",
+          "function": "futures_task::waker::drop_arc_raw",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "futures-task/src/waker.rs",
+          "function": "futures_task::waker::increase_refcount",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "futures-task/src/waker.rs",
+          "function": "futures_task::waker::wake_arc_raw",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "futures-task/src/waker.rs",
+          "function": "futures_task::waker::wake_by_ref_arc_raw",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "futures-task/src/waker.rs",
+          "function": "futures_task::waker::waker",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "futures-task/src/waker.rs",
+          "function": "futures_task::waker::waker_vtable",
+          "change_type": "Deleted"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2020-0061",
@@ -2714,7 +2750,48 @@
         ">= 0.1.43"
       ],
       "commit_sha": "18847c50e5d36561cc91c996c3539ddb1eacf6c7",
-      "vulnerable_symbols": []
+      "vulnerable_symbols": [
+        {
+          "file": "src/util.rs",
+          "function": "v9::util::MutButRef::deref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "v9::util::MutButRef::get_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "v9::util::MutButRef::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "v9::util::SyncRef::as_cell",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "v9::util::SyncRef::as_cell_unsafe",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "v9::util::SyncRef::get_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "v9::util::SyncRef::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "v9::util::die::bad_iter_len",
+          "change_type": "Deleted"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2020-0128",
@@ -3124,7 +3201,68 @@
         ">= 0.4.0"
       ],
       "commit_sha": "4298b9de04c7b721d242f2169dbb6f155788c859",
-      "vulnerable_symbols": []
+      "vulnerable_symbols": [
+        {
+          "file": "src/array.rs",
+          "function": "glsl_layout::array::Array::as_mut",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "glsl_layout::array::Array::as_ref",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "glsl_layout::array::Array::into_iter",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "glsl_layout::array::Array::iter",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "glsl_layout::array::Array::iter_mut",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "glsl_layout::array::Array::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "glsl_layout::array::ArrayIter::len",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "glsl_layout::array::ArrayIter::next",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "glsl_layout::array::ArrayIter::next_back",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "glsl_layout::array::Element::as_mut",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "glsl_layout::array::Element::as_ref",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/array.rs",
+          "function": "glsl_layout::array::Element::from",
+          "change_type": "Added"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2021-0006",
@@ -5337,7 +5475,123 @@
         ">= 0.24.2"
       ],
       "commit_sha": "29c13638dc679db708fa466376650cb0bf758eff",
-      "vulnerable_symbols": []
+      "vulnerable_symbols": [
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::AllPreallocated::deallocate",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::Secp256k1::from_raw_all",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::Secp256k1::from_raw_signing_only",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::Secp256k1::from_raw_verification_only",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::Secp256k1::preallocate_signing_size",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::Secp256k1::preallocate_size",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::Secp256k1::preallocate_verification_size",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::Secp256k1::preallocated_gen_new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::Secp256k1::preallocated_new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::Secp256k1::preallocated_signing_only",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::Secp256k1::preallocated_verification_only",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::SignOnlyPreallocated::deallocate",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::VerifyOnlyPreallocated::deallocate",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::alloc_only::All::deallocate",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::alloc_only::Secp256k1::clone",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::alloc_only::Secp256k1::default",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::alloc_only::Secp256k1::gen_new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::alloc_only::Secp256k1::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::alloc_only::Secp256k1::signing_only",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::alloc_only::Secp256k1::verification_only",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::alloc_only::SignOnly::deallocate",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::alloc_only::VerifyOnly::deallocate",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/context.rs",
+          "function": "secp256k1::context::global::GlobalContext::deref",
+          "change_type": "Added"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2022-0071",
@@ -7529,7 +7783,163 @@
       "date": "2023-10-30",
       "patched_versions": [],
       "commit_sha": "8a8814e7cc97d44f4d194586b3e9deb904c99488",
-      "vulnerable_symbols": []
+      "vulnerable_symbols": [
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::MbtType::is_normalized",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::MbtType::is_normalized_with_view",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::attach_to",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::check_agg_tiles_hashes",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::check_each_tile_hash",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::check_for_uniqueness_constraint",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::check_integrity",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::detect_format",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::detect_type",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::filename",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::filepath",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::get_agg_tiles_hash",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::get_metadata",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::get_metadata_value",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::get_tile",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::open",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::open_and_detect_type",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::open_int",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::open_or_new",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::open_readonly",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::parse_metadata",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::parse_tile",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::set_metadata_value",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::to_val",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::update_agg_tiles_hash",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::Mbtiles::validate",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::attach_hash_fn",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::calc_agg_tiles_hash",
+          "change_type": "Added"
+        },
+        {
+          "file": "martin-mbtiles/src/mbtiles.rs",
+          "function": "martin_mbtiles::mbtiles::serialize_ti",
+          "change_type": "Added"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2023-0095",
@@ -13567,7 +13977,28 @@
         ">= 0.29.0"
       ],
       "commit_sha": "9cc78627df2e1268efd2e7973619301ae53c4834",
-      "vulnerable_symbols": []
+      "vulnerable_symbols": [
+        {
+          "file": "src/types/function.rs",
+          "function": "pyo3::types::function::PyCFunction::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/types/function.rs",
+          "function": "pyo3::types::function::PyCFunction::new_closure",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/types/function.rs",
+          "function": "pyo3::types::function::PyCFunction::new_with_keywords",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/types/function.rs",
+          "function": "pyo3::types::function::run_closure",
+          "change_type": "Deleted"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2026-0178",
