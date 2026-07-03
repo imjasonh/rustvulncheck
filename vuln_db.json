@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1783019497",
+  "generated_at": "unix:1783093789",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -14553,6 +14553,56 @@
           "file": "src/reader/ns_reader.rs",
           "function": "quick_xml::reader::ns_reader::NsReader::resolver_mut",
           "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0196",
+      "package": "cgmath",
+      "title": "`cgmath` is unmaintained",
+      "date": "2026-07-01",
+      "patched_versions": [],
+      "commit_sha": "6943b7cdbd86989f436e1d0d1f8f3fddcbb6c676",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0197",
+      "package": "cgmath",
+      "title": "`Matrix{2,3,4}::swap_columns` can trigger undefined behavior for identical indices",
+      "date": "2026-03-11",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0198",
+      "package": "error-stack",
+      "title": "`Report::frames_mut` allows aliased mutable references",
+      "date": "2026-07-03",
+      "patched_versions": [
+        ">= 0.8.0"
+      ],
+      "commit_sha": "7ce07e4b039d95de253b799b4d5f0a9f3a0ea4a1",
+      "vulnerable_symbols": [
+        {
+          "file": "libs/error-stack/src/iter.rs",
+          "function": "error_stack::iter::FramesMut::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "libs/error-stack/src/iter.rs",
+          "function": "error_stack::iter::FramesMut::next",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "libs/error-stack/src/report.rs",
+          "function": "error_stack::report::Report::downcast_mut",
+          "change_type": "Modified"
+        },
+        {
+          "file": "libs/error-stack/src/report.rs",
+          "function": "error_stack::report::Report::frames_mut",
+          "change_type": "Modified"
         }
       ]
     }
