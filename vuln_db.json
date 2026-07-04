@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1783093789",
+  "generated_at": "unix:1783153474",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -14602,6 +14602,23 @@
         {
           "file": "libs/error-stack/src/report.rs",
           "function": "error_stack::report::Report::frames_mut",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0199",
+      "package": "bcrypt",
+      "title": "Panic in `bcrypt::verify` on non-ASCII hash input",
+      "date": "2026-06-20",
+      "patched_versions": [
+        ">= 0.19.2"
+      ],
+      "commit_sha": "084bedde0aa5501c6d6a0287f6d6857e793fde85",
+      "vulnerable_symbols": [
+        {
+          "file": "src/lib.rs",
+          "function": "bcrypt::split_hash",
           "change_type": "Modified"
         }
       ]
