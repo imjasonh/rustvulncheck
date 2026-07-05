@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1783153474",
+  "generated_at": "unix:1783244153",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -14622,6 +14622,17 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0202",
+      "package": "cxx",
+      "title": "`let_cxx_string!` uses uninitialized value due to exception safety violations",
+      "date": "2026-07-05",
+      "patched_versions": [
+        ">= 1.0.195"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
