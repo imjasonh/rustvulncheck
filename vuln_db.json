@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1783244153",
+  "generated_at": "unix:1783378737",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -14633,6 +14633,28 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0204",
+      "package": "crossbeam-epoch",
+      "title": "Invalid pointer dereference in `fmt::Pointer` impl for `Atomic` and `Shared` when the underlying pointer is invalid",
+      "date": "2026-07-06",
+      "patched_versions": [
+        ">= 0.9.20"
+      ],
+      "commit_sha": "91665e36a643715d8b74a19645162a46e8dab25b",
+      "vulnerable_symbols": [
+        {
+          "file": "crossbeam-epoch/src/atomic.rs",
+          "function": "crossbeam_epoch::atomic::Atomic::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-epoch/src/atomic.rs",
+          "function": "crossbeam_epoch::atomic::Shared::fmt",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
