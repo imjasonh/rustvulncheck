@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1783378737",
+  "generated_at": "unix:1783684463",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -9508,7 +9508,1333 @@
         ">= 0.10.70"
       ],
       "commit_sha": "f014afb230de4d77bc79dea60e7e58c2f47b60f2",
-      "vulnerable_symbols": []
+      "vulnerable_symbols": [
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::MidHandshakeSslStream::error",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::MidHandshakeSslStream::get_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::MidHandshakeSslStream::get_ref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::MidHandshakeSslStream::handshake",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::MidHandshakeSslStream::into_error",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::MidHandshakeSslStream::ssl",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::NameType::as_raw",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::NameType::from_raw",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::Ssl::accept",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::Ssl::cached_ex_index",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::Ssl::connect",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::Ssl::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::Ssl::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::Ssl::new_ex_index",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslCipher::as_ptr",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslCipher::deref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslCipher::deref_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslCipher::from_ptr",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslCipherRef::bits",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslCipherRef::cipher_nid",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslCipherRef::description",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslCipherRef::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslCipherRef::handshake_digest",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslCipherRef::name",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslCipherRef::standard_name",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslCipherRef::version",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContext::builder",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContext::cached_ex_index",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContext::clone",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContext::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContext::new_ex_index",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::add_client_ca",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::add_custom_ext",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::add_extra_chain_cert",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::as_ptr",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::build",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::cert_store",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::cert_store_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::check_private_key",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::clear_options",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::ex_data_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::from_ptr",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::load_verify_locations",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::max_proto_version",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::min_proto_version",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::options",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_alpn_protos",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_alpn_select_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_ca_file",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_cert_store",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_certificate",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_certificate_chain_file",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_certificate_file",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_cipher_list",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_ciphersuites",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_client_ca_list",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_client_hello_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_cookie_generate_cb",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_cookie_verify_cb",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_default_verify_paths",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_ecdh_auto",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_ex_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_ex_data_inner",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_get_session_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_groups_list",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_keylog_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_max_early_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_max_proto_version",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_min_proto_version",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_mode",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_new_session_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_num_tickets",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_options",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_private_key",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_private_key_file",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_psk_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_psk_client_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_psk_server_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_read_ahead",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_remove_session_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_security_level",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_servername_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_session_cache_mode",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_session_cache_size",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_session_id_context",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_sigalgs_list",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_stateless_cookie_generate_cb",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_stateless_cookie_verify_cb",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_status_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_tlsext_use_srtp",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_tmp_dh",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_tmp_dh_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_tmp_ecdh",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_tmp_ecdh_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_verify",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_verify_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_verify_cert_store",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::set_verify_depth",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::verify_param",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextBuilder::verify_param_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::add_session",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::cert_store",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::certificate",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::ex_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::extra_chain_certs",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::max_early_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::num_tickets",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::private_key",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::remove_session",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::security_level",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::session_cache_size",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::to_owned",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslContextRef::verify_mode",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslFiletype::as_raw",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslFiletype::from_raw",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslMethod::as_ptr",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslMethod::dtls",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslMethod::dtls_client",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslMethod::dtls_server",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslMethod::from_ptr",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslMethod::tls",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslMethod::tls_client",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslMethod::tls_server",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::add_chain_cert",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::add_client_ca",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::bytes_to_cipher_list",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::certificate",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::client_hello_ciphers",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::client_hello_compression_methods",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::client_hello_isv2",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::client_hello_legacy_version",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::client_hello_random",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::client_hello_session_id",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::client_random",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::current_cipher",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::ex_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::ex_data_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::export_keying_material",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::export_keying_material_early",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::extms_support",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::finished",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::get_error",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::get_raw_rbio",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::is_init_finished",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::is_server",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::max_early_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::num_tickets",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::ocsp_status",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::param_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::peer_cert_chain",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::peer_certificate",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::peer_finished",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::peer_tmp_key",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::pending",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::private_key",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::psk_identity",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::psk_identity_hint",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::security_level",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::selected_alpn_protocol",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::selected_srtp_profile",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::server_random",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::servername",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::servername_raw",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::session",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::session_reused",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_accept_state",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_alpn_protos",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_certificate",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_certificate_chain_file",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_cipher_list",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_ciphersuites",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_client_ca_list",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_connect_state",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_ecdh_auto",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_ex_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_hostname",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_max_early_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_max_proto_version",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_method",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_min_proto_version",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_mtu",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_num_tickets",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_ocsp_status",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_private_key",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_private_key_file",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_security_level",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_session",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_ssl_context",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_status_type",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_tlsext_use_srtp",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_tmp_dh",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_tmp_dh_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_tmp_ecdh",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_tmp_ecdh_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_verify",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_verify_callback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::set_verify_cert_store",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::srtp_profiles",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::ssl_context",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::state_string",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::state_string_long",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::tmp_key",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::verified_chain",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::verify_mode",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::verify_result",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::version",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::version2",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslRef::version_str",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslSession::clone",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslSessionRef::id",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslSessionRef::master_key",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslSessionRef::master_key_len",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslSessionRef::max_early_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslSessionRef::protocol_version",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslSessionRef::time",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslSessionRef::timeout",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslSessionRef::to_owned",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::accept",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::check_panic",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::connect",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::do_handshake",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::drop",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::flush",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::from_raw_parts",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::get_bio_error",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::get_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::get_ref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::get_shutdown",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::make_error",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::read",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::read_early_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::read_uninit",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::set_shutdown",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::shutdown",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::ssl",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::ssl_peek",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::ssl_read",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::ssl_read_uninit",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::ssl_write",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::stateless",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::write",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStream::write_early_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::accept",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::connect",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::get_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::get_ref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::handshake",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::read_early_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::set_accept_state",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::set_connect_state",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::set_dtls_mtu_size",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::ssl",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::stateless",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::SslStreamBuilder::write_early_data",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::StatusType::as_raw",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::StatusType::from_raw",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::cipher_name",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::free_data_box",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::select_next_proto",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "openssl/src/ssl/mod.rs",
+          "function": "openssl::ssl::try_get_session_ctx_index",
+          "change_type": "Deleted"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2025-0008",
