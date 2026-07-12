@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1783684463",
+  "generated_at": "unix:1783843167",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -15981,6 +15981,15 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0206",
+      "package": "rustybuzz",
+      "title": "`rustybuzz` is unmaintained",
+      "date": "2026-07-11",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
