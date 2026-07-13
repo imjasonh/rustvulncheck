@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1783843167",
+  "generated_at": "unix:1783932539",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -2858,7 +2858,118 @@
       "date": "2020-11-14",
       "patched_versions": [],
       "commit_sha": "5e43ee86e6a67153ff65da2051f6eb0a77f2c6b8",
-      "vulnerable_symbols": []
+      "vulnerable_symbols": [
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ChildArc::as_ref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ChildArc::deref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ChildArc::drop",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ChildArc::from",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ChildArc::inner",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::LockWeak::inner",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::LockWeak::upgrade",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::as_ref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::block_into_inner",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::deref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::downgrade",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::drop",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::inner",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::is_locked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::lock",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::pin",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::try_downgrade",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::try_unwrap",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::ParentArc::unlock",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::TryUnwrapError::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "parc/src/lib.rs",
+          "function": "parc::Womb::as_nnptr",
+          "change_type": "Deleted"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2020-0135",
