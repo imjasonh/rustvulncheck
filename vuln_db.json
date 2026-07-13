@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1783932539",
+  "generated_at": "unix:1783962463",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -2167,7 +2167,428 @@
         ">= 0.4.2"
       ],
       "commit_sha": "7de94f95f519d8281cb48457964065b463d26736",
-      "vulnerable_symbols": []
+      "vulnerable_symbols": [
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockReadGuard::deref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockReadGuard::drop",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockReadGuard::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockReadGuard::map",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockReadGuard::try_map",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockReadGuard::unlock_fair",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockWriteGuard::deref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockWriteGuard::deref_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockWriteGuard::drop",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockWriteGuard::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockWriteGuard::map",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockWriteGuard::try_map",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::MappedRwLockWriteGuard::unlock_fair",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::const_new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::data_ptr",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::default",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::deserialize",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::force_unlock_read",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::force_unlock_read_fair",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::force_unlock_write",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::force_unlock_write_fair",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::from",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::get_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::into_inner",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::is_locked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::raw",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::read",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::read_guard",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::read_recursive",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::serialize",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::try_read",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::try_read_for",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::try_read_recursive",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::try_read_recursive_for",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::try_read_recursive_until",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::try_read_until",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::try_upgradable_read",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::try_upgradable_read_for",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::try_upgradable_read_until",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::try_write",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::try_write_for",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::try_write_until",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::upgradable_guard",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::upgradable_read",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::write",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLock::write_guard",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockReadGuard::bump",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockReadGuard::deref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockReadGuard::drop",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockReadGuard::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockReadGuard::map",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockReadGuard::rwlock",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockReadGuard::try_map",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockReadGuard::unlock_fair",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockReadGuard::unlocked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockReadGuard::unlocked_fair",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::bump",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::deref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::downgrade",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::drop",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::rwlock",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::try_upgrade",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::try_upgrade_for",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::try_upgrade_until",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::unlock_fair",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::unlocked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::unlocked_fair",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockUpgradableReadGuard::upgrade",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::bump",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::deref",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::deref_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::downgrade",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::downgrade_to_upgradable",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::drop",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::map",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::rwlock",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::try_map",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::unlock_fair",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::unlocked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "lock_api/src/rwlock.rs",
+          "function": "lock_api::rwlock::RwLockWriteGuard::unlocked_fair",
+          "change_type": "Deleted"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2020-0071",
