@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1783962463",
+  "generated_at": "unix:1784293434",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -16521,6 +16521,57 @@
       "date": "2026-07-11",
       "patched_versions": [],
       "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0207",
+      "package": "libcrux-sha3",
+      "title": "Incorrect Output of Incremental Portable SHAKE API on Multiple Squeeze Calls",
+      "date": "2026-04-22",
+      "patched_versions": [
+        ">= 0.0.10 "
+      ],
+      "commit_sha": "e9ecdd274ea36e40c90acb21ccea6b5f6955a6b8",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0208",
+      "package": "libcrux-sha3",
+      "title": "Potential Panic in AVX2 SHAKE-256",
+      "date": "2026-05-21",
+      "patched_versions": [
+        ">= 0.0.10 "
+      ],
+      "commit_sha": "ec303704dd366e573e752eefd574e1de2e9350c5",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0209",
+      "package": "libcrux-aesgcm",
+      "title": "AES-GCM did not enforce limits on AAD length",
+      "date": "2026-06-09",
+      "patched_versions": [],
+      "commit_sha": "16b78f9c6825f576a37134c28af459c89e1f5b91",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0211",
+      "package": "libcrux-aesgcm",
+      "title": "Non-constant time Authentication Tag Check in AES-GCM Decryption",
+      "date": "2026-07-14",
+      "patched_versions": [],
+      "commit_sha": "cfe2fbce06d8990c1915fa973b8c4c180daddc52",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0212",
+      "package": "libcrux-secrets",
+      "title": "Potentially Incorrect Output of Constant-Time Swap/Select on Aarch64",
+      "date": "2026-05-26",
+      "patched_versions": [
+        ">= 0.0.6 "
+      ],
+      "commit_sha": "0e8ba51283708081e006c58614eb2f8412be20ac",
       "vulnerable_symbols": []
     }
   ]
