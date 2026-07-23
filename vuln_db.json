@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1784293434",
+  "generated_at": "unix:1784794339",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -16572,6 +16572,15 @@
         ">= 0.0.6 "
       ],
       "commit_sha": "0e8ba51283708081e006c58614eb2f8412be20ac",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0214",
+      "package": "gumdrop",
+      "title": "gumdrop is unmaintained",
+      "date": "2026-07-22",
+      "patched_versions": [],
+      "commit_sha": null,
       "vulnerable_symbols": []
     }
   ]
