@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1785166715",
+  "generated_at": "unix:1785265656",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -16605,6 +16605,30 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0217",
+      "package": "tract-nnef",
+      "title": "Integer overflow in tract-nnef NNEF tensor parser leads to out-of-bounds read on model load",
+      "date": "2026-06-18",
+      "patched_versions": [
+        ">= 0.21.16, < 0.22.0",
+        ">= 0.22.2, < 0.23.0",
+        ">= 0.23.1"
+      ],
+      "commit_sha": "34c7df2c9bd2a36583e09b52f3e6319bf23102e8",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0218",
+      "package": "enum-map",
+      "title": "`Enum` trait allows type confusion when manually implemented",
+      "date": "2026-07-21",
+      "patched_versions": [
+        ">= 3.1.0"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
