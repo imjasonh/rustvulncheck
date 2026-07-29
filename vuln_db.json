@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1785265656",
+  "generated_at": "unix:1785321049",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -16629,6 +16629,29 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0219",
+      "package": "nostr",
+      "title": "Remote Denial of Service via malformed NIP-04 IV",
+      "date": "2026-07-26",
+      "patched_versions": [
+        ">= 0.44.6, < 0.45.0-alpha.1",
+        ">= 0.45.0-alpha.6"
+      ],
+      "commit_sha": "b24619346f666d08ef7fefe27f033b8bc871697f",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/nostr/src/nips/nip04/impl.rs",
+          "function": "nostr::nips::nip04::impl::decrypt_to_bytes",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/nostr/src/nips/nip04/impl.rs",
+          "function": "nostr::nips::nip04::impl::encrypt_with_rng",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
