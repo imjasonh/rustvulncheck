@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1785321049",
+  "generated_at": "unix:1785445002",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -16650,6 +16650,63 @@
           "file": "crates/nostr/src/nips/nip04/impl.rs",
           "function": "nostr::nips::nip04::impl::encrypt_with_rng",
           "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0220",
+      "package": "ruint",
+      "title": "Uint shift operations: incorrect overflow flags and truncated shift amounts",
+      "date": "2026-07-08",
+      "patched_versions": [
+        ">= 1.20.0"
+      ],
+      "commit_sha": "cc712d57a55dcd33c2fbff84fb8fe744bbfadfa6",
+      "vulnerable_symbols": [
+        {
+          "file": "src/bits.rs",
+          "function": "ruint::bits::Uint::byte",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/bits.rs",
+          "function": "ruint::bits::Uint::overflowing_shl",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/bits.rs",
+          "function": "ruint::bits::Uint::overflowing_shl_big",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/bits.rs",
+          "function": "ruint::bits::Uint::overflowing_shr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/bits.rs",
+          "function": "ruint::bits::Uint::overflowing_shr_big",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/bits.rs",
+          "function": "ruint::bits::Uint::wrapping_shl",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/bits.rs",
+          "function": "ruint::bits::Uint::wrapping_shr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/bits.rs",
+          "function": "ruint::bits::shift_amount",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "ruint::Uint::maskable_bits",
+          "change_type": "Added"
         }
       ]
     }
