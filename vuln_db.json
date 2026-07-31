@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1785445002",
+  "generated_at": "unix:1785504668",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -16709,6 +16709,17 @@
           "change_type": "Added"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0221",
+      "package": "event-listener",
+      "title": "`event-listener` allows `!Send` tags to cross thread boundaries via `StackSlot`",
+      "date": "2026-07-13",
+      "patched_versions": [
+        ">= 5.4.2"
+      ],
+      "commit_sha": "214becd7376ed94f3d95a2320a91be77637bd197",
+      "vulnerable_symbols": []
     }
   ]
 }
