@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1785504668",
+  "generated_at": "unix:1785599659",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -16720,6 +16720,38 @@
       ],
       "commit_sha": "214becd7376ed94f3d95a2320a91be77637bd197",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0224",
+      "package": "nostr-relay-pool",
+      "title": "Verification cache poisoning allows forged Nostr events to bypass signature validation",
+      "date": "2026-08-01",
+      "patched_versions": [
+        ">= 0.44.2"
+      ],
+      "commit_sha": "02a88bd5688de058bfba8aa9fb4612441a384eff",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/nostr-relay-pool/src/relay/inner.rs",
+          "function": "nostr_relay_pool::relay::inner::InnerRelay::handle_event_msg",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/nostr-relay-pool/src/shared.rs",
+          "function": "nostr_relay_pool::shared::SharedState::verified",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/nostr-relay-pool/src/shared.rs",
+          "function": "nostr_relay_pool::shared::SharedState::verify_and_cache",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/nostr-relay-pool/src/shared.rs",
+          "function": "nostr_relay_pool::shared::SharedStateError::fmt",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
