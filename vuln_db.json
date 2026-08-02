@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1785599659",
+  "generated_at": "unix:1785696901",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -16752,6 +16752,165 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0225",
+      "package": "nostr",
+      "title": "Debug output exposes NIP-46 and NIP-60 credentials",
+      "date": "2026-08-01",
+      "patched_versions": [
+        ">= 0.44.7"
+      ],
+      "commit_sha": "2bc5fa2c270bb87b397d381909053f12ee734d44",
+      "vulnerable_symbols": [
+        {
+          "file": "nostr/src/nips/nip46.rs",
+          "function": "nostr::nips::nip46::NostrConnectRequest::fmt",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0226",
+      "package": "nostr",
+      "title": "Wallet event parsers accept unauthenticated events",
+      "date": "2026-08-01",
+      "patched_versions": [
+        ">= 0.44.7"
+      ],
+      "commit_sha": "2b6d6227cd884c1acb200bffa66a3f402b02a176",
+      "vulnerable_symbols": [
+        {
+          "file": "nostr/src/nips/nip47.rs",
+          "function": "nostr::nips::nip47::Notification::from_event",
+          "change_type": "Modified"
+        },
+        {
+          "file": "nostr/src/nips/nip47.rs",
+          "function": "nostr::nips::nip47::Response::from_event",
+          "change_type": "Modified"
+        },
+        {
+          "file": "nostr/src/nips/nip47.rs",
+          "function": "nostr::nips::nip47::validate_wallet_event",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0227",
+      "package": "nostr",
+      "title": "NIP-44 v2 decryption permits resource exhaustion",
+      "date": "2026-08-01",
+      "patched_versions": [
+        ">= 0.44.7"
+      ],
+      "commit_sha": "89dc1a77eaa774174588c5a38b6324c502948830",
+      "vulnerable_symbols": [
+        {
+          "file": "nostr/src/nips/nip44/impl.rs",
+          "function": "nostr::nips::nip44::impl::Version::max_encoded_payload_size",
+          "change_type": "Added"
+        },
+        {
+          "file": "nostr/src/nips/nip44/impl.rs",
+          "function": "nostr::nips::nip44::impl::Version::validate_encoded_payload_size",
+          "change_type": "Added"
+        },
+        {
+          "file": "nostr/src/nips/nip44/impl.rs",
+          "function": "nostr::nips::nip44::impl::decode_payload_version",
+          "change_type": "Added"
+        },
+        {
+          "file": "nostr/src/nips/nip44/impl.rs",
+          "function": "nostr::nips::nip44::impl::decrypt_to_bytes",
+          "change_type": "Modified"
+        },
+        {
+          "file": "nostr/src/nips/nip44/v2.rs",
+          "function": "nostr::nips::nip44::v2::decrypt_to_bytes",
+          "change_type": "Modified"
+        },
+        {
+          "file": "nostr/src/nips/nip44/v2.rs",
+          "function": "nostr::nips::nip44::v2::pad",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0228",
+      "package": "nostr",
+      "title": "NIP-04 parsing amplifies malformed ciphertext memory use",
+      "date": "2026-08-01",
+      "patched_versions": [
+        ">= 0.44.7"
+      ],
+      "commit_sha": "25e4e9ce66a533d9d7f5071f6c1dae992476cf83",
+      "vulnerable_symbols": [
+        {
+          "file": "nostr/src/nips/nip04/impl.rs",
+          "function": "nostr::nips::nip04::impl::decrypt_to_bytes",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0229",
+      "package": "nostr",
+      "title": "NIP-98 authorization parsing permits resource exhaustion",
+      "date": "2026-08-01",
+      "patched_versions": [
+        ">= 0.44.7"
+      ],
+      "commit_sha": "fd69825a3aa83c4a99f0d620fafba66c765db96b",
+      "vulnerable_symbols": [
+        {
+          "file": "nostr/src/nips/nip98.rs",
+          "function": "nostr::nips::nip98::verify_auth_header",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0230",
+      "package": "nostr",
+      "title": "Empty NIP-50 search filters can panic",
+      "date": "2026-08-01",
+      "patched_versions": [
+        ">= 0.44.7"
+      ],
+      "commit_sha": "29182657bc54ac18564597e4414f08c3e4e9aa0a",
+      "vulnerable_symbols": [
+        {
+          "file": "nostr/src/filter.rs",
+          "function": "nostr::filter::Filter::search_match",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0231",
+      "package": "nostr-relay-pool",
+      "title": "Relay authentication challenges can exhaust memory",
+      "date": "2026-08-01",
+      "patched_versions": [
+        ">= 0.44.3"
+      ],
+      "commit_sha": "6eb8766caa25f03803f178861be054f3bca718d7",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0232",
+      "package": "nostr-relay-pool",
+      "title": "Processing of unverified relay events",
+      "date": "2026-08-01",
+      "patched_versions": [
+        ">= 0.44.3"
+      ],
+      "commit_sha": "4b67f9b45909d2e35f34c30c084c0ab66e599a9f",
+      "vulnerable_symbols": []
     }
   ]
 }
