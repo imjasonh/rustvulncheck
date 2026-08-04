@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1785696901",
+  "generated_at": "unix:1785842215",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -16911,6 +16911,402 @@
       ],
       "commit_sha": "4b67f9b45909d2e35f34c30c084c0ab66e599a9f",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0233",
+      "package": "rkyv",
+      "title": "Crafted archives can cause a use-after-free during deserialization",
+      "date": "2026-05-11",
+      "patched_versions": [
+        ">= 0.8.17"
+      ],
+      "commit_sha": "3c9d07fbff5949261bef38d00ab160b129bd9d3a",
+      "vulnerable_symbols": [
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::DynMetadata::from_metadata",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::ErasedPtr::data_address",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::ErasedPtr::downcast_unchecked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::ErasedPtr::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::Metadata::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::Metadata::from",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::usize::from_metadata",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::DynMetadata::from_metadata",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::ErasedPtr::data_address",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::ErasedPtr::downcast_unchecked",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::ErasedPtr::metadata",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::ErasedPtr::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::Metadata::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::Metadata::from",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::usize::from_metadata",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/rc.rs",
+          "function": "rkyv::rc::verify::ArchivedRc::verify",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/ser/allocator/alloc.rs",
+          "function": "rkyv::ser::allocator::alloc::Block::dealloc",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/mod.rs",
+          "function": "rkyv::validation::Validator::finish_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/mod.rs",
+          "function": "rkyv::validation::Validator::start_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/shared/mod.rs",
+          "function": "rkyv::validation::shared::Strategy::finish_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/shared/mod.rs",
+          "function": "rkyv::validation::shared::Strategy::start_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/shared/validator.rs",
+          "function": "rkyv::validation::shared::validator::MetadataMismatch::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/validation/shared/validator.rs",
+          "function": "rkyv::validation::shared::validator::SharedValidator::finish_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/shared/validator.rs",
+          "function": "rkyv::validation::shared::validator::SharedValidator::start_shared",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0234",
+      "package": "rkyv",
+      "title": "Insufficient archive validation can cause out-of-bounds reads in archives containing hash tables",
+      "date": "2026-05-11",
+      "patched_versions": [
+        ">= 0.8.17"
+      ],
+      "commit_sha": "3c9d07fbff5949261bef38d00ab160b129bd9d3a",
+      "vulnerable_symbols": [
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::DynMetadata::from_metadata",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::ErasedPtr::data_address",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::ErasedPtr::downcast_unchecked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::ErasedPtr::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::Metadata::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::Metadata::from",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::usize::from_metadata",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::DynMetadata::from_metadata",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::ErasedPtr::data_address",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::ErasedPtr::downcast_unchecked",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::ErasedPtr::metadata",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::ErasedPtr::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::Metadata::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::Metadata::from",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::usize::from_metadata",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/rc.rs",
+          "function": "rkyv::rc::verify::ArchivedRc::verify",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/ser/allocator/alloc.rs",
+          "function": "rkyv::ser::allocator::alloc::Block::dealloc",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/mod.rs",
+          "function": "rkyv::validation::Validator::finish_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/mod.rs",
+          "function": "rkyv::validation::Validator::start_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/shared/mod.rs",
+          "function": "rkyv::validation::shared::Strategy::finish_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/shared/mod.rs",
+          "function": "rkyv::validation::shared::Strategy::start_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/shared/validator.rs",
+          "function": "rkyv::validation::shared::validator::MetadataMismatch::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/validation/shared/validator.rs",
+          "function": "rkyv::validation::shared::validator::SharedValidator::finish_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/shared/validator.rs",
+          "function": "rkyv::validation::shared::validator::SharedValidator::start_shared",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0235",
+      "package": "rkyv",
+      "title": "Insufficient archive validation can cause out-of-bounds reads in archives containing Rc/Arc",
+      "date": "2026-05-13",
+      "patched_versions": [
+        ">= 0.8.17"
+      ],
+      "commit_sha": "3c9d07fbff5949261bef38d00ab160b129bd9d3a",
+      "vulnerable_symbols": [
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::DynMetadata::from_metadata",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::ErasedPtr::data_address",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::ErasedPtr::downcast_unchecked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::ErasedPtr::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::Metadata::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::Metadata::from",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/de/pooling/mod.rs",
+          "function": "rkyv::de::pooling::usize::from_metadata",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::DynMetadata::from_metadata",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::ErasedPtr::data_address",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::ErasedPtr::downcast_unchecked",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::ErasedPtr::metadata",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::ErasedPtr::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::Metadata::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::Metadata::from",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/erased.rs",
+          "function": "rkyv::erased::usize::from_metadata",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/rc.rs",
+          "function": "rkyv::rc::verify::ArchivedRc::verify",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/ser/allocator/alloc.rs",
+          "function": "rkyv::ser::allocator::alloc::Block::dealloc",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/mod.rs",
+          "function": "rkyv::validation::Validator::finish_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/mod.rs",
+          "function": "rkyv::validation::Validator::start_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/shared/mod.rs",
+          "function": "rkyv::validation::shared::Strategy::finish_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/shared/mod.rs",
+          "function": "rkyv::validation::shared::Strategy::start_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/shared/validator.rs",
+          "function": "rkyv::validation::shared::validator::MetadataMismatch::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "rkyv/src/validation/shared/validator.rs",
+          "function": "rkyv::validation::shared::validator::SharedValidator::finish_shared",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rkyv/src/validation/shared/validator.rs",
+          "function": "rkyv::validation::shared::validator::SharedValidator::start_shared",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
