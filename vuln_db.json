@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1785842215",
+  "generated_at": "unix:1786282945",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -17307,6 +17307,143 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0237",
+      "package": "nostr-relay-builder",
+      "title": "`nostr-relay-builder` is unmaintained",
+      "date": "2026-08-03",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0238",
+      "package": "dcrypt-algorithms",
+      "title": "Low-level GCM ignores the operation nonce",
+      "date": "2026-08-09",
+      "patched_versions": [
+        ">= 2.0.0"
+      ],
+      "commit_sha": "c99cc86f0ee353010cd202cbcd2c310371b0bbb8",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0239",
+      "package": "dcrypt-symmetric",
+      "title": "Streaming AEAD does not authenticate stream structure",
+      "date": "2026-08-09",
+      "patched_versions": [
+        ">= 2.0.0"
+      ],
+      "commit_sha": "c99cc86f0ee353010cd202cbcd2c310371b0bbb8",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0240",
+      "package": "dcrypt-sign",
+      "title": "Ed25519 identity public keys permit universal signature forgery",
+      "date": "2026-08-09",
+      "patched_versions": [
+        ">= 2.0.0"
+      ],
+      "commit_sha": "c99cc86f0ee353010cd202cbcd2c310371b0bbb8",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0241",
+      "package": "nostr-keyring",
+      "title": "`nostr-keyring` is unmaintained",
+      "date": "2026-08-03",
+      "patched_versions": [],
+      "commit_sha": "27fad3366e2c4809631c6bb277c370e9c258e416",
+      "vulnerable_symbols": [
+        {
+          "file": "nostr-keyring/src/error.rs",
+          "function": "nostr_keyring::error::Error::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "nostr-keyring/src/error.rs",
+          "function": "nostr_keyring::error::Error::from",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "nostr-keyring/src/error.rs",
+          "function": "nostr_keyring::error::Error::kind",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "nostr-keyring/src/error.rs",
+          "function": "nostr_keyring::error::Error::source",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "nostr-keyring/src/error.rs",
+          "function": "nostr_keyring::error::Inner::kind",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "nostr-keyring/src/lib.rs",
+          "function": "nostr_keyring::NostrKeyring::delete",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "nostr-keyring/src/lib.rs",
+          "function": "nostr_keyring::NostrKeyring::delete_async",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "nostr-keyring/src/lib.rs",
+          "function": "nostr_keyring::NostrKeyring::entry",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "nostr-keyring/src/lib.rs",
+          "function": "nostr_keyring::NostrKeyring::get",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "nostr-keyring/src/lib.rs",
+          "function": "nostr_keyring::NostrKeyring::get_async",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "nostr-keyring/src/lib.rs",
+          "function": "nostr_keyring::NostrKeyring::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "nostr-keyring/src/lib.rs",
+          "function": "nostr_keyring::NostrKeyring::set",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "nostr-keyring/src/lib.rs",
+          "function": "nostr_keyring::NostrKeyring::set_async",
+          "change_type": "Deleted"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0242",
+      "package": "dcrypt-api",
+      "title": "Safe ErrorRegistry APIs can cause undefined behavior",
+      "date": "2026-08-09",
+      "patched_versions": [
+        ">= 2.0.0"
+      ],
+      "commit_sha": "c99cc86f0ee353010cd202cbcd2c310371b0bbb8",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0243",
+      "package": "nostr-relay-pool",
+      "title": "`nostr-relay-pool` is unmaintained",
+      "date": "2026-08-03",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
