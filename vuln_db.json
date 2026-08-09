@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1786282945",
+  "generated_at": "unix:1786285557",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -17442,6 +17442,17 @@
       "title": "`nostr-relay-pool` is unmaintained",
       "date": "2026-08-03",
       "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0244",
+      "package": "gettext-sys",
+      "title": "`setlocale` and `TextDomain::init` are unsound as they access environment with no synchronization",
+      "date": "2026-08-06",
+      "patched_versions": [
+        ">= 0.8.0"
+      ],
       "commit_sha": null,
       "vulnerable_symbols": []
     }
