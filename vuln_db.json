@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1786285557",
+  "generated_at": "unix:1786391334",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -8491,6 +8491,15 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2023-0126",
+      "package": "im",
+      "title": "Aliasing violation in `OrdSet` insertion",
+      "date": "2023-02-04",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2024-0001",
       "package": "ferris-says",
       "title": "Unsound use of str::from_utf8_unchecked on bytes which are not UTF-8",
@@ -12781,6 +12790,15 @@
         ">= 2.0.0"
       ],
       "commit_sha": "f67b4b98e2aa286f05367d7d7849fc0f0de817d6",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0167",
+      "package": "bitmaps",
+      "title": "`Bitmap::try_from(&[u8])` can create invalid values",
+      "date": "2025-12-25",
+      "patched_versions": [],
+      "commit_sha": null,
       "vulnerable_symbols": []
     },
     {
