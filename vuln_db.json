@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1786444986",
+  "generated_at": "unix:1786448293",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -17541,6 +17541,23 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0253",
+      "package": "lru",
+      "title": "Potential use-after-free due to lack of panic safety in `LruCache::pop()`",
+      "date": "2026-05-12",
+      "patched_versions": [
+        ">= 0.18.2"
+      ],
+      "commit_sha": "f9a7f00fcf2d33e00adb03758cb350aaaa52cddb",
+      "vulnerable_symbols": [
+        {
+          "file": "src/lib.rs",
+          "function": "lru::LruCache::pop",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
