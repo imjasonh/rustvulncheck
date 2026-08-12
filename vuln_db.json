@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1786448293",
+  "generated_at": "unix:1786529186",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -12854,6 +12854,58 @@
         {
           "file": "src/probe/sine_detect.rs",
           "function": "stainless_ffmpeg::probe::sine_detect::detect_sine",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0170",
+      "package": "hugepage-rs",
+      "title": "`hugepage_rs::dealloc` may allow invalid memory deallocation from safe code",
+      "date": "2025-04-24",
+      "patched_versions": [
+        ">= 0.1.1"
+      ],
+      "commit_sha": "2b30bdf227f39b1c9ed7af16ea0cc3957f88da18",
+      "vulnerable_symbols": [
+        {
+          "file": "src/allocator.rs",
+          "function": "hugepage_rs::allocator::HugePageAllocator::alloc",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/allocator.rs",
+          "function": "hugepage_rs::allocator::HugePageAllocator::dealloc",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/allocator.rs",
+          "function": "hugepage_rs::allocator::aligned_size",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/allocator.rs",
+          "function": "hugepage_rs::allocator::parse_hugepage_size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxed.rs",
+          "function": "hugepage_rs::boxed::Box::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxed.rs",
+          "function": "hugepage_rs::boxed::Box::from_raw",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/boxed.rs",
+          "function": "hugepage_rs::boxed::Box::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "hugepage_rs::dealloc",
           "change_type": "Modified"
         }
       ]
