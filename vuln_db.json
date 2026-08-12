@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1786529186",
+  "generated_at": "unix:1786534821",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -17607,6 +17607,28 @@
         {
           "file": "src/lib.rs",
           "function": "lru::LruCache::pop",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0257",
+      "package": "webbrowser",
+      "title": "Unix `BROWSER` handling allows browser argument injection",
+      "date": "2026-07-29",
+      "patched_versions": [
+        ">= 1.2.2"
+      ],
+      "commit_sha": "31d1b924885551c0e553909d27c738ca6958a0f3",
+      "vulnerable_symbols": [
+        {
+          "file": "src/unix.rs",
+          "function": "webbrowser::unix::browser_env_cmd_arr",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/unix.rs",
+          "function": "webbrowser::unix::try_with_browser_env",
           "change_type": "Modified"
         }
       ]
