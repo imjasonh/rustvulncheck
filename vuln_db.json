@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1786534821",
+  "generated_at": "unix:1787629289",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -17629,6 +17629,23 @@
         {
           "file": "src/unix.rs",
           "function": "webbrowser::unix::try_with_browser_env",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0267",
+      "package": "stable-vec",
+      "title": "Panic-safety unsoundness in `BitVecCore::clear` (double-free / use-after-free)",
+      "date": "2026-08-24",
+      "patched_versions": [
+        ">= 0.4.3"
+      ],
+      "commit_sha": "1254177247f3b28cde928ded57005d21fd9ca7c0",
+      "vulnerable_symbols": [
+        {
+          "file": "src/core/bitvec.rs",
+          "function": "stable_vec::core::bitvec::BitVecCore::clear",
           "change_type": "Modified"
         }
       ]
