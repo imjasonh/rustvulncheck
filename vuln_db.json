@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1787629289",
+  "generated_at": "unix:1788190855",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -12911,6 +12911,15 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2025-0172",
+      "package": "zip-extract",
+      "title": "`zip-extract` is unmaintained; use the `zip >= 2.4.0` crate instead",
+      "date": "2025-07-16",
+      "patched_versions": [],
+      "commit_sha": "2950ec98d33b6e752b4f0976d67d89feb6f4acde",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2026-0001",
       "package": "rkyv",
       "title": "Potential Undefined Behaviors in `Arc<T>`/`Rc<T>` impls of `from_value` on OOM",
@@ -17649,6 +17658,49 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0271",
+      "package": "suppaftp",
+      "title": "FTP command injection via CRLF in control channel arguments",
+      "date": "2026-08-18",
+      "patched_versions": [
+        ">= 10.0.2"
+      ],
+      "commit_sha": "194bdd1979b16c4848d1fad6897dfa524b688d88",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/suppaftp/src/async_ftp/smol_ftp.rs",
+          "function": "suppaftp::async_ftp::smol_ftp::ImplAsyncFtpStream::perform",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/suppaftp/src/async_ftp/tokio_ftp.rs",
+          "function": "suppaftp::async_ftp::tokio_ftp::ImplAsyncFtpStream::perform",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/suppaftp/src/command.rs",
+          "function": "suppaftp::command::validate_command_line",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/suppaftp/src/sync_ftp.rs",
+          "function": "suppaftp::sync_ftp::ImplFtpStream::perform",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0272",
+      "package": "stack_dst",
+      "title": "Panic-safety unsoundness in `Stack::pop`, `Fifo::pop_front` and `Value::replace_stable` (use-after-free / double-free)",
+      "date": "2026-08-27",
+      "patched_versions": [
+        ">= 0.8.2"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
