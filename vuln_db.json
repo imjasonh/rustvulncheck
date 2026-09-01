@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1788259510",
+  "generated_at": "unix:1788298545",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -17721,6 +17721,17 @@
         ">= 0.4.0"
       ],
       "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0275",
+      "package": "azure_core",
+      "title": "Legacy `azure_core` writes the `authorization` header value to logs",
+      "date": "2026-08-15",
+      "patched_versions": [
+        ">= 0.22.0"
+      ],
+      "commit_sha": "7a0e20c1e002ce06da0f3ec8795ef1529862ea97",
       "vulnerable_symbols": []
     }
   ]
