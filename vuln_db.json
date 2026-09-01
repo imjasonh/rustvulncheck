@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1788190855",
+  "generated_at": "unix:1788259510",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -17698,6 +17698,27 @@
       "date": "2026-08-27",
       "patched_versions": [
         ">= 0.8.2"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0273",
+      "package": "manzana",
+      "title": "Stubbed cryptography without warnings",
+      "date": "2026-04-07",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0274",
+      "package": "rtrb",
+      "title": "Double free / use-after-free in `ReadChunk::commit` when an element's `Drop` panics",
+      "date": "2026-08-04",
+      "patched_versions": [
+        "^0.3.5",
+        ">= 0.4.0"
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
