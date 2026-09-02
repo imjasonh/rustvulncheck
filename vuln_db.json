@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1788298545",
+  "generated_at": "unix:1788349958",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -17733,6 +17733,167 @@
       ],
       "commit_sha": "7a0e20c1e002ce06da0f3ec8795ef1529862ea97",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0276",
+      "package": "apimock",
+      "title": "Path traversal in apimock's file-serving fallback",
+      "date": "2026-08-26",
+      "patched_versions": [
+        ">= 4.8.1, < 5.0.0"
+      ],
+      "commit_sha": "a9c05fec2d36a750c30e797291a0557f230c8faf",
+      "vulnerable_symbols": [
+        {
+          "file": "src/core/server/middleware/middleware_response.rs",
+          "function": "apimock::core::server::middleware::middleware_response::MiddlewareResponse::file_response",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/core/server/response/confine.rs",
+          "function": "apimock::core::server::response::confine::canonical_dir",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/core/server/response/confine.rs",
+          "function": "apimock::core::server::response::confine::confine",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/core/server/response/file_response.rs",
+          "function": "apimock::core::server::response::file_response::FileResponse::file_content_response",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/core/server/response/file_response.rs",
+          "function": "apimock::core::server::response::file_response::FileResponse::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/core/server/response/file_response.rs",
+          "function": "apimock::core::server::response::file_response::FileResponse::new_with_csv_records_jsonpath",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/core/server/routing/dyn_route.rs",
+          "function": "apimock::core::server::routing::dyn_route::dyn_route_content",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/core/server/routing/rule_set/rule/respond.rs",
+          "function": "apimock::core::server::routing::rule_set::rule::respond::Respond::response",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/core/util/http.rs",
+          "function": "apimock::core::util::http::normalize_url_path",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0277",
+      "package": "apimock-server",
+      "title": "Path traversal in apimock-server's file-serving fallback",
+      "date": "2026-08-26",
+      "patched_versions": [
+        ">= 5.19.1"
+      ],
+      "commit_sha": "ff0dd152ecfccb3bf00e15cc92bd4d57e485c854",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/apimock-server/src/dyn_route.rs",
+          "function": "apimock_server::dyn_route::dyn_route_content",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/apimock-server/src/middleware/middleware_handler.rs",
+          "function": "apimock_server::middleware::middleware_handler::MiddlewareHandler::handle",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/apimock-server/src/middleware/middleware_handler.rs",
+          "function": "apimock_server::middleware::middleware_handler::MiddlewareHandler::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/apimock-server/src/middleware/middleware_response.rs",
+          "function": "apimock_server::middleware::middleware_response::MiddlewareResponse::file_response",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/apimock-server/src/middleware/middleware_response.rs",
+          "function": "apimock_server::middleware::middleware_response::MiddlewareResponse::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/apimock-server/src/respond_response.rs",
+          "function": "apimock_server::respond_response::respond_response",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/apimock-server/src/response/confine.rs",
+          "function": "apimock_server::response::confine::canonical_dir",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/apimock-server/src/response/confine.rs",
+          "function": "apimock_server::response::confine::confine",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/apimock-server/src/response/file_response.rs",
+          "function": "apimock_server::response::file_response::FileResponse::file_content_response",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/apimock-server/src/response/file_response.rs",
+          "function": "apimock_server::response::file_response::FileResponse::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/apimock-server/src/response/file_response.rs",
+          "function": "apimock_server::response::file_response::FileResponse::new_with_csv_records_jsonpath",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/apimock-server/src/server.rs",
+          "function": "apimock_server::server::AppState::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/apimock-server/src/server.rs",
+          "function": "apimock_server::server::Server::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/apimock-server/src/server.rs",
+          "function": "apimock_server::server::rule_set_response",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/apimock-server/src/server.rs",
+          "function": "apimock_server::server::service",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0278",
+      "package": "zbus_polkit",
+      "title": "`zbus_polkit`: authorization bypass via PID reuse",
+      "date": "2026-08-31",
+      "patched_versions": [
+        ">= 5.1.0"
+      ],
+      "commit_sha": "6e155eabdf996d947d28cc71c761fe32ba3d0296",
+      "vulnerable_symbols": [
+        {
+          "file": "src/policykit1.rs",
+          "function": "zbus_polkit::policykit1::Subject::new_for_owner",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
