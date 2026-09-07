@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1788349958",
+  "generated_at": "unix:1788797928",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -17892,6 +17892,113 @@
           "file": "src/policykit1.rs",
           "function": "zbus_polkit::policykit1::Subject::new_for_owner",
           "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0279",
+      "package": "rojo",
+      "title": "Rojo development server vulnerable to DNS rebinding, allowing unauthenticated read/write access and local program execution",
+      "date": "2026-06-02",
+      "patched_versions": [
+        ">= 7.7.0"
+      ],
+      "commit_sha": "ac6941f05483b0875fda52c7664cd42033db7fa2",
+      "vulnerable_symbols": [
+        {
+          "file": "src/cli/serve.rs",
+          "function": "rojo::cli::serve::ServeCommand::run",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cli/serve.rs",
+          "function": "rojo::cli::serve::show_start_message",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/serve_session.rs",
+          "function": "rojo::serve_session::ServeSession::serve_allowed_hosts",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/web/api.rs",
+          "function": "rojo::web::api::ApiService::handle_api_open",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/web/api.rs",
+          "function": "rojo::web::api::ApiService::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/web/api.rs",
+          "function": "rojo::web::api::call",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/web/interface.rs",
+          "function": "rojo::web::interface::ErrorResponse::forbidden",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/web/mod.rs",
+          "function": "rojo::web::LiveServer::start",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/web/origin.rs",
+          "function": "rojo::web::origin::AllowedHosts::allows",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/web/origin.rs",
+          "function": "rojo::web::origin::AllowedHosts::allows_extra",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/web/origin.rs",
+          "function": "rojo::web::origin::allowed_hosts",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/web/origin.rs",
+          "function": "rojo::web::origin::canonical",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/web/origin.rs",
+          "function": "rojo::web::origin::check_request_origin",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/web/origin.rs",
+          "function": "rojo::web::origin::is_private_bind",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/web/origin.rs",
+          "function": "rojo::web::origin::normalize_host",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/web/origin.rs",
+          "function": "rojo::web::origin::parse_authority",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/web/origin.rs",
+          "function": "rojo::web::origin::parse_origin",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/web/origin.rs",
+          "function": "rojo::web::origin::reject",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/web/origin.rs",
+          "function": "rojo::web::origin::reject_userinfo",
+          "change_type": "Added"
         }
       ]
     }
