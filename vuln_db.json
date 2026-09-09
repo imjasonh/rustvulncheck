@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1788797928",
+  "generated_at": "unix:1788965743",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -17999,6 +17999,23 @@
           "file": "src/web/origin.rs",
           "function": "rojo::web::origin::reject_userinfo",
           "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0282",
+      "package": "aligned_box",
+      "title": "Double free in `AlignedBox<[T]>::realloc_with_default` when an element's `Drop` panics",
+      "date": "2026-09-09",
+      "patched_versions": [
+        ">= 0.3.1"
+      ],
+      "commit_sha": "02955353315d82dc59e2857acde77f4a8224b19a",
+      "vulnerable_symbols": [
+        {
+          "file": "src/lib.rs",
+          "function": "aligned_box::AlignedBox::realloc",
+          "change_type": "Modified"
         }
       ]
     }
