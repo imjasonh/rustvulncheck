@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1788965743",
+  "generated_at": "unix:1789336599",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -18018,6 +18018,15 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0283",
+      "package": "clear_on_drop",
+      "title": "clear_on_drop is unmaintained",
+      "date": "2026-09-13",
+      "patched_versions": [],
+      "commit_sha": "5916d6260acbad8a34290dba137f39963f13f467",
+      "vulnerable_symbols": []
     }
   ]
 }
