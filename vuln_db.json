@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1789336599",
+  "generated_at": "unix:1789632537",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -18027,6 +18027,25 @@
       "patched_versions": [],
       "commit_sha": "5916d6260acbad8a34290dba137f39963f13f467",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0286",
+      "package": "cryptoki",
+      "title": "Out-of-bounds read when decoding CKA_ALLOWED_MECHANISMS",
+      "date": "2026-09-16",
+      "patched_versions": [
+        ">= 0.10.1, < 0.11.0",
+        ">= 0.11.1, < 0.12.0",
+        ">= 0.12.1"
+      ],
+      "commit_sha": "16582f4abf1e35fc2ffa111e6331efdca89f7984",
+      "vulnerable_symbols": [
+        {
+          "file": "cryptoki/src/object.rs",
+          "function": "cryptoki::object::Attribute::try_from",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
