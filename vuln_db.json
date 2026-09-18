@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1789632537",
+  "generated_at": "unix:1789734564",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -18043,6 +18043,66 @@
         {
           "file": "cryptoki/src/object.rs",
           "function": "cryptoki::object::Attribute::try_from",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0287",
+      "package": "cosmian_kyber",
+      "title": "cosmian_kyber is unmaintained",
+      "date": "2026-09-17",
+      "patched_versions": [],
+      "commit_sha": "2ec2d76d40c12400afbdc2569d3af79c2452ef0a",
+      "vulnerable_symbols": [
+        {
+          "file": "src/avx2/verify.rs",
+          "function": "cosmian_kyber::avx2::verify::cmov",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0288",
+      "package": "cosmian_kyber",
+      "title": "cosmian_kyber: AVX2 backend skips Fujisaki-Okamoto implicit rejection, enabling chosen-ciphertext key recovery",
+      "date": "2026-08-16",
+      "patched_versions": [],
+      "commit_sha": "2ec2d76d40c12400afbdc2569d3af79c2452ef0a",
+      "vulnerable_symbols": [
+        {
+          "file": "src/avx2/verify.rs",
+          "function": "cosmian_kyber::avx2::verify::cmov",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0289",
+      "package": "pqc_kyber",
+      "title": "pqc_kyber is unmaintained",
+      "date": "2026-09-17",
+      "patched_versions": [],
+      "commit_sha": "160a80c58c679e37659778f03f6af66b300237db",
+      "vulnerable_symbols": [
+        {
+          "file": "src/avx2/verify.rs",
+          "function": "pqc_kyber::avx2::verify::cmov",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0290",
+      "package": "pqc_kyber",
+      "title": "pqc_kyber: AVX2 backend skips Fujisaki-Okamoto implicit rejection, enabling chosen-ciphertext key recovery",
+      "date": "2026-08-16",
+      "patched_versions": [],
+      "commit_sha": "160a80c58c679e37659778f03f6af66b300237db",
+      "vulnerable_symbols": [
+        {
+          "file": "src/avx2/verify.rs",
+          "function": "pqc_kyber::avx2::verify::cmov",
           "change_type": "Modified"
         }
       ]
