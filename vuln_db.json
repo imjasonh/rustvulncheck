@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1789734564",
+  "generated_at": "unix:1789989798",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -18104,6 +18104,112 @@
           "file": "src/avx2/verify.rs",
           "function": "pqc_kyber::avx2::verify::cmov",
           "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0292",
+      "package": "imbl-sized-chunks",
+      "title": "Double free / use-after-free in `Chunk` and `InlineArray` removal methods when an element's `Drop` panics",
+      "date": "2026-09-04",
+      "patched_versions": [
+        ">= 0.2.0"
+      ],
+      "commit_sha": "c438e1d10008137b4076aec7c7d43ab25719742e",
+      "vulnerable_symbols": [
+        {
+          "file": "src/inline_array/mod.rs",
+          "function": "imbl_sized_chunks::inline_array::InlineArray::clear",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/inline_array/mod.rs",
+          "function": "imbl_sized_chunks::inline_array::InlineArray::data_and_len_mut",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/inline_array/mod.rs",
+          "function": "imbl_sized_chunks::inline_array::InlineArray::drop_contents",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/inline_array/mod.rs",
+          "function": "imbl_sized_chunks::inline_array::InlineArray::truncate",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "imbl_sized_chunks::DropGuard::drop",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "imbl_sized_chunks::drop_later",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/ring_buffer/mod.rs",
+          "function": "imbl_sized_chunks::ring_buffer::RingBuffer::clear",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ring_buffer/mod.rs",
+          "function": "imbl_sized_chunks::ring_buffer::RingBuffer::drop_left",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sized_chunk/mod.rs",
+          "function": "imbl_sized_chunks::sized_chunk::Chunk::clear",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sized_chunk/mod.rs",
+          "function": "imbl_sized_chunks::sized_chunk::Chunk::drop_left",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sized_chunk/mod.rs",
+          "function": "imbl_sized_chunks::sized_chunk::Chunk::drop_right",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0293",
+      "package": "ringbuf",
+      "title": "Double free / use-after-free in `Consumer::skip` and `Consumer::clear` when an element's `Drop` panics",
+      "date": "2026-09-21",
+      "patched_versions": [
+        ">= 0.5.2"
+      ],
+      "commit_sha": "78f969c1798d39babdc54a7763fd15d009c82be8",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0294",
+      "package": "iceoryx2-bb-container",
+      "title": "Unsoundness in UTF-8 'String' trait",
+      "date": "2026-09-18",
+      "patched_versions": [
+        "0.10.0"
+      ],
+      "commit_sha": "ec530caeda296e6456051ddef9c7b91a4205fa90",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0295",
+      "package": "z3",
+      "title": "Memory corruption bug on `ApplyResult` type",
+      "date": "2026-08-12",
+      "patched_versions": [
+        ">= 0.21.0"
+      ],
+      "commit_sha": "70081be42e669cfbacc7e1abff449f635f881f54",
+      "vulnerable_symbols": [
+        {
+          "file": "z3/src/tactic.rs",
+          "function": "z3::tactic::ApplyResult::clone",
+          "change_type": "Added"
         }
       ]
     }
