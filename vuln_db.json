@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1789989798",
+  "generated_at": "unix:1790073182",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -18210,6 +18210,225 @@
           "file": "z3/src/tactic.rs",
           "function": "z3::tactic::ApplyResult::clone",
           "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0298",
+      "package": "unicycle",
+      "title": "Use-after-free when a future's `Drop` panics while the container is dropped",
+      "date": "2026-09-12",
+      "patched_versions": [
+        ">= 0.10.3"
+      ],
+      "commit_sha": "4f1492a266824f8aa66fd6b27fa6188bf826bdfd",
+      "vulnerable_symbols": [
+        {
+          "file": "src/lib.rs",
+          "function": "unicycle::Unordered::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/task.rs",
+          "function": "unicycle::task::Storage::clear",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/task.rs",
+          "function": "unicycle::task::free_task",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/task.rs",
+          "function": "unicycle::task::make_slot_vacant",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0300",
+      "package": "skiplist",
+      "title": "Use-after-free in `clear` and `retain` when an element's `Drop` panics",
+      "date": "2026-09-02",
+      "patched_versions": [
+        ">= 1.1.1"
+      ],
+      "commit_sha": "aa83797b5c3bb4f3b915fadde7ba7ebdfe1114aa",
+      "vulnerable_symbols": [
+        {
+          "file": "src/node.rs",
+          "function": "skiplist::node::DropChain::drop",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/node.rs",
+          "function": "skiplist::node::Node::drop_chain",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/node.rs",
+          "function": "skiplist::node::Node::filter_rebuild",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/node.rs",
+          "function": "skiplist::node::Node::rebuild",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/node.rs",
+          "function": "skiplist::node::Node::truncate_next",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/node.rs",
+          "function": "skiplist::node::Rebuild::drop",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/node.rs",
+          "function": "skiplist::node::Rebuild::retain",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/node.rs",
+          "function": "skiplist::node::Rebuild::retain_rest",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/ordered_skip_list.rs",
+          "function": "skiplist::ordered_skip_list::OrderedSkipList::rebuild_skip_links",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ordered_skip_list/filter.rs",
+          "function": "skiplist::ordered_skip_list::filter::OrderedSkipList::dedup_by",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ordered_skip_list/filter.rs",
+          "function": "skiplist::ordered_skip_list::filter::OrderedSkipList::retain",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ordered_skip_list/iter.rs",
+          "function": "skiplist::ordered_skip_list::iter::ExtractIf::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ordered_skip_list/iter.rs",
+          "function": "skiplist::ordered_skip_list::iter::OrderedSkipList::drain",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ordered_skip_list/iter.rs",
+          "function": "skiplist::ordered_skip_list::iter::OrderedSkipList::drain_range",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ordered_skip_list/structural.rs",
+          "function": "skiplist::ordered_skip_list::structural::OrderedSkipList::append",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ordered_skip_list/structural.rs",
+          "function": "skiplist::ordered_skip_list::structural::OrderedSkipList::clear",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ordered_skip_list/structural.rs",
+          "function": "skiplist::ordered_skip_list::structural::OrderedSkipList::split_off",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ordered_skip_list/structural.rs",
+          "function": "skiplist::ordered_skip_list::structural::OrderedSkipList::split_off_index",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ordered_skip_list/structural.rs",
+          "function": "skiplist::ordered_skip_list::structural::OrderedSkipList::truncate",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ordered_skip_list/traits.rs",
+          "function": "skiplist::ordered_skip_list::traits::OrderedSkipList::clone",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_list/filter.rs",
+          "function": "skiplist::skip_list::filter::SkipList::dedup_by",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_list/filter.rs",
+          "function": "skiplist::skip_list::filter::SkipList::retain",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_list/filter.rs",
+          "function": "skiplist::skip_list::filter::SkipList::retain_mut",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_list/iter.rs",
+          "function": "skiplist::skip_list::iter::ExtractIf::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_list/iter.rs",
+          "function": "skiplist::skip_list::iter::SkipList::drain",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_list/structural.rs",
+          "function": "skiplist::skip_list::structural::SkipList::clear",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_list/structural.rs",
+          "function": "skiplist::skip_list::structural::SkipList::split_off",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_list/structural.rs",
+          "function": "skiplist::skip_list::structural::SkipList::truncate",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_map/filter.rs",
+          "function": "skiplist::skip_map::filter::SkipMap::retain",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_map/iter.rs",
+          "function": "skiplist::skip_map::iter::ExtractIf::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_map/iter.rs",
+          "function": "skiplist::skip_map::iter::SkipMap::drain",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_map/structural.rs",
+          "function": "skiplist::skip_map::structural::SkipMap::append",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_map/structural.rs",
+          "function": "skiplist::skip_map::structural::SkipMap::clear",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_map/structural.rs",
+          "function": "skiplist::skip_map::structural::SkipMap::split_off",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/skip_map/traits.rs",
+          "function": "skiplist::skip_map::traits::SkipMap::clone",
+          "change_type": "Modified"
         }
       ]
     }
