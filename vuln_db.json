@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1790073182",
+  "generated_at": "unix:1790116292",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -18431,6 +18431,41 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0301",
+      "package": "stack_collections",
+      "title": "Double free in `StackVec::retain` when a predicate or element `Drop` panics",
+      "date": "2026-09-22",
+      "patched_versions": [
+        ">=0.3.3"
+      ],
+      "commit_sha": "fa5b98d2b63e31f0ec148cf053a40e9e9382f013",
+      "vulnerable_symbols": [
+        {
+          "file": "src/stack_vec.rs",
+          "function": "stack_collections::stack_vec::StackVec::retain",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0302",
+      "package": "stack-graphs",
+      "title": "`stack-graphs` C API exports are safe `extern \"C\"` functions",
+      "date": "2026-09-22",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0303",
+      "package": "stack-graphs",
+      "title": "`stack-graphs` is archived and unmaintained",
+      "date": "2026-09-22",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
