@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1790116292",
+  "generated_at": "unix:1790166436",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -18466,6 +18466,69 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0304",
+      "package": "connectrpc",
+      "title": "Finished streaming calls keep reading a stalled request body indefinitely",
+      "date": "2026-09-21",
+      "patched_versions": [
+        ">= 0.8.2, < 0.9.0",
+        ">= 0.9.1"
+      ],
+      "commit_sha": "766e2e96b0ddb6ef17ccb693652bc23940ae2ed8",
+      "vulnerable_symbols": [
+        {
+          "file": "connectrpc/src/service.rs",
+          "function": "connectrpc::service::BodyReader::decode_available",
+          "change_type": "Modified"
+        },
+        {
+          "file": "connectrpc/src/service.rs",
+          "function": "connectrpc::service::BodyReader::drain",
+          "change_type": "Added"
+        },
+        {
+          "file": "connectrpc/src/service.rs",
+          "function": "connectrpc::service::BodyReader::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "connectrpc/src/service.rs",
+          "function": "connectrpc::service::BodyReader::on_body_error",
+          "change_type": "Modified"
+        },
+        {
+          "file": "connectrpc/src/service.rs",
+          "function": "connectrpc::service::BodyReader::on_data",
+          "change_type": "Modified"
+        },
+        {
+          "file": "connectrpc/src/service.rs",
+          "function": "connectrpc::service::BodyReader::on_eof",
+          "change_type": "Modified"
+        },
+        {
+          "file": "connectrpc/src/service.rs",
+          "function": "connectrpc::service::BodyReader::on_frame",
+          "change_type": "Added"
+        },
+        {
+          "file": "connectrpc/src/service.rs",
+          "function": "connectrpc::service::BodyReader::run",
+          "change_type": "Added"
+        },
+        {
+          "file": "connectrpc/src/service.rs",
+          "function": "connectrpc::service::drain_timeout",
+          "change_type": "Added"
+        },
+        {
+          "file": "connectrpc/src/service.rs",
+          "function": "connectrpc::service::spawn_body_reader",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
