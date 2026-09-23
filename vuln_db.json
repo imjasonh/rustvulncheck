@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1790166436",
+  "generated_at": "unix:1790184935",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -18526,6 +18526,628 @@
         {
           "file": "connectrpc/src/service.rs",
           "function": "connectrpc::service::spawn_body_reader",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0306",
+      "package": "faster-hex",
+      "title": "`hex_decode_unchecked` AVX2 path reads past `src`",
+      "date": "2026-09-20",
+      "patched_versions": [
+        ">= 0.10.1"
+      ],
+      "commit_sha": "c607eac43c8a983af567c527795a9e78c7072a3c",
+      "vulnerable_symbols": [
+        {
+          "file": "build.rs",
+          "function": "faster_hex::build::main",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "ci/consumer.rs",
+          "function": "faster_hex::ci::consumer::arrays",
+          "change_type": "Added"
+        },
+        {
+          "file": "ci/consumer.rs",
+          "function": "faster_hex::ci::consumer::collections",
+          "change_type": "Added"
+        },
+        {
+          "file": "ci/consumer.rs",
+          "function": "faster_hex::ci::consumer::error",
+          "change_type": "Added"
+        },
+        {
+          "file": "ci/consumer.rs",
+          "function": "faster_hex::ci::consumer::formatting",
+          "change_type": "Added"
+        },
+        {
+          "file": "ci/consumer.rs",
+          "function": "faster_hex::ci::consumer::heapless_output",
+          "change_type": "Added"
+        },
+        {
+          "file": "ci/consumer.rs",
+          "function": "faster_hex::ci::consumer::logging",
+          "change_type": "Added"
+        },
+        {
+          "file": "ci/consumer.rs",
+          "function": "faster_hex::ci::consumer::owned_output",
+          "change_type": "Added"
+        },
+        {
+          "file": "ci/consumer.rs",
+          "function": "faster_hex::ci::consumer::required_traits",
+          "change_type": "Added"
+        },
+        {
+          "file": "ci/consumer.rs",
+          "function": "faster_hex::ci::consumer::value",
+          "change_type": "Added"
+        },
+        {
+          "file": "ci/fuzz_coverage.rs",
+          "function": "faster_hex::ci::fuzz_coverage::main",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::decode_checked",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::decode_diagnosed",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::decode_owned_large",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_check_fallback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_check_neon",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_check_neon_with_case",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_check_sse",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_check_sse_with_case",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_check_with_case",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_decode_array",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_decode_array_with_case",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_decode_avx2",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_decode_fallback",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_decode_short_scalar",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_decode_unchecked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_decode_vec",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_decode_vec_with_case",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::hex_decode_with_case",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::nib2byte_avx2",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::unhex_a",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::unhex_avx2",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/decode.rs",
+          "function": "faster_hex::decode::unhex_b",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/decode/aarch64.rs",
+          "function": "faster_hex::decode::aarch64::decode_neon_block",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/aarch64.rs",
+          "function": "faster_hex::decode::aarch64::decode_neon_nibbles",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/aarch64.rs",
+          "function": "faster_hex::decode::aarch64::hex_check_neon_short",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/aarch64.rs",
+          "function": "faster_hex::decode::aarch64::hex_check_neon_with_case",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/aarch64.rs",
+          "function": "faster_hex::decode::aarch64::hex_decode_bounded_neon",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/aarch64.rs",
+          "function": "faster_hex::decode::aarch64::hex_decode_neon",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/aarch64.rs",
+          "function": "faster_hex::decode::aarch64::hex_decode_neon_owned",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/aarch64.rs",
+          "function": "faster_hex::decode::aarch64::hex_decode_short_neon",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/aarch64.rs",
+          "function": "faster_hex::decode::aarch64::valid_neon",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::alsw_tables",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::decode_avx2_block",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::decode_avx2_nibbles",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::decode_avx512_nibbles",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::decode_check_offsets",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::decode_sse41_block",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::decode_sse41_nibbles",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::hex_check_avx2_with_case",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::hex_check_avx512_with_case",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::hex_check_sse_with_case",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::hex_decode_avx2",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::hex_decode_avx2_checked",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::hex_decode_avx2_owned",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::hex_decode_avx512",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::hex_decode_avx512_checked",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::hex_decode_avx512_owned",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::hex_decode_short_sse41",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::hex_decode_sse41",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::hex_decode_sse41_checked",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::pack_avx2",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::pack_avx512",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::pack_sse41",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::valid_avx2",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::valid_avx512",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/decode/x86.rs",
+          "function": "faster_hex::decode::x86::valid_sse",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::encode",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::encode_avx2_32",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::encode_neon_16",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::encode_neon_8",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::encode_pairs",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::encode_sse41_16",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_append",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_append_custom",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_append_upper",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_encode_avx2",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_encode_custom",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_encode_custom_case_fallback",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_encode_fallback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_encode_neon",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_encode_pairs",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_encode_sse41",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_encode_upper_fallback",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_lower",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_string_custom_case",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_to",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/encode.rs",
+          "function": "faster_hex::encode::hex_upper",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/error.rs",
+          "function": "faster_hex::error::Error::description",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/error.rs",
+          "function": "faster_hex::error::Error::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/format.rs",
+          "function": "faster_hex::format::Hex::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/format.rs",
+          "function": "faster_hex::format::Hex::format",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/format.rs",
+          "function": "faster_hex::format::Hex::format_padded",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/format.rs",
+          "function": "faster_hex::format::Hex::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/format.rs",
+          "function": "faster_hex::format::Hex::write_hex",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/format.rs",
+          "function": "faster_hex::format::Hex::write_long",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/format.rs",
+          "function": "faster_hex::format::write_fill",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/fuzzing.rs",
+          "function": "faster_hex::fuzzing::Backend::check",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/fuzzing.rs",
+          "function": "faster_hex::fuzzing::Backend::decode",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/fuzzing.rs",
+          "function": "faster_hex::fuzzing::Backend::decode_owned",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/fuzzing.rs",
+          "function": "faster_hex::fuzzing::Backend::encode",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/fuzzing.rs",
+          "function": "faster_hex::fuzzing::Backend::name",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/fuzzing.rs",
+          "function": "faster_hex::fuzzing::backends",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/heapless_08.rs",
+          "function": "faster_hex::heapless_08::hex_string",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/heapless_08.rs",
+          "function": "faster_hex::heapless_08::hex_string_custom_case",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/heapless_08.rs",
+          "function": "faster_hex::heapless_08::hex_string_upper",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "faster_hex::avx2_support_no_cache_x86",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "faster_hex::avx_support_no_cache_x86",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "faster_hex::vectorization_support",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "faster_hex::vectorization_support_no_cache_arm",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "faster_hex::vectorization_support_no_cache_x86",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/serde.rs",
+          "function": "faster_hex::serde::deserialize_bounded",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/serde.rs",
+          "function": "faster_hex::serde::internal::Text::deserialize",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/serde.rs",
+          "function": "faster_hex::serde::internal::decode",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/serde.rs",
+          "function": "faster_hex::serde::internal::decode_array",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/serde.rs",
+          "function": "faster_hex::serde::internal::deserialize",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/serde.rs",
+          "function": "faster_hex::serde::internal::deserialize_array",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/serde.rs",
+          "function": "faster_hex::serde::internal::deserialize_option",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/serde.rs",
+          "function": "faster_hex::serde::internal::deserialize_option_array",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/serde.rs",
+          "function": "faster_hex::serde::internal::payload",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/serde.rs",
+          "function": "faster_hex::serde::internal::serialize",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/serde.rs",
+          "function": "faster_hex::serde::internal::serialize_option",
           "change_type": "Modified"
         }
       ]
