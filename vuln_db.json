@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1790184935",
+  "generated_at": "unix:1790272095",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -19149,6 +19149,178 @@
           "file": "src/serde.rs",
           "function": "faster_hex::serde::internal::serialize_option",
           "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0308",
+      "package": "salsa",
+      "title": "Use-after-free in interned values and cached function results",
+      "date": "2026-09-24",
+      "patched_versions": [
+        ">= 0.28.5"
+      ],
+      "commit_sha": "c10e4ade12f6196bbda2a3bc76191eb4e176f25a",
+      "vulnerable_symbols": [
+        {
+          "file": "src/database.rs",
+          "function": "salsa::database::persistence::SerializeDatabase::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/durability.rs",
+          "function": "salsa::durability::AtomicDurability::load",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/durability.rs",
+          "function": "salsa::durability::AtomicDurability::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/durability.rs",
+          "function": "salsa::durability::AtomicDurability::store",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/function.rs",
+          "function": "salsa::function::IngredientImpl::collect_minimum_serialized_edges",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/function.rs",
+          "function": "salsa::function::collect_minimum_serialized_edges",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/function.rs",
+          "function": "salsa::function::persistence::DeserializeIngredient::visit_map",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/function.rs",
+          "function": "salsa::function::persistence::SerializeIngredient::serialize",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/function.rs",
+          "function": "salsa::function::persistence::collect_minimum_serialized_edges",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/function/memo.rs",
+          "function": "salsa::function::memo::IngredientImpl::memo_unchecked",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/input.rs",
+          "function": "salsa::input::Value::memos",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/input.rs",
+          "function": "salsa::input::Value::memos_unchecked",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::IngredientImpl::data",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::IngredientImpl::entries_inner",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::IngredientImpl::find_reusable_slot",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::IngredientImpl::insert_value",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::IngredientImpl::intern_id",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::IngredientImpl::intern_id_cold",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::IngredientImpl::maybe_changed_after",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::IngredientImpl::serialize",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::IngredientImpl::should_serialize",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::Value::assert_validated",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::Value::memos",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::Value::memos_unchecked",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::persistence::DeserializeIngredient::visit_map",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::persistence::SerializeIngredient::serialize",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/interned.rs",
+          "function": "salsa::interned::persistence::Value::serialize",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/table.rs",
+          "function": "salsa::table::DummySlot::memos_unchecked",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/table.rs",
+          "function": "salsa::table::SlotVTable::of",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/table.rs",
+          "function": "salsa::table::Table::dyn_memos_unchecked",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/tracked_struct.rs",
+          "function": "salsa::tracked_struct::Value::memos",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/tracked_struct.rs",
+          "function": "salsa::tracked_struct::Value::memos_unchecked",
+          "change_type": "Added"
         }
       ]
     }
