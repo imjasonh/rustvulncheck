@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1790272095",
+  "generated_at": "unix:1790362970",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -19323,6 +19323,17 @@
           "change_type": "Added"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0309",
+      "package": "bun_collections",
+      "title": "`SinglyLinkedList::remove` dereferences a null link",
+      "date": "2026-09-20",
+      "patched_versions": [
+        ">= 0.2.1"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
