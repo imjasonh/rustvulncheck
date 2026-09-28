@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1790362970",
+  "generated_at": "unix:1790612093",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -19334,6 +19334,80 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0311",
+      "package": "latex-rust",
+      "title": "Stack overflow on deeply nested LaTeX input",
+      "date": "2026-09-27",
+      "patched_versions": [
+        ">= 1.0.5"
+      ],
+      "commit_sha": "55d669af11eaed32ef672c5a54ae932938a3d990",
+      "vulnerable_symbols": [
+        {
+          "file": "src/layout/engine.rs",
+          "function": "latex_rust::layout::engine::Engine::item",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/layout/engine.rs",
+          "function": "latex_rust::layout::engine::Engine::item_inner",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/layout/engine.rs",
+          "function": "latex_rust::layout::engine::layout_with_numbering",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/parser/parse.rs",
+          "function": "latex_rust::parser::parse::Parser::nested",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/parser/parse.rs",
+          "function": "latex_rust::parser::parse::Parser::parse_arg",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/parser/parse.rs",
+          "function": "latex_rust::parser::parse::Parser::parse_arg_inner",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/parser/parse.rs",
+          "function": "latex_rust::parser::parse::Parser::parse_list",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/parser/parse.rs",
+          "function": "latex_rust::parser::parse::Parser::parse_list_inner",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/parser/parse.rs",
+          "function": "latex_rust::parser::parse::parse_with_colors",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0312",
+      "package": "x509-validator",
+      "title": "Excluded iPAddress name constraints with an all-zero mask are not applied",
+      "date": "2026-09-24",
+      "patched_versions": [
+        ">= 0.3.1"
+      ],
+      "commit_sha": "da661f8ecee820e05d089a76ecb654ff52a2c987",
+      "vulnerable_symbols": [
+        {
+          "file": "x509-validator/src/rfc5280/ip_constraints.rs",
+          "function": "x509_validator::rfc5280::ip_constraints::is_valid_cidr_mask",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
