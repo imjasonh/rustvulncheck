@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1790612093",
+  "generated_at": "unix:1790673376",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -19405,6 +19405,83 @@
         {
           "file": "x509-validator/src/rfc5280/ip_constraints.rs",
           "function": "x509_validator::rfc5280::ip_constraints::is_valid_cidr_mask",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0313",
+      "package": "wasmtime-wasi-http",
+      "title": "Outgoing HTTP body write allows guest-driven host memory exhaustion",
+      "date": "2026-09-24",
+      "patched_versions": [
+        ">= 36.0.16, < 37.0.0",
+        ">= 48.0.3, < 49.0.0",
+        ">= 49.0.1"
+      ],
+      "commit_sha": "968bfaec546cd37308e7b02b5793324a8555c7c1",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0314",
+      "package": "wasmtime-wasi",
+      "title": "Guest can panic host through filesystem datetime overflow",
+      "date": "2026-09-24",
+      "patched_versions": [
+        ">= 36.0.16, < 37.0.0",
+        ">= 48.0.3, < 49.0.0",
+        ">= 49.0.1"
+      ],
+      "commit_sha": "5bf31cb85f5d59bce1b1b3a45f3ea727e839d80c",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0315",
+      "package": "wasmtime",
+      "title": "`call_ref` and exception `catch` can drop some fuel accounting, leading to exponential fuel amplification",
+      "date": "2026-09-24",
+      "patched_versions": [
+        ">= 48.0.3, < 49.0.0",
+        ">= 49.0.1"
+      ],
+      "commit_sha": "922a92d281d5578f98c4b276a064b794085b5917",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0316",
+      "package": "wasmtime",
+      "title": "Dynamic record lifting can allocate beyond the hostcall fuel limit",
+      "date": "2026-09-24",
+      "patched_versions": [
+        ">= 36.0.16, < 37.0.0",
+        ">= 48.0.3, < 49.0.0",
+        ">= 49.0.1"
+      ],
+      "commit_sha": "c2741c9bbd6fc796a93a73d563ffd37be91e8a5a",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/values.rs",
+          "function": "wasmtime::runtime::component::values::Val::lift",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/values.rs",
+          "function": "wasmtime::runtime::component::values::Val::load",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/values.rs",
+          "function": "wasmtime::runtime::component::values::lift_variant",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/values.rs",
+          "function": "wasmtime::runtime::component::values::load_variant",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/values.rs",
+          "function": "wasmtime::runtime::component::values::push_flags",
           "change_type": "Modified"
         }
       ]
