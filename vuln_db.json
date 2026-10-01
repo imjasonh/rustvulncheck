@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1790673376",
+  "generated_at": "unix:1790841613",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -19483,6 +19483,28 @@
           "file": "crates/wasmtime/src/runtime/component/values.rs",
           "function": "wasmtime::runtime::component::values::push_flags",
           "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0317",
+      "package": "sheets-diff",
+      "title": "A 512-byte workbook can provoke a multi-gigabyte allocation and abort the process",
+      "date": "2026-09-29",
+      "patched_versions": [
+        ">= 3.2.0"
+      ],
+      "commit_sha": "fb70d62c88ca906284703c8071e51951c6ab43e2",
+      "vulnerable_symbols": [
+        {
+          "file": "src/open.rs",
+          "function": "sheets_diff::open::open_bytes_inner",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/open.rs",
+          "function": "sheets_diff::open::pre_screen",
+          "change_type": "Added"
         }
       ]
     }
