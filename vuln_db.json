@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1790841613",
+  "generated_at": "unix:1790887249",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -19505,6 +19505,28 @@
           "file": "src/open.rs",
           "function": "sheets_diff::open::pre_screen",
           "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0318",
+      "package": "matrix-sdk-crypto",
+      "title": "Sending custom to-device messages may panics",
+      "date": "2026-09-29",
+      "patched_versions": [
+        ">= 0.19.0"
+      ],
+      "commit_sha": "8d349709d7a1dcb1d3639d4a0929b695998238ff",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/matrix-sdk-crypto/src/session_manager/group_sessions/share_strategy.rs",
+          "function": "matrix_sdk_crypto::session_manager::group_sessions::share_strategy::split_devices_for_share_strategy",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/session_manager/group_sessions/share_strategy.rs",
+          "function": "matrix_sdk_crypto::session_manager::group_sessions::share_strategy::withheld_code_for_device_for_share_strategy",
+          "change_type": "Modified"
         }
       ]
     }
