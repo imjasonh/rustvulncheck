@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1790887249",
+  "generated_at": "unix:1790947274",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -19529,6 +19529,15 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0319",
+      "package": "anymap2",
+      "title": "anymap2 is unmaintained",
+      "date": "2026-10-02",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
