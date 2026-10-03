@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1790980945",
+  "generated_at": "unix:1791031887",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -10021,6 +10021,21 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2024-0448",
+      "package": "rutie",
+      "title": "`parse_arguments` reads a caller-supplied pointer as a slice",
+      "date": "2024-11-25",
+      "patched_versions": [
+        ">= 0.10.3, < 0.11.0",
+        ">= 0.11.3, < 0.12.0",
+        ">= 0.12.1, < 0.13.0",
+        ">= 0.13.1, < 0.14.0",
+        ">= 0.14.1"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2025-0002",
       "package": "fast-float2",
       "title": "Segmentation fault due to lack of bound check",
@@ -19642,6 +19657,15 @@
         ">= 49.0.2"
       ],
       "commit_sha": "5baf18d5508ab7b78487fe8e4aeba358a715e5e2",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0328",
+      "package": "decompress",
+      "title": "`decompress`: tar-family extractors write archive entries without a path-traversal check (tar-slip)",
+      "date": "2026-09-19",
+      "patched_versions": [],
+      "commit_sha": null,
       "vulnerable_symbols": []
     }
   ]
