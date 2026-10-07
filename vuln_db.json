@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1791031887",
+  "generated_at": "unix:1791384886",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -19667,6 +19667,233 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0329",
+      "package": "libcrux-hmac-drbg",
+      "title": "Auto-Reseeding HMAC-DRBG could panic for some output lengths",
+      "date": "2026-08-03",
+      "patched_versions": [
+        ">= 0.0.2"
+      ],
+      "commit_sha": "87eda899b207aa8fecbdf7a6ecfa5f70a9b2c68c",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0330",
+      "package": "libcrux-kem",
+      "title": "Hybrid Encapsulation from Seed Panics on Short Seed",
+      "date": "2026-09-28",
+      "patched_versions": [
+        ">= 0.0.10"
+      ],
+      "commit_sha": "a4af5cf2852042b6f8f6ddd7aaf88abb68c8bbd3",
+      "vulnerable_symbols": [
+        {
+          "file": "libcrux-kem/src/kem.rs",
+          "function": "libcrux_kem::kem::Ct::decapsulate",
+          "change_type": "Modified"
+        },
+        {
+          "file": "libcrux-kem/src/kem.rs",
+          "function": "libcrux_kem::kem::PublicKey::encapsulate_derand",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0331",
+      "package": "libcrux-kem",
+      "title": "Panic on Decoding Short Hybrid Keys",
+      "date": "2026-08-24",
+      "patched_versions": [
+        ">= 0.0.10"
+      ],
+      "commit_sha": "2b0b67c9cbf8220a96330d4eba5b3d3084f899a8",
+      "vulnerable_symbols": [
+        {
+          "file": "libcrux-kem/src/kem.rs",
+          "function": "libcrux_kem::kem::X25519MlKem768Draft00PrivateKey::decode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "libcrux-kem/src/kem.rs",
+          "function": "libcrux_kem::kem::X25519MlKem768Draft00PublicKey::decode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "libcrux-kem/src/kem.rs",
+          "function": "libcrux_kem::kem::XWingKemDraft06PublicKey::decode",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0332",
+      "package": "wasapi",
+      "title": "`WaveFormat::parse` reads past the end of a `&WAVEFORMATEX`",
+      "date": "2026-09-08",
+      "patched_versions": [
+        ">= 0.25.0"
+      ],
+      "commit_sha": "ccb3f447082c047040ba20afd645d6cc7c0ca991",
+      "vulnerable_symbols": [
+        {
+          "file": "src/api.rs",
+          "function": "wasapi::api::AudioClient::is_supported_exclusive_with_quirks",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/api.rs",
+          "function": "wasapi::api::Device::get_data_ranges",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::AudioClient::check_exclusive",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::Candidate::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::CapabilityProbe::data_ranges",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::CapabilityProbe::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::CapabilityProbe::probing",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::CapabilityProbe::set_data_ranges",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::CapabilityProbe::supported_formats",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::CapabilityProbe::supported_formats_all_rates",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::CapabilityProbe::supported_formats_at_rate",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::Probing::all_rates",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::Probing::all_rates_staged",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::Probing::all_rates_within_ranges",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::Probing::channel_ceiling",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::Probing::formats",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/capabilities.rs",
+          "function": "wasapi::capabilities::Probing::rate",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/dataranges.rs",
+          "function": "wasapi::dataranges::DataRange::covers",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/dataranges.rs",
+          "function": "wasapi::dataranges::DataRange::sample_type",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/dataranges.rs",
+          "function": "wasapi::dataranges::covered_by_any",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/dataranges.rs",
+          "function": "wasapi::dataranges::filter_id",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/dataranges.rs",
+          "function": "wasapi::dataranges::ks_property",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/dataranges.rs",
+          "function": "wasapi::dataranges::open_filter",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/dataranges.rs",
+          "function": "wasapi::dataranges::parse_data_ranges",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/dataranges.rs",
+          "function": "wasapi::dataranges::pin_property",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/dataranges.rs",
+          "function": "wasapi::dataranges::query_bytes",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/dataranges.rs",
+          "function": "wasapi::dataranges::query_u32",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/dataranges.rs",
+          "function": "wasapi::dataranges::reachable_connectors",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/dataranges.rs",
+          "function": "wasapi::dataranges::read_data_ranges",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/waveformat.rs",
+          "function": "wasapi::waveformat::WaveFormat::parse",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/waveformat.rs",
+          "function": "wasapi::waveformat::WaveFormat::to_waveformatex",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
