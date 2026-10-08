@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1791384886",
+  "generated_at": "unix:1791490916",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -19891,6 +19891,78 @@
         {
           "file": "src/waveformat.rs",
           "function": "wasapi::waveformat::WaveFormat::to_waveformatex",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0333",
+      "package": "noyalib",
+      "title": "Resource budgets not enforced on the typed deserialization path",
+      "date": "2026-10-06",
+      "patched_versions": [
+        ">= 0.0.53"
+      ],
+      "commit_sha": "8c6671fc74f04dcb75dac90b424b7976db24368f",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/noyalib/src/streaming.rs",
+          "function": "noyalib::streaming::StreamingDeserializer::charge_alias",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/noyalib/src/streaming.rs",
+          "function": "noyalib::streaming::StreamingDeserializer::charge_event",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/noyalib/src/streaming.rs",
+          "function": "noyalib::streaming::StreamingDeserializer::inject_multi_merge_mapping_contents",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/noyalib/src/streaming.rs",
+          "function": "noyalib::streaming::StreamingDeserializer::next_event",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/noyalib/src/streaming.rs",
+          "function": "noyalib::streaming::StreamingDeserializer::next_parser_event",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/noyalib/src/streaming.rs",
+          "function": "noyalib::streaming::StreamingDeserializer::peek_event",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/noyalib/src/streaming.rs",
+          "function": "noyalib::streaming::StreamingDeserializer::peek_parser_event",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/noyalib/src/streaming.rs",
+          "function": "noyalib::streaming::StreamingDeserializer::pull_parser_event",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/noyalib/src/streaming.rs",
+          "function": "noyalib::streaming::StreamingDeserializer::resolve_alias",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/noyalib/src/streaming.rs",
+          "function": "noyalib::streaming::StreamingDeserializer::with_config",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/noyalib/src/streaming.rs",
+          "function": "noyalib::streaming::StreamingMapAccess::next_key_seed",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/noyalib/src/streaming.rs",
+          "function": "noyalib::streaming::StreamingSeqAccess::next_element_seed",
           "change_type": "Modified"
         }
       ]
