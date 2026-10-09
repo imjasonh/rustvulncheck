@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1791490916",
+  "generated_at": "unix:1791554464",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -19964,6 +19964,98 @@
           "file": "crates/noyalib/src/streaming.rs",
           "function": "noyalib::streaming::StreamingSeqAccess::next_element_seed",
           "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0334",
+      "package": "bip322",
+      "title": "BIP-322 address ownership verification bypass for P2WPKH and P2SH-P2WPKH addresses",
+      "date": "2026-08-14",
+      "patched_versions": [
+        ">= 0.0.11"
+      ],
+      "commit_sha": "e8accbe7d39f48f030e44f333b4796e28f6aad80",
+      "vulnerable_symbols": [
+        {
+          "file": "src/sign.rs",
+          "function": "bip322::sign::create_message_signature_p2sh_multisig",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "bip322::sign::create_message_signature_p2wsh",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "bip322::sign::sign_full",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "bip322::sign::sign_full_encoded",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "bip322::sign::sign_simple",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "bip322::sign::sign_simple_encoded",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "bip322::sign::single_key",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "bip322::util::ordered_multisig_signatures",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "bip322::util::parse_multisig",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/util.rs",
+          "function": "bip322::util::push_only_script",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/verify.rs",
+          "function": "bip322::verify::check_to_sign",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/verify.rs",
+          "function": "bip322::verify::verify_full",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/verify.rs",
+          "function": "bip322::verify::verify_full_p2sh_multisig",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/verify.rs",
+          "function": "bip322::verify::verify_full_p2tr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/verify.rs",
+          "function": "bip322::verify::verify_full_p2wpkh",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/verify.rs",
+          "function": "bip322::verify::verify_full_p2wsh",
+          "change_type": "Added"
         }
       ]
     }
