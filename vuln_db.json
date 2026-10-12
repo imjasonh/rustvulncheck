@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1791554464",
+  "generated_at": "unix:1791821896",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -20055,6 +20055,380 @@
         {
           "file": "src/verify.rs",
           "function": "bip322::verify::verify_full_p2wsh",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0335",
+      "package": "mykey",
+      "title": "Pre-shared key mode transmits the TGK in cleartext, exposing the SRTP master key",
+      "date": "2026-10-09",
+      "patched_versions": [
+        ">= 2.0.0"
+      ],
+      "commit_sha": "d65d7756d1696b85c391b858a9849202faa80289",
+      "vulnerable_symbols": [
+        {
+          "file": "src/crypto.rs",
+          "function": "mykey::crypto::aes_cm_apply",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/crypto.rs",
+          "function": "mykey::crypto::derive_salt_key",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/crypto.rs",
+          "function": "mykey::crypto::kemac_iv",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::build_psk_init",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::complete_psk",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::from_bytes",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::kemac",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::new_dh_init",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::new_dh_init_with_sp",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::new_dh_resp",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::new_psk_init",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::new_psk_init_requiring_verification",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::new_psk_verification",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::parse_verification",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::requires_verification",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::serialize_payload",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::timestamp_payload",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::timestamp_value",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::verification_identities",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::verify_and_extract_tgk",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::verify_psk_verification",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyDataSubPayload::parse",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyDataSubPayload::parse_chain",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyDataSubPayload::serialize",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyDataSubPayload::tgk",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyDataType::from_u8",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyDataType::has_salt",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyValidity::kv_type",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyValidityType::from_u8",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::PayloadType::from_u8",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::TimestampType::from_u8",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::TimestampType::value_len",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::take",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::take_u16",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::take_u8",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0336",
+      "package": "mykey",
+      "title": "MIKEY message MAC is never verified on receive, so forged messages are accepted",
+      "date": "2026-10-09",
+      "patched_versions": [
+        ">= 2.0.0"
+      ],
+      "commit_sha": "d65d7756d1696b85c391b858a9849202faa80289",
+      "vulnerable_symbols": [
+        {
+          "file": "src/crypto.rs",
+          "function": "mykey::crypto::aes_cm_apply",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/crypto.rs",
+          "function": "mykey::crypto::derive_salt_key",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/crypto.rs",
+          "function": "mykey::crypto::kemac_iv",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::build_psk_init",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::complete_psk",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::from_bytes",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::kemac",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::new_dh_init",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::new_dh_init_with_sp",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::new_dh_resp",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::new_psk_init",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::new_psk_init_requiring_verification",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::new_psk_verification",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::parse_verification",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::requires_verification",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::serialize_payload",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::timestamp_payload",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::timestamp_value",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::verification_identities",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::verify_and_extract_tgk",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/message.rs",
+          "function": "mykey::message::MikeyMessage::verify_psk_verification",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyDataSubPayload::parse",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyDataSubPayload::parse_chain",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyDataSubPayload::serialize",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyDataSubPayload::tgk",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyDataType::from_u8",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyDataType::has_salt",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyValidity::kv_type",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::KeyValidityType::from_u8",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::PayloadType::from_u8",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::TimestampType::from_u8",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::TimestampType::value_len",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::take",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::take_u16",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/payload.rs",
+          "function": "mykey::payload::take_u8",
           "change_type": "Added"
         }
       ]
