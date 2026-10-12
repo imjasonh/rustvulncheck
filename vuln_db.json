@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1791821896",
+  "generated_at": "unix:1791847486",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -815,6 +815,28 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2018-0020",
+      "package": "libpulse-binding",
+      "title": "Possible use-after-free with `proplist::Iterator`",
+      "date": "2018-12-22",
+      "patched_versions": [
+        ">= 2.5.0"
+      ],
+      "commit_sha": "9e31c82d71749619387cb9d0c9698134d05b28c9",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2018-0021",
+      "package": "libpulse-binding",
+      "title": "Use-after-free with objects returned by `Stream`'s `get_format_info` and `get_context` methods",
+      "date": "2018-06-15",
+      "patched_versions": [
+        ">= 1.2.1"
+      ],
+      "commit_sha": "e6930e16573f0b6d12d6628ba5de59147d6f9e95",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2018-0022",
       "package": "temporary",
       "title": "Use of uninitialized memory in temporary",
@@ -1534,6 +1556,23 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2020-0024",
+      "package": "tough",
+      "title": "Improper uniqueness verification of signature threshold",
+      "date": "2020-07-09",
+      "patched_versions": [
+        ">= 0.7.1"
+      ],
+      "commit_sha": "c1c950682d765ebc661f70381f947bc28b8b058c",
+      "vulnerable_symbols": [
+        {
+          "file": "tough/src/schema/verify.rs",
+          "function": "tough::schema::verify::Root::verify_role",
+          "change_type": "Modified"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2020-0025",
@@ -3947,6 +3986,25 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2021-0020",
+      "package": "hyper",
+      "title": "Multiple Transfer-Encoding headers misinterprets request payload",
+      "date": "2021-02-05",
+      "patched_versions": [
+        ">= 0.14.3",
+        "0.13.10",
+        "0.12.36"
+      ],
+      "commit_sha": "8f93123efef5c1361086688fe4f34c83c89cec02",
+      "vulnerable_symbols": [
+        {
+          "file": "src/proto/h1/role.rs",
+          "function": "hyper::proto::h1::role::Server::parse",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2021-0021",
       "package": "nb-connect",
       "title": "`nb-connect` invalidly assumes the memory layout of std::net::SocketAddr",
@@ -4336,6 +4394,17 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2021-0067",
+      "package": "cranelift-codegen",
+      "title": "Memory access due to code generation flaw in Cranelift module",
+      "date": "2021-05-21",
+      "patched_versions": [
+        ">= 0.73.1"
+      ],
+      "commit_sha": "95559c01aaa7c061088a433040f31e8291fb09d0",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2021-0068",
       "package": "iced-x86",
       "title": "Soundness issue in `iced-x86` versions <= 1.10.3",
@@ -4494,6 +4563,55 @@
           "file": "src/lib.rs",
           "function": "libsecp256k1::Signature::parse_standard_slice",
           "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2021-0078",
+      "package": "hyper",
+      "title": "Lenient `hyper` header parsing of `Content-Length` could allow request smuggling",
+      "date": "2021-07-07",
+      "patched_versions": [
+        ">= 0.14.10"
+      ],
+      "commit_sha": "1fb719e0b61a4f3d911562a436a2ff05fd7cb759",
+      "vulnerable_symbols": [
+        {
+          "file": "src/headers.rs",
+          "function": "hyper::headers::content_length_parse",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/headers.rs",
+          "function": "hyper::headers::content_length_parse_all_values",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/headers.rs",
+          "function": "hyper::headers::from_digits",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/proto/h1/role.rs",
+          "function": "hyper::proto::h1::role::Server::parse",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2021-0079",
+      "package": "hyper",
+      "title": "Integer overflow in `hyper`'s parsing of the `Transfer-Encoding` header leads to data loss",
+      "date": "2021-07-07",
+      "patched_versions": [
+        ">= 0.14.10"
+      ],
+      "commit_sha": "efd9a9821fd2f1ae04b545094de76a435b62e70f",
+      "vulnerable_symbols": [
+        {
+          "file": "src/proto/h1/decode.rs",
+          "function": "hyper::proto::h1::decode::ChunkedState::read_size",
+          "change_type": "Modified"
         }
       ]
     },
@@ -4694,6 +4812,34 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2021-0093",
+      "package": "crossbeam-deque",
+      "title": "Data race in crossbeam-deque",
+      "date": "2021-07-30",
+      "patched_versions": [
+        ">= 0.7.4, < 0.8.0",
+        ">= 0.8.1"
+      ],
+      "commit_sha": "38c07fcf09920532dc928e775d48b629337313ee",
+      "vulnerable_symbols": [
+        {
+          "file": "crossbeam-deque/src/deque.rs",
+          "function": "crossbeam_deque::deque::Stealer::steal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-deque/src/deque.rs",
+          "function": "crossbeam_deque::deque::Stealer::steal_batch",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crossbeam-deque/src/deque.rs",
+          "function": "crossbeam_deque::deque::Stealer::steal_batch_and_pop",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2021-0094",
       "package": "rdiff",
       "title": "Window can read out of bounds if Read instance returns more bytes than buffer size",
@@ -4745,6 +4891,28 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2021-0103",
+      "package": "molecule",
+      "title": "Partial read is incorrect in molecule",
+      "date": "2021-07-30",
+      "patched_versions": [
+        ">= 0.7.2"
+      ],
+      "commit_sha": "7e24fa8b9e63064245594bec0ca7da82bb256661",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2021-0107",
+      "package": "ckb",
+      "title": "Miner fails to get block template when a cell used as a cell dep has been destroyed.",
+      "date": "2021-07-25",
+      "patched_versions": [
+        ">= 0.40.0"
+      ],
+      "commit_sha": "e5b45795375d7dc2a689fb46790caca5c2653638",
+      "vulnerable_symbols": []
     },
     {
       "advisory_id": "RUSTSEC-2021-0111",
@@ -5134,6 +5302,33 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2021-0155",
+      "package": "lucet-runtime",
+      "title": "Use After Free in lucet-runtime",
+      "date": "2021-11-30",
+      "patched_versions": [],
+      "commit_sha": "7c7757c772fb709c61b1442bcc1e1fbee97bf4a8",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2021-0157",
+      "package": "ammonia",
+      "title": "Incorrect escaping for `url(\"\")` functions in CSS style attributes",
+      "date": "2021-10-10",
+      "patched_versions": [
+        ">= 4.2.3",
+        ">= 4.1.7, < 4.2.0"
+      ],
+      "commit_sha": "7c4e8382766ab5a588740b6234bf357d8276491c",
+      "vulnerable_symbols": [
+        {
+          "file": "src/style.rs",
+          "function": "ammonia::style::Declarations::parse_value",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2022-0002",
       "package": "dashmap",
       "title": "Unsoundness in `dashmap` references",
@@ -5228,6 +5423,29 @@
       "title": "pty is unmaintained",
       "date": "2022-03-22",
       "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0016",
+      "package": "wasmtime",
+      "title": "Use after free with `externref`s and epoch interruption in Wasmtime",
+      "date": "2022-03-31",
+      "patched_versions": [
+        ">= 0.35.2",
+        ">= 0.34.2, < 0.35.0"
+      ],
+      "commit_sha": "666c2554ea0e1728c35aa41178cf235920db888a",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0018",
+      "package": "totp-rs",
+      "title": "Timing attack",
+      "date": "2022-05-09",
+      "patched_versions": [
+        ">= 1.1.0"
+      ],
       "commit_sha": null,
       "vulnerable_symbols": []
     },
@@ -5343,6 +5561,28 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2022-0030",
+      "package": "rulex",
+      "title": "Stack overflow during recursive expression parsing",
+      "date": "2022-05-21",
+      "patched_versions": [
+        ">= 0.4.3"
+      ],
+      "commit_sha": "60aa2dc03a22d69c8800fec81f99c96958a11363",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0031",
+      "package": "rulex",
+      "title": "Panic due to improper UTF-8 indexing",
+      "date": "2022-05-21",
+      "patched_versions": [
+        ">= 0.4.3"
+      ],
+      "commit_sha": "fac6d58b25c6f9f8c0a6cdc4dec75b37b219f1d6",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2022-0034",
       "package": "pkcs11",
       "title": "Safety issues in `pkcs11`",
@@ -5350,6 +5590,38 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0035",
+      "package": "websocket",
+      "title": "Unbounded memory allocation based on untrusted length",
+      "date": "2022-08-01",
+      "patched_versions": [
+        ">= 0.26.5"
+      ],
+      "commit_sha": "cbf6e9983e839d2ecad86de8cd1b3f20ed43390b",
+      "vulnerable_symbols": [
+        {
+          "file": "src/receiver.rs",
+          "function": "websocket::receiver::Receiver::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/receiver.rs",
+          "function": "websocket::receiver::Receiver::new_with_limits",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/receiver.rs",
+          "function": "websocket::receiver::Receiver::recv_dataframe",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/receiver.rs",
+          "function": "websocket::receiver::Receiver::recv_message_dataframes",
+          "change_type": "Modified"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2022-0036",
@@ -5393,6 +5665,83 @@
         {
           "file": "src/schema.rs",
           "function": "async_graphql::schema::check_recursive_depth",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0038",
+      "package": "juniper",
+      "title": "Denial of service on deeply nested fragment requests",
+      "date": "2022-07-28",
+      "patched_versions": [
+        ">= 0.15.10"
+      ],
+      "commit_sha": "2b609ee057be950e3454b69fadc431d120e407bb",
+      "vulnerable_symbols": [
+        {
+          "file": "juniper/src/validation/rules/no_fragment_cycles.rs",
+          "function": "juniper::validation::rules::no_fragment_cycles::CycleDetector::detect_from",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/no_fragment_cycles.rs",
+          "function": "juniper::validation::rules::no_fragment_cycles::CycleDetector::detect_from_inner",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/validation/rules/no_fragment_cycles.rs",
+          "function": "juniper::validation::rules::no_fragment_cycles::NoFragmentCycles::exit_document",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/no_undefined_variables.rs",
+          "function": "juniper::validation::rules::no_undefined_variables::NoUndefinedVariables::find_undef_vars",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/no_undefined_variables.rs",
+          "function": "juniper::validation::rules::no_undefined_variables::NoUndefinedVariables::find_undef_vars_inner",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/validation/rules/no_unused_fragments.rs",
+          "function": "juniper::validation::rules::no_unused_fragments::NoUnusedFragments::find_reachable_fragments",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/no_unused_fragments.rs",
+          "function": "juniper::validation::rules::no_unused_fragments::NoUnusedFragments::find_reachable_fragments_inner",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/validation/rules/no_unused_variables.rs",
+          "function": "juniper::validation::rules::no_unused_variables::NoUnusedVariables::find_used_vars",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/no_unused_variables.rs",
+          "function": "juniper::validation::rules::no_unused_variables::NoUnusedVariables::find_used_vars_inner",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::OverlappingFieldsCanBeMerged::collect_conflicts_between_fields_and_fragment",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::OverlappingFieldsCanBeMerged::collect_conflicts_between_fields_and_fragment_inner",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/validation/rules/variables_in_allowed_position.rs",
+          "function": "juniper::validation::rules::variables_in_allowed_position::VariableInAllowedPosition::collect_incorrect_usages",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/variables_in_allowed_position.rs",
+          "function": "juniper::validation::rules::variables_in_allowed_position::VariableInAllowedPosition::collect_incorrect_usages_inner",
           "change_type": "Added"
         }
       ]
@@ -5974,6 +6323,90 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2022-0063",
+      "package": "linked_list_allocator",
+      "title": "Multiple vulnerabilities resulting in out-of-bounds writes",
+      "date": "2022-09-07",
+      "patched_versions": [
+        ">= 0.10.2"
+      ],
+      "commit_sha": "013b0758643943e8df5b17bbb495460ff47e8bbf",
+      "vulnerable_symbols": [
+        {
+          "file": "src/hole.rs",
+          "function": "linked_list_allocator::hole::Cursor::try_insert_after",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/hole.rs",
+          "function": "linked_list_allocator::hole::HoleList::empty",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/hole.rs",
+          "function": "linked_list_allocator::hole::HoleList::extend",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/hole.rs",
+          "function": "linked_list_allocator::hole::HoleList::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "linked_list_allocator::Heap::extend",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "linked_list_allocator::Heap::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "linked_list_allocator::Heap::size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "linked_list_allocator::Heap::top",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/test.rs",
+          "function": "linked_list_allocator::test::new_heap",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/test.rs",
+          "function": "linked_list_allocator::test::new_max_heap",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0066",
+      "package": "conduit-hyper",
+      "title": "Denial of Service from unchecked request length",
+      "date": "2022-10-30",
+      "patched_versions": [
+        ">= 0.4.2"
+      ],
+      "commit_sha": "4d225a53206505d39438ec6694e15f49c038baff",
+      "vulnerable_symbols": [
+        {
+          "file": "src/service/blocking_handler.rs",
+          "function": "conduit_hyper::service::blocking_handler::BlockingHandler::blocking_handler",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/service/blocking_handler.rs",
+          "function": "conduit_hyper::service::blocking_handler::check_content_length",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2022-0067",
       "package": "lzf",
       "title": "Invalid use of `mem::uninitialized` causes `use-of-uninitialized-value`",
@@ -6334,6 +6767,17 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2022-0084",
+      "package": "libp2p",
+      "title": "libp2p Lack of resource management DoS",
+      "date": "2022-07-12",
+      "patched_versions": [
+        ">= 0.45.1"
+      ],
+      "commit_sha": "2acbb457cde137cb3a1f4fb2a8b8556e2f2a86f4",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2022-0085",
       "package": "matrix-sdk-crypto",
       "title": "matrix-sdk Impersonation of room keys",
@@ -6471,6 +6915,28 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2022-0089",
+      "package": "aliyun-oss-client",
+      "title": "`aliyun-oss-client` secret exposure",
+      "date": "2022-11-19",
+      "patched_versions": [
+        ">= 0.8.1"
+      ],
+      "commit_sha": "e4553f7d74fce682d802f8fb073943387796df29",
+      "vulnerable_symbols": [
+        {
+          "file": "src/auth.rs",
+          "function": "aliyun_oss_client::auth::SignString::key_string",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/auth.rs",
+          "function": "aliyun_oss_client::auth::SignString::secret_string",
+          "change_type": "Deleted"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2022-0091",
       "package": "tauri",
       "title": "`tauri` filesystem scope partial bypass",
@@ -6502,6 +6968,99 @@
         ">= 0.1.39"
       ],
       "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0095",
+      "package": "wasmtime",
+      "title": "Miscompilation of `i8x16.swizzle` and `select` with v128 inputs",
+      "date": "2022-06-27",
+      "patched_versions": [
+        ">= 0.38.1"
+      ],
+      "commit_sha": "8bb07523e22df1ab3cbd265c77e836bf84186eb7",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0096",
+      "package": "wasmtime",
+      "title": "Invalid drop of VMExternRef from partially-initialized instances in the pooling instance allocator",
+      "date": "2022-02-17",
+      "patched_versions": [
+        ">= 0.33.1, < 0.34.0",
+        ">= 0.34.1"
+      ],
+      "commit_sha": "886ecc562040bef61faf19438c22285c2d62403a",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0097",
+      "package": "wasmtime",
+      "title": "Out of bounds write in `wasmtime_trap_code` C API function",
+      "date": "2022-11-07",
+      "patched_versions": [
+        ">= 1.0.2, < 2.0.0",
+        ">= 2.0.2"
+      ],
+      "commit_sha": "087d9d7becf7422b3f872a3bcd5d97bb7ce7ff36",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0098",
+      "package": "wasmtime",
+      "title": "Data leakage between instances in the pooling allocator",
+      "date": "2022-11-05",
+      "patched_versions": [
+        ">= 1.0.2, < 2.0.0",
+        ">= 2.0.2"
+      ],
+      "commit_sha": "2614f2e9d2d36805ead8a8da0fa0c6e0d9e428a0",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0099",
+      "package": "wasmtime",
+      "title": "Use after free with `externref`s and epoch interruption in Wasmtime",
+      "date": "2022-03-28",
+      "patched_versions": [
+        ">= 0.35.2",
+        ">= 0.34.2, < 0.35.0"
+      ],
+      "commit_sha": "666c2554ea0e1728c35aa41178cf235920db888a",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0100",
+      "package": "wasmtime",
+      "title": "Use After Free with `externref`s in Wasmtime",
+      "date": "2022-07-12",
+      "patched_versions": [
+        ">= 0.38.2"
+      ],
+      "commit_sha": "2ba4bce5cc719e5a74e571a534424614e62ecc41",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0101",
+      "package": "wasmtime",
+      "title": "Miscompilation of constant values in division on AArch64",
+      "date": "2022-07-05",
+      "patched_versions": [
+        ">= 0.38.2"
+      ],
+      "commit_sha": "2ba4bce5cc719e5a74e571a534424614e62ecc41",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2022-0102",
+      "package": "wasmtime",
+      "title": "Out of bounds read/write with zero-memory-pages configuration",
+      "date": "2022-11-05",
+      "patched_versions": [
+        ">= 1.0.2, < 2.0.0",
+        ">= 2.0.2"
+      ],
+      "commit_sha": "e60c3742904ccbb3e26da201c9221c38a4981d72",
       "vulnerable_symbols": []
     },
     {
@@ -6559,6 +7118,24 @@
         {
           "file": "src/remote_callbacks.rs",
           "function": "git2::remote_callbacks::certificate_check_cb",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2023-0003",
+      "package": "libgit2-sys",
+      "title": "git2 does not verify SSH keys by default",
+      "date": "2023-01-20",
+      "patched_versions": [
+        ">= 0.13.5, < 0.14.0",
+        ">= 0.14.2"
+      ],
+      "commit_sha": "87934f87d36753ed702792ec063be7246444a8e1",
+      "vulnerable_symbols": [
+        {
+          "file": "libgit2-sys/build.rs",
+          "function": "libgit2_sys::libgit2_sys::build::main",
           "change_type": "Modified"
         }
       ]
@@ -8075,6 +8652,33 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2023-0069",
+      "package": "sudo-rs",
+      "title": "sudo-rs: Path Traversal vulnerability",
+      "date": "2023-11-01",
+      "patched_versions": [
+        ">= 0.2.1"
+      ],
+      "commit_sha": "bfdbda22968e3de43fa8246cab1681cfd5d5493d",
+      "vulnerable_symbols": [
+        {
+          "file": "src/sudo/mod.rs",
+          "function": "sudo_rs::sudo::sudo_process",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sudo/pipeline.rs",
+          "function": "sudo_rs::sudo::pipeline::Pipeline::auth_and_update_record_file",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/system/timestamp.rs",
+          "function": "sudo_rs::system::timestamp::SessionRecordFile::open_for_user",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2023-0070",
       "package": "self_cell",
       "title": "Insufficient covariance check makes self_cell unsound",
@@ -8240,6 +8844,71 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2023-0082",
+      "package": "phonenumber",
+      "title": "phonenumber:  panic on parsing crafted RF3966 phonenumber inputs",
+      "date": "2023-09-19",
+      "patched_versions": [
+        ">= 0.2.5, <0.3.0",
+        ">=0.3.3"
+      ],
+      "commit_sha": "2dd44be94539c051b4dee55d1d9d349bd7bedde6",
+      "vulnerable_symbols": [
+        {
+          "file": "src/parser/rfc3966.rs",
+          "function": "phonenumber::parser::rfc3966::phone_number",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2023-0083",
+      "package": "blurhash",
+      "title": "blurhash: panic on parsing crafted blurhash inputs",
+      "date": "2023-09-19",
+      "patched_versions": [
+        ">= 0.2.0"
+      ],
+      "commit_sha": "e1b3209734d2a2704ed5ddcf61dc0beab6caa64d",
+      "vulnerable_symbols": [
+        {
+          "file": "build.rs",
+          "function": "blurhash::build::generate_srgb_lookup",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/base83.rs",
+          "function": "blurhash::base83::decode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/dc.rs",
+          "function": "blurhash::dc::decode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/error.rs",
+          "function": "blurhash::error::Error::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "blurhash::components",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "blurhash::decode_into",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "blurhash::multiply_basis_function",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2023-0084",
       "package": "hpack",
       "title": "`hpack` is unmaintained",
@@ -8306,6 +8975,58 @@
       "date": "2023-07-11",
       "patched_versions": [],
       "commit_sha": "48e55c166684f37af0b00fbee5a0809b1a2bae8e",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2023-0090",
+      "package": "wasmtime",
+      "title": "Guest-controlled out-of-bounds read/write on x86\\_64",
+      "date": "2023-03-02",
+      "patched_versions": [
+        ">= 4.0.1, < 5.0.0",
+        ">= 5.0.1, < 6.0.0",
+        ">= 6.0.1"
+      ],
+      "commit_sha": "63fb30e4b4415455d47b3da5a19d79c12f4f2d1f",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2023-0091",
+      "package": "wasmtime",
+      "title": "Miscompilation of wasm `i64x2.shr_s` instruction with constant input on x86\\_64",
+      "date": "2023-09-05",
+      "patched_versions": [
+        ">= 10.0.2, < 11.0.0",
+        ">= 11.0.2, < 12.0.0",
+        ">= 12.0.2"
+      ],
+      "commit_sha": "fe99d461f7fece31d0149b61398c05c08413787c",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2023-0092",
+      "package": "wasmtime",
+      "title": "Undefined Behavior in Rust runtime functions",
+      "date": "2023-04-21",
+      "patched_versions": [
+        ">= 6.0.2, < 7.0.0",
+        ">= 7.0.1, < 8.0.0",
+        ">= 8.0.1"
+      ],
+      "commit_sha": "0977952dcd9d482bff7c288868ccb52769b3a92e",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2023-0093",
+      "package": "wasmtime",
+      "title": "Miscompilation of `i8x16.select` with the same inputs on x86\\_64",
+      "date": "2023-03-03",
+      "patched_versions": [
+        ">= 4.0.1, < 5.0.0",
+        ">= 5.0.1, < 6.0.0",
+        ">= 6.0.1"
+      ],
+      "commit_sha": "5dc2bbccbb363e474d2c9a1b8e38a89a43bbd5d1",
       "vulnerable_symbols": []
     },
     {
@@ -8491,6 +9212,62 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2023-0096",
+      "package": "aes-gcm",
+      "title": "Plaintext exposed in decrypt_in_place_detached even on tag verification failure",
+      "date": "2023-11-22",
+      "patched_versions": [
+        ">= 0.10.3"
+      ],
+      "commit_sha": "b587b27270cc300d39c496a1ab06be80d72ac107",
+      "vulnerable_symbols": [
+        {
+          "file": "aes-gcm/src/lib.rs",
+          "function": "aes_gcm::AesGcm::decrypt_in_place_detached",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2023-0125",
+      "package": "aws-sigv4",
+      "title": "Logs AWS credentials when TRACE-level logging is enabled",
+      "date": "2023-04-19",
+      "patched_versions": [
+        ">= 0.55.1",
+        "0.54.2",
+        "0.53.2",
+        "0.52.1",
+        "0.51.1",
+        "0.50.1",
+        "0.49.1",
+        "0.48.1",
+        "0.47.1",
+        "0.46.1",
+        "0.15.1",
+        "0.14.1",
+        "0.13.1",
+        "0.12.1",
+        "0.11.1",
+        "0.10.2",
+        "0.9.1",
+        "0.8.1",
+        "0.7.1",
+        "0.6.1",
+        "0.5.3",
+        "0.3.1",
+        "0.2.1"
+      ],
+      "commit_sha": "33b24bb7f31d269ee9256f867bd66c01b3f2b347",
+      "vulnerable_symbols": [
+        {
+          "file": "aws/rust-runtime/aws-sigv4/src/lib.rs",
+          "function": "aws_sigv4::SigningParams::fmt",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2023-0126",
       "package": "im",
       "title": "Aliasing violation in `OrdSet` insertion",
@@ -8517,6 +9294,33 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2024-0002",
+      "package": "vmm-sys-util",
+      "title": "`serde` deserialization for `FamStructWrapper` lacks bound checks that could potentially lead to out-of-bounds memory access",
+      "date": "2024-01-02",
+      "patched_versions": [
+        ">= 0.12.0"
+      ],
+      "commit_sha": "30172fca2a8e0a38667d934ee56682247e13f167",
+      "vulnerable_symbols": [
+        {
+          "file": "src/fam.rs",
+          "function": "vmm_sys_util::fam::FamStructWrapper::deserialize",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/fam.rs",
+          "function": "vmm_sys_util::fam::FamStructWrapper::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/fam.rs",
+          "function": "vmm_sys_util::fam::FamStructWrapper::set_len",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2024-0004",
       "package": "cosmwasm",
       "title": "`cosmwasm` is unmaintained",
@@ -8537,6 +9341,138 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2024-0006",
+      "package": "shlex",
+      "title": "Multiple issues involving quote API",
+      "date": "2024-01-21",
+      "patched_versions": [
+        ">= 1.3.0"
+      ],
+      "commit_sha": "4a0724b0b62ef715467875b040a890ce75a8a829",
+      "vulnerable_symbols": [
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::Quoter::allow_nul",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::Quoter::join",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::Quoter::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::Quoter::quote",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::append_quoted_chunk",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::double_quoted_ok",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::join",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::quote",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::quoting_strategy",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::single_quoted_ok",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::try_join",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::try_quote",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::unquoted_ok",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/bytes.rs",
+          "function": "shlex::bytes::unquoted_ok_fast",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "shlex::QuoteError::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "shlex::Quoter::allow_nul",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "shlex::Quoter::from",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "shlex::Quoter::join",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "shlex::Quoter::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "shlex::Quoter::quote",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "shlex::join",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "shlex::quote",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "shlex::try_join",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "shlex::try_quote",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2024-0007",
       "package": "rust-i18n-support",
       "title": "Use-after-free when setting the locale",
@@ -8554,6 +9490,28 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2024-0008",
+      "package": "trillium-client",
+      "title": "Improper Neutralization of CRLF Sequences in HTTP Headers ('HTTP Request/Response Splitting')",
+      "date": "2024-01-23",
+      "patched_versions": [
+        ">= 0.5.4"
+      ],
+      "commit_sha": "16a42b3f8378a3fa4e61ece3e3e37e6a530df51d",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0009",
+      "package": "trillium-http",
+      "title": "Improper Neutralization of CRLF Sequences in HTTP Headers ('HTTP Request/Response Splitting')",
+      "date": "2024-01-23",
+      "patched_versions": [
+        ">= 0.3.12"
+      ],
+      "commit_sha": "16a42b3f8378a3fa4e61ece3e3e37e6a530df51d",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2024-0010",
       "package": "svix",
       "title": "Improper comparison of different-length signatures",
@@ -8563,6 +9521,23 @@
       ],
       "commit_sha": "958821bd3b956d1436af65f70a0964d4ffb7daf6",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0011",
+      "package": "snow",
+      "title": "Unauthenticated Nonce Increment in snow",
+      "date": "2024-01-23",
+      "patched_versions": [
+        ">= 0.9.5"
+      ],
+      "commit_sha": "12e8ae55547ae297d5f70599e5c884ea891303eb",
+      "vulnerable_symbols": [
+        {
+          "file": "src/cipherstate.rs",
+          "function": "snow::cipherstate::CipherState::decrypt_ad",
+          "change_type": "Modified"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2024-0013",
@@ -8606,12 +9581,190 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2024-0017",
+      "package": "cassandra-cpp",
+      "title": "Non-idiomatic use of iterators leads to use after free",
+      "date": "2024-02-28",
+      "patched_versions": [
+        ">= 3.0.0"
+      ],
+      "commit_sha": "ae054dc8044eac9c2c7ae2b1ab154b53ca7f8df7",
+      "vulnerable_symbols": [
+        {
+          "file": "src/cassandra/data_type.rs",
+          "function": "cassandra_cpp::cassandra::data_type::ConstDataType::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/data_type.rs",
+          "function": "cassandra_cpp::cassandra::data_type::DataType::sub_data_type_by_name",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/data_type.rs",
+          "function": "cassandra_cpp::cassandra::data_type::DataType::sub_type_name",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/iterator.rs",
+          "function": "cassandra_cpp::cassandra::iterator::AggregateIterator::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/iterator.rs",
+          "function": "cassandra_cpp::cassandra::iterator::ColumnIterator::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/iterator.rs",
+          "function": "cassandra_cpp::cassandra::iterator::FieldIterator::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/iterator.rs",
+          "function": "cassandra_cpp::cassandra::iterator::FunctionIterator::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/iterator.rs",
+          "function": "cassandra_cpp::cassandra::iterator::KeyspaceIterator::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/iterator.rs",
+          "function": "cassandra_cpp::cassandra::iterator::MapIterator::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/iterator.rs",
+          "function": "cassandra_cpp::cassandra::iterator::SetIterator::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/iterator.rs",
+          "function": "cassandra_cpp::cassandra::iterator::TableIterator::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/iterator.rs",
+          "function": "cassandra_cpp::cassandra::iterator::TupleIterator::drop",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/cassandra/iterator.rs",
+          "function": "cassandra_cpp::cassandra::iterator::TupleIterator::get_value",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/cassandra/iterator.rs",
+          "function": "cassandra_cpp::cassandra::iterator::TupleIterator::next",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/cassandra/iterator.rs",
+          "function": "cassandra_cpp::cassandra::iterator::UserTypeIterator::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/result.rs",
+          "function": "cassandra_cpp::cassandra::result::CassResult::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/result.rs",
+          "function": "cassandra_cpp::cassandra::result::CassResult::into_iter",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/cassandra/row.rs",
+          "function": "cassandra_cpp::cassandra::row::Row::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/row.rs",
+          "function": "cassandra_cpp::cassandra::row::Row::into_iter",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/cassandra/row.rs",
+          "function": "cassandra_cpp::cassandra::row::Row::iter",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/cassandra/row.rs",
+          "function": "cassandra_cpp::cassandra::row::RowIterator::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/cassandra/schema/aggregate_meta.rs",
+          "function": "cassandra_cpp::cassandra::schema::aggregate_meta::AggregateMeta::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/schema/column_meta.rs",
+          "function": "cassandra_cpp::cassandra::schema::column_meta::ColumnMeta::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/schema/function_meta.rs",
+          "function": "cassandra_cpp::cassandra::schema::function_meta::FunctionMeta::argument",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/schema/function_meta.rs",
+          "function": "cassandra_cpp::cassandra::schema::function_meta::FunctionMeta::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/schema/keyspace_meta.rs",
+          "function": "cassandra_cpp::cassandra::schema::keyspace_meta::KeyspaceMeta::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/schema/keyspace_meta.rs",
+          "function": "cassandra_cpp::cassandra::schema::keyspace_meta::KeyspaceMeta::field_by_name",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/schema/table_meta.rs",
+          "function": "cassandra_cpp::cassandra::schema::table_meta::TableMeta::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/value.rs",
+          "function": "cassandra_cpp::cassandra::value::Value::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/value.rs",
+          "function": "cassandra_cpp::cassandra::value::write_map",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/cassandra/value.rs",
+          "function": "cassandra_cpp::cassandra::value::write_set",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2024-0018",
       "package": "crayon",
       "title": "ObjectPool creates uninitialized memory when freeing objects",
       "date": "2024-02-27",
       "patched_versions": [],
       "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0019",
+      "package": "mio",
+      "title": "Tokens for named pipes may be delivered after deregistration",
+      "date": "2024-03-04",
+      "patched_versions": [
+        ">= 0.8.11"
+      ],
+      "commit_sha": "6fd5dd0d615a66a30a449d3f8eb1266dad96af62",
       "vulnerable_symbols": []
     },
     {
@@ -8664,12 +9817,100 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2024-0335",
+      "package": "gix-transport",
+      "title": "gix-transport indirect code execution via malicious username",
+      "date": "2024-04-13",
+      "patched_versions": [
+        ">= 0.42.0"
+      ],
+      "commit_sha": "c53bbd265005c7eedc316205b217e137e2b9896e",
+      "vulnerable_symbols": [
+        {
+          "file": "gix-transport/src/client/blocking_io/file.rs",
+          "function": "gix_transport::client::blocking_io::file::SpawnProcessOnDemand::handshake",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-transport/src/client/blocking_io/ssh/mod.rs",
+          "function": "gix_transport::client::blocking_io::ssh::connect",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-transport/src/client/blocking_io/ssh/program_kind.rs",
+          "function": "gix_transport::client::blocking_io::ssh::program_kind::ProgramKind::prepare_invocation",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0336",
+      "package": "rustls",
+      "title": "`rustls::ConnectionCommon::complete_io` could fall into an infinite loop based on network input",
+      "date": "2024-04-19",
+      "patched_versions": [
+        ">= 0.23.5",
+        ">= 0.22.4, < 0.23.0",
+        ">= 0.21.11, < 0.22.0"
+      ],
+      "commit_sha": "2123576840aa31043a31b0770e6572136fbe0c2d",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2024-0337",
       "package": "zip_next",
       "title": "The crate `zip_next` has been renamed to `zip`.",
       "date": "2024-04-20",
       "patched_versions": [],
       "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0341",
+      "package": "tls-listener",
+      "title": "Slow loris vulnerability with default configuration",
+      "date": "2024-03-15",
+      "patched_versions": [
+        ">= 0.10.0"
+      ],
+      "commit_sha": "d5a7655d6ea9e53ab57c3013092c5576da964bc4",
+      "vulnerable_symbols": [
+        {
+          "file": "src/lib.rs",
+          "function": "tls_listener::Builder::accept_batch_size",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "tls_listener::Builder::listen",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "tls_listener::Builder::max_handshakes",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "tls_listener::TlsListener::poll_accept",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "tls_listener::builder",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0342",
+      "package": "vodozemac",
+      "title": "Degraded secret zeroization capabilities",
+      "date": "2024-05-02",
+      "patched_versions": [
+        ">= 0.6.0"
+      ],
+      "commit_sha": "297548cad4016ce448c4b5007c54db7ee39489d9",
       "vulnerable_symbols": []
     },
     {
@@ -8685,6 +9926,358 @@
         {
           "file": "curve25519-dalek/src/backend/serial/u64/scalar.rs",
           "function": "curve25519_dalek::backend::serial::u64::scalar::Scalar52::sub",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0348",
+      "package": "gix-index",
+      "title": "Traversal outside working tree enables arbitrary code execution",
+      "date": "2024-05-22",
+      "patched_versions": [
+        ">= 0.33.0"
+      ],
+      "commit_sha": "79dce79c62f6072aa2653780d590dc3993dfa401",
+      "vulnerable_symbols": [
+        {
+          "file": "gix-index/src/entry/mode.rs",
+          "function": "gix_index::entry::mode::Mode::from",
+          "change_type": "Added"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::CollectEntries::add_entry",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::CollectEntries::determine_action",
+          "change_type": "Added"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::CollectEntries::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::CollectEntries::push_element",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::CollectEntries::visit_nontree",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::CollectEntries::visit_tree",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::State::from_tree",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0349",
+      "package": "gix-worktree",
+      "title": "Traversal outside working tree enables arbitrary code execution",
+      "date": "2024-05-22",
+      "patched_versions": [
+        ">= 0.34.0"
+      ],
+      "commit_sha": "79dce79c62f6072aa2653780d590dc3993dfa401",
+      "vulnerable_symbols": [
+        {
+          "file": "gix-worktree/src/stack/delegate.rs",
+          "function": "gix_worktree::stack::delegate::StackDelegate::push",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree/src/stack/delegate.rs",
+          "function": "gix_worktree::stack::delegate::StackDelegate::push_directory",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree/src/stack/delegate.rs",
+          "function": "gix_worktree::stack::delegate::create_leading_directory",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree/src/stack/delegate.rs",
+          "function": "gix_worktree::stack::delegate::validate_last_component",
+          "change_type": "Added"
+        },
+        {
+          "file": "gix-worktree/src/stack/mod.rs",
+          "function": "gix_worktree::stack::Stack::at_entry",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree/src/stack/mod.rs",
+          "function": "gix_worktree::stack::Stack::at_path",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree/src/stack/mod.rs",
+          "function": "gix_worktree::stack::mode_is_dir",
+          "change_type": "Added"
+        },
+        {
+          "file": "gix-worktree/src/stack/state/attributes.rs",
+          "function": "gix_worktree::stack::state::attributes::Attributes::push_directory",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree/src/stack/state/mod.rs",
+          "function": "gix_worktree::stack::state::State::for_checkout",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0350",
+      "package": "gix-fs",
+      "title": "Traversal outside working tree enables arbitrary code execution",
+      "date": "2024-05-22",
+      "patched_versions": [
+        ">= 0.11.0"
+      ],
+      "commit_sha": "79dce79c62f6072aa2653780d590dc3993dfa401",
+      "vulnerable_symbols": [
+        {
+          "file": "gix-fs/src/capabilities.rs",
+          "function": "gix_fs::capabilities::Capabilities::probe_precompose_unicode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-fs/src/capabilities.rs",
+          "function": "gix_fs::capabilities::Capabilities::probe_symlink",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-fs/src/stack.rs",
+          "function": "gix_fs::stack::Stack::make_relative_path_current",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0351",
+      "package": "gix-ref",
+      "title": "Refs and paths with reserved Windows device names access the devices",
+      "date": "2024-05-22",
+      "patched_versions": [
+        ">= 0.44.0"
+      ],
+      "commit_sha": "79dce79c62f6072aa2653780d590dc3993dfa401",
+      "vulnerable_symbols": [
+        {
+          "file": "gix-ref/src/store/file/find.rs",
+          "function": "gix_ref::store::file::find::Store::ref_contents",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-ref/src/store/file/loose/mod.rs",
+          "function": "gix_ref::store::file::loose::init::Store::at",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-ref/src/store/file/loose/mod.rs",
+          "function": "gix_ref::store::file::loose::init::Store::for_linked_worktree",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-ref/src/store/file/loose/reflog/create_or_update/tests.rs",
+          "function": "gix_ref::store::file::loose::reflog::create_or_update::tests::empty_store",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-ref/src/store/general/init.rs",
+          "function": "gix_ref::store::general::init::Store::at",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0352",
+      "package": "gix-index",
+      "title": "Refs and paths with reserved Windows device names access the devices",
+      "date": "2024-05-22",
+      "patched_versions": [
+        ">= 0.33.0"
+      ],
+      "commit_sha": "79dce79c62f6072aa2653780d590dc3993dfa401",
+      "vulnerable_symbols": [
+        {
+          "file": "gix-index/src/entry/mode.rs",
+          "function": "gix_index::entry::mode::Mode::from",
+          "change_type": "Added"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::CollectEntries::add_entry",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::CollectEntries::determine_action",
+          "change_type": "Added"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::CollectEntries::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::CollectEntries::push_element",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::CollectEntries::visit_nontree",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::CollectEntries::visit_tree",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-index/src/init.rs",
+          "function": "gix_index::init::from_tree::State::from_tree",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0353",
+      "package": "gix-worktree",
+      "title": "Refs and paths with reserved Windows device names access the devices",
+      "date": "2024-05-22",
+      "patched_versions": [
+        ">= 0.34.0"
+      ],
+      "commit_sha": "79dce79c62f6072aa2653780d590dc3993dfa401",
+      "vulnerable_symbols": [
+        {
+          "file": "gix-worktree/src/stack/delegate.rs",
+          "function": "gix_worktree::stack::delegate::StackDelegate::push",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree/src/stack/delegate.rs",
+          "function": "gix_worktree::stack::delegate::StackDelegate::push_directory",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree/src/stack/delegate.rs",
+          "function": "gix_worktree::stack::delegate::create_leading_directory",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree/src/stack/delegate.rs",
+          "function": "gix_worktree::stack::delegate::validate_last_component",
+          "change_type": "Added"
+        },
+        {
+          "file": "gix-worktree/src/stack/mod.rs",
+          "function": "gix_worktree::stack::Stack::at_entry",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree/src/stack/mod.rs",
+          "function": "gix_worktree::stack::Stack::at_path",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree/src/stack/mod.rs",
+          "function": "gix_worktree::stack::mode_is_dir",
+          "change_type": "Added"
+        },
+        {
+          "file": "gix-worktree/src/stack/state/attributes.rs",
+          "function": "gix_worktree::stack::state::attributes::Attributes::push_directory",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree/src/stack/state/mod.rs",
+          "function": "gix_worktree::stack::state::State::for_checkout",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0354",
+      "package": "vodozemac",
+      "title": "Usage of non-constant time base64 decoder could lead to leakage of secret key material",
+      "date": "2024-07-17",
+      "patched_versions": [
+        ">= 0.7.0"
+      ],
+      "commit_sha": "734b6c6948d4b2bdee3dd8b4efa591d93a61d272",
+      "vulnerable_symbols": [
+        {
+          "file": "src/megolm/session_keys.rs",
+          "function": "vodozemac::megolm::session_keys::ExportedSessionKey::from_base64",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/megolm/session_keys.rs",
+          "function": "vodozemac::megolm::session_keys::ExportedSessionKey::to_base64",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/megolm/session_keys.rs",
+          "function": "vodozemac::megolm::session_keys::SessionKey::from_base64",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/megolm/session_keys.rs",
+          "function": "vodozemac::megolm::session_keys::SessionKey::to_base64",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/ed25519.rs",
+          "function": "vodozemac::types::ed25519::Ed25519SecretKey::from_base64",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/ed25519.rs",
+          "function": "vodozemac::types::ed25519::Ed25519SecretKey::to_base64",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0355",
+      "package": "gix-path",
+      "title": "gix-path can use a fake program files location",
+      "date": "2024-07-18",
+      "patched_versions": [
+        ">= 0.10.9"
+      ],
+      "commit_sha": "15235bf7968042da0493d431bbc955d6f9f54188",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0356",
+      "package": "matrix-sdk-crypto",
+      "title": "`UserIdentity::is_verified` not checking verification status of own user identity while performing the check",
+      "date": "2024-07-18",
+      "patched_versions": [
+        ">= 0.7.2"
+      ],
+      "commit_sha": "76a7052149bb8f722df12da915b3a06d19a6695a",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/user.rs",
+          "function": "matrix_sdk_crypto::identities::user::UserIdentity::is_verified",
           "change_type": "Modified"
         }
       ]
@@ -9144,6 +10737,45 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2024-0367",
+      "package": "gix-path",
+      "title": "gix-path uses local config across repos when it is the highest scope",
+      "date": "2024-08-31",
+      "patched_versions": [
+        ">= 0.10.10"
+      ],
+      "commit_sha": "12251eb052df30105538fa831e641eea557f13d8",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0369",
+      "package": "phonenumber",
+      "title": "phonenumber:  panic on parsing crafted phonenumber inputs",
+      "date": "2024-07-07",
+      "patched_versions": [
+        ">=0.3.6"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0371",
+      "package": "gix-path",
+      "title": "gix-path improperly resolves configuration path reported by Git",
+      "date": "2024-09-06",
+      "patched_versions": [
+        ">= 0.10.11"
+      ],
+      "commit_sha": "650a1b5cf25e086197cc55a68525a411e1c28031",
+      "vulnerable_symbols": [
+        {
+          "file": "gix-path/src/env/git/mod.rs",
+          "function": "gix_path::env::git::first_file_from_config_with_origin",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2024-0372",
       "package": "ic-cdk",
       "title": "Memory leak when calling a canister method via `ic_cdk::call`",
@@ -9185,6 +10817,17 @@
       "title": "`atty` is unmaintained",
       "date": "2024-09-25",
       "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0376",
+      "package": "tonic",
+      "title": "Remotely exploitable Denial of Service in Tonic",
+      "date": "2024-10-01",
+      "patched_versions": [
+        ">= 0.12.3"
+      ],
       "commit_sha": null,
       "vulnerable_symbols": []
     },
@@ -9596,6 +11239,17 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2024-0401",
+      "package": "zlib-rs",
+      "title": "Denial of service because of stack overflow with malicious decompression input",
+      "date": "2024-11-14",
+      "patched_versions": [
+        ">= 0.4.0"
+      ],
+      "commit_sha": "830f8869d1460716b7e48e3805de791ba0e55449",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2024-0402",
       "package": "hashbrown",
       "title": "Borsh serialization of HashMap is non-canonical",
@@ -9949,6 +11603,171 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2024-0432",
+      "package": "rage",
+      "title": "Malicious plugin names, recipients, or identities can cause arbitrary binary execution",
+      "date": "2024-12-18",
+      "patched_versions": [
+        ">= 0.6.1, < 0.7.0",
+        ">= 0.7.2, < 0.8.0",
+        ">= 0.8.2, < 0.9.0",
+        ">= 0.9.3, < 0.10.0",
+        ">= 0.10.1, < 0.11.0",
+        ">= 0.11.1"
+      ],
+      "commit_sha": "703152ecfa86f27952a35b57dd525ed39396a227",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0433",
+      "package": "age",
+      "title": "Malicious plugin names, recipients, or identities can cause arbitrary binary execution",
+      "date": "2024-12-18",
+      "patched_versions": [
+        ">= 0.6.1, < 0.7.0",
+        ">= 0.7.2, < 0.8.0",
+        ">= 0.8.2, < 0.9.0",
+        ">= 0.9.3, < 0.10.0",
+        ">= 0.10.1, < 0.11.0",
+        ">= 0.11.1"
+      ],
+      "commit_sha": "703152ecfa86f27952a35b57dd525ed39396a227",
+      "vulnerable_symbols": [
+        {
+          "file": "age/src/plugin.rs",
+          "function": "age::plugin::Identity::from_str",
+          "change_type": "Modified"
+        },
+        {
+          "file": "age/src/plugin.rs",
+          "function": "age::plugin::IdentityPluginV1::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "age/src/plugin.rs",
+          "function": "age::plugin::Recipient::from_str",
+          "change_type": "Modified"
+        },
+        {
+          "file": "age/src/plugin.rs",
+          "function": "age::plugin::RecipientPluginV1::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "age/src/plugin.rs",
+          "function": "age::plugin::valid_plugin_name",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0434",
+      "package": "matrix-sdk-crypto",
+      "title": "Missing facility to signal rotation of a verified cryptographic identity",
+      "date": "2024-01-07",
+      "patched_versions": [
+        ">= 0.8.0"
+      ],
+      "commit_sha": "f3fe06be7d7fbc29f85fe8e9d038eeb10ec6e5a8",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/manager.rs",
+          "function": "matrix_sdk_crypto::identities::manager::IdentityManager::handle_changed_identity",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/manager.rs",
+          "function": "matrix_sdk_crypto::identities::manager::IdentityManager::handle_cross_signing_keys",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/manager.rs",
+          "function": "matrix_sdk_crypto::identities::manager::IdentityManager::handle_new_identity",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/manager.rs",
+          "function": "matrix_sdk_crypto::identities::manager::IdentityManager::update_or_create_identity",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/user.rs",
+          "function": "matrix_sdk_crypto::identities::user::OtherUserIdentityData::mark_as_previously_verified",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/user.rs",
+          "function": "matrix_sdk_crypto::identities::user::OtherUserIdentityData::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/user.rs",
+          "function": "matrix_sdk_crypto::identities::user::OtherUserIdentityData::try_from",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/user.rs",
+          "function": "matrix_sdk_crypto::identities::user::OtherUserIdentityData::update",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/user.rs",
+          "function": "matrix_sdk_crypto::identities::user::OtherUserIdentityData::was_previously_verified",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/user.rs",
+          "function": "matrix_sdk_crypto::identities::user::OtherUserIdentityData::withdraw_verification",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/user.rs",
+          "function": "matrix_sdk_crypto::identities::user::OtherUserIdentityDataSerializer::from",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/user.rs",
+          "function": "matrix_sdk_crypto::identities::user::UserIdentity::has_verification_violation",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/identities/user.rs",
+          "function": "matrix_sdk_crypto::identities::user::UserIdentity::withdraw_verification",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/machine.rs",
+          "function": "matrix_sdk_crypto::machine::OlmMachine::migration_post_verified_latch_support",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/machine.rs",
+          "function": "matrix_sdk_crypto::machine::OlmMachine::with_store",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/store/crypto_store_wrapper.rs",
+          "function": "matrix_sdk_crypto::store::crypto_store_wrapper::CryptoStoreWrapper::check_all_identities_and_update_was_previously_verified_flag_if_needed",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/store/crypto_store_wrapper.rs",
+          "function": "matrix_sdk_crypto::store::crypto_store_wrapper::CryptoStoreWrapper::save_changes",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/store/memorystore.rs",
+          "function": "matrix_sdk_crypto::store::memorystore::MemoryStore::get_user_identity",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/store/memorystore.rs",
+          "function": "matrix_sdk_crypto::store::memorystore::MemoryStore::save_changes",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2024-0435",
       "package": "fyrox-core",
       "title": "Unsound usages of `Vec::from_raw_parts`",
@@ -9966,6 +11785,257 @@
       "date": "2024-12-12",
       "patched_versions": [
         ">= 3.7.2"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0438",
+      "package": "wasmtime",
+      "title": "Wasmtime doesn't fully sandbox all the Windows device filenames",
+      "date": "2024-11-02",
+      "patched_versions": [
+        ">= 24.0.2, < 25.0.0",
+        ">= 25.0.3, < 26.0.0",
+        ">= 26.0.1"
+      ],
+      "commit_sha": "e2c74c39b95e175abd673346749cb8efff1cffcf",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0439",
+      "package": "wasmtime",
+      "title": "Race condition could lead to WebAssembly control-flow integrity and type safety violations",
+      "date": "2024-10-03",
+      "patched_versions": [
+        ">= 21.0.2, < 22.0.0",
+        ">= 22.0.1, < 23.0.0",
+        ">= 23.0.3, < 24.0.0",
+        ">= 24.0.1, < 25.0.0",
+        ">= 25.0.2"
+      ],
+      "commit_sha": "2515b7ab96d279223527f9a27ccb425c3e6fbcc7",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::OccupiedEntry::borrow",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::OccupiedEntry::decref",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::OccupiedEntry::deref",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::OccupiedEntry::eq",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::OccupiedEntry::hash",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::OccupiedEntry::incref",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegisteredType::clone",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegisteredType::deref",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegisteredType::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegisteredType::eq",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegisteredType::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegisteredType::from_parts",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegisteredType::hash",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegisteredType::index",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegisteredType::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegisteredType::root",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegistryEntry::as_occupied_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegistryEntry::unwrap_occupied",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::RegistryEntry::unwrap_occupied_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeCollection::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeRegistry::borrow",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeRegistryInner::register_canonicalized",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeRegistryInner::register_for_module",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeRegistryInner::register_new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeRegistryInner::unregister_entry",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeRegistryInner::unregister_type_collection",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeRegistryInner::unregister_types",
+          "change_type": "Deleted"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0440",
+      "package": "wasmtime",
+      "title": "Runtime crash when combining tail calls with stack traces",
+      "date": "2024-10-02",
+      "patched_versions": [
+        ">= 21.0.2, < 22.0.0",
+        ">= 22.0.1, < 23.0.0",
+        ">= 23.0.3, < 24.0.0",
+        ">= 24.0.1, < 25.0.0",
+        ">= 25.0.2"
+      ],
+      "commit_sha": "868f0c381c894dba15ded1d4c48970857a5cbcca",
+      "vulnerable_symbols": [
+        {
+          "file": "build.rs",
+          "function": "wasmtime::build::ignore",
+          "change_type": "Modified"
+        },
+        {
+          "file": "build.rs",
+          "function": "wasmtime::build::main",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/compiler.rs",
+          "function": "wasmtime::compiler::CompileInputs::collect_inputs_in_translations",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/compiler.rs",
+          "function": "wasmtime::compiler::CompileInputs::compile",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/compiler.rs",
+          "function": "wasmtime::compiler::CompileInputs::for_component",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/compiler.rs",
+          "function": "wasmtime::compiler::FunctionIndices::link_and_append_code",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/component/component.rs",
+          "function": "wasmtime::component::component::Component::build_artifacts",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/config.rs",
+          "function": "wasmtime::config::Config::build_compiler",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/config.rs",
+          "function": "wasmtime::config::Config::wasm_tail_call",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/engine/serialization.rs",
+          "function": "wasmtime::engine::serialization::Metadata::check_features",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/engine/serialization.rs",
+          "function": "wasmtime::engine::serialization::Metadata::check_tunables",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/engine/serialization.rs",
+          "function": "wasmtime::engine::serialization::Metadata::new",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0441",
+      "package": "wasmtime",
+      "title": "Panic when using a dropped extenref-typed element segment",
+      "date": "2024-04-02",
+      "patched_versions": [
+        ">= 19.0.1"
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
@@ -10021,6 +12091,170 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2024-0446",
+      "package": "starship",
+      "title": "Shell expansion in custom commands",
+      "date": "2024-07-26",
+      "patched_versions": [
+        ">= 1.20.0"
+      ],
+      "commit_sha": "cfc58161e0ec595db90af686ad77a73df6d44d74",
+      "vulnerable_symbols": [
+        {
+          "file": "src/configs/custom.rs",
+          "function": "starship::configs::custom::CustomConfig::default",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/modules/custom.rs",
+          "function": "starship::modules::custom::exec_command",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/modules/custom.rs",
+          "function": "starship::modules::custom::module",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0447",
+      "package": "pgp",
+      "title": "Panics on Malformed Untrusted Input",
+      "date": "2024-12-05",
+      "patched_versions": [
+        ">= 0.14.1"
+      ],
+      "commit_sha": "91b9f517f3bc38e7b14518a156bff81ee69301fc",
+      "vulnerable_symbols": [
+        {
+          "file": "src/composed/key/shared.rs",
+          "function": "pgp::composed::key::shared::KeyDetails::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/composed/key/shared.rs",
+          "function": "pgp::composed::key::shared::KeyDetails::new_direct",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/composed/key/shared.rs",
+          "function": "pgp::composed::key::shared::KeyDetails::sign",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/composed/signed_key/shared.rs",
+          "function": "pgp::composed::signed_key::shared::SignedKeyDetails::as_unsigned",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/crypto/aead.rs",
+          "function": "pgp::crypto::aead::AeadAlgorithm::tag_size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/crypto/ecdsa.rs",
+          "function": "pgp::crypto::ecdsa::verify",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/crypto/eddsa.rs",
+          "function": "pgp::crypto::eddsa::verify",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/crypto/hash.rs",
+          "function": "pgp::crypto::hash::HashAlgorithm::digest_size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/crypto/rsa.rs",
+          "function": "pgp::crypto::rsa::PrivateKey::from",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/crypto/x448.rs",
+          "function": "pgp::crypto::x448::SecretKey::decrypt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/crypto/x448.rs",
+          "function": "pgp::crypto::x448::encrypt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/packet/many.rs",
+          "function": "pgp::packet::many::PacketParser::next",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/packet/public_key_encrypted_session_key.rs",
+          "function": "pgp::packet::public_key_encrypted_session_key::parse_esk",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/packet/public_key_parser.rs",
+          "function": "pgp::packet::public_key_parser::public_key_parser_v4_v6",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/packet/signature/de.rs",
+          "function": "pgp::packet::signature::de::subpackets",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/packet/sym_encrypted_protected_data.rs",
+          "function": "pgp::packet::sym_encrypted_protected_data::SymEncryptedProtectedData::decrypt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/packet/sym_encrypted_protected_data.rs",
+          "function": "pgp::packet::sym_encrypted_protected_data::SymEncryptedProtectedData::encrypt_seipdv2",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/packet/sym_key_encrypted_session_key.rs",
+          "function": "pgp::packet::sym_key_encrypted_session_key::parse_v5",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/packet/sym_key_encrypted_session_key.rs",
+          "function": "pgp::packet::sym_key_encrypted_session_key::parse_v6",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/packet/user_attribute.rs",
+          "function": "pgp::packet::user_attribute::image",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/packet/user_attribute.rs",
+          "function": "pgp::packet::user_attribute::parse",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/params/encrypted_secret.rs",
+          "function": "pgp::types::params::encrypted_secret::EncryptedSecretParams::unlock",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/params/plain_secret.rs",
+          "function": "pgp::types::params::plain_secret::PlainSecretParamsRef::as_repr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/params/secret.rs",
+          "function": "pgp::types::params::secret::parse_secret_fields",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/s2k.rs",
+          "function": "pgp::types::s2k::StringToKey::derive_key",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2024-0448",
       "package": "rutie",
       "title": "`parse_arguments` reads a caller-supplied pointer as a slice",
@@ -10034,6 +12268,28 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0001",
+      "package": "gix-worktree-state",
+      "title": "gix-worktree-state nonexclusive checkout sets executable files world-writable",
+      "date": "2025-01-18",
+      "patched_versions": [
+        ">= 0.17.0"
+      ],
+      "commit_sha": "12f672f20f622a8488356a12df2d773851a683d4",
+      "vulnerable_symbols": [
+        {
+          "file": "gix-worktree-state/src/checkout/entry.rs",
+          "function": "gix_worktree_state::checkout::entry::finalize_entry",
+          "change_type": "Modified"
+        },
+        {
+          "file": "gix-worktree-state/src/checkout/entry.rs",
+          "function": "gix_worktree_state::checkout::entry::set_mode_executable",
+          "change_type": "Added"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2025-0002",
@@ -11507,6 +13763,63 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2025-0021",
+      "package": "gix-features",
+      "title": "SHA-1 collision attacks are not detected",
+      "date": "2025-04-03",
+      "patched_versions": [
+        ">= 0.41.0"
+      ],
+      "commit_sha": "f253f02a6658b3b7612a50d56c71f5ae4da4ca21",
+      "vulnerable_symbols": [
+        {
+          "file": "gix-features/src/hash.rs",
+          "function": "gix_features::hash::_impl::Sha1::digest",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "gix-features/src/hash.rs",
+          "function": "gix_features::hash::_impl::Sha1::update",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "gix-features/src/hash.rs",
+          "function": "gix_features::hash::bytes",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "gix-features/src/hash.rs",
+          "function": "gix_features::hash::bytes_of_file",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "gix-features/src/hash.rs",
+          "function": "gix_features::hash::bytes_with_hasher",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "gix-features/src/hash.rs",
+          "function": "gix_features::hash::hasher",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "gix-features/src/hash.rs",
+          "function": "gix_features::hash::write::Write::flush",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "gix-features/src/hash.rs",
+          "function": "gix_features::hash::write::Write::new",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "gix-features/src/hash.rs",
+          "function": "gix_features::hash::write::Write::write",
+          "change_type": "Deleted"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2025-0022",
       "package": "openssl",
       "title": "Use-After-Free in `Md::fetch` and `Cipher::fetch`",
@@ -11616,6 +13929,28 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2025-0041",
+      "package": "matrix-sdk-crypto",
+      "title": "matrix-sdk-crypto vulnerable to encrypted event sender spoofing by homeserver administrator",
+      "date": "2025-06-11",
+      "patched_versions": [
+        ">= 0.11.1"
+      ],
+      "commit_sha": "13c1d2048286bbabf5e7bc6b015aafee98f04d55",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/matrix-sdk-crypto/src/machine/mod.rs",
+          "function": "matrix_sdk_crypto::machine::OlmMachine::get_room_event_verification_state",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-crypto/src/olm/group_sessions/sender_data.rs",
+          "function": "matrix_sdk_crypto::olm::group_sessions::sender_data::SenderData::user_id",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2025-0042",
       "package": "static-alloc",
       "title": "Uninitialized read after allocating MemBump",
@@ -11625,6 +13960,48 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0043",
+      "package": "matrix-sdk-sqlite",
+      "title": "matrix-sdk-sqlite: SQL injection vulnerability in `SqliteEventCacheStore::find_event_with_relations`",
+      "date": "2025-07-11",
+      "patched_versions": [
+        ">= 0.13.0"
+      ],
+      "commit_sha": "d30dc7177f1601929f3a68f8687b91e129b58d94",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/matrix-sdk-sqlite/src/event_cache_store.rs",
+          "function": "matrix_sdk_sqlite::event_cache_store::SqliteEventCacheStore::filter_duplicated_events",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-sqlite/src/event_cache_store.rs",
+          "function": "matrix_sdk_sqlite::event_cache_store::SqliteEventCacheStore::find_event_relations",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-sqlite/src/event_cache_store.rs",
+          "function": "matrix_sdk_sqlite::event_cache_store::SqliteEventCacheStore::handle_linked_chunk_updates",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-sqlite/src/event_cache_store.rs",
+          "function": "matrix_sdk_sqlite::event_cache_store::Transaction::load_events_content",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-sqlite/src/event_cache_store.rs",
+          "function": "matrix_sdk_sqlite::event_cache_store::Transaction::load_gap_content",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-sqlite/src/event_cache_store.rs",
+          "function": "matrix_sdk_sqlite::event_cache_store::run_migrations",
+          "change_type": "Modified"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2025-0044",
@@ -11644,6 +14021,19 @@
         ">= 2.1.1"
       ],
       "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0046",
+      "package": "wasmtime",
+      "title": "Host panic with `fd_renumber` WASIp1 function",
+      "date": "2025-07-18",
+      "patched_versions": [
+        ">= 34.0.2",
+        ">= 33.0.2, < 34.0.0",
+        ">= 24.0.4, < 25.0.0"
+      ],
+      "commit_sha": "aec935f2e746d71934c8a131be15bbbb4392138c",
       "vulnerable_symbols": []
     },
     {
@@ -11740,6 +14130,53 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2025-0055",
+      "package": "tracing-subscriber",
+      "title": "Logging user input may result in poisoning logs with ANSI escape sequences",
+      "date": "2025-08-29",
+      "patched_versions": [
+        ">=0.3.20"
+      ],
+      "commit_sha": "4c52ca5266a3920fc5dfeebda2accf15ee7fb278",
+      "vulnerable_symbols": [
+        {
+          "file": "tracing-subscriber/src/fmt/format/escape.rs",
+          "function": "tracing_subscriber::fmt::format::escape::Escape::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "tracing-subscriber/src/fmt/format/escape.rs",
+          "function": "tracing_subscriber::fmt::format::escape::EscapingWriter::write_str",
+          "change_type": "Added"
+        },
+        {
+          "file": "tracing-subscriber/src/fmt/format/mod.rs",
+          "function": "tracing_subscriber::fmt::format::DefaultVisitor::record_debug",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tracing-subscriber/src/fmt/format/mod.rs",
+          "function": "tracing_subscriber::fmt::format::DefaultVisitor::record_error",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tracing-subscriber/src/fmt/format/mod.rs",
+          "function": "tracing_subscriber::fmt::format::ErrorSourceList::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tracing-subscriber/src/fmt/format/pretty.rs",
+          "function": "tracing_subscriber::fmt::format::pretty::PrettyVisitor::record_debug",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tracing-subscriber/src/fmt/format/pretty.rs",
+          "function": "tracing_subscriber::fmt::format::pretty::PrettyVisitor::record_error",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2025-0057",
       "package": "fxhash",
       "title": "fxhash - no longer maintained",
@@ -11796,6 +14233,17 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2025-0065",
+      "package": "matrix-sdk-base",
+      "title": "matrix-sdk-base: Panic in the `RoomMember::normalized_power_level()` method",
+      "date": "2025-09-11",
+      "patched_versions": [
+        ">= 0.14.1"
+      ],
+      "commit_sha": "ce3b67f801446387972ff120e907ca828a9f1207",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2025-0067",
       "package": "libyml",
       "title": "`libyml::string::yaml_string_extend` is unsound and unmaintained",
@@ -11820,6 +14268,18 @@
       "date": "2025-09-14",
       "patched_versions": [],
       "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0073",
+      "package": "alloy-dyn-abi",
+      "title": "DoS vulnerability on `alloy_dyn_abi::TypedData` hashing",
+      "date": "2025-10-15",
+      "patched_versions": [
+        ">=0.8.26, <1.0.0",
+        ">=1.4.1"
+      ],
+      "commit_sha": "7823e9af8c20e9fcfb5360f5eafd891c457ebccf",
       "vulnerable_symbols": []
     },
     {
@@ -12159,6 +14619,230 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2025-0110",
+      "package": "astral-tokio-tar",
+      "title": "astral-tokio-tar Vulnerable to PAX Header Desynchronization",
+      "date": "2025-10-21",
+      "patched_versions": [
+        ">= 0.5.6"
+      ],
+      "commit_sha": "22b3f884adb7a2adf1d3a8d03469533f5cbc8318",
+      "vulnerable_symbols": [
+        {
+          "file": "src/archive.rs",
+          "function": "astral_tokio_tar::archive::Archive::entries",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/archive.rs",
+          "function": "astral_tokio_tar::archive::Entries::poll_next",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/archive.rs",
+          "function": "astral_tokio_tar::archive::RawEntries::poll_next",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/archive.rs",
+          "function": "astral_tokio_tar::archive::poll_next_raw",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0112",
+      "package": "wasmtime",
+      "title": "Possible host crash with host-to-wasm component intrinsics",
+      "date": "2025-07-18",
+      "patched_versions": [
+        ">= 38.0.3"
+      ],
+      "commit_sha": "192f2fcdadfec9d0cf6b58548a85a7307450cbf5",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/build.rs",
+          "function": "wasmtime::crates::wasmtime::build::build_c_helpers",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/func.rs",
+          "function": "wasmtime::runtime::func::EntryStoreContext::enter_wasm",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/func.rs",
+          "function": "wasmtime::runtime::func::EntryStoreContext::exit_wasm",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/func.rs",
+          "function": "wasmtime::runtime::func::invoke_wasm_and_catch_traps",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/interpreter.rs",
+          "function": "wasmtime::runtime::vm::interpreter::Interpreter::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/interpreter.rs",
+          "function": "wasmtime::runtime::vm::interpreter::InterpreterRef::call",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/interpreter.rs",
+          "function": "wasmtime::runtime::vm::interpreter::InterpreterRef::call_indirect_host",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/interpreter.rs",
+          "function": "wasmtime::runtime::vm::interpreter::InterpreterRef::longjmp",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/interpreter.rs",
+          "function": "wasmtime::runtime::vm::interpreter::InterpreterRef::resume_to_exception_handler",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/interpreter.rs",
+          "function": "wasmtime::runtime::vm::interpreter::InterpreterRef::take_resume_at_pc",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/interpreter.rs",
+          "function": "wasmtime::runtime::vm::interpreter::InterpreterRef::trap",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/interpreter.rs",
+          "function": "wasmtime::runtime::vm::interpreter::callee_save_xregs",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/interpreter.rs",
+          "function": "wasmtime::runtime::vm::interpreter::longjmp",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/interpreter.rs",
+          "function": "wasmtime::runtime::vm::interpreter::setjmp",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/interpreter.rs",
+          "function": "wasmtime::runtime::vm::interpreter::trap",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/interpreter_disabled.rs",
+          "function": "wasmtime::runtime::vm::interpreter_disabled::InterpreterRef::longjmp",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/sys/custom/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::sys::custom::traphandlers::TrapHandler::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/sys/custom/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::sys::custom::traphandlers::handle_trap",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/sys/custom/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::sys::custom::traphandlers::wasmtime_setjmp",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/sys/miri/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::sys::miri::traphandlers::wasmtime_longjmp",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/sys/miri/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::sys::miri::traphandlers::wasmtime_setjmp",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/sys/unix/machports.rs",
+          "function": "wasmtime::runtime::vm::sys::unix::machports::unwind",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/sys/unix/signals.rs",
+          "function": "wasmtime::runtime::vm::sys::unix::signals::set_pc",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/sys/unix/signals.rs",
+          "function": "wasmtime::runtime::vm::sys::unix::signals::store_handler_in_ucontext",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/sys/unix/signals.rs",
+          "function": "wasmtime::runtime::vm::sys::unix::signals::trap_handler",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/sys/windows/vectored_exceptions.rs",
+          "function": "wasmtime::runtime::vm::sys::windows::vectored_exceptions::exception_handler",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::traphandlers::CallThreadState::entry_trap_handler",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::traphandlers::CallThreadState::longjmp",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::traphandlers::CallThreadState::resume_to_exception_handler",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::traphandlers::CallThreadState::take_jmp_buf",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::traphandlers::CallThreadState::unwind",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::traphandlers::call_thread_state::CallThreadState::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::traphandlers::call_thread_state::CallThreadState::swap",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::traphandlers::catch_traps",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/traphandlers.rs",
+          "function": "wasmtime::runtime::vm::traphandlers::set_jmp_buf",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/vmcontext.rs",
+          "function": "wasmtime::runtime::vm::vmcontext::VMStoreContext::default",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2025-0114",
       "package": "tandem_http_client",
       "title": "tandem_http_client is unmaintained",
@@ -12193,6 +14877,36 @@
       "patched_versions": [],
       "commit_sha": "4b3fe27190f20602dc3d9dbfcf36f72ca8b2c538",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0118",
+      "package": "wasmtime",
+      "title": "Unsound API access to a WebAssembly shared linear memory",
+      "date": "2025-11-11",
+      "patched_versions": [
+        ">= 38.0.4",
+        ">= 37.0.3, < 38.0.0",
+        ">= 36.0.3, < 37.0.0",
+        ">= 24.0.5, < 25.0.0"
+      ],
+      "commit_sha": "9ebb6934f00d58b92fb68ed0e0b16c0ae828ca10",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/coredump.rs",
+          "function": "wasmtime::runtime::coredump::WasmCoreDump::_serialize",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/coredump.rs",
+          "function": "wasmtime::runtime::coredump::WasmCoreDump::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/memory.rs",
+          "function": "wasmtime::runtime::memory::Memory::_new",
+          "change_type": "Modified"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2025-0119",
@@ -12292,6 +15006,28 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2025-0135",
+      "package": "matrix-sdk-base",
+      "title": "matrix-sdk-base: Denial of service due to custom `m.room.join_rules` events",
+      "date": "2025-12-08",
+      "patched_versions": [
+        ">= 0.16.0"
+      ],
+      "commit_sha": "4ea0418abefab2aa93f8851a4d39c723e703e6b0",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/matrix-sdk-base/src/room/room_info.rs",
+          "function": "matrix_sdk_base::room::room_info::BaseRoomInfo::handle_state_event",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/matrix-sdk-base/src/room/room_info.rs",
+          "function": "matrix_sdk_base::room::room_info::BaseRoomInfo::handle_stripped_state_event",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2025-0137",
       "package": "ruint",
       "title": "Unsoundness of safe `reciprocal_mg10`",
@@ -12378,6 +15114,43 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2025-0144",
+      "package": "ml-dsa",
+      "title": "Timing side-channel in ML-DSA decomposition",
+      "date": "2025-12-12",
+      "patched_versions": [
+        ">= 0.1.0-rc.3"
+      ],
+      "commit_sha": "035d9eef98486ecd00a8bf418c7817eb14dd6558",
+      "vulnerable_symbols": [
+        {
+          "file": "ml-dsa/src/algebra.rs",
+          "function": "ml_dsa::algebra::Elem::decompose",
+          "change_type": "Modified"
+        },
+        {
+          "file": "ml-dsa/src/ntt.rs",
+          "function": "ml_dsa::ntt::NttPolynomial::ntt_inverse",
+          "change_type": "Modified"
+        },
+        {
+          "file": "ml-dsa/src/ntt.rs",
+          "function": "ml_dsa::ntt::Polynomial::ntt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "ml-dsa/src/ntt.rs",
+          "function": "ml_dsa::ntt::ntt_inverse_layer",
+          "change_type": "Added"
+        },
+        {
+          "file": "ml-dsa/src/ntt.rs",
+          "function": "ml_dsa::ntt::ntt_layer",
+          "change_type": "Added"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2025-0153",
@@ -12817,6 +15590,63 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2025-0168",
+      "package": "zip",
+      "title": "Incorrect path canonicalization during Archive Extraction Leading to Arbitrary File Write",
+      "date": "2025-03-16",
+      "patched_versions": [
+        ">= 2.3.0"
+      ],
+      "commit_sha": "a2e062f37066c3b12860a32eb1cb44856cfb7afe",
+      "vulnerable_symbols": [
+        {
+          "file": "src/path.rs",
+          "function": "zip::path::simplified_components",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read.rs",
+          "function": "zip::read::ZipArchive::extract",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/read.rs",
+          "function": "zip::read::ZipArchive::make_writable_dir_all",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/read.rs",
+          "function": "zip::read::ZipFile::safe_prepare_path",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read.rs",
+          "function": "zip::read::ZipFile::simplified_components",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read.rs",
+          "function": "zip::read::make_symlink",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read.rs",
+          "function": "zip::read::make_writable_dir_all",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read/stream.rs",
+          "function": "zip::read::stream::ZipStreamReader::extract",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types.rs",
+          "function": "zip::types::ZipFileData::simplified_components",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2025-0169",
       "package": "stainless_ffmpeg",
       "title": "`FormatContext` stream accessors can cause undefined behavior from safe code",
@@ -12969,6 +15799,38 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2026-0003",
+      "package": "cmov",
+      "title": "Non-constant-time code generation on ARM32 targets",
+      "date": "2026-01-14",
+      "patched_versions": [
+        ">= 0.4.4"
+      ],
+      "commit_sha": "55977257e7c82a309d5e8abfdd380a774f0f9778",
+      "vulnerable_symbols": [
+        {
+          "file": "cmov/src/portable.rs",
+          "function": "cmov::portable::u64::cmoveq",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cmov/src/portable.rs",
+          "function": "cmov::portable::u64::cmovne",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cmov/src/portable.rs",
+          "function": "cmov::portable::u64::cmovnz",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cmov/src/portable.rs",
+          "function": "cmov::portable::u64::cmovz",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2026-0005",
       "package": "oneshot",
       "title": "Potential use-after-free in `oneshot` when used asynchronously",
@@ -12978,6 +15840,37 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0006",
+      "package": "wasmtime",
+      "title": "Wasmtime segfault or unused out-of-sandbox load with `f64.copysign` operator on x86-64",
+      "date": "2026-01-26",
+      "patched_versions": [
+        ">= 41.0.1",
+        ">= 40.0.3, < 41.0.0",
+        ">= 36.0.5, < 37.0.0",
+        "< 29.0.0"
+      ],
+      "commit_sha": "728fa07184f8da2a046f48ef9b61f869dce133a6",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0007",
+      "package": "bytes",
+      "title": "Integer overflow in `BytesMut::reserve`",
+      "date": "2026-02-03",
+      "patched_versions": [
+        ">= 1.11.1"
+      ],
+      "commit_sha": "d0293b0e35838123c51ca5dfdf468ecafee4398f",
+      "vulnerable_symbols": [
+        {
+          "file": "src/bytes_mut.rs",
+          "function": "bytes::bytes_mut::BytesMut::reserve_inner",
+          "change_type": "Modified"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2026-0008",
@@ -13037,6 +15930,298 @@
           "file": "src/impl_/pymodule.rs",
           "function": "pyo3::impl_::pymodule::ModuleDef::new",
           "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0020",
+      "package": "wasmtime",
+      "title": "Guest-controlled resource exhaustion in WASI implementations",
+      "date": "2026-02-24",
+      "patched_versions": [
+        ">= 24.0.6, < 25.0.0",
+        ">= 36.0.6, < 37.0.0",
+        ">= 40.0.4, < 41.0.0",
+        ">= 41.0.4"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0021",
+      "package": "wasmtime",
+      "title": "Panic adding excessive fields to a `wasi:http/types.fields` instance",
+      "date": "2026-02-24",
+      "patched_versions": [
+        ">= 24.0.6, < 25.0.0",
+        ">= 36.0.6, < 37.0.0",
+        ">= 40.0.4, < 41.0.0",
+        ">= 41.0.4"
+      ],
+      "commit_sha": "301dc7162cca51def19131019af1187f45901c0a",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/test-programs/artifacts/build.rs",
+          "function": "wasmtime::crates::test_programs::artifacts::build::Artifacts::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/test-programs/artifacts/build.rs",
+          "function": "wasmtime::crates::test_programs::artifacts::build::Artifacts::build_non_rust_tests",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/options.rs",
+          "function": "wasmtime::runtime::component::func::options::LiftContext::consume_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/options.rs",
+          "function": "wasmtime::runtime::component::func::options::LiftContext::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/typed.rs",
+          "function": "wasmtime::runtime::component::func::typed::WasmList::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/typed.rs",
+          "function": "wasmtime::runtime::component::func::typed::WasmStr::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/resource_table.rs",
+          "function": "wasmtime::runtime::component::resource_table::ResourceTable::max_capacity",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/resource_table.rs",
+          "function": "wasmtime::runtime::component::resource_table::ResourceTable::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/resource_table.rs",
+          "function": "wasmtime::runtime::component::resource_table::ResourceTable::push_",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/resource_table.rs",
+          "function": "wasmtime::runtime::component::resource_table::ResourceTable::set_max_capacity",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/resource_table.rs",
+          "function": "wasmtime::runtime::component::resource_table::ResourceTable::with_capacity",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::ComponentStoreData::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::Store::hostcall_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::Store::set_hostcall_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreContextMut::hostcall_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreContextMut::set_hostcall_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreOpaque::hostcall_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreOpaque::set_hostcall_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/values.rs",
+          "function": "wasmtime::runtime::component::values::load_list",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/commands/run.rs",
+          "function": "wasmtime::commands::run::RunCommand::populate_with_wasi",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/commands/run.rs",
+          "function": "wasmtime::commands::run::RunCommand::set_wasi_ctx",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/commands/serve.rs",
+          "function": "wasmtime::commands::serve::ServeCommand::new_store",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/common.rs",
+          "function": "wasmtime::common::RunCommon::configure_wasip2",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/common.rs",
+          "function": "wasmtime::common::RunCommon::wasi_http_ctx",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0022",
+      "package": "wasmtime",
+      "title": "Panic when dropping a `[Typed]Func::call_async` future",
+      "date": "2026-02-24",
+      "patched_versions": [
+        ">= 40.0.4, < 41.0.0",
+        ">= 41.0.4"
+      ],
+      "commit_sha": "9e51c0d9a240a9613d279c061f82286bd11383fd",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/test-programs/artifacts/build.rs",
+          "function": "wasmtime::crates::test_programs::artifacts::build::Artifacts::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/test-programs/artifacts/build.rs",
+          "function": "wasmtime::crates::test_programs::artifacts::build::Artifacts::build_non_rust_tests",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::TaskId::host_future_dropped",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::prepare_call",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/options.rs",
+          "function": "wasmtime::runtime::component::func::options::LiftContext::consume_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/options.rs",
+          "function": "wasmtime::runtime::component::func::options::LiftContext::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/typed.rs",
+          "function": "wasmtime::runtime::component::func::typed::WasmList::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/typed.rs",
+          "function": "wasmtime::runtime::component::func::typed::WasmStr::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/resource_table.rs",
+          "function": "wasmtime::runtime::component::resource_table::ResourceTable::max_capacity",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/resource_table.rs",
+          "function": "wasmtime::runtime::component::resource_table::ResourceTable::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/resource_table.rs",
+          "function": "wasmtime::runtime::component::resource_table::ResourceTable::push_",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/resource_table.rs",
+          "function": "wasmtime::runtime::component::resource_table::ResourceTable::set_max_capacity",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/resource_table.rs",
+          "function": "wasmtime::runtime::component::resource_table::ResourceTable::with_capacity",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::ComponentStoreData::default",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::Store::hostcall_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::Store::set_hostcall_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreContextMut::hostcall_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreContextMut::set_hostcall_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreOpaque::hostcall_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreOpaque::set_hostcall_fuel",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/values.rs",
+          "function": "wasmtime::runtime::component::values::load_list",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/commands/run.rs",
+          "function": "wasmtime::commands::run::RunCommand::populate_with_wasi",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/commands/run.rs",
+          "function": "wasmtime::commands::run::RunCommand::set_wasi_ctx",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/commands/serve.rs",
+          "function": "wasmtime::commands::serve::ServeCommand::new_store",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/common.rs",
+          "function": "wasmtime::common::RunCommon::configure_wasip2",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/common.rs",
+          "function": "wasmtime::common::RunCommon::wasi_http_ctx",
+          "change_type": "Added"
         }
       ]
     },
@@ -13122,6 +16307,678 @@
       ],
       "commit_sha": "2c315aa7f9c2a6c1db87f8f51f40623a427c78fd",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0038",
+      "package": "rssn",
+      "title": "RustSec Advisory",
+      "date": "2026-03-08",
+      "patched_versions": [
+        ">= 0.2.9"
+      ],
+      "commit_sha": "dea11c594f39db503e84a51f1e3c2a93f8baa8eb",
+      "vulnerable_symbols": [
+        {
+          "file": "build.rs",
+          "function": "rssn::build::generate_headers",
+          "change_type": "Modified"
+        },
+        {
+          "file": "build.rs",
+          "function": "rssn::build::main",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/compute/cache.rs",
+          "function": "rssn::compute::cache::ComputationResultCache::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/compute/cache.rs",
+          "function": "rssn::compute::cache::ParsingCache::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/compute/computation.rs",
+          "function": "rssn::compute::computation::default_cancel_signal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/compute/computation.rs",
+          "function": "rssn::compute::computation::default_pause",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/compute/engine.rs",
+          "function": "rssn::compute::engine::ComputeEngine::cancel",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/compute/engine.rs",
+          "function": "rssn::compute::engine::ComputeEngine::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/compute/engine.rs",
+          "function": "rssn::compute::engine::ComputeEngine::parse_and_submit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/compute/engine.rs",
+          "function": "rssn::compute::engine::ComputeEngine::submit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/common.rs",
+          "function": "rssn::ffi_apis::common::BincodeBuffer::as_slice",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/common.rs",
+          "function": "rssn::ffi_apis::common::BincodeBuffer::from_vec",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/common.rs",
+          "function": "rssn::ffi_apis::common::from_bincode_buffer",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/common.rs",
+          "function": "rssn::ffi_apis::common::from_json_string",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/common.rs",
+          "function": "rssn::ffi_apis::common::rssn_free_bincode_buffer",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/common.rs",
+          "function": "rssn::ffi_apis::common::to_bincode_buffer",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/common.rs",
+          "function": "rssn::ffi_apis::common::to_c_string",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/common.rs",
+          "function": "rssn::ffi_apis::common::to_json_string",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_cache_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::compute_cache_ffi::bincode_api::rssn_computation_result_cache_get_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_cache_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::compute_cache_ffi::bincode_api::rssn_computation_result_cache_set_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_cache_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::compute_cache_ffi::bincode_api::rssn_parsing_cache_get_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_cache_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::compute_cache_ffi::bincode_api::rssn_parsing_cache_set_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_cache_ffi/handle.rs",
+          "function": "rssn::ffi_apis::compute_cache_ffi::handle::rssn_computation_result_cache_new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_cache_ffi/handle.rs",
+          "function": "rssn::ffi_apis::compute_cache_ffi::handle::rssn_computation_result_cache_set",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_cache_ffi/handle.rs",
+          "function": "rssn::ffi_apis::compute_cache_ffi::handle::rssn_parsing_cache_get",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_cache_ffi/handle.rs",
+          "function": "rssn::ffi_apis::compute_cache_ffi::handle::rssn_parsing_cache_new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_cache_ffi/handle.rs",
+          "function": "rssn::ffi_apis::compute_cache_ffi::handle::rssn_parsing_cache_set",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_cache_ffi/json.rs",
+          "function": "rssn::ffi_apis::compute_cache_ffi::json::rssn_computation_result_cache_set_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_cache_ffi/json.rs",
+          "function": "rssn::ffi_apis::compute_cache_ffi::json::rssn_parsing_cache_set_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_state_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::compute_state_ffi::bincode_api::rssn_state_get_intermediate_value_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_state_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::compute_state_ffi::bincode_api::rssn_state_set_intermediate_value_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_state_ffi/handle.rs",
+          "function": "rssn::ffi_apis::compute_state_ffi::handle::rssn_state_get_intermediate_value",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_state_ffi/handle.rs",
+          "function": "rssn::ffi_apis::compute_state_ffi::handle::rssn_state_new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_state_ffi/json.rs",
+          "function": "rssn::ffi_apis::compute_state_ffi::json::rssn_state_get_intermediate_value_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_state_ffi/json.rs",
+          "function": "rssn::ffi_apis::compute_state_ffi::json::rssn_state_new_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/compute_state_ffi/json.rs",
+          "function": "rssn::ffi_apis::compute_state_ffi::json::rssn_state_set_intermediate_value_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::constant_ffi::bincode_api::rssn_get_build_date_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::constant_ffi::bincode_api::rssn_get_build_info_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::constant_ffi::bincode_api::rssn_get_commit_sha_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::constant_ffi::bincode_api::rssn_get_long_version_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/handle.rs",
+          "function": "rssn::ffi_apis::constant_ffi::handle::rssn_free_string_constant",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/handle.rs",
+          "function": "rssn::ffi_apis::constant_ffi::handle::rssn_get_build_date",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/handle.rs",
+          "function": "rssn::ffi_apis::constant_ffi::handle::rssn_get_cargo_target_triple",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/handle.rs",
+          "function": "rssn::ffi_apis::constant_ffi::handle::rssn_get_commit_sha",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/handle.rs",
+          "function": "rssn::ffi_apis::constant_ffi::handle::rssn_get_long_version",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/handle.rs",
+          "function": "rssn::ffi_apis::constant_ffi::handle::rssn_get_rustc_version",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/handle.rs",
+          "function": "rssn::ffi_apis::constant_ffi::handle::rssn_get_system_info",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/json.rs",
+          "function": "rssn::ffi_apis::constant_ffi::json::rssn_get_build_date_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/json.rs",
+          "function": "rssn::ffi_apis::constant_ffi::json::rssn_get_build_info_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/json.rs",
+          "function": "rssn::ffi_apis::constant_ffi::json::rssn_get_commit_sha_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/constant_ffi/json.rs",
+          "function": "rssn::ffi_apis::constant_ffi::json::rssn_get_long_version_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/jit_ffi/handle.rs",
+          "function": "rssn::ffi_apis::jit_ffi::handle::rssn_jit_allow_call_target",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/ffi_apis/jit_ffi/handle.rs",
+          "function": "rssn::ffi_apis::jit_ffi::handle::rssn_jit_clear_memory_regions",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/ffi_apis/jit_ffi/handle.rs",
+          "function": "rssn::ffi_apis::jit_ffi::handle::rssn_jit_create",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/jit_ffi/handle.rs",
+          "function": "rssn::ffi_apis::jit_ffi::handle::rssn_jit_execute",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/jit_ffi/handle.rs",
+          "function": "rssn::ffi_apis::jit_ffi::handle::rssn_jit_register_custom_op",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/jit_ffi/handle.rs",
+          "function": "rssn::ffi_apis::jit_ffi::handle::rssn_jit_register_memory_region",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/ffi_apis/jit_ffi/json.rs",
+          "function": "rssn::ffi_apis::jit_ffi::json::rssn_jit_compile_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/jit_ffi/json.rs",
+          "function": "rssn::ffi_apis::jit_ffi::json::rssn_jit_configure_sandbox_json",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::bincode_api::decode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::bincode_api::encode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::bincode_api::rssn_num_matrix_add_bincode_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::bincode_api::rssn_num_matrix_decompose_bincode_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::bincode_api::rssn_num_matrix_mul_bincode_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::bincode_api::rssn_num_matrix_set_backend_bincode_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/handle.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::handle::rssn_num_matrix_create_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/handle.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::handle::rssn_num_matrix_decompose_cholesky_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/handle.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::handle::rssn_num_matrix_decompose_svd_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/handle.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::handle::rssn_num_matrix_free_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/handle.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::handle::rssn_num_matrix_get_data_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/handle.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::handle::rssn_num_matrix_inverse_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/handle.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::handle::rssn_num_matrix_set_backend_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/json.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::json::rssn_num_matrix_add_json_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/json.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::json::rssn_num_matrix_decompose_json_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/json.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::json::rssn_num_matrix_det_json_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/json.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::json::rssn_num_matrix_mul_json_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/nightly_ffi/json.rs",
+          "function": "rssn::ffi_apis::nightly_ffi::json::rssn_num_matrix_set_backend_json_nightly",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_ffi::bincode_api::rssn_numerical_gradient_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_ffi::bincode_api::rssn_numerical_hessian_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_ffi::bincode_api::rssn_numerical_jacobian_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_ffi::handle::rssn_num_calculus_gradient",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_ffi::handle::rssn_num_calculus_hessian",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_ffi::handle::rssn_num_calculus_jacobian",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_ffi::handle::rssn_num_calculus_partial_derivative",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_ffi::json::rssn_numerical_gradient_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_ffi::json::rssn_numerical_hessian_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_ffi::json::rssn_numerical_jacobian_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_of_variations_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_of_variations_ffi::bincode_api::rssn_num_cov_evaluate_action_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_of_variations_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_of_variations_ffi::handle::rssn_num_cov_euler_lagrange",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_of_variations_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_of_variations_ffi::handle::rssn_num_cov_evaluate_action",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_calculus_of_variations_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_calculus_of_variations_ffi::json::rssn_num_cov_evaluate_action_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::bincode_api::rssn_num_comb_bell_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::bincode_api::rssn_num_comb_catalan_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::bincode_api::rssn_num_comb_combinations_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::bincode_api::rssn_num_comb_factorial_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::bincode_api::rssn_num_comb_falling_factorial_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::bincode_api::rssn_num_comb_permutations_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::bincode_api::rssn_num_comb_rising_factorial_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::bincode_api::rssn_num_comb_solve_recurrence_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::bincode_api::rssn_num_comb_stirling_second_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::handle::rssn_num_comb_combinations",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::handle::rssn_num_comb_permutations",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::handle::rssn_num_comb_rising_factorial",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::handle::rssn_num_comb_solve_recurrence",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::handle::rssn_num_comb_stirling_second",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::json::rssn_num_comb_bell_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::json::rssn_num_comb_catalan_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::json::rssn_num_comb_combinations_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::json::rssn_num_comb_factorial_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::json::rssn_num_comb_falling_factorial_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::json::rssn_num_comb_permutations_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::json::rssn_num_comb_rising_factorial_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::json::rssn_num_comb_solve_recurrence_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_combinatorics_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_combinatorics_ffi::json::rssn_num_comb_stirling_second_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_complex_analysis_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_complex_analysis_ffi::bincode_api::rssn_num_complex_contour_integral_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_complex_analysis_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_complex_analysis_ffi::bincode_api::rssn_num_complex_eval_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_complex_analysis_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_complex_analysis_ffi::handle::rssn_num_complex_contour_integral",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_complex_analysis_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_complex_analysis_ffi::handle::rssn_num_complex_eval",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_complex_analysis_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_complex_analysis_ffi::handle::rssn_num_complex_residue",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_complex_analysis_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_complex_analysis_ffi::json::rssn_num_complex_contour_integral_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_complex_analysis_ffi/json.rs",
+          "function": "rssn::ffi_apis::numerical_complex_analysis_ffi::json::rssn_num_complex_eval_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_computer_graphics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_computer_graphics_ffi::bincode_api::rssn_num_graphics_cross_product_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_computer_graphics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_computer_graphics_ffi::bincode_api::rssn_num_graphics_dot_product_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_computer_graphics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_computer_graphics_ffi::bincode_api::rssn_num_graphics_normalize_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_computer_graphics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_computer_graphics_ffi::bincode_api::rssn_num_graphics_quaternion_multiply_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_computer_graphics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_computer_graphics_ffi::bincode_api::rssn_num_graphics_rotation_matrix_x_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_computer_graphics_ffi/bincode_api.rs",
+          "function": "rssn::ffi_apis::numerical_computer_graphics_ffi::bincode_api::rssn_num_graphics_translation_matrix_bincode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_computer_graphics_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_computer_graphics_ffi::handle::rssn_num_graphics_angle_between",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_computer_graphics_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_computer_graphics_ffi::handle::rssn_num_graphics_bezier_cubic",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_computer_graphics_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_computer_graphics_ffi::handle::rssn_num_graphics_dot_product",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_computer_graphics_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_computer_graphics_ffi::handle::rssn_num_graphics_ray_sphere_intersection",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ffi_apis/numerical_computer_graphics_ffi/handle.rs",
+          "function": "rssn::ffi_apis::numerical_computer_graphics_ffi::handle::rssn_num_graphics_reflect",
+          "change_type": "Modified"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2026-0069",
@@ -13476,6 +17333,177 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2026-0085",
+      "package": "wasmtime",
+      "title": "Panic when lifting `flags` component value",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 24.0.7, < 25.0.0",
+        ">= 36.0.7, < 37.0.0",
+        ">= 42.0.2, < 43.0.0",
+        ">= 43.0.1"
+      ],
+      "commit_sha": "78134360cd7f2ae5cb166ec602f38af435f26e7a",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/values.rs",
+          "function": "wasmtime::runtime::component::values::push_flags",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0086",
+      "package": "wasmtime",
+      "title": "Host data leakage with 64-bit tables and Winch",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 36.0.7, < 37.0.0",
+        ">= 42.0.2, < 43.0.0",
+        ">= 43.0.1"
+      ],
+      "commit_sha": "7a10525e09f37e9e388125a6b7d872be7ec9902f",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0087",
+      "package": "wasmtime",
+      "title": "Wasmtime segfault or unused out-of-sandbox load with `f64x2.splat` operator on Cranelift x86-64",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 24.0.7, < 25.0.0",
+        ">= 36.0.7, < 37.0.0",
+        ">= 42.0.2, < 43.0.0",
+        ">= 43.0.1"
+      ],
+      "commit_sha": "4e303032ed6d515442973c17842f443a26d10b94",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0088",
+      "package": "wasmtime",
+      "title": "Data leakage between pooling allocator instances",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 36.0.7, < 37.0.0",
+        ">= 42.0.2, < 43.0.0",
+        ">= 43.0.1"
+      ],
+      "commit_sha": "ac7f44fb6c6384ac55671f696e540cd4a0b5b0e5",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/vm/cow.rs",
+          "function": "wasmtime::runtime::vm::cow::MemoryImageSlot::instantiate",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0089",
+      "package": "wasmtime",
+      "title": "Host panic when Winch compiler executes `table.fill`",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 36.0.7, < 37.0.0",
+        ">= 42.0.2, < 43.0.0",
+        ">= 43.0.1"
+      ],
+      "commit_sha": "f89d910b4a24a583aca34eeeb957392f3c361f5b",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0090",
+      "package": "wasmtime",
+      "title": "Use-after-free bug after cloning `wasmtime::Linker`",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 43.0.1"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0091",
+      "package": "wasmtime",
+      "title": "Out-of-bounds write or crash when transcoding component model strings",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 24.0.7, < 25.0.0",
+        ">= 36.0.7, < 37.0.0",
+        ">= 42.0.2, < 43.0.0",
+        ">= 43.0.1"
+      ],
+      "commit_sha": "f2bde1ec17237f58ed299dd0cd66baa111b48a7e",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0092",
+      "package": "wasmtime",
+      "title": "Panic when transcoding misaligned component model UTF-16 strings",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 24.0.7, < 25.0.0",
+        ">= 36.0.7, < 37.0.0",
+        ">= 42.0.2, < 43.0.0",
+        ">= 43.0.1"
+      ],
+      "commit_sha": "ed5559288ada13738690de54cbcadc5b5c706e10",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0093",
+      "package": "wasmtime",
+      "title": "Heap OOB read in component model UTF-16 to latin1+utf16 string transcoding",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 24.0.7, < 25.0.0",
+        ">= 36.0.7, < 37.0.0",
+        ">= 42.0.2, < 43.0.0",
+        ">= 43.0.1"
+      ],
+      "commit_sha": "184511894afce20475d3c001d9e3c8a667722568",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0094",
+      "package": "wasmtime",
+      "title": "Improperly masked return value from `table.grow` with Winch compiler backend",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 36.0.7, < 37.0.0",
+        ">= 42.0.2, < 43.0.0",
+        ">= 43.0.1"
+      ],
+      "commit_sha": "3aab955b3e9dc2fcfa37df26af38e0804ca48edf",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0095",
+      "package": "wasmtime",
+      "title": "Wasmtime with Winch compiler backend may allow a sandbox-escaping memory access",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 36.0.7, < 37.0.0",
+        ">= 42.0.2, < 43.0.0",
+        ">= 43.0.1"
+      ],
+      "commit_sha": "3aab955b3e9dc2fcfa37df26af38e0804ca48edf",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0096",
+      "package": "wasmtime",
+      "title": "Miscompiled guest heap access enables sandbox escape on aarch64 Cranelift",
+      "date": "2026-04-09",
+      "patched_versions": [
+        ">= 36.0.7, < 37.0.0",
+        ">= 42.0.2, < 43.0.0",
+        ">= 43.0.1"
+      ],
+      "commit_sha": "32e92403cbe607d8dccc24ee65273e752b5b2d03",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2026-0097",
       "package": "rand",
       "title": "Rand is unsound with a custom logger using `rand::rng()`",
@@ -13489,6 +17517,28 @@
         {
           "file": "src/rngs/thread.rs",
           "function": "rand::rngs::thread::ReseedingCore::try_to_reseed",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0103",
+      "package": "thin-vec",
+      "title": "Use-After-Free and Double Free in IntoIter::drop When Element Drop Panics",
+      "date": "2026-04-14",
+      "patched_versions": [
+        ">= 0.2.16"
+      ],
+      "commit_sha": "df64748355222525c344ecd9d2c9f59a662e1678",
+      "vulnerable_symbols": [
+        {
+          "file": "src/lib.rs",
+          "function": "thin_vec::IntoIter::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "thin_vec::ThinVec::clear",
           "change_type": "Modified"
         }
       ]
@@ -13833,6 +17883,90 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0112",
+      "package": "astral-tokio-tar",
+      "title": "PAX Header Desynchronization in astral-tokio-tar",
+      "date": "2026-04-27",
+      "patched_versions": [
+        ">= 0.6.1"
+      ],
+      "commit_sha": "6f4f9ebc180f4d39d66d9c584a3796c0b9ae34c1",
+      "vulnerable_symbols": [
+        {
+          "file": "src/archive.rs",
+          "function": "astral_tokio_tar::archive::Entries::poll_next",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0113",
+      "package": "astral-tokio-tar",
+      "title": "`unpack_in` can chmod arbitrary directories by following symlinks",
+      "date": "2026-04-27",
+      "patched_versions": [
+        ">= 0.6.1"
+      ],
+      "commit_sha": "f1fa37043a6fe798dcd1fd4b3000d889ac35b183",
+      "vulnerable_symbols": [
+        {
+          "file": "src/entry.rs",
+          "function": "astral_tokio_tar::entry::EntryFields::unpack_dir",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0114",
+      "package": "wasmtime",
+      "title": "Panic when allocating a table exceeding the size of the host's address space",
+      "date": "2026-04-30",
+      "patched_versions": [
+        ">= 36.0.8, < 37.0.0",
+        ">= 43.0.2, < 44.0.0",
+        ">= 44.0.1"
+      ],
+      "commit_sha": "1fc537358120e054411244d03eff36f51f793a22",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/vm/table.rs",
+          "function": "wasmtime::runtime::vm::table::alloc_dynamic_table_elements",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0118",
+      "package": "hickory-proto",
+      "title": "NSEC3 closest-encloser proof validation enters unbounded loop on cross-zone responses",
+      "date": "2026-05-01",
+      "patched_versions": [],
+      "commit_sha": "3b265fbb2c698a33f5e9a8a6d343a283917b6855",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0119",
+      "package": "hickory-proto",
+      "title": "CPU exhaustion during message encoding due to O(n²) name compression",
+      "date": "2026-05-01",
+      "patched_versions": [
+        ">= 0.26.1"
+      ],
+      "commit_sha": "b81a8d62fc2ed07188d29ddaed983fbb28b69e09",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0120",
+      "package": "hickory-net",
+      "title": "NSEC3 closest-encloser proof validation enters unbounded loop on cross-zone responses",
+      "date": "2026-05-01",
+      "patched_versions": [
+        ">= 0.26.1"
+      ],
+      "commit_sha": "3b265fbb2c698a33f5e9a8a6d343a283917b6855",
+      "vulnerable_symbols": []
     },
     {
       "advisory_id": "RUSTSEC-2026-0121",
@@ -15398,6 +19532,45 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2026-0140",
+      "package": "dynoxide-rs",
+      "title": "DNS rebinding and cross-origin CSRF in dynoxide's MCP HTTP transport",
+      "date": "2026-05-12",
+      "patched_versions": [
+        ">= 0.9.13"
+      ],
+      "commit_sha": "10292083fd16fe7116e9089ffa189f4f4f071e0f",
+      "vulnerable_symbols": [
+        {
+          "file": "src/mcp/mod.rs",
+          "function": "dynoxide_rs::mcp::serve_http_with_shutdown",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0141",
+      "package": "lettre",
+      "title": "TLS hostname verification disabled when using Boring TLS backend",
+      "date": "2026-05-14",
+      "patched_versions": [
+        ">= 0.11.22"
+      ],
+      "commit_sha": "f5efffc88360dbdbfcef80f465e42d5bce68ca35",
+      "vulnerable_symbols": [
+        {
+          "file": "src/transport/smtp/client/async_net.rs",
+          "function": "lettre::transport::smtp::client::async_net::AsyncNetworkStream::upgrade_tokio1_tls",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transport/smtp/client/net.rs",
+          "function": "lettre::transport::smtp::client::net::NetworkStream::upgrade_tls_impl",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2026-0142",
       "package": "mutringbuf",
       "title": "Double-free in `vmem` storage reachable from safe Rust (predecessor of `oneringbuf`)",
@@ -15425,6 +19598,34 @@
         {
           "file": "src/ring_buffer/storage_components/alloc/vmem/mod.rs",
           "function": "oneringbuf::ring_buffer::storage_components::alloc::vmem::VmemStorage::new",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0144",
+      "package": "anchor-lang",
+      "title": "`Program<System>` accepts arbitrary executable programs",
+      "date": "2026-05-07",
+      "patched_versions": [
+        ">= 1.0.2"
+      ],
+      "commit_sha": "3eb1fb0427d4fed0e944b627aef76db651a93aab",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0145",
+      "package": "astral-tokio-tar",
+      "title": "PAX Header Desynchronization in astral-tokio-tar",
+      "date": "2026-05-18",
+      "patched_versions": [
+        ">= 0.6.2"
+      ],
+      "commit_sha": "0505c0b06d19362d7ce002ba8dd932569097beab",
+      "vulnerable_symbols": [
+        {
+          "file": "src/archive.rs",
+          "function": "astral_tokio_tar::archive::poll_next_raw",
           "change_type": "Modified"
         }
       ]
@@ -15675,6 +19876,20 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2026-0149",
+      "package": "wasmtime-wasi",
+      "title": "WASI path_open(TRUNCATE) bypasses `FilePerms::WRITE` host restriction",
+      "date": "2026-05-21",
+      "patched_versions": [
+        ">= 24.0.9, < 25.0.0",
+        ">= 36.0.10, < 37.0.0",
+        ">= 44.0.2, < 45.0.0",
+        ">= 45.0.0"
+      ],
+      "commit_sha": "dc740c90998192dac899df0034a3696861f29f5d",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2026-0150",
       "package": "audiopus_sys",
       "title": "audiopus_sys is unmaintained",
@@ -15682,6 +19897,138 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0151",
+      "package": "jxl-grid",
+      "title": "Out-of-bounds writes due to integer overflow in jxl-grid on 32-bit platforms",
+      "date": "2026-05-29",
+      "patched_versions": [
+        ">= 0.6.2"
+      ],
+      "commit_sha": "3986dadd3926a95656a642e74a0702d52f5c92e2",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/jxl-grid/src/lib.rs",
+          "function": "jxl_grid::AlignedGrid::empty_aligned",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/lib.rs",
+          "function": "jxl_grid::AlignedGrid::with_alloc_tracker",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::from_buf",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::get_ptr_unchecked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::get_ptr_wrapping",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::into_groups_with_fixed_count",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::merge_horizontal_in_place",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::merge_vertical_in_place",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::split_horizontal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::split_horizontal_in_place",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::split_vertical",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::split_vertical_in_place",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::subgrid",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::try_get_ptr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::try_get_row",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/mutable_subgrid.rs",
+          "function": "jxl_grid::mutable_subgrid::MutableSubgrid::try_get_row_mut",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/shared_subgrid.rs",
+          "function": "jxl_grid::shared_subgrid::SharedSubgrid::from_buf",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/shared_subgrid.rs",
+          "function": "jxl_grid::shared_subgrid::SharedSubgrid::get_ptr_unchecked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/jxl-grid/src/shared_subgrid.rs",
+          "function": "jxl_grid::shared_subgrid::SharedSubgrid::get_ptr_wrapping",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/jxl-grid/src/shared_subgrid.rs",
+          "function": "jxl_grid::shared_subgrid::SharedSubgrid::split_horizontal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/shared_subgrid.rs",
+          "function": "jxl_grid::shared_subgrid::SharedSubgrid::split_vertical",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/shared_subgrid.rs",
+          "function": "jxl_grid::shared_subgrid::SharedSubgrid::subgrid",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/shared_subgrid.rs",
+          "function": "jxl_grid::shared_subgrid::SharedSubgrid::try_get_ptr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/jxl-grid/src/shared_subgrid.rs",
+          "function": "jxl_grid::shared_subgrid::SharedSubgrid::try_get_row",
+          "change_type": "Modified"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2026-0152",
@@ -15759,6 +20106,28 @@
       "date": "2026-06-01",
       "patched_versions": [],
       "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0158",
+      "package": "matrix-sdk-ui",
+      "title": "Incomplete message edit validation in matrix-sdk-ui",
+      "date": "2026-06-03",
+      "patched_versions": [
+        ">= 0.16.1"
+      ],
+      "commit_sha": "1e74c483511100ef1924767da25fd1d5a76ec55c",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0159",
+      "package": "matrix-sdk-crypto",
+      "title": "Sender-binding gaps in to-device messages",
+      "date": "2026-06-03",
+      "patched_versions": [
+        ">= 0.16.1"
+      ],
+      "commit_sha": "f4b27943a0eb443665871e023db2ce0244f2ff06",
       "vulnerable_symbols": []
     },
     {
@@ -16066,6 +20435,20 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2026-0182",
+      "package": "wasmtime-wasi",
+      "title": "Leak in WASIp1 `fd_renumber` implementation",
+      "date": "2026-06-15",
+      "patched_versions": [
+        ">= 45.0.2",
+        ">= 44.0.3, < 45.0.0",
+        ">= 36.0.11, < 37.0.0",
+        ">= 24.0.10, < 25.0.0"
+      ],
+      "commit_sha": "f069f125cb77a4a3dced19a77d73790610678622",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2026-0183",
       "package": "git2",
       "title": "Potential undefined behavior when calling Remote::list()",
@@ -16338,6 +20721,20 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0188",
+      "package": "wasmtime-wasi",
+      "title": "WASI hard links and renames bypass wasmtime-wasi's FilePerms for destination",
+      "date": "2026-06-24",
+      "patched_versions": [
+        ">= 46.0.1",
+        ">= 45.0.3, < 46.0.0",
+        ">= 36.0.12, < 37.0.0",
+        ">= 24.0.11, < 25.0.0"
+      ],
+      "commit_sha": "2dc3f443d3c6ae7b1c1c6bd64db54bf9620c7443",
+      "vulnerable_symbols": []
     },
     {
       "advisory_id": "RUSTSEC-2026-0189",
@@ -16633,6 +21030,55 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2026-0200",
+      "package": "fulgur",
+      "title": "Unbounded page slicing from attacker-controlled CSS height causes denial of service",
+      "date": "2026-07-05",
+      "patched_versions": [
+        ">= 0.19.0"
+      ],
+      "commit_sha": "17c1af5e699d071fd0b0afa6ecce440ed4d74dc2",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/fulgur/src/pagination_layout.rs",
+          "function": "fulgur::pagination_layout::PaginationLayoutTree::fragment_pagination_root",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/fulgur/src/pagination_layout.rs",
+          "function": "fulgur::pagination_layout::fragment_block_subtree",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/fulgur/src/pagination_layout.rs",
+          "function": "fulgur::pagination_layout::record_subtree_fragments_at_offset",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0201",
+      "package": "fulgur",
+      "title": "Non-painting replaced elements amplify to thousands of blank PDF pages (denial of service)",
+      "date": "2026-07-05",
+      "patched_versions": [
+        ">= 0.26.0"
+      ],
+      "commit_sha": "bf7b357bef0f639ef709c8892bfbaee621eaa51b",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/fulgur/src/pagination_layout.rs",
+          "function": "fulgur::pagination_layout::PaginationLayoutTree::fragment_pagination_root",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/fulgur/src/pagination_layout.rs",
+          "function": "fulgur::pagination_layout::is_replaced_content",
+          "change_type": "Deleted"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2026-0202",
       "package": "cxx",
       "title": "`let_cxx_string!` uses uninitialized value due to exception safety violations",
@@ -16870,6 +21316,188 @@
         ">= 5.4.2"
       ],
       "commit_sha": "214becd7376ed94f3d95a2320a91be77637bd197",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0222",
+      "package": "wasmtime",
+      "title": "Stores can mix up type indices between engines",
+      "date": "2026-07-31",
+      "patched_versions": [
+        ">= 24.0.12, < 25.0.0",
+        ">= 36.0.13, < 37.0.0",
+        ">= 46.0.2, < 47.0.0",
+        ">= 47.0.3"
+      ],
+      "commit_sha": "0437a823242219732a23234e40f4a59a2ac07284",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/linker.rs",
+          "function": "wasmtime::runtime::component::linker::Linker::instantiate_pre",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/debug.rs",
+          "function": "wasmtime::runtime::debug::BreakpointEdit::add_breakpoint",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/debug.rs",
+          "function": "wasmtime::runtime::debug::BreakpointEdit::check_engine",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/debug.rs",
+          "function": "wasmtime::runtime::debug::BreakpointEdit::remove_breakpoint",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/debug.rs",
+          "function": "wasmtime::runtime::debug::BreakpointState::edit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/debug.rs",
+          "function": "wasmtime::runtime::debug::StoreOpaque::edit_breakpoints",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/func.rs",
+          "function": "wasmtime::runtime::func::HostFunc::engine",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/instance.rs",
+          "function": "wasmtime::runtime::instance::Definition::engine",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/instance.rs",
+          "function": "wasmtime::runtime::instance::Extern::engine",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/instance.rs",
+          "function": "wasmtime::runtime::instance::Instance::typecheck_externs",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/instance.rs",
+          "function": "wasmtime::runtime::instance::InstancePre::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/instance.rs",
+          "function": "wasmtime::runtime::instance::pre_instantiate_raw",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/instance.rs",
+          "function": "wasmtime::runtime::instance::typecheck",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/linker.rs",
+          "function": "wasmtime::runtime::linker::Definition::comes_from_same_store",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/linker.rs",
+          "function": "wasmtime::runtime::linker::Definition::engine",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/linker.rs",
+          "function": "wasmtime::runtime::linker::Definition::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/linker.rs",
+          "function": "wasmtime::runtime::linker::Definition::to_extern",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/linker.rs",
+          "function": "wasmtime::runtime::linker::Definition::ty",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/linker.rs",
+          "function": "wasmtime::runtime::linker::Definition::update_size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/linker.rs",
+          "function": "wasmtime::runtime::linker::Linker::_instantiate_pre",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/module/registry.rs",
+          "function": "wasmtime::runtime::module::registry::ModuleOrComponent::engine",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/module/registry.rs",
+          "function": "wasmtime::runtime::module::registry::ModuleRegistry::register",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/store.rs",
+          "function": "wasmtime::runtime::store::Store::debug_register_component",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/store.rs",
+          "function": "wasmtime::runtime::store::StoreOpaque::breakpoints_and_registry_and_engine_mut",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/store.rs",
+          "function": "wasmtime::runtime::store::StoreOpaque::breakpoints_and_registry_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/store/gc.rs",
+          "function": "wasmtime::runtime::store::gc::StoreOpaque::insert_gc_host_alloc_type",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/trampoline/table.rs",
+          "function": "wasmtime::runtime::trampoline::table::create_table",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/trampoline/tag.rs",
+          "function": "wasmtime::runtime::trampoline::tag::create_tag",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm.rs",
+          "function": "wasmtime::runtime::vm::ModuleRuntimeInfo::bare",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm.rs",
+          "function": "wasmtime::runtime::vm::ModuleRuntimeInfo::bare_with_registered_types",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm.rs",
+          "function": "wasmtime::runtime::vm::ModuleRuntimeInfo::new_bare",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0223",
+      "package": "wasmtime",
+      "title": "Preemption and traps during bulk operations enable breaking internal VM state",
+      "date": "2026-07-31",
+      "patched_versions": [
+        ">= 46.0.2, < 47.0.0",
+        ">= 47.0.3"
+      ],
+      "commit_sha": "3ebfbe5af4927c157d6fcaca42b8dbb6d17b73fb",
       "vulnerable_symbols": []
     },
     {
@@ -17460,6 +22088,17 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2026-0236",
+      "package": "viperjs",
+      "title": "A `BigInt` division panics, and two neighbouring operations answer wrongly in silence",
+      "date": "2026-08-06",
+      "patched_versions": [
+        ">= 0.2.2"
+      ],
+      "commit_sha": "92988456c44fe7744c13cba1d891f127b8437f95",
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2026-0237",
       "package": "nostr-relay-builder",
       "title": "`nostr-relay-builder` is unmaintained",
@@ -17658,6 +22297,68 @@
       ]
     },
     {
+      "advisory_id": "RUSTSEC-2026-0258",
+      "package": "h2",
+      "title": "h2 unbounded empty DATA frames",
+      "date": "2026-08-17",
+      "patched_versions": [
+        ">= 0.4.16"
+      ],
+      "commit_sha": "193833e87c639e39751f339a9c375a44c8bfab54",
+      "vulnerable_symbols": [
+        {
+          "file": "src/proto/streams/counts.rs",
+          "function": "h2::proto::streams::counts::Budget::consume",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/proto/streams/counts.rs",
+          "function": "h2::proto::streams::counts::Budget::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/proto/streams/counts.rs",
+          "function": "h2::proto::streams::counts::Budget::replenish",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/proto/streams/counts.rs",
+          "function": "h2::proto::streams::counts::Counts::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/proto/streams/counts.rs",
+          "function": "h2::proto::streams::counts::Counts::record_data_frame",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/proto/streams/counts.rs",
+          "function": "h2::proto::streams::counts::Counts::release_data_frame",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/proto/streams/recv.rs",
+          "function": "h2::proto::streams::recv::Recv::recv_data",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/proto/streams/recv.rs",
+          "function": "h2::proto::streams::recv::Recv::release_closed_capacity",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/proto/streams/streams.rs",
+          "function": "h2::proto::streams::streams::Inner::recv_data",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/proto/streams/streams.rs",
+          "function": "h2::proto::streams::streams::OpaqueStreamRef::poll_data",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
       "advisory_id": "RUSTSEC-2026-0267",
       "package": "stable-vec",
       "title": "Panic-safety unsoundness in `BitVecCore::clear` (double-free / use-after-free)",
@@ -17673,6 +22374,32 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0268",
+      "package": "wasmtime",
+      "title": "Guest controlled-size host heap allocation through WASIp3 streams",
+      "date": "2026-08-20",
+      "patched_versions": [
+        ">= 46.0.3, < 47.0.0",
+        ">= 47.0.4"
+      ],
+      "commit_sha": "f8cb4ca18df3742804a4649f0fda726ecd72774d",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0269",
+      "package": "wasmtime",
+      "title": "Filesystem sandbox escape when paths or symlinks contain trailing slashes",
+      "date": "2026-08-20",
+      "patched_versions": [
+        ">= 24.0.13, < 25.0.0",
+        ">= 36.0.14, < 37.0.0",
+        ">= 46.0.3, < 47.0.0",
+        ">= 47.0.4"
+      ],
+      "commit_sha": "e884fd61e5a98ff46c0b0c0f0d3593348bc0effb",
+      "vulnerable_symbols": []
     },
     {
       "advisory_id": "RUSTSEC-2026-0271",
@@ -18041,6 +22768,17 @@
       "date": "2026-09-13",
       "patched_versions": [],
       "commit_sha": "5916d6260acbad8a34290dba137f39963f13f467",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0285",
+      "package": "rustls",
+      "title": "TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries",
+      "date": "2026-09-14",
+      "patched_versions": [
+        ">= 0.23.45"
+      ],
+      "commit_sha": "2976d90fd1c2db6b518700dd101b714069cfcb17",
       "vulnerable_symbols": []
     },
     {
@@ -20430,6 +25168,107 @@
           "file": "src/payload.rs",
           "function": "mykey::payload::take_u8",
           "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0337",
+      "package": "ic-cipher",
+      "title": "Poly1305 panics or computes a wrong tag on attacker-chosen messages of 64 bytes or more",
+      "date": "2026-10-09",
+      "patched_versions": [
+        ">= 0.2.20"
+      ],
+      "commit_sha": "a8160a18b5c66288f05dc62f5ea2159c687b9416",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/ic-cipher/src/chacha.rs",
+          "function": "ic_cipher::chacha::reduce",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0338",
+      "package": "quinn-proto",
+      "title": "Remote peer can panic quinn-proto with zero-length STREAM frames during unordered reads",
+      "date": "2026-09-14",
+      "patched_versions": [
+        ">= 0.11.18"
+      ],
+      "commit_sha": "981d88eccb36ae5e8585bcd3145debb00969a462",
+      "vulnerable_symbols": [
+        {
+          "file": "quinn-proto/src/range_set/btree_range_set.rs",
+          "function": "quinn_proto::range_set::btree_range_set::Replace::drop",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0339",
+      "package": "quinn-proto",
+      "title": "Unbounded growth of pending connection ID retirements in quinn-proto",
+      "date": "2026-08-17",
+      "patched_versions": [
+        ">= 0.11.17"
+      ],
+      "commit_sha": "0343120eb7ccdd067a7e975613b96190c8562bf7",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0340",
+      "package": "quinn-proto",
+      "title": "Peer minimum ACK delay can panic quinn-proto when ACK_FREQUENCY transmission is enabled",
+      "date": "2026-09-14",
+      "patched_versions": [
+        ">= 0.11.18"
+      ],
+      "commit_sha": "981d88eccb36ae5e8585bcd3145debb00969a462",
+      "vulnerable_symbols": [
+        {
+          "file": "quinn-proto/src/range_set/btree_range_set.rs",
+          "function": "quinn_proto::range_set::btree_range_set::Replace::drop",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0341",
+      "package": "quinn-proto",
+      "title": "Stream reassembly memory-exhaustion guard in quinn-proto can be bypassed",
+      "date": "2026-08-17",
+      "patched_versions": [
+        ">= 0.11.17"
+      ],
+      "commit_sha": "0343120eb7ccdd067a7e975613b96190c8562bf7",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0342",
+      "package": "quinn-proto",
+      "title": "Zero-length DATAGRAM frames bypass the receive buffer limit in quinn-proto",
+      "date": "2026-08-17",
+      "patched_versions": [
+        ">= 0.11.17"
+      ],
+      "commit_sha": "0343120eb7ccdd067a7e975613b96190c8562bf7",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0343",
+      "package": "quinn-proto",
+      "title": "Outgoing datagram buffer accounting can panic the sender in quinn-proto",
+      "date": "2026-09-14",
+      "patched_versions": [
+        ">= 0.11.18"
+      ],
+      "commit_sha": "f650e0f213b01ea7bebd60023e5df7df65e5c2bd",
+      "vulnerable_symbols": [
+        {
+          "file": "quinn-proto/src/connection/datagrams.rs",
+          "function": "quinn_proto::connection::datagrams::Datagrams::send",
+          "change_type": "Modified"
         }
       ]
     }
