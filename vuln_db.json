@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1791894034",
+  "generated_at": "unix:1791920417",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -25349,6 +25349,64 @@
           "file": "ruzstd/src/decoding/sequence_execution.rs",
           "function": "ruzstd::decoding::sequence_execution::execute_sequences",
           "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0345",
+      "package": "kuva",
+      "title": "Untrusted labels can inject SVG attributes, CSS values, and terminal escape sequences",
+      "date": "2026-08-07",
+      "patched_versions": [
+        ">= 0.3.1, < 0.4.0",
+        ">= 0.4.1"
+      ],
+      "commit_sha": "2b53ceb796bbb0e9bb537836ad19faac53a51852",
+      "vulnerable_symbols": [
+        {
+          "file": "src/backend/svg.rs",
+          "function": "kuva::backend::svg::SvgBackend::render_scene",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/backend/terminal.rs",
+          "function": "kuva::backend::terminal::Canvas::set_char",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/render/color.rs",
+          "function": "kuva::render::color::Color::write_svg",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/render/render.rs",
+          "function": "kuva::render::render::add_bar",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/render/render.rs",
+          "function": "kuva::render::render::add_legend_with_offset",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/render/render.rs",
+          "function": "kuva::render::render::add_line",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/render/render.rs",
+          "function": "kuva::render::render::add_scatter",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/render/render.rs",
+          "function": "kuva::render::render::add_strip_points",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/render/render_utils.rs",
+          "function": "kuva::render::render_utils::escape_attr",
+          "change_type": "Added"
         }
       ]
     }
