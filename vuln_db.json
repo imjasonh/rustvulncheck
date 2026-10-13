@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1791847486",
+  "generated_at": "unix:1791894034",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -5324,6 +5324,44 @@
         {
           "file": "src/style.rs",
           "function": "ammonia::style::Declarations::parse_value",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2021-0158",
+      "package": "ammonia",
+      "title": "XSS in ammonia via SVG `animateMotion`, `animateTransform`, and/or `animateColor` tags",
+      "date": "2021-10-10",
+      "patched_versions": [
+        ">= 4.2.3",
+        ">= 4.1.7, < 4.2.0"
+      ],
+      "commit_sha": "7a1c828ea0ee348f4e35ee3d2758bab0a19b1682",
+      "vulnerable_symbols": [
+        {
+          "file": "src/lib.rs",
+          "function": "ammonia::Builder::adjust_node_attributes",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "ammonia::Builder::clean_child",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "ammonia::is_svg_animation_tag_name",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "ammonia::is_svg_tag",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "ammonia::is_url_attr",
           "change_type": "Modified"
         }
       ]
@@ -25268,6 +25306,48 @@
         {
           "file": "quinn-proto/src/connection/datagrams.rs",
           "function": "quinn_proto::connection::datagrams::Datagrams::send",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0344",
+      "package": "ruzstd",
+      "title": "Decompression bomb in `ruzstd`: a tiny input can exhaust memory (OOM)",
+      "date": "2026-10-11",
+      "patched_versions": [
+        ">= 0.9.1"
+      ],
+      "commit_sha": "d3907c960ca4a1aa44cc38340137c5679dd98f5a",
+      "vulnerable_symbols": [
+        {
+          "file": "ruzstd/src/decoding/block_decoder.rs",
+          "function": "ruzstd::decoding::block_decoder::BlockDecoder::check_decompressed_size",
+          "change_type": "Added"
+        },
+        {
+          "file": "ruzstd/src/decoding/block_decoder.rs",
+          "function": "ruzstd::decoding::block_decoder::BlockDecoder::decode_block_content",
+          "change_type": "Modified"
+        },
+        {
+          "file": "ruzstd/src/decoding/block_decoder.rs",
+          "function": "ruzstd::decoding::block_decoder::BlockDecoder::decompress_block",
+          "change_type": "Modified"
+        },
+        {
+          "file": "ruzstd/src/decoding/errors.rs",
+          "function": "ruzstd::decoding::errors::DecompressBlockError::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "ruzstd/src/decoding/errors.rs",
+          "function": "ruzstd::decoding::errors::ExecuteSequencesError::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "ruzstd/src/decoding/sequence_execution.rs",
+          "function": "ruzstd::decoding::sequence_execution::execute_sequences",
           "change_type": "Modified"
         }
       ]
