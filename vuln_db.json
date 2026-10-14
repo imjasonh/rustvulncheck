@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1791920417",
+  "generated_at": "unix:1791987139",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -25407,6 +25407,129 @@
           "file": "src/render/render_utils.rs",
           "function": "kuva::render::render_utils::escape_attr",
           "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0346",
+      "package": "rustls",
+      "title": "`Debug` impls for client session values expose TLS secrets",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 0.23.46"
+      ],
+      "commit_sha": "cf42c85c53ebfa0a271382d98c4901605301599e",
+      "vulnerable_symbols": [
+        {
+          "file": "rustls/src/conn/receive.rs",
+          "function": "rustls::conn::receive::SliceInput::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "rustls/src/conn/receive.rs",
+          "function": "rustls::conn::receive::VecInput::fmt",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0347",
+      "package": "rustls",
+      "title": "Buffered application data sent to outer server after ECH rejection",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 0.23.46"
+      ],
+      "commit_sha": "7dcbe4c1ae12185237d22e9197583329630a2014",
+      "vulnerable_symbols": [
+        {
+          "file": "rustls/src/client/tls13.rs",
+          "function": "rustls::client::tls13::ExpectFinished::handle",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0348",
+      "package": "rustls",
+      "title": "Brotli certificate decompression can allocate up to 1 GiB before authentication",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 0.23.46"
+      ],
+      "commit_sha": "402b7b78b7ae87d59e19cf07ee07f3fc19e6537e",
+      "vulnerable_symbols": [
+        {
+          "file": "rustls/src/compress.rs",
+          "function": "rustls::compress::feat_brotli::BrotliDecompressor::decompress",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0349",
+      "package": "rustls",
+      "title": "Unauthenticated ServerHello can downgrade later connections to classical key exchange",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 0.23.46"
+      ],
+      "commit_sha": "f04804fa13341a9b1dc02b5d1dd8a746f2c4b7fb",
+      "vulnerable_symbols": [
+        {
+          "file": "rustls/src/client/tls13.rs",
+          "function": "rustls::client::tls13::ExpectCertificate::handle",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rustls/src/client/tls13.rs",
+          "function": "rustls::client::tls13::ExpectCertificateOrCertReq::handle",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rustls/src/client/tls13.rs",
+          "function": "rustls::client::tls13::ExpectCertificateOrCompressedCertificate::handle",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rustls/src/client/tls13.rs",
+          "function": "rustls::client::tls13::ExpectCertificateOrCompressedCertificateOrCertReq::handle",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rustls/src/client/tls13.rs",
+          "function": "rustls::client::tls13::ExpectCertificateRequest::handle",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rustls/src/client/tls13.rs",
+          "function": "rustls::client::tls13::ExpectCertificateVerify::handle",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rustls/src/client/tls13.rs",
+          "function": "rustls::client::tls13::ExpectCertificateVerify::into_owned",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rustls/src/client/tls13.rs",
+          "function": "rustls::client::tls13::ExpectCompressedCertificate::handle",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rustls/src/client/tls13.rs",
+          "function": "rustls::client::tls13::ExpectEncryptedExtensions::handle",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rustls/src/client/tls13.rs",
+          "function": "rustls::client::tls13::ExpectFinished::handle",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rustls/src/client/tls13.rs",
+          "function": "rustls::client::tls13::handle_server_hello",
+          "change_type": "Modified"
         }
       ]
     }
