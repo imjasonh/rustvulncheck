@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1791987139",
+  "generated_at": "unix:1792018297",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -25532,6 +25532,798 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0350",
+      "package": "wasmtime-wasi-http",
+      "title": "Guests can send absolute-form HTTP requests to different hosts",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 36.0.18, < 37.0.0",
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "cf14f919b25037437a18025593870a9a3f86295b",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0351",
+      "package": "wasmtime-wasi-http",
+      "title": "`wasi-http`: Request with long url before query parameter crashes host",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "b15b1f7a0d87beecf2b1b3d3686a5b029e55098f",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0352",
+      "package": "wasmtime-wasi",
+      "title": "Filesystem sandbox escape when renaming symlinks with trailing slashes",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 36.0.18, < 37.0.0",
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "d7a44f54e4f7b3c24171e0d8a508f73d466437e7",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0353",
+      "package": "wasmtime",
+      "title": "Panic when invoking an async-lifted function via `call`",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "4c8d4f689538a37821d09be35396975245571088",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/func.rs",
+          "function": "wasmtime::runtime::component::func::Func::call_impl",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/typed.rs",
+          "function": "wasmtime::runtime::component::func::typed::TypedFunc::call_impl",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0354",
+      "package": "wasmtime",
+      "title": "Host panic when component `call_async` is cancelled under some conditions",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "8edbebb8966e4986b3b00f402643f177f8507617",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::StoreOpaque::cancel_guest_subtask_without_lowered_parameters",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0355",
+      "package": "wasmtime",
+      "title": "Panic viewing component model stream or future as the wrong type",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "afde5b46892c65988eeba635b55ebdd57045906a",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::StoreContextMut::set_consumer",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams/buffers.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::buffers::untyped::UntypedWriteBuffer::get_mut",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0356",
+      "package": "wasmtime",
+      "title": "Panic on erroneous call-to-host from guest realloc call",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "c8a437d023fe6c756cbcccad2902235e89abad3e",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/func.rs",
+          "function": "wasmtime::runtime::component::concurrent::func::Func::prepare_call_dynamic",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/func.rs",
+          "function": "wasmtime::runtime::component::concurrent::func::TypedFunc::prepare_call",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func.rs",
+          "function": "wasmtime::runtime::component::func::Func::call_raw",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func.rs",
+          "function": "wasmtime::runtime::component::func::Func::with_lower_context",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/options.rs",
+          "function": "wasmtime::runtime::component::func::options::LowerContext::realloc",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0357",
+      "package": "wasmtime",
+      "title": "Out-of-bounds zero-length stream writes can panic",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "aa03698bd18f4f25f60f7515665f80232398665b",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::Destination::remaining",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::DirectDestination::remaining",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::DirectDestination::remaining_",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::DirectDestination::write",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::DirectSource::read",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::DirectSource::remaining",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::DirectSource::remaining_",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::FutureReader::pipe",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::Source::remaining",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0358",
+      "package": "wasmtime",
+      "title": "Yielding in a component start function can lead to a host panic",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "504e231a77d22ae47c0e843d908ebcb044208733",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ConcurrentState::promote_work_item_matching",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ConcurrentState::push_high_priority",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ConcurrentState::push_low_priority",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ConcurrentState::restore_next_switch_item",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ConcurrentState::save_next_switch_item",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ConcurrentState::schedule_suspended_thread",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ConcurrentState::set_switch_item",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ConcurrentState::set_thread_running",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ConcurrentState::take_callback_waiter",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ConcurrentState::take_fibers_and_futures",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ConcurrentState::trace_fiber_roots",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ConcurrentState::wake_waiter",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::GuestThreadState::check_no_fiber",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::Instance::resume_thread",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::Instance::stage_call",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::Instance::start_call",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::Instance::subtask_cancel",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::Instance::thread_new_indirect",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::ResumingFiber::drop",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::StoreContextMut::handle_work_item",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::StoreContextMut::run_on_worker",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::StoreOpaque::resume_fiber",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::StoreOpaque::suspend",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0359",
+      "package": "wasmtime",
+      "title": "Stack overflow dropping a long chain of recursive types",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "a55c4a5bff2b6faf68f6acc4bf73f8f79ff53dba",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeRegistryInner::decref_outgoing_edges",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeRegistryInner::drain_drop_stack",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeRegistryInner::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeRegistryInner::remove_entry_trampolines",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/type_registry.rs",
+          "function": "wasmtime::runtime::type_registry::TypeRegistryInner::reserve_capacity_for_rec_group",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0360",
+      "package": "wasmtime",
+      "title": "Overlapping string transcode in a fused adapter can panic",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 49.0.3"
+      ],
+      "commit_sha": "3ec2054017a03863660f7733d6c30c8bd79e2001",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0361",
+      "package": "wasmtime",
+      "title": "Panic when pending calls are run after a trap",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "73de1953776f371f1f153fb19affea08edf1d5bd",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::StoreOpaque::suspend",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0362",
+      "package": "wasmtime",
+      "title": "Wasmtime may not properly enforce async-entrypoint requirement",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "79a6098bc744a7ae0a71cb3cd18dd71ab87cf4e2",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/store.rs",
+          "function": "wasmtime::runtime::store::StoreOpaque::validate_sync_call",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0363",
+      "package": "wasmtime",
+      "title": "Component-model handle tables are capped only per instance and charged to no limit",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 36.0.18, < 37.0.0",
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "28c6adad203ec6a0c46375fbfedc751309b1bb12",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::Instance::add_guest_thread_to_instance_table",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::Instance::first_poll",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::Instance::start_call",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::Instance::subtask_drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::Instance::waitable_set_drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::Instance::waitable_set_new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::StoreOpaque::cleanup_thread",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent.rs",
+          "function": "wasmtime::runtime::component::concurrent::StoreOpaque::instance_state_and_handle_counter",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::Instance::error_context_drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::Instance::error_context_new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::Instance::error_context_transfer",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::Instance::guest_drop_readable",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::Instance::guest_drop_writable",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::Instance::guest_new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::Instance::lift_index_to_transmit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::Instance::lower_transmit_to_index",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::lift_index_to_future",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::lift_index_to_stream",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::lift_index_to_transmit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::lower_error_context_to_index",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::lower_transmit_to_index",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/options.rs",
+          "function": "wasmtime::runtime::component::func::options::LiftContext::concurrent_state_and_instance_mut",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/options.rs",
+          "function": "wasmtime::runtime::component::func::options::LiftContext::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/func/options.rs",
+          "function": "wasmtime::runtime::component::func::options::LiftContext::resource_tables",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::ComponentStoreData::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::Store::max_component_handles",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::Store::set_max_component_handles",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreComponentInstanceId::get_mut_and_handle_counter",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreContextMut::max_component_handles",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreContextMut::set_max_component_handles",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreData::component_instance_and_handle_counter_mut",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreOpaque::component_resource_tables_and_host_resource_data",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreOpaque::lift_context_parts",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreOpaque::max_component_handles",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/store.rs",
+          "function": "wasmtime::runtime::component::store::StoreOpaque::set_max_component_handles",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleCounter::limit",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleCounter::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleCounter::set_limit",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::error_context_drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::error_context_insert",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::future_insert_read",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::future_insert_write",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::future_remove_readable",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::future_remove_writable",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::insert",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::remove",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::remove_resource",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::resource_borrow_insert",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::resource_own_insert",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::stream_insert_read",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::stream_insert_write",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::stream_remove_readable",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::stream_remove_writable",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::subtask_insert_guest",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::subtask_insert_host",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::subtask_remove",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::waitable_set_insert",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::waitable_set_remove",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::ThreadHandleTable::guest_thread_insert",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::ThreadHandleTable::guest_thread_remove",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/resources.rs",
+          "function": "wasmtime::runtime::vm::component::resources::ResourceTables::resource_drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/resources.rs",
+          "function": "wasmtime::runtime::vm::component::resources::ResourceTables::resource_lift_borrow",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/resources.rs",
+          "function": "wasmtime::runtime::vm::component::resources::ResourceTables::resource_lift_own",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/resources.rs",
+          "function": "wasmtime::runtime::vm::component::resources::ResourceTables::resource_lower_borrow",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/resources.rs",
+          "function": "wasmtime::runtime::vm::component::resources::ResourceTables::resource_lower_own",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/resources.rs",
+          "function": "wasmtime::runtime::vm::component::resources::ResourceTables::resource_new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/resources.rs",
+          "function": "wasmtime::runtime::vm::component::resources::ResourceTables::resource_rep",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/resources.rs",
+          "function": "wasmtime::runtime::vm::component::resources::ResourceTables::table_for_index",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/resources.rs",
+          "function": "wasmtime::runtime::vm::component::resources::ResourceTables::table_for_resource",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/resources.rs",
+          "function": "wasmtime::runtime::vm::component::resources::ResourceTables::validate_scope_exit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/common.rs",
+          "function": "wasmtime::common::RunCommon::configure_store",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0364",
+      "package": "wasmtime",
+      "title": "Exception tags can cause host data structures to be unaligned",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 48.0.6, < 49.0.0",
+        ">= 49.0.3"
+      ],
+      "commit_sha": "1fdc81b8b1b6c27fae2fce44933c4a0197bdc3ef",
+      "vulnerable_symbols": []
     }
   ]
 }
