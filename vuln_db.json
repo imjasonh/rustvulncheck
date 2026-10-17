@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1792018297",
+  "generated_at": "unix:1792202527",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -26323,6 +26323,35 @@
         ">= 49.0.3"
       ],
       "commit_sha": "1fdc81b8b1b6c27fae2fce44933c4a0197bdc3ef",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0365",
+      "package": "negentropy",
+      "title": "Remote DoS through unchecked `IdList` allocation in negentropy",
+      "date": "2026-10-14",
+      "patched_versions": [
+        ">= 0.4.4, < 0.5.0",
+        ">= 0.5.2"
+      ],
+      "commit_sha": "40f7290cbc5755a5ba3190279fbc848a97866280",
+      "vulnerable_symbols": [
+        {
+          "file": "src/lib.rs",
+          "function": "negentropy::Negentropy::reconcile_aux",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0366",
+      "package": "pest_grammars",
+      "title": "Stack overflow when parsing deeply nested input in pest_grammars",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 2.9.3"
+      ],
+      "commit_sha": "429e893a774e591e24eccce9c404e32997717ba0",
       "vulnerable_symbols": []
     }
   ]
