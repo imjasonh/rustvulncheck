@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1792202527",
+  "generated_at": "unix:1792258728",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -26353,6 +26353,51 @@
       ],
       "commit_sha": "429e893a774e591e24eccce9c404e32997717ba0",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0370",
+      "package": "zvariant",
+      "title": "`zvariant` is unmaintained",
+      "date": "2026-10-16",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0371",
+      "package": "zbus_names",
+      "title": "`zbus_names` is unmaintained",
+      "date": "2026-10-16",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0372",
+      "package": "zvariant_derive",
+      "title": "`zvariant_derive` is unmaintained",
+      "date": "2026-10-16",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0373",
+      "package": "ammonia",
+      "title": "Missing case-insensitive matching for CSS url function",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 4.2.4",
+        ">= 4.1.8, < 4.2.0"
+      ],
+      "commit_sha": "72d56debf499cc88adc253c326d05a3563b8ee06",
+      "vulnerable_symbols": [
+        {
+          "file": "src/style.rs",
+          "function": "ammonia::style::Declarations::parse_value",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
