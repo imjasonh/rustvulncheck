@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1792258728",
+  "generated_at": "unix:1792510181",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -26398,6 +26398,170 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0374",
+      "package": "basic-toml",
+      "title": "`basic-toml` is unmaintained",
+      "date": "2026-09-26",
+      "patched_versions": [],
+      "commit_sha": "dd2ea1df197f255a402b8990cb852ade3e37ea34",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0375",
+      "package": "wasmtime-wasi-http",
+      "title": "`wasi-http` p3: Guests can set incorrect content-length for spliced response bodies",
+      "date": "2026-10-19",
+      "patched_versions": [
+        ">= 48.0.7, < 49.0.0",
+        ">= 49.0.4"
+      ],
+      "commit_sha": "5db2f0b01f92782d481521c1b7776a1fb5d8ddee",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0376",
+      "package": "wasmtime-wasi-http",
+      "title": "`wasi-http`: Guests can add conflicting content lengths to messages",
+      "date": "2026-10-19",
+      "patched_versions": [
+        ">= 36.0.19, < 37.0.0",
+        ">= 48.0.7, < 49.0.0",
+        ">= 49.0.4"
+      ],
+      "commit_sha": "ff0a08667c271a4b2957b2e9daccf58de3f46232",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0377",
+      "package": "wasmtime-wasi-http",
+      "title": "`wasi-http` p3: forwarded trailers aren't checked against `is_forbidden_header` hook",
+      "date": "2026-10-19",
+      "patched_versions": [
+        ">= 48.0.7, < 49.0.0",
+        ">= 49.0.4"
+      ],
+      "commit_sha": "842cbb4e6f60d1d0e207434349848df7f9f76a63",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0378",
+      "package": "wasmtime",
+      "title": "Panic lowering a host-created component model stream into a guest that expects a different payload type",
+      "date": "2026-10-19",
+      "patched_versions": [
+        ">= 48.0.7, < 49.0.0",
+        ">= 49.0.4"
+      ],
+      "commit_sha": "48dacc76241f06088e79f3ce1b17642f2f7bf158",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/future_stream_any.rs",
+          "function": "wasmtime::runtime::component::concurrent::future_stream_any::FutureAny::linear_lower_to_flat",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/future_stream_any.rs",
+          "function": "wasmtime::runtime::component::concurrent::future_stream_any::FutureAny::linear_lower_to_memory",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/future_stream_any.rs",
+          "function": "wasmtime::runtime::component::concurrent::future_stream_any::FutureAny::lower_to_index",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/future_stream_any.rs",
+          "function": "wasmtime::runtime::component::concurrent::future_stream_any::FutureAny::try_from_future_reader",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/future_stream_any.rs",
+          "function": "wasmtime::runtime::component::concurrent::future_stream_any::PayloadType::eq",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/future_stream_any.rs",
+          "function": "wasmtime::runtime::component::concurrent::future_stream_any::PayloadType::new_host",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/future_stream_any.rs",
+          "function": "wasmtime::runtime::component::concurrent::future_stream_any::PayloadType::typecheck_guest",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/future_stream_any.rs",
+          "function": "wasmtime::runtime::component::concurrent::future_stream_any::PayloadType::typecheck_host",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/future_stream_any.rs",
+          "function": "wasmtime::runtime::component::concurrent::future_stream_any::StreamAny::linear_lower_to_flat",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/future_stream_any.rs",
+          "function": "wasmtime::runtime::component::concurrent::future_stream_any::StreamAny::linear_lower_to_memory",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/future_stream_any.rs",
+          "function": "wasmtime::runtime::component::concurrent::future_stream_any::StreamAny::lower_to_index",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/future_stream_any.rs",
+          "function": "wasmtime::runtime::component::concurrent::future_stream_any::StreamAny::try_from_stream_reader",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::StoreContextMut::new_transmit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::lower_future_to_index",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::lower_stream_to_index",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::typecheck_lowered_transmit",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0379",
+      "package": "wasmtime",
+      "title": "Cranelift backend on aarch64 can jump to incorrect target on large Wasm `br_table` instruction",
+      "date": "2026-10-19",
+      "patched_versions": [
+        ">= 36.0.19, < 37.0.0",
+        ">= 48.0.7, < 49.0.0",
+        ">= 49.0.4"
+      ],
+      "commit_sha": "e61df1b454be9313d61a5f8de07722a421139bbe",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0380",
+      "package": "wasmtime",
+      "title": "Bit-packing in Cranelift compiler causes silent overflow and miscompilation",
+      "date": "2026-10-19",
+      "patched_versions": [
+        ">= 36.0.19, < 37.0.0",
+        ">= 43.0.0"
+      ],
+      "commit_sha": "ba8f7d70caa1825b7f64fa75cd9d03f4a438dae0",
+      "vulnerable_symbols": []
     }
   ]
 }
