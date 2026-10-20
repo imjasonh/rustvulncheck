@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1792510181",
+  "generated_at": "unix:1792525575",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -26561,6 +26561,40 @@
         ">= 43.0.0"
       ],
       "commit_sha": "ba8f7d70caa1825b7f64fa75cd9d03f4a438dae0",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0381",
+      "package": "webpki-roots",
+      "title": "Bundled root certificates allow trust in distrusted emSign intermediates",
+      "date": "2026-10-19",
+      "patched_versions": [
+        ">= 1.0.10"
+      ],
+      "commit_sha": "70760478b9d3ea729b22faa0b5324da38a297c1c",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0382",
+      "package": "rustls-webpki",
+      "title": "Certificate verification may accept distrusted intermediates",
+      "date": "2026-10-20",
+      "patched_versions": [
+        ">= 0.103.16, < 0.104.0-alpha.1",
+        ">= 0.104.0-alpha.8"
+      ],
+      "commit_sha": "8ecdcc76f56b68fda67a6adf7976f5eed5006a4c",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0383",
+      "package": "webpki-root-certs",
+      "title": "Bundled root certificates allow trust in distrusted emSign intermediates",
+      "date": "2026-10-19",
+      "patched_versions": [
+        ">= 1.0.10"
+      ],
+      "commit_sha": "70760478b9d3ea729b22faa0b5324da38a297c1c",
       "vulnerable_symbols": []
     }
   ]
