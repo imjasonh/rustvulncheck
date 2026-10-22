@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1792525575",
+  "generated_at": "unix:1792678536",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -26596,6 +26596,78 @@
       ],
       "commit_sha": "70760478b9d3ea729b22faa0b5324da38a297c1c",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0384",
+      "package": "tokio",
+      "title": "Race condition in `tokio::time::Interval` on Tokio v1.54.0",
+      "date": "2026-10-21",
+      "patched_versions": [
+        ">= 1.54.1"
+      ],
+      "commit_sha": "5ed619bbaba87357ee5103d71b75e7c84cad99c9",
+      "vulnerable_symbols": [
+        {
+          "file": "tokio/src/runtime/time/entry.rs",
+          "function": "tokio::runtime::time::entry::TimerEntry::cancel",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/runtime/time/entry.rs",
+          "function": "tokio::runtime::time::entry::TimerEntry::driver",
+          "change_type": "Added"
+        },
+        {
+          "file": "tokio/src/runtime/time/entry.rs",
+          "function": "tokio::runtime::time::entry::TimerEntry::init",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/runtime/time/entry.rs",
+          "function": "tokio::runtime::time::entry::TimerEntry::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/runtime/time/entry.rs",
+          "function": "tokio::runtime::time::entry::TimerEntry::poll_elapsed",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/runtime/time/entry.rs",
+          "function": "tokio::runtime::time::entry::TimerEntry::reset",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/runtime/time_alt/timer.rs",
+          "function": "tokio::runtime::time_alt::timer::Timer::cancel",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "tokio/src/runtime/time_alt/timer.rs",
+          "function": "tokio::runtime::time_alt::timer::Timer::drop",
+          "change_type": "Added"
+        },
+        {
+          "file": "tokio/src/runtime/time_alt/timer.rs",
+          "function": "tokio::runtime::time_alt::timer::Timer::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/time/interval.rs",
+          "function": "tokio::time::interval::Interval::poll_tick",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/time/sleep.rs",
+          "function": "tokio::time::sleep::Sleep::poll_elapsed",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/time/sleep.rs",
+          "function": "tokio::time::sleep::Sleep::reset",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
