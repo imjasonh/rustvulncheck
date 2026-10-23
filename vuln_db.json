@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1792752199",
+  "generated_at": "unix:1792769676",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -26679,6 +26679,89 @@
       ],
       "commit_sha": "a993c0ba50db6510d8db15a6219572de65115438",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0386",
+      "package": "tokio",
+      "title": "`AsyncFd::new` and related constructors violate I/O safety",
+      "date": "2026-10-13",
+      "patched_versions": [
+        ">= 1.51.6, < 1.52.0",
+        ">= 1.53.3"
+      ],
+      "commit_sha": "2598543b8a68ecf687be896406f5fb506923de96",
+      "vulnerable_symbols": [
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFd::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFd::new_with_handle_and_interest",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFd::register",
+          "change_type": "Added"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFd::register_with_interest",
+          "change_type": "Added"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFd::try_new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFd::try_new_with_handle_and_interest",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFd::try_with_interest",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFd::with_interest",
+          "change_type": "Modified"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFdRegisterError::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFdRegisterError::into_parts",
+          "change_type": "Added"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFdRegisterError::source",
+          "change_type": "Added"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFdTryNewError::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFdTryNewError::into_parts",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "tokio/src/io/async_fd.rs",
+          "function": "tokio::io::async_fd::AsyncFdTryNewError::source",
+          "change_type": "Deleted"
+        }
+      ]
     }
   ]
 }
