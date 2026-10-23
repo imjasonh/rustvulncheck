@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1792678536",
+  "generated_at": "unix:1792752199",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -26668,6 +26668,17 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0385",
+      "package": "ctutils",
+      "title": "Non-constant-time mask generation and `u128` comparisons",
+      "date": "2026-10-23",
+      "patched_versions": [
+        ">= 0.4.4"
+      ],
+      "commit_sha": "a993c0ba50db6510d8db15a6219572de65115438",
+      "vulnerable_symbols": []
     }
   ]
 }
