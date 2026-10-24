@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1792769676",
+  "generated_at": "unix:1792824099",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -26762,6 +26762,17 @@
           "change_type": "Deleted"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0387",
+      "package": "crypto-bigint",
+      "title": "Multiple timing variability issues in operations intended to be constant-time",
+      "date": "2026-10-23",
+      "patched_versions": [
+        ">= 0.7.6"
+      ],
+      "commit_sha": "c34044b8a1479ef32bec0a9030cf2f07b06506d9",
+      "vulnerable_symbols": []
     }
   ]
 }
