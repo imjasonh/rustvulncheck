@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1792824099",
+  "generated_at": "unix:1793015497",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -26773,6 +26773,122 @@
       ],
       "commit_sha": "c34044b8a1479ef32bec0a9030cf2f07b06506d9",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0388",
+      "package": "pingora-core",
+      "title": "Pingora HTTP/2 :authority and Host header mismatch enables cache poisoning and host-based access control bypass",
+      "date": "2026-10-20",
+      "patched_versions": [
+        ">= 0.9.0"
+      ],
+      "commit_sha": "915590a91811877795531f6ba0927a3138b5cb4b",
+      "vulnerable_symbols": [
+        {
+          "file": "pingora-core/src/protocols/http/v2/server.rs",
+          "function": "pingora_core::protocols::http::v2::server::HttpSession::from_h2_conn_with_malformed_budget",
+          "change_type": "Modified"
+        },
+        {
+          "file": "pingora-core/src/protocols/http/v2/server.rs",
+          "function": "pingora_core::protocols::http::v2::server::account_malformed_stream",
+          "change_type": "Added"
+        },
+        {
+          "file": "pingora-core/src/protocols/http/v2/server.rs",
+          "function": "pingora_core::protocols::http::v2::server::authority_host_mismatch",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0389",
+      "package": "pingora-core",
+      "title": "Pingora HTTP/2 server memory exhaustion through unbounded default header-list and concurrent-stream limits",
+      "date": "2026-10-20",
+      "patched_versions": [
+        ">= 0.8.1"
+      ],
+      "commit_sha": "d193c8d49b8b7c1c1ede93183759caa4f6906bbd",
+      "vulnerable_symbols": [
+        {
+          "file": "pingora-core/src/protocols/http/v2/server.rs",
+          "function": "pingora_core::protocols::http::v2::server::default_h2_options",
+          "change_type": "Added"
+        },
+        {
+          "file": "pingora-core/src/protocols/http/v2/server.rs",
+          "function": "pingora_core::protocols::http::v2::server::handshake",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0390",
+      "package": "pingora-proxy",
+      "title": "Pingora forwards client-nominated Connection headers to HTTP/1 upstreams, allowing ACL bypass in specific chained deployments",
+      "date": "2026-10-20",
+      "patched_versions": [
+        ">= 0.9.0"
+      ],
+      "commit_sha": "28c18e6b6b04dd0bd937234e5950049e6d74cded",
+      "vulnerable_symbols": [
+        {
+          "file": "pingora-proxy/src/lib.rs",
+          "function": "pingora_proxy::Session::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "pingora-proxy/src/proxy_common.rs",
+          "function": "pingora_proxy::proxy_common::ConnectionNominations::parse",
+          "change_type": "Added"
+        },
+        {
+          "file": "pingora-proxy/src/proxy_common.rs",
+          "function": "pingora_proxy::proxy_common::ConnectionNominations::remove_from",
+          "change_type": "Added"
+        },
+        {
+          "file": "pingora-proxy/src/proxy_common.rs",
+          "function": "pingora_proxy::proxy_common::finalize_h1_upstream_request_framing",
+          "change_type": "Added"
+        },
+        {
+          "file": "pingora-proxy/src/proxy_common.rs",
+          "function": "pingora_proxy::proxy_common::is_websocket_upgrade_request",
+          "change_type": "Added"
+        },
+        {
+          "file": "pingora-proxy/src/proxy_common.rs",
+          "function": "pingora_proxy::proxy_common::sanitize_h1_upstream_request",
+          "change_type": "Added"
+        },
+        {
+          "file": "pingora-proxy/src/proxy_common.rs",
+          "function": "pingora_proxy::proxy_common::sanitize_h2_upstream_request",
+          "change_type": "Added"
+        },
+        {
+          "file": "pingora-proxy/src/proxy_common.rs",
+          "function": "pingora_proxy::proxy_common::strip_standard_hop_by_hop_headers",
+          "change_type": "Added"
+        },
+        {
+          "file": "pingora-proxy/src/proxy_h1.rs",
+          "function": "pingora_proxy::proxy_h1::HttpProxy::h1_response_filter",
+          "change_type": "Modified"
+        },
+        {
+          "file": "pingora-proxy/src/proxy_h1.rs",
+          "function": "pingora_proxy::proxy_h1::HttpProxy::proxy_1to1",
+          "change_type": "Modified"
+        },
+        {
+          "file": "pingora-proxy/src/proxy_h2.rs",
+          "function": "pingora_proxy::proxy_h2::HttpProxy::proxy_down_to_up",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
