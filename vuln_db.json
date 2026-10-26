@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1793015497",
+  "generated_at": "unix:1793037230",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -365,6 +365,15 @@
       "package": "cassandra",
       "title": "`cassandra` crate is unmaintained; use `cassandra-cpp` instead",
       "date": "2016-12-15",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2016-0007",
+      "package": "jwt",
+      "title": "jwt appears to be unmaintained",
+      "date": "2016-10-09",
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
@@ -15803,6 +15812,17 @@
       "vulnerable_symbols": []
     },
     {
+      "advisory_id": "RUSTSEC-2025-0173",
+      "package": "pam-bindings",
+      "title": "`PamHandle::get_user` can cause an authentication bypass",
+      "date": "2025-06-02",
+      "patched_versions": [
+        ">= 0.1.2"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
       "advisory_id": "RUSTSEC-2026-0001",
       "package": "rkyv",
       "title": "Potential Undefined Behaviors in `Arc<T>`/`Rc<T>` impls of `from_value` on OOM",
@@ -26889,6 +26909,638 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0391",
+      "package": "zstd",
+      "title": "Data from an abandoned stream leaks into the next stream on a reused context",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 0.14.3"
+      ],
+      "commit_sha": "74ace2dcdca62a2ce0f034895d6079458311e003",
+      "vulnerable_symbols": [
+        {
+          "file": "src/stream/raw.rs",
+          "function": "zstd::stream::raw::Decoder::with_context",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/stream/raw.rs",
+          "function": "zstd::stream::raw::Encoder::with_context",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0392",
+      "package": "zstd",
+      "title": "Uninitialized memory exposed by `write::Decoder` on a corrupt legacy frame",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 0.8.0"
+      ],
+      "commit_sha": "006e1d1ad1eeaf6b5d4c28329e70217adabcec43",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0393",
+      "package": "zstd",
+      "title": "Out-of-bounds read when training a dictionary from inconsistent sample sizes",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 0.4.10"
+      ],
+      "commit_sha": "781ea454191dbf178d09c1daf6fc896d15fbaa2f",
+      "vulnerable_symbols": [
+        {
+          "file": "src/dict.rs",
+          "function": "zstd::dict::from_continuous",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0394",
+      "package": "rustpython-vm",
+      "title": "Build environment compiled into the library and readable at runtime",
+      "date": "2026-09-23",
+      "patched_versions": [
+        ">= 0.6.0"
+      ],
+      "commit_sha": "33182c444b91e3844f9f776ed3b1f6fc456d6faa",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/vm/build.rs",
+          "function": "rustpython_vm::crates::vm::build::main",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0395",
+      "package": "zstd-safe",
+      "title": "Use-after-free with `CParameter::StableInBuffer`",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 8.2.0"
+      ],
+      "commit_sha": "53a8a290d8cfb52ff5b29fb6e04a40b5a174cc65",
+      "vulnerable_symbols": [
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::set_parameter",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0396",
+      "package": "zstd-safe",
+      "title": "`Seekable` reads a NULL or out-of-bounds seek table",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 8.2.0"
+      ],
+      "commit_sha": "a9626069d6f2e90b782b8f627f57a361cfe8ef85",
+      "vulnerable_symbols": [
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::SeekTable::frame_decompressed_size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::Seekable::decompress",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::Seekable::decompress_frame",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::Seekable::frame_decompressed_size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::Seekable::init_advanced",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::Seekable::init_buff",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::Seekable::offset_to_frame_index",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::Seekable::try_create",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0397",
+      "package": "zstd-safe",
+      "title": "`OutBuffer::around_pos` exposes uninitialized memory",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 8.2.0"
+      ],
+      "commit_sha": "5827de2459b8ac430e87e860f00c7f3c13023833",
+      "vulnerable_symbols": [
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::Cursor::as_slice",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::OutBuffer::around_pos",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0398",
+      "package": "zstd-safe",
+      "title": "`Seekable::decompress` sets a `Vec` length beyond its capacity for offsets past the end",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 8.2.0"
+      ],
+      "commit_sha": "80506be743fae2ed0c2fe8b21c374c6a2eab0be7",
+      "vulnerable_symbols": [
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::Seekable::decompress",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::Seekable::decompressed_size",
+          "change_type": "Added"
+        },
+        {
+          "file": "zstd-safe/src/tests.rs",
+          "function": "zstd_safe::tests::check_seekable_decompression",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0399",
+      "package": "zstd-safe",
+      "title": "Use-after-free through `init_using_cdict` and `init_using_ddict`",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 8.2.0"
+      ],
+      "commit_sha": "e00e7928e3e98953fc43418af6d73f6aae2378fb",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0400",
+      "package": "zstd-safe",
+      "title": "Use-after-free of a dictionary after a one-shot call on a context with an open stream",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 8.2.0"
+      ],
+      "commit_sha": "d34502a0ed07f80ab2aa4c65059578e0466f2467",
+      "vulnerable_symbols": [
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::compress",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::compress2",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::compress_using_cdict",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::compress_using_dict",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::finish_one_shot",
+          "change_type": "Added"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::DCtx::decompress",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::DCtx::decompress_using_ddict",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::DCtx::decompress_using_dict",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::DCtx::finish_one_shot",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0401",
+      "package": "zstd-safe",
+      "title": "Out-of-bounds read in `train_from_buffer` when sample sizes overflow",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 8.2.0"
+      ],
+      "commit_sha": "781ea454191dbf178d09c1daf6fc896d15fbaa2f",
+      "vulnerable_symbols": [
+        {
+          "file": "src/dict.rs",
+          "function": "zstd_safe::dict::from_continuous",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::train_from_buffer",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0402",
+      "package": "zstd-safe",
+      "title": "Heap buffer overflow in `CCtx::try_clone` on a multithreaded context",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 8.2.0"
+      ],
+      "commit_sha": "682b8b2967cf4aba5cfe2d940d1e381a3e23211a",
+      "vulnerable_symbols": [
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::compress_block",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::guard_own_tables",
+          "change_type": "Added"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::set_parameter",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::try_clone",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::try_create",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0403",
+      "package": "zstd-safe",
+      "title": "Uninitialized memory exposed when streaming decompression of a legacy frame fails",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 8.2.0"
+      ],
+      "commit_sha": "006e1d1ad1eeaf6b5d4c28329e70217adabcec43",
+      "vulnerable_symbols": [
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::compress_stream",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::compress_stream2",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::end_stream",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::flush_stream",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::DCtx::decompress_stream",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::InBufferWrapper::check",
+          "change_type": "Added"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::OutBufferWrapper::check",
+          "change_type": "Added"
+        },
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::FrameLog::write_seek_table",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::SeekableCStream::compress_stream",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::SeekableCStream::end_frame",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/seekable.rs",
+          "function": "zstd_safe::seekable::SeekableCStream::end_stream",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0404",
+      "package": "zstd-safe",
+      "title": "Double free in `DCtx::try_clone`",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 8.2.0"
+      ],
+      "commit_sha": "cee6529b553ec600a8e152aaca15a91598820ecf",
+      "vulnerable_symbols": [
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::DCtx::set_parameter",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::DCtx::try_clone",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::DCtx::try_create",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0405",
+      "package": "zstd-safe",
+      "title": "Out-of-bounds read with an out-of-range `InBuffer::pos`",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 8.2.0"
+      ],
+      "commit_sha": "20d397c0d68d8b4300c5493875ebfa10e355fcdd",
+      "vulnerable_symbols": [
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::InBuffer::wrap",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0406",
+      "package": "zstd-safe",
+      "title": "Use-after-free when changing a multithreaded context with an unfinished frame",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 8.2.0"
+      ],
+      "commit_sha": "e224018a2389915d68ed17f30109bebad36e9734",
+      "vulnerable_symbols": [
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::compress2",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::compress_stream",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::compress_stream2",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::disable_dictionary",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::end_stream",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::flush_stream",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::guard_own_tables",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::guard_workers",
+          "change_type": "Added"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::init",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::init_src_size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::init_using_cdict",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::init_using_dict",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::load_dictionary",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::ref_cdict",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::ref_prefix",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::reset",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::set_parameter",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::track_frame",
+          "change_type": "Added"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::try_create",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/src/lib.rs",
+          "function": "zstd_safe::CCtx::wait_for_workers",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0407",
+      "package": "webpage",
+      "title": "SSRF and local file disclosure via unvalidated URLs",
+      "date": "2026-10-22",
+      "patched_versions": [
+        ">= 2.1.0"
+      ],
+      "commit_sha": "5742fbee437c04170d101e10df3534e87730f36d",
+      "vulnerable_symbols": [
+        {
+          "file": "src/http.rs",
+          "function": "webpage::http::HTTP::fetch",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/http.rs",
+          "function": "webpage::http::HTTP::fetch_any_scheme",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "webpage::Webpage::from_http",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "webpage::Webpage::from_url",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "webpage::Webpage::from_url_any_scheme",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0408",
+      "package": "skiplist",
+      "title": "Aliasing violations in splice, mutable iteration and cursors",
+      "date": "2026-10-24",
+      "patched_versions": [
+        ">= 1.3.0"
+      ],
+      "commit_sha": "a4d4b159b569779dd4f6a80e4feb591ddfd50555",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0409",
+      "package": "skiplist",
+      "title": "Use-after-free from a comparator that answers inconsistently",
+      "date": "2026-10-24",
+      "patched_versions": [
+        ">= 1.3.0"
+      ],
+      "commit_sha": "a4d4b159b569779dd4f6a80e4feb591ddfd50555",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0410",
+      "package": "zstd-sys",
+      "title": "WebAssembly allocator shim corrupts memory on allocation failure",
+      "date": "2026-10-16",
+      "patched_versions": [
+        ">= 2.1.2"
+      ],
+      "commit_sha": "165d1625553c236b9700ca794b8a7c51f5d98314",
+      "vulnerable_symbols": [
+        {
+          "file": "zstd-safe/zstd-sys/src/wasm_shim.rs",
+          "function": "zstd_sys::wasm_shim::rust_zstd_wasm_shim_calloc",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/zstd-sys/src/wasm_shim.rs",
+          "function": "zstd_sys::wasm_shim::rust_zstd_wasm_shim_free",
+          "change_type": "Modified"
+        },
+        {
+          "file": "zstd-safe/zstd-sys/src/wasm_shim.rs",
+          "function": "zstd_sys::wasm_shim::wasm_shim_alloc",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0411",
+      "package": "dahl-salso",
+      "title": "Out-of-bounds read in `Log2Cache::nlog2n()`, `nlog2n_difference()` and `plog2p()`",
+      "date": "2026-10-22",
+      "patched_versions": [
+        ">= 0.7.0"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
