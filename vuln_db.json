@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1793037230",
+  "generated_at": "unix:1793106149",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -27541,6 +27541,63 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0412",
+      "package": "cargo-nextest",
+      "title": "Arbitrary code execution when rerunning tests from a portable recording",
+      "date": "2026-10-26",
+      "patched_versions": [
+        ">= 0.9.150"
+      ],
+      "commit_sha": "456818b35d906551b2273e635c9b343704caaeaf",
+      "vulnerable_symbols": [
+        {
+          "file": "cargo-nextest/src/dispatch/core/base.rs",
+          "function": "cargo_nextest::dispatch::core::base::BaseApp::build_binary_list",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cargo-nextest/src/dispatch/core/base.rs",
+          "function": "cargo_nextest::dispatch::core::base::BaseApp::build_binary_list_with_scope",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cargo-nextest/src/dispatch/core/base.rs",
+          "function": "cargo_nextest::dispatch::core::base::BaseApp::build_scope_args",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "cargo-nextest/src/dispatch/core/base.rs",
+          "function": "cargo_nextest::dispatch::core::base::ResolvedBuildScope::scope",
+          "change_type": "Added"
+        },
+        {
+          "file": "cargo-nextest/src/dispatch/core/base.rs",
+          "function": "cargo_nextest::dispatch::core::base::helpers::CargoBuildSettings::compute_binary_list_with_inherited",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "cargo-nextest/src/dispatch/core/run.rs",
+          "function": "cargo_nextest::dispatch::core::run::App::exec_bench",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cargo-nextest/src/dispatch/core/run.rs",
+          "function": "cargo_nextest::dispatch::core::run::App::exec_run",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cargo-nextest/src/dispatch/core/run.rs",
+          "function": "cargo_nextest::dispatch::core::run::App::resolve_rerun",
+          "change_type": "Modified"
+        },
+        {
+          "file": "cargo-nextest/src/dispatch/utility/debug.rs",
+          "function": "cargo_nextest::dispatch::utility::debug::ExtractPortableRecordingOpts::exec",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
