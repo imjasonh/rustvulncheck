@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1793106149",
+  "generated_at": "unix:1793198604",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -27595,6 +27595,28 @@
         {
           "file": "cargo-nextest/src/dispatch/utility/debug.rs",
           "function": "cargo_nextest::dispatch::utility::debug::ExtractPortableRecordingOpts::exec",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0414",
+      "package": "pulldown-cmark",
+      "title": "Exponential event growth with `ENABLE_WIKILINKS`",
+      "date": "2026-10-18",
+      "patched_versions": [
+        ">= 0.13.5"
+      ],
+      "commit_sha": "17b526386f2881e210533a8d36bc62376fba3ba8",
+      "vulnerable_symbols": [
+        {
+          "file": "pulldown-cmark/src/parse.rs",
+          "function": "pulldown_cmark::parse::ParserInner::handle_inline_pass1",
+          "change_type": "Modified"
+        },
+        {
+          "file": "pulldown-cmark/src/parse.rs",
+          "function": "pulldown_cmark::parse::ParserInner::handle_wikilink",
           "change_type": "Modified"
         }
       ]
