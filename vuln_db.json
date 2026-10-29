@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1793198604",
+  "generated_at": "unix:1793270090",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -15624,7 +15624,7 @@
       "patched_versions": [
         ">= 2.0.0"
       ],
-      "commit_sha": "f67b4b98e2aa286f05367d7d7849fc0f0de817d6",
+      "commit_sha": "02b947afdeeb1be95ec0888354aa76afdd9d0357",
       "vulnerable_symbols": []
     },
     {
@@ -19696,7 +19696,7 @@
       "patched_versions": [
         ">= 1.0.0-rc.2"
       ],
-      "commit_sha": "3a799e2d32bd708f0b280c60baecac76418248b1",
+      "commit_sha": "26ef36968a62e28a1f028e7adae4806af30c747d",
       "vulnerable_symbols": []
     },
     {
