@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1793270090",
+  "generated_at": "unix:1793294074",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -15624,7 +15624,7 @@
       "patched_versions": [
         ">= 2.0.0"
       ],
-      "commit_sha": "02b947afdeeb1be95ec0888354aa76afdd9d0357",
+      "commit_sha": "f67b4b98e2aa286f05367d7d7849fc0f0de817d6",
       "vulnerable_symbols": []
     },
     {
@@ -19696,7 +19696,7 @@
       "patched_versions": [
         ">= 1.0.0-rc.2"
       ],
-      "commit_sha": "26ef36968a62e28a1f028e7adae4806af30c747d",
+      "commit_sha": "3a799e2d32bd708f0b280c60baecac76418248b1",
       "vulnerable_symbols": []
     },
     {
@@ -27618,6 +27618,416 @@
           "file": "pulldown-cmark/src/parse.rs",
           "function": "pulldown_cmark::parse::ParserInner::handle_wikilink",
           "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0415",
+      "package": "juniper_hyper",
+      "title": "Unbounded memory use on large request bodies",
+      "date": "2026-10-28",
+      "patched_versions": [
+        ">= 0.10.1"
+      ],
+      "commit_sha": "3b22918bdd6d400217cc56edace66fa8675e79a2",
+      "vulnerable_symbols": [
+        {
+          "file": "juniper_hyper/src/lib.rs",
+          "function": "juniper_hyper::parse_post_graphql_req",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper_hyper/src/lib.rs",
+          "function": "juniper_hyper::parse_post_json_req",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper_hyper/src/lib.rs",
+          "function": "juniper_hyper::parse_req",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper_hyper/src/lib.rs",
+          "function": "juniper_hyper::read_body",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper_hyper/src/lib.rs",
+          "function": "juniper_hyper::render_error",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0416",
+      "package": "juniper",
+      "title": "Stack overflow on deeply nested GraphQL documents",
+      "date": "2026-10-28",
+      "patched_versions": [
+        ">= 0.17.2"
+      ],
+      "commit_sha": "3b22918bdd6d400217cc56edace66fa8675e79a2",
+      "vulnerable_symbols": [
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::ExpansionCheck::fragment",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::ExpansionCheck::nested",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::ExpansionCheck::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::ExpansionCheck::run",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::ExpansionCheck::selection_set",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::parse_document_source",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::parse_selection_set",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::parse_type",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/parser/parser.rs",
+          "function": "juniper::parser::parser::Limits::default",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/parser.rs",
+          "function": "juniper::parser::parser::Parser::nested",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/parser.rs",
+          "function": "juniper::parser::parser::Parser::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/parser/parser.rs",
+          "function": "juniper::parser::parser::Parser::next_token",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/parser/parser.rs",
+          "function": "juniper::parser::parser::Parser::with_limits",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/value.rs",
+          "function": "juniper::parser::value::parse_list_literal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/parser/value.rs",
+          "function": "juniper::parser::value::parse_object_literal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/schema/model.rs",
+          "function": "juniper::schema::model::RootNode::limit_depth",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/schema/model.rs",
+          "function": "juniper::schema::model::RootNode::limit_fields",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/schema/model.rs",
+          "function": "juniper::schema::model::RootNode::limit_tokens",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/schema/model.rs",
+          "function": "juniper::schema::model::SchemaType::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/no_fragment_cycles.rs",
+          "function": "juniper::validation::rules::no_fragment_cycles::CycleDetector::detect_from_inner",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::OverlappingFieldsCanBeMerged::collect_conflicts_between",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::OverlappingFieldsCanBeMerged::collect_conflicts_between_fields_and_fragment",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::OverlappingFieldsCanBeMerged::collect_conflicts_within",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::OverlappingFieldsCanBeMerged::enter_selection_set",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::OverlappingFieldsCanBeMerged::find_conflict",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::factory",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::selection_start",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0417",
+      "package": "juniper",
+      "title": "Excessive CPU and memory use on crafted GraphQL documents",
+      "date": "2026-10-28",
+      "patched_versions": [
+        ">= 0.17.2"
+      ],
+      "commit_sha": "3b22918bdd6d400217cc56edace66fa8675e79a2",
+      "vulnerable_symbols": [
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::ExpansionCheck::fragment",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::ExpansionCheck::nested",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::ExpansionCheck::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::ExpansionCheck::run",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::ExpansionCheck::selection_set",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::parse_document_source",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::parse_selection_set",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/parser/document.rs",
+          "function": "juniper::parser::document::parse_type",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/parser/parser.rs",
+          "function": "juniper::parser::parser::Limits::default",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/parser.rs",
+          "function": "juniper::parser::parser::Parser::nested",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/parser.rs",
+          "function": "juniper::parser::parser::Parser::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/parser/parser.rs",
+          "function": "juniper::parser::parser::Parser::next_token",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/parser/parser.rs",
+          "function": "juniper::parser::parser::Parser::with_limits",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/parser/value.rs",
+          "function": "juniper::parser::value::parse_list_literal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/parser/value.rs",
+          "function": "juniper::parser::value::parse_object_literal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/schema/model.rs",
+          "function": "juniper::schema::model::RootNode::limit_depth",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/schema/model.rs",
+          "function": "juniper::schema::model::RootNode::limit_fields",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/schema/model.rs",
+          "function": "juniper::schema::model::RootNode::limit_tokens",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper/src/schema/model.rs",
+          "function": "juniper::schema::model::SchemaType::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/no_fragment_cycles.rs",
+          "function": "juniper::validation::rules::no_fragment_cycles::CycleDetector::detect_from_inner",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::OverlappingFieldsCanBeMerged::collect_conflicts_between",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::OverlappingFieldsCanBeMerged::collect_conflicts_between_fields_and_fragment",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::OverlappingFieldsCanBeMerged::collect_conflicts_within",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::OverlappingFieldsCanBeMerged::enter_selection_set",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::OverlappingFieldsCanBeMerged::find_conflict",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::factory",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper/src/validation/rules/overlapping_fields_can_be_merged.rs",
+          "function": "juniper::validation::rules::overlapping_fields_can_be_merged::selection_start",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0418",
+      "package": "libz-sys",
+      "title": "libz-sys build script leaks environment variables in the build directory",
+      "date": "2026-10-28",
+      "patched_versions": [
+        ">= 1.1.31"
+      ],
+      "commit_sha": "595fbb7995b2c5e15371963103d33192fd066857",
+      "vulnerable_symbols": [
+        {
+          "file": "build.rs",
+          "function": "libz_sys::build::zlib_installed",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0419",
+      "package": "juniper_warp",
+      "title": "Unbounded memory use on large request bodies",
+      "date": "2026-10-29",
+      "patched_versions": [
+        ">= 0.9.1"
+      ],
+      "commit_sha": "d2cb246b288bc2163c42c2ead6cd28a3b40580a0",
+      "vulnerable_symbols": [
+        {
+          "file": "juniper_warp/src/lib.rs",
+          "function": "juniper_warp::handle_rejects",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper_warp/src/lib.rs",
+          "function": "juniper_warp::json_content_type",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper_warp/src/lib.rs",
+          "function": "juniper_warp::limited_body",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper_warp/src/lib.rs",
+          "function": "juniper_warp::make_graphql_filter",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper_warp/src/lib.rs",
+          "function": "juniper_warp::make_graphql_filter_sync",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper_warp/src/lib.rs",
+          "function": "juniper_warp::make_graphql_filter_sync_with_body_limit",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper_warp/src/lib.rs",
+          "function": "juniper_warp::make_graphql_filter_with_body_limit",
+          "change_type": "Added"
+        },
+        {
+          "file": "juniper_warp/src/lib.rs",
+          "function": "juniper_warp::post_graphql_extractor",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper_warp/src/lib.rs",
+          "function": "juniper_warp::post_json_extractor",
+          "change_type": "Modified"
+        },
+        {
+          "file": "juniper_warp/src/lib.rs",
+          "function": "juniper_warp::read_body",
+          "change_type": "Added"
         }
       ]
     }
