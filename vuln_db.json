@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1793294074",
+  "generated_at": "unix:1793377507",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -28028,6 +28028,157 @@
           "file": "juniper_warp/src/lib.rs",
           "function": "juniper_warp::read_body",
           "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0420",
+      "package": "wasmtime-wasi",
+      "title": "wasip3 UDP `send` can deliver a datagram to an address only allowed for receiving",
+      "date": "2026-10-29",
+      "patched_versions": [
+        ">= 48.0.8, < 49.0.0",
+        ">= 49.0.5, < 50.0.0",
+        ">= 50.0.1"
+      ],
+      "commit_sha": "466daf157363b8884adedea6a5f5ffcdee721ee0",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0421",
+      "package": "wasmtime-wasi-http",
+      "title": "wasi-http p2: outgoing content-length can be invalid or not match body",
+      "date": "2026-10-29",
+      "patched_versions": [
+        ">= 36.0.20, < 37.0.0",
+        ">= 48.0.8, < 49.0.0",
+        ">= 49.0.5, < 50.0.0",
+        ">= 50.0.1"
+      ],
+      "commit_sha": "72f8e53cffc5da4737f1c42bc05d805d51682ca5",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0422",
+      "package": "wasmtime",
+      "title": "Typed functions with `i31` or `nullref` arguments may panic due to insufficient type-check",
+      "date": "2026-10-29",
+      "patched_versions": [
+        ">= 48.0.8, < 49.0.0",
+        ">= 49.0.5, < 50.0.0",
+        ">= 50.0.1"
+      ],
+      "commit_sha": "d5b5ccc68db3698e6c4564c27f39a89f3e888af3",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/gc/enabled/i31.rs",
+          "function": "wasmtime::runtime::gc::enabled::i31::I31::dynamic_concrete_type_check",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/gc/enabled/i31.rs",
+          "function": "wasmtime::runtime::gc::enabled::i31::Option::dynamic_concrete_type_check",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/gc/none_ref.rs",
+          "function": "wasmtime::runtime::gc::none_ref::Option::dynamic_concrete_type_check",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0423",
+      "package": "wasmtime",
+      "title": "Cross-engine type confusion with host-created struct-types-with-supertypes",
+      "date": "2026-10-29",
+      "patched_versions": [
+        ">= 48.0.8, < 49.0.0",
+        ">= 49.0.5, < 50.0.0",
+        ">= 50.0.1"
+      ],
+      "commit_sha": "37b3c724ff6c7c7d4bdb625ae90b791c876bfc5a",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/types.rs",
+          "function": "wasmtime::runtime::types::StructType::with_finality_and_supertype",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0424",
+      "package": "wasmtime",
+      "title": "Unchecked memory usage in transferring borrowed resources between components",
+      "date": "2026-10-29",
+      "patched_versions": [
+        ">= 36.0.20, < 37.0.0",
+        ">= 48.0.8, < 49.0.0",
+        ">= 49.0.5, < 50.0.0",
+        ">= 50.0.1"
+      ],
+      "commit_sha": "a4788b8676c9d08fa3a73e2790d512ed29ba6dc8",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::resource_lend",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/handle_table.rs",
+          "function": "wasmtime::runtime::vm::component::handle_table::HandleTable::resource_undo_lend",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/resources.rs",
+          "function": "wasmtime::runtime::vm::component::resources::ResourceTables::resource_lift_borrow",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/vm/component/resources.rs",
+          "function": "wasmtime::runtime::vm::component::resources::ResourceTables::validate_scope_exit",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0426",
+      "package": "orion",
+      "title": "LLVM introduces timing-vulnerable optimizations into ML-KEM and ML-DSA operations intended to be constant-time",
+      "date": "2026-10-30",
+      "patched_versions": [
+        "^0.17.16",
+        ">= 0.18.1"
+      ],
+      "commit_sha": "48ebd722d3a44b41896c79cdea76d6364661a03a",
+      "vulnerable_symbols": [
+        {
+          "file": "src/hazardous/dsa/ml_dsa/internal/fe.rs",
+          "function": "orion::hazardous::dsa::ml_dsa::internal::fe::conditional_sub_u32",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/hazardous/kem/ml_kem/internal/fe.rs",
+          "function": "orion::hazardous::kem::ml_kem::internal::fe::conditional_sub_u32",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0428",
+      "package": "orion",
+      "title": "BLAKE2b produces wrong tag when using `reset()` with a different-length key",
+      "date": "2026-10-30",
+      "patched_versions": [
+        "^0.17.16",
+        ">= 0.18.1"
+      ],
+      "commit_sha": "a172f078d5334d7ea08a8ab50d9ac7c6ec9093b7",
+      "vulnerable_symbols": [
+        {
+          "file": "src/hazardous/hash/blake2/mod.rs",
+          "function": "orion::hazardous::hash::blake2::blake2b_core::State::_reset",
+          "change_type": "Modified"
         }
       ]
     }
