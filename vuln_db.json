@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1793377507",
+  "generated_at": "unix:1793620250",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -28178,6 +28178,168 @@
         {
           "file": "src/hazardous/hash/blake2/mod.rs",
           "function": "orion::hazardous::hash::blake2::blake2b_core::State::_reset",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0430",
+      "package": "rio-vt",
+      "title": "Path traversal in `rio-vt` Kitty graphics protocol handler allows out-of-bounds file delete (and read)",
+      "date": "2026-11-01",
+      "patched_versions": [
+        ">= 0.5.29"
+      ],
+      "commit_sha": "7849894370e9ae4e26bc602be8770eb57be659a8",
+      "vulnerable_symbols": [
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::Format::bytes_per_pixel",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::WinHandleGuard::drop",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::WinViewGuard::drop",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::check_dimensions",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::create_graphic_data",
+          "change_type": "Modified"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::is_local_drive",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::is_sensitive_path",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::is_temp_file_path",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::local_windows_file",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::open_image_file",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::opened_path",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::raw_image_size",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::read_file_data",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::remove_temp_file",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::requested_size",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::shm_range",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::strip_verbatim",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::temp_dirs",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::temp_entry",
+          "change_type": "Added"
+        },
+        {
+          "file": "rio-vt/src/ansi/kitty_graphics_protocol.rs",
+          "function": "rio_vt::ansi::kitty_graphics_protocol::validate_open_file",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0431",
+      "package": "evtx",
+      "title": "Unbounded memory allocation in `evtx` parsing a `.wevtcache` file",
+      "date": "2026-11-01",
+      "patched_versions": [
+        ">= 0.15.1"
+      ],
+      "commit_sha": "b4050ce0460189e6dc7059a69d39d1d76505081b",
+      "vulnerable_symbols": [
+        {
+          "file": "src/wevt_templates/wevtcache.rs",
+          "function": "evtx::wevt_templates::wevtcache::WevtCacheReader::next_entry",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/wevt_templates/wevtcache.rs",
+          "function": "evtx::wevt_templates::wevtcache::WevtCacheReader::open",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0432",
+      "package": "codeq",
+      "title": "`codeq`: decoding untrusted input can allocate memory from an unchecked length prefix (denial of service)",
+      "date": "2026-10-31",
+      "patched_versions": [
+        ">= 0.6.3"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0433",
+      "package": "pulldown-cmark",
+      "title": "Quadratic parsing of nested image wikilinks with `ENABLE_WIKILINKS`",
+      "date": "2026-10-28",
+      "patched_versions": [
+        ">= 0.13.6"
+      ],
+      "commit_sha": "29d6cfa042b6c1fbb5702fc320f130edd2684271",
+      "vulnerable_symbols": [
+        {
+          "file": "pulldown-cmark/src/parse.rs",
+          "function": "pulldown_cmark::parse::ParserInner::handle_wikilink",
           "change_type": "Modified"
         }
       ]
