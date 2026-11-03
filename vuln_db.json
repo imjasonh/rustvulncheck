@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1793620250",
+  "generated_at": "unix:1793701136",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -28343,6 +28343,17 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0436",
+      "package": "calamine",
+      "title": "Panic and unbounded allocation (OOM) in the CFB/OLE2 parser on malformed input",
+      "date": "2026-10-28",
+      "patched_versions": [
+        ">= 0.38.0"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
