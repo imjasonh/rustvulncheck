@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1793701136",
+  "generated_at": "unix:1793894237",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -28351,6 +28351,78 @@
       "date": "2026-10-28",
       "patched_versions": [
         ">= 0.38.0"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0437",
+      "package": "azure_security_keyvault_certificates",
+      "title": "Rejected authentication challenges can poison the Key Vault scope cache",
+      "date": "2026-08-24",
+      "patched_versions": [
+        ">= 1.0.1, < 1.1.0-beta.0",
+        ">= 1.1.0-beta.2"
+      ],
+      "commit_sha": "2c89115fe89df2983e3280c53a9cdd25898cd2d3",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0438",
+      "package": "azure_security_keyvault_secrets",
+      "title": "Rejected authentication challenges can poison the Key Vault scope cache",
+      "date": "2026-08-24",
+      "patched_versions": [
+        ">= 1.0.1"
+      ],
+      "commit_sha": "2c89115fe89df2983e3280c53a9cdd25898cd2d3",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0439",
+      "package": "azure_security_keyvault_keys",
+      "title": "Rejected authentication challenges can poison the Key Vault scope cache",
+      "date": "2026-08-24",
+      "patched_versions": [
+        ">= 1.0.1"
+      ],
+      "commit_sha": "2c89115fe89df2983e3280c53a9cdd25898cd2d3",
+      "vulnerable_symbols": [
+        {
+          "file": "sdk/keyvault/azure_security_keyvault_keys/src/authorizer.rs",
+          "function": "azure_security_keyvault_keys::authorizer::KeyVaultAuthorizer::on_challenge",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0440",
+      "package": "astral-tokio-tar",
+      "title": "`astral-tokio-tar` is unmaintained",
+      "date": "2026-11-03",
+      "patched_versions": [],
+      "commit_sha": "9e8ebcba54f995a6300ea9cd01da0c15a8e34e80",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0441",
+      "package": "pin-utils",
+      "title": "`pin-utils` is unmaintained",
+      "date": "2026-10-01",
+      "patched_versions": [],
+      "commit_sha": "426b25e084344e268b49c86872305fffd81fb233",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0442",
+      "package": "arrow-data",
+      "title": "Apache Arrow Rust: Improper validation of RunEndEncoded arrays allows out of bounds reads",
+      "date": "2026-11-02",
+      "patched_versions": [
+        ">= 60.1.0",
+        ">= 59.3.2, < 60.0.0",
+        ">= 58.4.1, < 59.0.0",
+        ">= 57.3.2, < 58.0.0"
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
