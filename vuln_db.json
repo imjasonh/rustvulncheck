@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1793894237",
+  "generated_at": "unix:1793982667",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -28426,6 +28426,329 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0443",
+      "package": "actix-files",
+      "title": "Hidden file disclosure through Windows short names",
+      "date": "2026-11-06",
+      "patched_versions": [
+        ">= 0.7.4"
+      ],
+      "commit_sha": "f2c83122d244e4ba38514ee3fe1fd42a110dc3f0",
+      "vulnerable_symbols": [
+        {
+          "file": "actix-files/src/service.rs",
+          "function": "actix_files::service::FilesService::call",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-files/src/service.rs",
+          "function": "actix_files::service::FilesService::canonicalize_path",
+          "change_type": "Added"
+        },
+        {
+          "file": "actix-files/src/service.rs",
+          "function": "actix_files::service::FilesService::open_named_file",
+          "change_type": "Added"
+        },
+        {
+          "file": "actix-files/src/service.rs",
+          "function": "actix_files::service::FilesServiceInner::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-files/src/service.rs",
+          "function": "actix_files::service::find_compressed",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0444",
+      "package": "astral-tl",
+      "title": "`astral-tl` is unmaintained",
+      "date": "2026-10-05",
+      "patched_versions": [],
+      "commit_sha": "cd35a4bc7b31fd7dbba589225148586df6315a62",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0445",
+      "package": "vodozemac",
+      "title": "Degraded secret zeroization capabilities",
+      "date": "2026-11-06",
+      "patched_versions": [
+        ">= 0.11.2"
+      ],
+      "commit_sha": "75f9017cb554fe616f3884ffeb809b34de4c092a",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0446",
+      "package": "actix-http",
+      "title": "Request smuggling through malformed chunked request trailers",
+      "date": "2026-11-06",
+      "patched_versions": [
+        ">= 3.20.2"
+      ],
+      "commit_sha": "feed12e9ec59b39abe90590bf48ae6399ed45b56",
+      "vulnerable_symbols": [
+        {
+          "file": "actix-http/src/h1/chunked.rs",
+          "function": "actix_http::h1::chunked::ChunkedState::read_end_cr",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0447",
+      "package": "actix-web",
+      "title": "Compressed request bodies can exhaust memory before extractor limits apply",
+      "date": "2026-11-06",
+      "patched_versions": [
+        ">= 4.18.2"
+      ],
+      "commit_sha": "0d0be61bd757027bfcecbc53df1b7a600f21ecd0",
+      "vulnerable_symbols": [
+        {
+          "file": "actix-web/src/error/mod.rs",
+          "function": "actix_web::error::UrlencodedError::status_code",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-web/src/types/form.rs",
+          "function": "actix_web::types::form::UrlEncoded::err",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-web/src/types/form.rs",
+          "function": "actix_web::types::form::UrlEncoded::limit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-web/src/types/form.rs",
+          "function": "actix_web::types::form::UrlEncoded::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-web/src/types/form.rs",
+          "function": "actix_web::types::form::UrlEncoded::poll",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-web/src/types/json.rs",
+          "function": "actix_web::types::json::JsonBody::limit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-web/src/types/json.rs",
+          "function": "actix_web::types::json::JsonBody::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-web/src/types/json.rs",
+          "function": "actix_web::types::json::JsonBody::poll",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-web/src/types/payload.rs",
+          "function": "actix_web::types::payload::HttpMessageBody::limit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-web/src/types/payload.rs",
+          "function": "actix_web::types::payload::HttpMessageBody::new",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0448",
+      "package": "actix-http",
+      "title": "Unbounded decompression can exhaust memory and CPU resources",
+      "date": "2026-11-06",
+      "patched_versions": [
+        ">= 3.20.1"
+      ],
+      "commit_sha": "41b54d23ea04f66758c15de7e4ab18325cd25280",
+      "vulnerable_symbols": [
+        {
+          "file": "actix-http/src/encoding/decoder.rs",
+          "function": "actix_http::encoding::decoder::ContentDecoder::set_limit",
+          "change_type": "Added"
+        },
+        {
+          "file": "actix-http/src/encoding/decoder.rs",
+          "function": "actix_http::encoding::decoder::Decoder::limit",
+          "change_type": "Added"
+        },
+        {
+          "file": "actix-http/src/encoding/decoder.rs",
+          "function": "actix_http::encoding::decoder::Decoder::poll_next",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-http/src/encoding/decoder.rs",
+          "function": "actix_http::encoding::decoder::from_decoder_error",
+          "change_type": "Added"
+        },
+        {
+          "file": "actix-http/src/encoding/mod.rs",
+          "function": "actix_http::encoding::Writer::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "actix-http/src/encoding/mod.rs",
+          "function": "actix_http::encoding::Writer::set_limit",
+          "change_type": "Added"
+        },
+        {
+          "file": "actix-http/src/encoding/mod.rs",
+          "function": "actix_http::encoding::Writer::write",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0450",
+      "package": "ocipkg",
+      "title": "`ocipkg`: unpacking an OCI archive can write and delete files outside the local image store (path traversal)",
+      "date": "2026-10-30",
+      "patched_versions": [
+        ">= 0.4.1"
+      ],
+      "commit_sha": "1fe09be944c6ad76419e4b9f090214dd2c2774df",
+      "vulnerable_symbols": [
+        {
+          "file": "ocipkg/src/image_name.rs",
+          "function": "ocipkg::image_name::ImageName::from_path",
+          "change_type": "Modified"
+        },
+        {
+          "file": "ocipkg/src/image_name.rs",
+          "function": "ocipkg::image_name::ImageName::from_str",
+          "change_type": "Modified"
+        },
+        {
+          "file": "ocipkg/src/image_name.rs",
+          "function": "ocipkg::image_name::ImageName::validate_hostname",
+          "change_type": "Added"
+        },
+        {
+          "file": "ocipkg/src/local/mod.rs",
+          "function": "ocipkg::local::image_dir",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0451",
+      "package": "vodozemac",
+      "title": "Degraded secret zeroization capabilities",
+      "date": "2026-11-06",
+      "patched_versions": [
+        ">= 0.11.2"
+      ],
+      "commit_sha": "508613d14441ceff4bf8c62c6b693b700536828f",
+      "vulnerable_symbols": [
+        {
+          "file": "src/olm/session/root_key.rs",
+          "function": "vodozemac::olm::session::root_key::kdf",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0452",
+      "package": "surrealkv",
+      "title": "Out-of-bounds read when decoding internal keys shorter than 16 bytes",
+      "date": "2026-11-03",
+      "patched_versions": [
+        ">= 1.2.0"
+      ],
+      "commit_sha": "ac642f945d63c9c9f7ad35f480995fd516f83fb6",
+      "vulnerable_symbols": [
+        {
+          "file": "src/lib.rs",
+          "function": "surrealkv::InternalKey::decode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "surrealkv::InternalKey::trailer_from_encoded",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "surrealkv::InternalKey::user_key_from_encoded",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "surrealkv::InternalKeyRef::from_encoded",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/lib.rs",
+          "function": "surrealkv::read_u64_be",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sstable/block.rs",
+          "function": "surrealkv::sstable::block::BlockIterator::is_valid",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sstable/block.rs",
+          "function": "surrealkv::sstable::block::BlockIterator::seek_next_entry",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sstable/error.rs",
+          "function": "surrealkv::sstable::error::SSTableError::fmt",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0453",
+      "package": "surrealdb",
+      "title": "Use-after-free in KV backends via leaked `affinitypool::spawn_local` future",
+      "date": "2026-10-19",
+      "patched_versions": [
+        ">= 3.3.0"
+      ],
+      "commit_sha": "8156ff691b1861814199e5e3372c81609b68db7f",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0454",
+      "package": "surrealdb-core",
+      "title": "Data race and double free via unsound `Send`/`Sync` in `reblessive`",
+      "date": "2026-11-03",
+      "patched_versions": [
+        ">= 4.0.0"
+      ],
+      "commit_sha": "75407c4bccc6d6679d7d6e7a18af0065afdded7d",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0455",
+      "package": "actix-http",
+      "title": "Large-window Brotli bodies bypass decompression memory limits",
+      "date": "2026-11-06",
+      "patched_versions": [
+        ">= 3.20.3"
+      ],
+      "commit_sha": "61c6a15c1c0e505a5cd6842610a5f1faea432a83",
+      "vulnerable_symbols": [
+        {
+          "file": "actix-http/src/encoding/decoder.rs",
+          "function": "actix_http::encoding::decoder::Decoder::new",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
