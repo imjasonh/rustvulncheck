@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1793982667",
+  "generated_at": "unix:1794247221",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -28746,6 +28746,321 @@
         {
           "file": "actix-http/src/encoding/decoder.rs",
           "function": "actix_http::encoding::decoder::Decoder::new",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0456",
+      "package": "heifer-hevc-dec",
+      "title": "Panic on an HEVC tile layout that does not match the active SPS",
+      "date": "2026-11-04",
+      "patched_versions": [
+        ">= 0.3.27"
+      ],
+      "commit_sha": "71dfc67f1e3ae3c4b7e4cf633e83a26c94b06a92",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/heifer-hevc-dec/src/decoder.rs",
+          "function": "heifer_hevc_dec::decoder::decode_picture_checked",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/heifer-hevc-dec/src/scan.rs",
+          "function": "heifer_hevc_dec::scan::checked_tile_sizes",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/heifer-hevc-dec/src/scan.rs",
+          "function": "heifer_hevc_dec::scan::tile_sizes",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/heifer-hevc-dec/src/scan.rs",
+          "function": "heifer_hevc_dec::scan::tiles_fit",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0457",
+      "package": "rmcp",
+      "title": "OAuth client SSRF filter checks host strings, not resolved addresses",
+      "date": "2026-10-22",
+      "patched_versions": [
+        ">= 3.7.0"
+      ],
+      "commit_sha": "ac808abcb40d3c90c743a097cd97c7dfc8f71b5d",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::AuthorizationManager::authorization_metadata_from_resource_metadata",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::AuthorizationManager::discovery_get",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::AuthorizationManager::embedded_ipv4",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::AuthorizationManager::is_allowed_authorization_server_metadata_url",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::AuthorizationManager::is_disallowed_metadata_host",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::AuthorizationManager::is_disallowed_metadata_ipv6",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::AuthorizationManager::is_loopback_metadata_host",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::AuthorizationManager::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::AuthorizationManager::new_allowing_private_addresses",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::AuthorizationManager::new_filtered",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::AuthorizationManager::new_inner",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::AuthorizationManager::with_client",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::ReqwestOAuthHttpClient::execute",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::ReqwestOAuthHttpClient::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::ReqwestOAuthHttpClient::with_resolver",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth.rs",
+          "function": "rmcp::transport::auth::is_allowed_client_credentials_endpoint",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth/metadata_resolver.rs",
+          "function": "rmcp::transport::auth::metadata_resolver::AddressClass::of",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth/metadata_resolver.rs",
+          "function": "rmcp::transport::auth::metadata_resolver::MetadataAddressResolver::allowing_private_addresses",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth/metadata_resolver.rs",
+          "function": "rmcp::transport::auth::metadata_resolver::MetadataAddressResolver::allows_url",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth/metadata_resolver.rs",
+          "function": "rmcp::transport::auth::metadata_resolver::MetadataAddressResolver::is_allowed",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth/metadata_resolver.rs",
+          "function": "rmcp::transport::auth::metadata_resolver::MetadataAddressResolver::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth/metadata_resolver.rs",
+          "function": "rmcp::transport::auth::metadata_resolver::MetadataAddressResolver::resolve",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth/metadata_resolver.rs",
+          "function": "rmcp::transport::auth::metadata_resolver::MetadataAddressResolver::with_lookup",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth/metadata_resolver.rs",
+          "function": "rmcp::transport::auth::metadata_resolver::MetadataAddressResolver::with_proxy_hosts",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth/metadata_resolver.rs",
+          "function": "rmcp::transport::auth::metadata_resolver::SystemResolver::resolve",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth/metadata_resolver.rs",
+          "function": "rmcp::transport::auth::metadata_resolver::literal_ip",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/auth/metadata_resolver.rs",
+          "function": "rmcp::transport::auth::metadata_resolver::normalize_host",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0458",
+      "package": "heifer-isobmff",
+      "title": "Memory exhaustion when parsing a crafted `iloc` box",
+      "date": "2026-11-04",
+      "patched_versions": [
+        ">= 0.3.27"
+      ],
+      "commit_sha": "1a8426e1b41160fb48d8baf8be858238570a8093",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/heifer-isobmff/src/boxes.rs",
+          "function": "heifer_isobmff::boxes::parse_item_locations",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0459",
+      "package": "libsqlite3-sys",
+      "title": "`libsqlite3-sys` via C SQLite CVE-2026-119375",
+      "date": "2026-10-30",
+      "patched_versions": [
+        ">= 0.39.0"
+      ],
+      "commit_sha": "e5bf119821f25be1d7f10ef0a2edbe175289166e",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0460",
+      "package": "heifer-hevc-dec",
+      "title": "Panic on chroma QP offsets enabled with an empty offset list",
+      "date": "2026-11-04",
+      "patched_versions": [
+        ">= 0.3.27"
+      ],
+      "commit_sha": "1a8426e1b41160fb48d8baf8be858238570a8093",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/heifer-hevc-dec/src/scan.rs",
+          "function": "heifer_hevc_dec::scan::CtbLayout::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/heifer-hevc-dec/src/scan.rs",
+          "function": "heifer_hevc_dec::scan::tile_sizes",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/heifer-hevc-dec/src/syntax.rs",
+          "function": "heifer_hevc_dec::syntax::Parser::transform_unit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/heifer-hevc-dec/src/syntax.rs",
+          "function": "heifer_hevc_dec::syntax::chroma_qp_offset",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0461",
+      "package": "rmcp",
+      "title": "Unbounded tool schema cache in Streamable HTTP server transport",
+      "date": "2026-10-20",
+      "patched_versions": [
+        ">= 3.6.0"
+      ],
+      "commit_sha": "c519c79e6ac58be5e9468e5c96b8927ec9b72f94",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::StreamableHttpService::clone",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::StreamableHttpService::handle_post",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::StreamableHttpService::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/streamable_http_server/tower.rs",
+          "function": "rmcp::transport::streamable_http_server::tower::StreamableHttpService::tool_schema",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0462",
+      "package": "rmcp",
+      "title": "Unbounded response body buffering in Streamable HTTP clients",
+      "date": "2026-11-05",
+      "patched_versions": [
+        ">= 3.9.0"
+      ],
+      "commit_sha": "3e0156c1eaf1573a1b878e2a8998d2fa2d0b1439",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/rmcp/src/transport/common/client_side_http.rs",
+          "function": "rmcp::transport::common::client_side_http::read_bounded_body",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/rmcp/src/transport/common/reqwest/streamable_http_client.rs",
+          "function": "rmcp::transport::common::reqwest::streamable_http_client::Client::post_message_with_max_sse_event_size",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/rmcp/src/transport/common/unix_socket.rs",
+          "function": "rmcp::transport::common::unix_socket::UnixSocketHttpClient::post_message_with_max_sse_event_size",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0463",
+      "package": "openssl",
+      "title": "Out-of-bounds write in `aes::unwrap_key`",
+      "date": "2026-04-19",
+      "patched_versions": [
+        ">= 0.10.78"
+      ],
+      "commit_sha": "718d07ff8ff7be417d5b7a6a0047f1607520b3b6",
+      "vulnerable_symbols": [
+        {
+          "file": "openssl/src/aes.rs",
+          "function": "openssl::aes::unwrap_key",
           "change_type": "Modified"
         }
       ]
