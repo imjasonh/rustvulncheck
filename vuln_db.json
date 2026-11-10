@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1794247221",
+  "generated_at": "unix:1794329036",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -29061,6 +29061,170 @@
         {
           "file": "openssl/src/aes.rs",
           "function": "openssl::aes::unwrap_key",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0473",
+      "package": "openssl",
+      "title": "Buffer overflow in `Deriver::derive` and `PkeyCtxRef::derive` with OpenSSL 1.1.x",
+      "date": "2026-04-19",
+      "patched_versions": [
+        ">= 0.10.78"
+      ],
+      "commit_sha": "09b425e5f59a2466d806e71a83a9a449c914c596",
+      "vulnerable_symbols": [
+        {
+          "file": "openssl/src/derive.rs",
+          "function": "openssl::derive::Deriver::derive",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/pkey_ctx.rs",
+          "function": "openssl::pkey_ctx::PkeyCtxRef::derive",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0474",
+      "package": "openssl",
+      "title": "`X509Ref::ocsp_responders` can produce a `&str` that is not valid UTF-8",
+      "date": "2026-05-04",
+      "patched_versions": [
+        ">= 0.10.79"
+      ],
+      "commit_sha": "d43e9179b1885fc66269a42361cc7a80f631ac8f",
+      "vulnerable_symbols": [
+        {
+          "file": "openssl/src/error.rs",
+          "function": "openssl::error::Error::new_internal",
+          "change_type": "Added"
+        },
+        {
+          "file": "openssl/src/error.rs",
+          "function": "openssl::error::ErrorStack::internal_error",
+          "change_type": "Added"
+        },
+        {
+          "file": "openssl/src/x509/mod.rs",
+          "function": "openssl::x509::X509Ref::ocsp_responders",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0475",
+      "package": "openssl",
+      "title": "Buffer overflow in `MdCtxRef::digest_final`",
+      "date": "2026-04-19",
+      "patched_versions": [
+        ">= 0.10.78"
+      ],
+      "commit_sha": "826c3888b77add418b394770e2b2e3a72d9f92fe",
+      "vulnerable_symbols": [
+        {
+          "file": "openssl/src/md_ctx.rs",
+          "function": "openssl::md_ctx::MdCtxRef::digest_final",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0476",
+      "package": "openssl",
+      "title": "Buffer overflow with AES key wrap with padding in `cipher_update`",
+      "date": "2026-05-04",
+      "patched_versions": [
+        ">= 0.10.79"
+      ],
+      "commit_sha": "257f9b20c001b888986f93579f118fa2a57d4f45",
+      "vulnerable_symbols": [
+        {
+          "file": "openssl/src/cipher_ctx.rs",
+          "function": "openssl::cipher_ctx::CipherCtxRef::cipher_update",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/cipher_ctx.rs",
+          "function": "openssl::cipher_ctx::CipherCtxRef::cipher_update_output_size",
+          "change_type": "Added"
+        },
+        {
+          "file": "openssl/src/cipher_ctx.rs",
+          "function": "openssl::cipher_ctx::CipherCtxRef::cipher_update_vec",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/cipher_ctx.rs",
+          "function": "openssl::cipher_ctx::CipherCtxRef::is_wrap_mode",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0477",
+      "package": "openssl",
+      "title": "Buffer overflow with AES key wrap with padding in `cipher_update_inplace`",
+      "date": "2026-05-16",
+      "patched_versions": [
+        ">= 0.10.80"
+      ],
+      "commit_sha": "19eceb26f2404aae187e5444e65c404ebc1348a7",
+      "vulnerable_symbols": [
+        {
+          "file": "openssl/src/cipher_ctx.rs",
+          "function": "openssl::cipher_ctx::CipherCtxRef::cipher_update_inplace",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0478",
+      "package": "openssl",
+      "title": "Unchecked callback lengths in PSK and cookie callbacks",
+      "date": "2026-04-19",
+      "patched_versions": [
+        ">= 0.10.78"
+      ],
+      "commit_sha": "1d109020d98fff2fb2e45c39a373af3dff99b24c",
+      "vulnerable_symbols": [
+        {
+          "file": "openssl/src/ssl/callbacks.rs",
+          "function": "openssl::ssl::callbacks::raw_client_psk",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/ssl/callbacks.rs",
+          "function": "openssl::ssl::callbacks::raw_cookie_generate",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/ssl/callbacks.rs",
+          "function": "openssl::ssl::callbacks::raw_server_psk",
+          "change_type": "Modified"
+        },
+        {
+          "file": "openssl/src/ssl/callbacks.rs",
+          "function": "openssl::ssl::callbacks::raw_stateless_cookie_generate",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0479",
+      "package": "openssl",
+      "title": "Out-of-bounds read when a PEM password callback returns an oversized length",
+      "date": "2026-04-19",
+      "patched_versions": [
+        ">= 0.10.78"
+      ],
+      "commit_sha": "5af6895c907773699f37f583f409b862284062b1",
+      "vulnerable_symbols": [
+        {
+          "file": "openssl/src/util.rs",
+          "function": "openssl::util::invoke_passwd_cb",
           "change_type": "Modified"
         }
       ]
