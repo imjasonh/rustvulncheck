@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1794329036",
+  "generated_at": "unix:1794391353",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -29226,6 +29226,184 @@
           "file": "openssl/src/util.rs",
           "function": "openssl::util::invoke_passwd_cb",
           "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0480",
+      "package": "tdx_workload_attestation",
+      "title": "Panic on a GCP launch endorsement without TDX measurements",
+      "date": "2026-11-10",
+      "patched_versions": [
+        ">= 0.2.0"
+      ],
+      "commit_sha": "8f915908f6405b372ae67dd78f96ad808d4e3c2a",
+      "vulnerable_symbols": [
+        {
+          "file": "src/gcp/mod.rs",
+          "function": "tdx_workload_attestation::gcp::GcpTdxHost::verify_launch_endorsement",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0481",
+      "package": "tdx_workload_attestation",
+      "title": "`verify_x509_cert` does not check the certificate validity period",
+      "date": "2026-11-10",
+      "patched_versions": [
+        ">= 0.2.0"
+      ],
+      "commit_sha": "dfa771bc0342e382bef6fbf62c42564e8578cd2c",
+      "vulnerable_symbols": [
+        {
+          "file": "src/verification/x509.rs",
+          "function": "tdx_workload_attestation::verification::x509::verify_x509_cert",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0482",
+      "package": "cap-primitives",
+      "title": "Paths or symlinks ending in a slash escape the sandbox",
+      "date": "2026-08-20",
+      "patched_versions": [
+        ">= 3.4.6, < 4.0.0",
+        ">= 4.0.3"
+      ],
+      "commit_sha": "a8c93210536815fac607ed236a085f19219978bb",
+      "vulnerable_symbols": [
+        {
+          "file": "cap-primitives/src/fs/manually/open.rs",
+          "function": "cap_primitives::fs::manually::open::Context::normal",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0484",
+      "package": "tdx-guest",
+      "title": "Inverted bitmap validation in `invalidate_l2_cached_ept`",
+      "date": "2026-08-11",
+      "patched_versions": [
+        ">= 0.3.1"
+      ],
+      "commit_sha": "311d33b18a5bef5dc67c9b0c86587dd00c77027e",
+      "vulnerable_symbols": [
+        {
+          "file": "src/tdcall.rs",
+          "function": "tdx_guest::tdcall::enter_l2_vcpu",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/tdcall.rs",
+          "function": "tdx_guest::tdcall::invalidate_l2_cached_ept",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ve.rs",
+          "function": "tdx_guest::ve::handle_io",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0485",
+      "package": "tdx-guest",
+      "title": "`enter_l2_vcpu` passes the wrong RCX operand to `TDG.VP.ENTER`",
+      "date": "2026-08-11",
+      "patched_versions": [
+        ">= 0.3.1"
+      ],
+      "commit_sha": "311d33b18a5bef5dc67c9b0c86587dd00c77027e",
+      "vulnerable_symbols": [
+        {
+          "file": "src/tdcall.rs",
+          "function": "tdx_guest::tdcall::enter_l2_vcpu",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/tdcall.rs",
+          "function": "tdx_guest::tdcall::invalidate_l2_cached_ept",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/ve.rs",
+          "function": "tdx_guest::ve::handle_io",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0486",
+      "package": "rustix",
+      "title": "xattr functions mark unwritten bytes as initialized when given a zero-length buffer",
+      "date": "2026-10-27",
+      "patched_versions": [
+        ">= 1.1.6"
+      ],
+      "commit_sha": "8e6aaa6713d2bb64b1fdd8c472e3a32a10a76d70",
+      "vulnerable_symbols": [
+        {
+          "file": "src/fs/xattr.rs",
+          "function": "rustix::fs::xattr::fgetxattr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/fs/xattr.rs",
+          "function": "rustix::fs::xattr::fgetxattr_query",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/fs/xattr.rs",
+          "function": "rustix::fs::xattr::flistxattr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/fs/xattr.rs",
+          "function": "rustix::fs::xattr::flistxattr_query",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/fs/xattr.rs",
+          "function": "rustix::fs::xattr::getxattr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/fs/xattr.rs",
+          "function": "rustix::fs::xattr::getxattr_query",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/fs/xattr.rs",
+          "function": "rustix::fs::xattr::lgetxattr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/fs/xattr.rs",
+          "function": "rustix::fs::xattr::lgetxattr_query",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/fs/xattr.rs",
+          "function": "rustix::fs::xattr::listxattr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/fs/xattr.rs",
+          "function": "rustix::fs::xattr::listxattr_query",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/fs/xattr.rs",
+          "function": "rustix::fs::xattr::llistxattr",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/fs/xattr.rs",
+          "function": "rustix::fs::xattr::llistxattr_query",
+          "change_type": "Added"
         }
       ]
     }
