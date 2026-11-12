@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1794419135",
+  "generated_at": "unix:1794490242",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -12315,6 +12315,23 @@
       ],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2024-0450",
+      "package": "russh",
+      "title": "Memory exhaustion from an unchecked SSH packet length",
+      "date": "2024-08-14",
+      "patched_versions": [
+        ">= 0.44.1"
+      ],
+      "commit_sha": "f660ea3f64b86d11d19e33076012069f02431e55",
+      "vulnerable_symbols": [
+        {
+          "file": "russh/src/cipher/mod.rs",
+          "function": "russh::cipher::read",
+          "change_type": "Modified"
+        }
+      ]
     },
     {
       "advisory_id": "RUSTSEC-2025-0001",
@@ -29460,6 +29477,675 @@
         ">= 0.26.2"
       ],
       "commit_sha": "280c0e5c4e3002d73ba0762835ef82272d1d33a6",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0492",
+      "package": "russh",
+      "title": "Client `Handler` callbacks run for channels the client never opened",
+      "date": "2026-09-30",
+      "patched_versions": [
+        ">= 0.63.1"
+      ],
+      "commit_sha": "3430fd26ecafc0dc3705210f5f39a9119fa22774",
+      "vulnerable_symbols": [
+        {
+          "file": "russh/src/client/encrypted.rs",
+          "function": "russh::client::encrypted::Session::client_read_authenticated",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/server/encrypted.rs",
+          "function": "russh::server::encrypted::Session::is_established_channel",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "russh/src/server/encrypted.rs",
+          "function": "russh::server::encrypted::Session::server_read_authenticated",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/session.rs",
+          "function": "russh::session::CommonSession::is_established_channel",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0493",
+      "package": "russh",
+      "title": "No limit on the size of a decompressed SSH packet",
+      "date": "2026-05-29",
+      "patched_versions": [
+        ">= 0.61.1"
+      ],
+      "commit_sha": "2692a6f66edafaf63f463c412b45d8490f7ad06e",
+      "vulnerable_symbols": [
+        {
+          "file": "russh/src/compression.rs",
+          "function": "russh::compression::Decompress::decompress",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/tests.rs",
+          "function": "russh::tests::compress::compress_local_test",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/tests.rs",
+          "function": "russh::tests::compress::preferred_zlib",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0494",
+      "package": "russh",
+      "title": "SSH message fields allocated before their size is checked",
+      "date": "2026-06-11",
+      "patched_versions": [
+        ">= 0.61.0"
+      ],
+      "commit_sha": "72b250aa2dacb3bb1b13a84499c09bd9fc836158",
+      "vulnerable_symbols": [
+        {
+          "file": "russh/src/auth.rs",
+          "function": "russh::auth::MethodSet::from",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/cipher/block.rs",
+          "function": "russh::cipher::block::CtrWrapper::check_remaining",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/cipher/block.rs",
+          "function": "russh::cipher::block::CtrWrapper::clone",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/cipher/block.rs",
+          "function": "russh::cipher::block::CtrWrapper::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/cipher/block.rs",
+          "function": "russh::cipher::block::CtrWrapper::unchecked_apply_keystream_inout",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/cipher/block.rs",
+          "function": "russh::cipher::block::CtrWrapper::unchecked_write_keystream",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/cipher/block.rs",
+          "function": "russh::cipher::block::new_cipher_from_slices",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/cipher/cbc.rs",
+          "function": "russh::cipher::cbc::CbcWrapper::decrypt_data",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/cipher/cbc.rs",
+          "function": "russh::cipher::cbc::CbcWrapper::decrypt_inner",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/cipher/cbc.rs",
+          "function": "russh::cipher::cbc::CbcWrapper::decrypt_packet_length_block",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/cipher/cbc.rs",
+          "function": "russh::cipher::cbc::CbcWrapper::encrypt_data",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/cipher/cbc.rs",
+          "function": "russh::cipher::cbc::CbcWrapper::inner_iv_init",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/cipher/cbc.rs",
+          "function": "russh::cipher::cbc::generic_array_from_slice",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "russh/src/client/encrypted.rs",
+          "function": "russh::client::encrypted::Session::handle_server_sig_algs_ext",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/client/kex.rs",
+          "function": "russh::client::kex::ClientKex::step",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/client/mod.rs",
+          "function": "russh::client::Session::run",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::NameList::as_encoded_string",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::NameList::decode",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::NameList::encode",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::NameList::encoded_len",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::NameList::fmt",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::NameList::from_encoded_string",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::limited_string::LimitedString::decode",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::limited_string::LimitedString::deref",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::name_list::NameList::as_encoded_string",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::name_list::NameList::decode",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::name_list::NameList::deref",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::name_list::NameList::encode",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::name_list::NameList::encoded_len",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::name_list::NameList::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/helpers.rs",
+          "function": "russh::helpers::name_list::NameList::from_encoded_string",
+          "change_type": "Added"
+        },
+        {
+          "file": "russh/src/kex/curve25519.rs",
+          "function": "russh::kex::curve25519::Curve25519Kex::client_dh",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/keys/format/pkcs5.rs",
+          "function": "russh::keys::format::pkcs5::decode_pkcs5",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/keys/format/pkcs8_legacy.rs",
+          "function": "russh::keys::format::pkcs8_legacy::Encryption::decrypt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/mac/crypto.rs",
+          "function": "russh::mac::crypto::CryptoMac::compute",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/negotiation.rs",
+          "function": "russh::negotiation::Client::select",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/negotiation.rs",
+          "function": "russh::negotiation::Server::select",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/negotiation.rs",
+          "function": "russh::negotiation::parse_kex_algo_list",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "russh/src/server/encrypted.rs",
+          "function": "russh::server::encrypted::Encrypted::server_read_auth_request_pk",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/server/encrypted.rs",
+          "function": "russh::server::encrypted::Session::server_read_authenticated",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/server/kex.rs",
+          "function": "russh::server::kex::ServerKex::step",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/server/session.rs",
+          "function": "russh::server::session::Handle::extended_data",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/server/session.rs",
+          "function": "russh::server::session::Handle::wait_channel_confirmation",
+          "change_type": "Modified"
+        },
+        {
+          "file": "russh/src/server/session.rs",
+          "function": "russh::server::session::Session::maybe_send_ext_info",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0495",
+      "package": "russh",
+      "title": "Agent server signs with confirm-constrained keys without calling `Agent::confirm`",
+      "date": "2026-10-30",
+      "patched_versions": [
+        ">= 0.65.0"
+      ],
+      "commit_sha": "62db6e7defd6d244159da962ccccb029e785ce0f",
+      "vulnerable_symbols": [
+        {
+          "file": "russh/src/keys/agent/server.rs",
+          "function": "russh::keys::agent::server::Connection::try_sign",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0496",
+      "package": "russh",
+      "title": "Pre-authentication allocation from the keyboard-interactive response count",
+      "date": "2026-04-24",
+      "patched_versions": [
+        ">= 0.60.1"
+      ],
+      "commit_sha": "6c3c80a9b6d60763d6227d60fa8310e57172a4d1",
+      "vulnerable_symbols": [
+        {
+          "file": "russh/src/server/encrypted.rs",
+          "function": "russh::server::encrypted::read_userauth_info_response",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0497",
+      "package": "bsv-rs",
+      "title": "Transaction::from_json holds an input txid that is not 64 hex digits and writes the input as spending the zero txid",
+      "date": "2026-11-11",
+      "patched_versions": [
+        ">= 0.8.6, < 0.9.0-beta.1",
+        "> 0.9.0-beta.7"
+      ],
+      "commit_sha": "29d8c36645a11915d44997b8fd8c9ac0d3b0d650",
+      "vulnerable_symbols": [
+        {
+          "file": "src/transaction/amount.rs",
+          "function": "bsv_rs::transaction::amount::read_amount",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/transaction/amount.rs",
+          "function": "bsv_rs::transaction::amount::safe_amount",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/transaction/beef.rs",
+          "function": "bsv_rs::transaction::beef::Beef::to_binary_atomic",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/beef_raw_frame.rs",
+          "function": "bsv_rs::transaction::beef_raw_frame::Scan::amount",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/transaction/beef_raw_frame.rs",
+          "function": "bsv_rs::transaction::beef_raw_frame::one_transaction",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/beef_tx_writer.rs",
+          "function": "bsv_rs::transaction::beef_tx_writer::BeefTx::amount_refusal",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/transaction/beef_tx_writer.rs",
+          "function": "bsv_rs::transaction::beef_tx_writer::BeefTx::own_refusal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/beef_tx_writer.rs",
+          "function": "bsv_rs::transaction::beef_tx_writer::BeefTx::writable",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/beef_writable.rs",
+          "function": "bsv_rs::transaction::beef_writable::Beef::check_writable_in",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/beef_writable.rs",
+          "function": "bsv_rs::transaction::beef_writable::Beef::refuse_unsafe_amount",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/transaction/beef_writable.rs",
+          "function": "bsv_rs::transaction::beef_writable::Beef::to_binary",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/transaction.rs",
+          "function": "bsv_rs::transaction::transaction::Transaction::from_ef",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/transaction.rs",
+          "function": "bsv_rs::transaction::transaction::Transaction::from_reader",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/tx_json.rs",
+          "function": "bsv_rs::transaction::tx_json::Transaction::from_json",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/tx_json.rs",
+          "function": "bsv_rs::transaction::tx_json::input_from_json",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0498",
+      "package": "bsv-rs",
+      "title": "Transaction readers accept trailing bytes, so a parsed transaction can carry another transaction id",
+      "date": "2026-11-10",
+      "patched_versions": [
+        ">= 0.8.5, < 0.9.0-beta.1",
+        "> 0.9.0-beta.7"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0499",
+      "package": "bsv-rs",
+      "title": "Signature::from_der reads a signature with bytes after it, a wrong sequence length or an unneeded zero as the signature",
+      "date": "2026-11-11",
+      "patched_versions": [
+        ">= 0.8.6, < 0.9.0-beta.1",
+        "> 0.9.0-beta.7"
+      ],
+      "commit_sha": "01946931518c2b98fb43e41553c333f3945e348a",
+      "vulnerable_symbols": [
+        {
+          "file": "src/primitives/bsv/tx_signature.rs",
+          "function": "bsv_rs::primitives::bsv::tx_signature::TransactionSignature::from_checksig_format",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/primitives/ec/signature.rs",
+          "function": "bsv_rs::primitives::ec::signature::Signature::der_int_to_fixed",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/primitives/ec/signature.rs",
+          "function": "bsv_rs::primitives::ec::signature::Signature::from_der",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/primitives/ec/signature.rs",
+          "function": "bsv_rs::primitives::ec::signature::Signature::to_der",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/primitives/ec/signature_der.rs",
+          "function": "bsv_rs::primitives::ec::signature_der::integer",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/primitives/ec/signature_der.rs",
+          "function": "bsv_rs::primitives::ec::signature_der::length",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/primitives/ec/signature_der.rs",
+          "function": "bsv_rs::primitives::ec::signature_der::read",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/script/spend/crypto.rs",
+          "function": "bsv_rs::script::spend::crypto::Spend::verify_signature",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/script/spend/crypto.rs",
+          "function": "bsv_rs::script::spend::crypto::signature_overflows_the_order",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/script/spend/der_lax.rs",
+          "function": "bsv_rs::script::spend::der_lax::integer_length",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/script/spend/der_lax.rs",
+          "function": "bsv_rs::script::spend::der_lax::integer_value",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/script/spend/der_lax.rs",
+          "function": "bsv_rs::script::spend::der_lax::parse",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/script/spend/signature_encoding.rs",
+          "function": "bsv_rs::script::spend::signature_encoding::Spend::check_default_signature_requirements",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/script/spend/signature_encoding.rs",
+          "function": "bsv_rs::script::spend::signature_encoding::Spend::check_low_s",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/script/spend/signature_encoding.rs",
+          "function": "bsv_rs::script::spend::signature_encoding::Spend::check_signature_encoding",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/script/spend/signature_encoding.rs",
+          "function": "bsv_rs::script::spend::signature_encoding::Spend::read_signature",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/script/spend/signature_read.rs",
+          "function": "bsv_rs::script::spend::signature_read::ScriptSignature::has_forkid",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/script/spend/signature_read.rs",
+          "function": "bsv_rs::script::spend::signature_read::at_most_half_order",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/script/spend/signature_read.rs",
+          "function": "bsv_rs::script::spend::signature_read::at_or_above_order",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/script/spend/signature_read.rs",
+          "function": "bsv_rs::script::spend::signature_read::blank",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/script/spend/signature_read.rs",
+          "function": "bsv_rs::script::spend::signature_read::by_default",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/script/spend/signature_read.rs",
+          "function": "bsv_rs::script::spend::signature_read::under_word",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/wallet/wire/mod.rs",
+          "function": "bsv_rs::wallet::wire::reference_der",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0500",
+      "package": "bsv-rs",
+      "title": "BEEF validation answers valid for a raw entry that is not a transaction",
+      "date": "2026-11-10",
+      "patched_versions": [
+        ">= 0.8.5, < 0.9.0-beta.1",
+        "> 0.9.0-beta.7"
+      ],
+      "commit_sha": "ed2789fb9a8318c4e7a705efa0fcf64c4a7b5668",
+      "vulnerable_symbols": [
+        {
+          "file": "src/transaction/beef.rs",
+          "function": "bsv_rs::transaction::beef::Beef::sort_held",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/transaction/beef.rs",
+          "function": "bsv_rs::transaction::beef::Beef::sort_txs",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/beef.rs",
+          "function": "bsv_rs::transaction::beef::Beef::verify_structure",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/beef_tx.rs",
+          "function": "bsv_rs::transaction::beef_tx::BeefTx::from_reader",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/beef_tx.rs",
+          "function": "bsv_rs::transaction::beef_tx::BeefTx::strict_read",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/transaction/beef_tx.rs",
+          "function": "bsv_rs::transaction::beef_tx::BeefTx::structure_kind",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/transaction/beef_tx.rs",
+          "function": "bsv_rs::transaction::beef_tx::frame_kind",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/transaction/transaction.rs",
+          "function": "bsv_rs::transaction::transaction::Transaction::from_binary",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/transaction.rs",
+          "function": "bsv_rs::transaction::transaction::Transaction::from_ef",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/transaction.rs",
+          "function": "bsv_rs::transaction::transaction::Transaction::from_hex",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/transaction.rs",
+          "function": "bsv_rs::transaction::transaction::Transaction::from_reader",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/transaction/transaction.rs",
+          "function": "bsv_rs::transaction::transaction::Transaction::from_reader_internal",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/transaction/transaction.rs",
+          "function": "bsv_rs::transaction::transaction::Transaction::from_whole",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/transaction/transaction.rs",
+          "function": "bsv_rs::transaction::transaction::Transaction::parse_script_offsets",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transaction/transaction_reader.rs",
+          "function": "bsv_rs::transaction::transaction_reader::Transaction::from_reader",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/transaction/transaction_reader.rs",
+          "function": "bsv_rs::transaction::transaction_reader::refuse_trailing",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0501",
+      "package": "bsv-rs",
+      "title": "Shamir backup recovery accepts a share at x = 0, so a supplied share can substitute the recovered private key",
+      "date": "2026-11-12",
+      "patched_versions": [
+        ">= 0.8.7, < 0.9.0-beta.1",
+        "> 0.9.0-beta.7"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0502",
+      "package": "sqlcipher-src",
+      "title": "`sqlcipher-src` via C SQLite CVE-2026-119375",
+      "date": "2026-10-30",
+      "patched_versions": [
+        ">= 420.0.0"
+      ],
+      "commit_sha": "e5bf119821f25be1d7f10ef0a2edbe175289166e",
       "vulnerable_symbols": []
     }
   ]
