@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1794490242",
+  "generated_at": "unix:1794518274",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -30146,6 +30146,214 @@
         ">= 420.0.0"
       ],
       "commit_sha": "e5bf119821f25be1d7f10ef0a2edbe175289166e",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0504",
+      "package": "hickory-proto",
+      "title": "Inverted NSEC3 comparison in DNSSEC validation (hickory-proto 0.25)",
+      "date": "2026-09-03",
+      "patched_versions": [],
+      "commit_sha": "87ee4f81aa9689d81847770d3a74e13982c9bcdc",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0505",
+      "package": "hickory-proto",
+      "title": "NSEC3 owner names not checked against the zone in DNSSEC validation (hickory-proto)",
+      "date": "2026-09-03",
+      "patched_versions": [],
+      "commit_sha": "10840b8432feb08d369f82e2bb6ce99ae23d7afa",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0506",
+      "package": "hickory-net",
+      "title": "Inverted NSEC3 comparison lets one record \"prove\" that almost any name does not exist",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "87ee4f81aa9689d81847770d3a74e13982c9bcdc",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0507",
+      "package": "hickory-net",
+      "title": "RRSIG signer name was not checked against the zone of the signed records",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "019535e011131c52d19cb6a2c7a2d31270271135",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0508",
+      "package": "hickory-net",
+      "title": "NSEC wraparound detection trusted an unvalidated SOA record",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "e5ca40a7ef149ba5a79bc6f4916f114d153ce9ab",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0509",
+      "package": "hickory-net",
+      "title": "NSEC3 records from another zone were accepted in proofs of nonexistence",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "10840b8432feb08d369f82e2bb6ce99ae23d7afa",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0510",
+      "package": "vodozemac",
+      "title": "Panic when decoding malformed Ed25519 keys from Base64",
+      "date": "2026-11-11",
+      "patched_versions": [
+        ">= 0.11.2"
+      ],
+      "commit_sha": "24caf2dae98be2f40f37c9a9f608feefb3d4c697",
+      "vulnerable_symbols": [
+        {
+          "file": "src/types/ed25519.rs",
+          "function": "vodozemac::types::ed25519::Ed25519PublicKey::from_base64",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types/ed25519.rs",
+          "function": "vodozemac::types::ed25519::Ed25519SecretKey::from_base64",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0511",
+      "package": "hickory-proto",
+      "title": "NXDOMAIN accepted for a proven empty non-terminal (hickory-proto)",
+      "date": "2026-09-03",
+      "patched_versions": [],
+      "commit_sha": "bfbe7ede4021965526f065be9b415945ce575e29",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0512",
+      "package": "hickory-proto",
+      "title": "DNSSEC validation accepted an unrelated signed RRset as the answer (hickory-proto)",
+      "date": "2026-09-03",
+      "patched_versions": [],
+      "commit_sha": "77ec9c5d2e9481a0753bbaf1be3cd5175d300cff",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0513",
+      "package": "hickory-resolver",
+      "title": "Unbounded retries on truncated responses in the name server pool",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "f9a7bc5d188e5b680b09aea91009d2fbf3fec58a",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0514",
+      "package": "hickory-resolver",
+      "title": "`Resolver::lookup` and `lookup_ip` returned records that failed DNSSEC validation",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "30720f4fb22e5556ecbf26d2c8274ea4a9fdd238",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0515",
+      "package": "hickory-resolver",
+      "title": "Recursor followed every glueless name server in a referral, with no per-query budget",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "74062f3a3ef6904b64717dd025945702b2cf4133",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0516",
+      "package": "hickory-resolver",
+      "title": "Recursor kept querying cyclic glueless sibling delegations",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "308dcfd5cd9bfaa50c956427380160505e5de532",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0517",
+      "package": "hickory-net",
+      "title": "Spoofed malformed UDP datagrams abort DNS lookups",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "07ff35c1b33c1df27e398cee463e424cef951a82",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0518",
+      "package": "hickory-net",
+      "title": "DNSSEC validation cache could reuse an Insecure result for a different name",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "96b87c9ab0f10c1331cef56f88742eb00bce71e1",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0519",
+      "package": "hickory-net",
+      "title": "NXDOMAIN accepted for an empty non-terminal that the NSEC record proves exists",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "bfbe7ede4021965526f065be9b415945ce575e29",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0520",
+      "package": "hickory-net",
+      "title": "DNSSEC validation accepted a validly signed but unrelated RRset as the answer",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "77ec9c5d2e9481a0753bbaf1be3cd5175d300cff",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0521",
+      "package": "hickory-recursor",
+      "title": "Recursor followed every glueless name server in a referral (no fixed hickory-recursor release)",
+      "date": "2026-09-03",
+      "patched_versions": [],
+      "commit_sha": "74062f3a3ef6904b64717dd025945702b2cf4133",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0522",
+      "package": "hickory-recursor",
+      "title": "Recursor kept querying cyclic glueless sibling delegations (no fixed hickory-recursor release)",
+      "date": "2026-09-03",
+      "patched_versions": [],
+      "commit_sha": "308dcfd5cd9bfaa50c956427380160505e5de532",
       "vulnerable_symbols": []
     }
   ]
