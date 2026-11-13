@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1794518274",
+  "generated_at": "unix:1794593953",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -30354,6 +30354,219 @@
       "date": "2026-09-03",
       "patched_versions": [],
       "commit_sha": "308dcfd5cd9bfaa50c956427380160505e5de532",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0523",
+      "package": "quinn-proto",
+      "title": "MAX_STREAM_DATA frame can open streams beyond the stream limit",
+      "date": "2026-09-30",
+      "patched_versions": [
+        ">= 0.11.19"
+      ],
+      "commit_sha": "3eb7465d9e11d7a245e99cde1a4eb872ec26d264",
+      "vulnerable_symbols": [
+        {
+          "file": "quinn-proto/src/connection/streams/state.rs",
+          "function": "quinn_proto::connection::streams::state::StreamsState::on_stream_frame",
+          "change_type": "Modified"
+        },
+        {
+          "file": "quinn-proto/src/connection/streams/state.rs",
+          "function": "quinn_proto::connection::streams::state::StreamsState::received_max_stream_data",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0524",
+      "package": "quinn-proto",
+      "title": "Long Retry token can panic or exhaust memory in a QUIC client",
+      "date": "2026-09-30",
+      "patched_versions": [
+        ">= 0.11.19"
+      ],
+      "commit_sha": "3bba467893ceff64d6cda0b3a2c51a1429e10372",
+      "vulnerable_symbols": [
+        {
+          "file": "quinn-proto/src/connection/packet_builder.rs",
+          "function": "quinn_proto::connection::packet_builder::PacketBuilder::new",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0525",
+      "package": "libp2p-quic",
+      "title": "Remote panic when a peer certificate expires during the QUIC handshake",
+      "date": "2026-07-10",
+      "patched_versions": [
+        ">= 0.13.1"
+      ],
+      "commit_sha": "212f3774af048e2cecfb2e6b1e08477685e52b22",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0526",
+      "package": "libp2p-rendezvous",
+      "title": "Rendezvous server accepted unlimited registrations per peer",
+      "date": "2026-04-02",
+      "patched_versions": [
+        ">= 0.17.1"
+      ],
+      "commit_sha": "8fde2dc0fae8b433f97c6cdf9ee24f59d51a359c",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0527",
+      "package": "libp2p-rendezvous",
+      "title": "Rendezvous server stored an unlimited number of DISCOVER cookies",
+      "date": "2026-04-02",
+      "patched_versions": [
+        ">= 0.17.1"
+      ],
+      "commit_sha": "8fde2dc0fae8b433f97c6cdf9ee24f59d51a359c",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0530",
+      "package": "hickory-proto",
+      "title": "Parent-side NSEC at a zone cut accepted as proof of nonexistence (hickory-proto)",
+      "date": "2026-09-03",
+      "patched_versions": [],
+      "commit_sha": "2e3c829ea45000b1c409a64a03bd422618372471",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0531",
+      "package": "hickory-proto",
+      "title": "Child-side NSEC or NSEC3 record accepted as proof that a delegation has no DS record (hickory-proto)",
+      "date": "2026-09-03",
+      "patched_versions": [],
+      "commit_sha": "ec98851f4d175d97b61701bc539523ff63ddbb00",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0532",
+      "package": "hickory-proto",
+      "title": "Parent-side NSEC3 at a zone cut accepted as proof of nonexistence (hickory-proto 0.25)",
+      "date": "2026-09-03",
+      "patched_versions": [],
+      "commit_sha": "889801333d7f18d59a4468100e8cd1859e083d43",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0533",
+      "package": "ammonia",
+      "title": "Incorrect handling of embedded SVG and MathML leads to mutation XSS",
+      "date": "2026-11-12",
+      "patched_versions": [
+        ">= 4.2.5",
+        ">= 4.1.9, < 4.2.0",
+        ">= 3.3.5, < 4.0.0"
+      ],
+      "commit_sha": "d098e2dfcf1c69d70fe26434d13ee823e3012a80",
+      "vulnerable_symbols": [
+        {
+          "file": "src/lib.rs",
+          "function": "ammonia::Builder::check_expected_namespace",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0534",
+      "package": "libp2p-gossipsub",
+      "title": "Unbounded backoff state from PRUNE messages for unknown topics",
+      "date": "2026-10-19",
+      "patched_versions": [
+        ">= 0.50.1"
+      ],
+      "commit_sha": "9c647828abea0dfc0b4e827dff1e176ec8b44752",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0535",
+      "package": "libp2p-gossipsub",
+      "title": "Remote panic from an oversized PRUNE backoff",
+      "date": "2026-03-18",
+      "patched_versions": [
+        ">= 0.49.3"
+      ],
+      "commit_sha": "84153a559bdbcb92a48413dd2a31035800cb882d",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0536",
+      "package": "libp2p-gossipsub",
+      "title": "Unbounded memory growth from GRAFT messages for unsubscribed topics",
+      "date": "2026-09-05",
+      "patched_versions": [
+        ">= 0.49.5"
+      ],
+      "commit_sha": "51ed5f00e1b0620ded3444ecadf18477052148ea",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0537",
+      "package": "libp2p-gossipsub",
+      "title": "Remote panic in the heartbeat from a large PRUNE backoff",
+      "date": "2026-03-27",
+      "patched_versions": [
+        ">= 0.49.4"
+      ],
+      "commit_sha": "55e4a64630f66d55fec5955c8f9905413c5d0859",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0538",
+      "package": "quinn-udp",
+      "title": "Receive loop can spin after a truncated datagram",
+      "date": "2026-09-30",
+      "patched_versions": [
+        ">= 0.5.16, < 0.6.0",
+        ">= 0.6.3"
+      ],
+      "commit_sha": "462865a6c33039c26076f7077c7cd7e2f997b9cd",
+      "vulnerable_symbols": [
+        {
+          "file": "quinn-udp/src/unix.rs",
+          "function": "quinn_udp::unix::recv_single",
+          "change_type": "Deleted"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0539",
+      "package": "hickory-net",
+      "title": "Parent-side NSEC at a zone cut accepted as proof of nonexistence below the cut",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "2e3c829ea45000b1c409a64a03bd422618372471",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0540",
+      "package": "hickory-net",
+      "title": "Child-side NSEC or NSEC3 record accepted as proof that a delegation has no DS record",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "ec98851f4d175d97b61701bc539523ff63ddbb00",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0541",
+      "package": "hickory-net",
+      "title": "Parent-side NSEC3 at a zone cut accepted as proof of nonexistence at and below the cut",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "889801333d7f18d59a4468100e8cd1859e083d43",
       "vulnerable_symbols": []
     }
   ]
