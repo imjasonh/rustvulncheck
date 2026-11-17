@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1794593953",
+  "generated_at": "unix:1794924093",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -30567,6 +30567,351 @@
         ">= 0.26.2"
       ],
       "commit_sha": "889801333d7f18d59a4468100e8cd1859e083d43",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0542",
+      "package": "humantime",
+      "title": "humantime is unmaintained",
+      "date": "2026-09-14",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0543",
+      "package": "chrono",
+      "title": "chrono is unmaintained",
+      "date": "2026-09-14",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0544",
+      "package": "libz-sys",
+      "title": "libs-sys: heap buffer overflow",
+      "date": "2026-11-11",
+      "patched_versions": [
+        ">= 1.1.33"
+      ],
+      "commit_sha": "df84af25dc1942490e1d1c899a07619152a46148",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0545",
+      "package": "zip",
+      "title": "AES entries returned without checking their authentication code when the data ends early or is empty",
+      "date": "2026-10-22",
+      "patched_versions": [
+        ">= 9.0.0"
+      ],
+      "commit_sha": "ec265db0b0602f8ffb9479327397bddefb7e2216",
+      "vulnerable_symbols": [
+        {
+          "file": "src/aes.rs",
+          "function": "zip::aes::AesReader::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/aes.rs",
+          "function": "zip::aes::AesReader::validate",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/aes.rs",
+          "function": "zip::aes::AesReaderValid::read",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/aes.rs",
+          "function": "zip::aes::AesReaderValid::verify_hmac",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read/readers.rs",
+          "function": "zip::read::readers::make_crypto_reader",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/read/zip_archive.rs",
+          "function": "zip::read::zip_archive::ZipArchive::get_aes_verification_key_and_salt",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0546",
+      "package": "zip",
+      "title": "`ZipArchive::extract` can write outside the destination through absolute or chained symlink targets",
+      "date": "2026-10-22",
+      "patched_versions": [
+        ">= 9.0.0"
+      ],
+      "commit_sha": "09c030eab56e8db8fb3c1c33f554407b30bad8fa",
+      "vulnerable_symbols": [
+        {
+          "file": "src/path.rs",
+          "function": "zip::path::resolve_enclosed",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/path.rs",
+          "function": "zip::path::strip_base_prefix",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/path.rs",
+          "function": "zip::path::strip_equivalent_prefix",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read/mod.rs",
+          "function": "zip::read::ZipArchive::extract_internal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/read/stream.rs",
+          "function": "zip::read::stream::ZipStreamReader::extract",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/read/zipfile.rs",
+          "function": "zip::read::zipfile::ZipFile::safe_prepare_path",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0547",
+      "package": "zip",
+      "title": "Legacy Shrink, Reduce and Implode decoders preallocate the declared uncompressed size",
+      "date": "2026-10-22",
+      "patched_versions": [
+        ">= 9.0.0"
+      ],
+      "commit_sha": "8b4991288b79ad11cce201c2d785d5baa795bd3e",
+      "vulnerable_symbols": [
+        {
+          "file": "src/legacy/implode.rs",
+          "function": "zip::legacy::implode::ImplodeDecoder::read",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/legacy/implode.rs",
+          "function": "zip::legacy::implode::hwexplode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/legacy/reduce.rs",
+          "function": "zip::legacy::reduce::hwexpand",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/legacy/shrink.rs",
+          "function": "zip::legacy::shrink::ShrinkDecoder::read",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/legacy/shrink.rs",
+          "function": "zip::legacy::shrink::hwunshrink",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0548",
+      "package": "zip",
+      "title": "`ZipStreamReader` extracts entries under local-header names that can differ from the central directory",
+      "date": "2026-10-17",
+      "patched_versions": [
+        ">= 9.0.5"
+      ],
+      "commit_sha": "8068ab480ccf8daa7411424e365fcdbe6d09443e",
+      "vulnerable_symbols": [
+        {
+          "file": "src/extra_fields/aex_encryption.rs",
+          "function": "zip::extra_fields::aex_encryption::AexEncryption::eq",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/extra_fields/extra_field.rs",
+          "function": "zip::extra_fields::extra_field::ZipFileData::apply_extra_fields",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/extra_fields/zipinfo_utf8.rs",
+          "function": "zip::extra_fields::zipinfo_utf8::UnicodeExtraField::is_crc32_valid",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/read/mod.rs",
+          "function": "zip::read::HeaderConsistencyMetadata::into_owned",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read/mod.rs",
+          "function": "zip::read::HeaderConsistencyMetadata::validate_data_matches",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read/mod.rs",
+          "function": "zip::read::HeaderConsistencyMetadata::validate_identity_matches",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read/mod.rs",
+          "function": "zip::read::HeaderConsistencyMetadata::validate_matches",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read/mod.rs",
+          "function": "zip::read::HeaderDataDescriptorMetadata::validate_matches",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read/mod.rs",
+          "function": "zip::read::ZipReadOptions::enforce_header_consistency",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read/mod.rs",
+          "function": "zip::read::get_upath",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read/stream.rs",
+          "function": "zip::read::stream::ZipStreamReader::enforce_header_consistency",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read/stream.rs",
+          "function": "zip::read::stream::ZipStreamReader::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/read/stream.rs",
+          "function": "zip::read::stream::ZipStreamReader::visit",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/read/zip_archive.rs",
+          "function": "zip::read::zip_archive::SharedBuilder::build",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/read/zip_archive.rs",
+          "function": "zip::read::zip_archive::ZipArchive::by_index_with_options",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/read/zip_archive.rs",
+          "function": "zip::read::zip_archive::ZipArchive::by_name_with_options",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/read/zip_archive.rs",
+          "function": "zip::read::zip_archive::ZipArchive::from_finalized_writer",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/read/zip_archive.rs",
+          "function": "zip::read::zip_archive::ZipArchive::has_overlap",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/read/zip_archive.rs",
+          "function": "zip::read::zip_archive::ZipArchive::validate_header_consistency",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/types.rs",
+          "function": "zip::types::ZipFileData::consistency_metadata",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/types.rs",
+          "function": "zip::types::ZipFileData::validate_header_consistency",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0549",
+      "package": "hickory-proto",
+      "title": "NSEC3 NODATA at a zone apex accepted without an NSEC3 record matching the query name (hickory-proto)",
+      "date": "2026-09-03",
+      "patched_versions": [],
+      "commit_sha": "ffdfb295d1abaad42df126c8cdd924cac74b81c0",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0550",
+      "package": "hickory-proto",
+      "title": "Unsigned NSEC or NSEC3 record used in a nonexistence proof (hickory-proto)",
+      "date": "2026-09-03",
+      "patched_versions": [],
+      "commit_sha": "68cb330eb7e73a7db0cec9a25888db9f4bcf2086",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0551",
+      "package": "hickory-proto",
+      "title": "Records with a DNS class other than the query's marked secure without being validated (hickory-proto)",
+      "date": "2026-09-03",
+      "patched_versions": [],
+      "commit_sha": "d5349ba13a2bd356239c39a6cc9caa10abe06c55",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0555",
+      "package": "chrono-tz",
+      "title": "chrono-tz is unmaintained",
+      "date": "2026-09-14",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0556",
+      "package": "hickory-net",
+      "title": "NSEC3 NODATA at a zone apex accepted without an NSEC3 record matching the query name",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "ffdfb295d1abaad42df126c8cdd924cac74b81c0",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0557",
+      "package": "hickory-net",
+      "title": "Unsigned NSEC or NSEC3 record used in a nonexistence proof when another record at the same name is signed",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "68cb330eb7e73a7db0cec9a25888db9f4bcf2086",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0558",
+      "package": "hickory-net",
+      "title": "Records with a DNS class other than the query's marked secure without being validated",
+      "date": "2026-09-03",
+      "patched_versions": [
+        ">= 0.26.2"
+      ],
+      "commit_sha": "d5349ba13a2bd356239c39a6cc9caa10abe06c55",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0559",
+      "package": "chrono-tz-build",
+      "title": "chrono-tz-build is unmaintained",
+      "date": "2026-09-14",
+      "patched_versions": [],
+      "commit_sha": null,
       "vulnerable_symbols": []
     }
   ]
