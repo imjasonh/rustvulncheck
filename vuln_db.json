@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1794924093",
+  "generated_at": "unix:1795004981",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -30913,6 +30913,133 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0560",
+      "package": "lettre",
+      "title": "STARTTLS response injection allows a man-in-the-middle to forge SMTP replies",
+      "date": "2026-11-17",
+      "patched_versions": [
+        ">= 0.11.24"
+      ],
+      "commit_sha": "b404122f1b51cdfa32662661849aa3a22e02af38",
+      "vulnerable_symbols": [
+        {
+          "file": "src/transport/smtp/client/async_connection.rs",
+          "function": "lettre::transport::smtp::client::async_connection::AsyncSmtpConnection::starttls",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transport/smtp/client/connection.rs",
+          "function": "lettre::transport::smtp::client::connection::SmtpConnection::starttls",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0561",
+      "package": "lettre",
+      "title": "Missing dot-stuffing after a bare LF or CR allows SMTP command injection",
+      "date": "2026-11-17",
+      "patched_versions": [
+        ">= 0.11.24"
+      ],
+      "commit_sha": "3d9a6e6a467c6ce00bd39ada6aa1a00e57540a1d",
+      "vulnerable_symbols": [
+        {
+          "file": "src/transport/smtp/client/mod.rs",
+          "function": "lettre::transport::smtp::client::ClientCodec::encode",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transport/smtp/client/mod.rs",
+          "function": "lettre::transport::smtp::client::ClientCodec::terminator",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0562",
+      "package": "lettre",
+      "title": "Panic on an `EHLO` reply line of only white space allows denial of service",
+      "date": "2026-11-17",
+      "patched_versions": [
+        ">= 0.11.24"
+      ],
+      "commit_sha": "4a58794b672542d5bfea5a40505bb20627122086",
+      "vulnerable_symbols": [
+        {
+          "file": "src/transport/smtp/extension.rs",
+          "function": "lettre::transport::smtp::extension::ServerInfo::from_response",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0563",
+      "package": "lettre",
+      "title": "Messages for an address with a quoted local part are sent to a different address",
+      "date": "2026-11-17",
+      "patched_versions": [
+        ">= 0.11.24"
+      ],
+      "commit_sha": "f4d5abc67072c5f35c5cccac6370e94a842cb26c",
+      "vulnerable_symbols": [
+        {
+          "file": "src/message/mailbox/parsers/rfc2822.rs",
+          "function": "lettre::message::mailbox::parsers::rfc2822::local_part",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0564",
+      "package": "lettre",
+      "title": "Panic on a mailbox display name containing CR or LF allows denial of service",
+      "date": "2026-11-17",
+      "patched_versions": [
+        ">= 0.11.24"
+      ],
+      "commit_sha": "0ad883cdb20c256ab29c9d002fd4cc55c5d8abfe",
+      "vulnerable_symbols": [
+        {
+          "file": "src/message/mailbox/types.rs",
+          "function": "lettre::message::mailbox::types::write_quoted_string_char",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0565",
+      "package": "lettre",
+      "title": "Unbounded buffering of an SMTP reply allows a malicious server to exhaust memory",
+      "date": "2026-11-17",
+      "patched_versions": [
+        ">= 0.11.24"
+      ],
+      "commit_sha": "075849fb9f2c956202aaaf2ff73e41f995d02f35",
+      "vulnerable_symbols": [
+        {
+          "file": "src/transport/smtp/client/async_connection.rs",
+          "function": "lettre::transport::smtp::client::async_connection::AsyncSmtpConnection::read_response",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transport/smtp/client/async_connection.rs",
+          "function": "lettre::transport::smtp::client::async_connection::AsyncSmtpConnection::read_response_line",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/transport/smtp/client/connection.rs",
+          "function": "lettre::transport::smtp::client::connection::SmtpConnection::read_response",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/transport/smtp/client/connection.rs",
+          "function": "lettre::transport::smtp::client::connection::SmtpConnection::read_response_line",
+          "change_type": "Added"
+        }
+      ]
     }
   ]
 }
