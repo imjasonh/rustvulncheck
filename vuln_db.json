@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1795004981",
+  "generated_at": "unix:1795085804",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -31040,6 +31040,422 @@
           "change_type": "Added"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0566",
+      "package": "wasmtime",
+      "title": "wasmtime-wasi: Unbounded host memory growth via empty writes to `AsyncWriteStream`",
+      "date": "2026-11-16",
+      "patched_versions": [
+        ">= 36.0.21, < 37.0.0",
+        ">= 48.0.9, < 49.0.0",
+        ">= 49.0.6, < 50.0.0",
+        ">= 50.0.2"
+      ],
+      "commit_sha": "d01096900dd9b355fd9735ab3946ae4ccffa4355",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0567",
+      "package": "wasmtime",
+      "title": "Abort in Wasmtime builds without the `threads` cargo feature",
+      "date": "2026-11-16",
+      "patched_versions": [
+        ">= 48.0.9, < 49.0.0",
+        ">= 49.0.6, < 50.0.0",
+        ">= 50.0.2"
+      ],
+      "commit_sha": "bd38365d5fa26b67e22a6fae97df4c5d2bc49447",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/config.rs",
+          "function": "wasmtime::config::Config::validate",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0568",
+      "package": "wasmtime",
+      "title": "Stale GC heap base pointer in compiled code lets a Wasm guest abort the host process",
+      "date": "2026-11-16",
+      "patched_versions": [
+        ">= 48.0.9, < 49.0.0",
+        ">= 49.0.6, < 50.0.0",
+        ">= 50.0.2"
+      ],
+      "commit_sha": "3bb728576dbb6897917e9f62e9d576046798ffd5",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0569",
+      "package": "wasmtime",
+      "title": "Panic in `Caller::get_module_export` when a host function isn't called from WebAssembly",
+      "date": "2026-11-16",
+      "patched_versions": [
+        ">= 36.0.21, < 37.0.0",
+        ">= 48.0.9, < 49.0.0",
+        ">= 49.0.6, < 50.0.0",
+        ">= 50.0.2"
+      ],
+      "commit_sha": "104e989a1553c60882af3816c5fa6f50d5865f26",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/instance.rs",
+          "function": "wasmtime::runtime::instance::Instance::get_module_export",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0570",
+      "package": "wasmtime",
+      "title": "Abort in Wasmtime builds without the `gc` cargo feature",
+      "date": "2026-11-16",
+      "patched_versions": [
+        ">= 48.0.9, < 49.0.0",
+        ">= 49.0.6, < 50.0.0",
+        ">= 50.0.2"
+      ],
+      "commit_sha": "7c83a428028b44e1a73b40aa6a912d6700983624",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/store.rs",
+          "function": "wasmtime::runtime::store::Store::try_new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/store.rs",
+          "function": "wasmtime::runtime::store::StoreOpaque::is_subtype_cached",
+          "change_type": "Added"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/store/gc.rs",
+          "function": "wasmtime::runtime::store::gc::StoreOpaque::is_subtype_cached",
+          "change_type": "Deleted"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0571",
+      "package": "wasmtime",
+      "title": "wasmtime-wasi-http: Empty Body Writes can result in Unbound Heap Usage with HTTP/2",
+      "date": "2026-11-16",
+      "patched_versions": [
+        ">= 36.0.21, < 37.0.0",
+        ">= 48.0.9, < 49.0.0",
+        ">= 49.0.6, < 50.0.0",
+        ">= 50.0.2"
+      ],
+      "commit_sha": "98141768ba59509d63ac67940ae258a8b8e1cada",
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0572",
+      "package": "wasmtime",
+      "title": "Panic when a component cancels a stream or future copy on the wrong end",
+      "date": "2026-11-16",
+      "patched_versions": [
+        ">= 48.0.9, < 49.0.0",
+        ">= 49.0.6, < 50.0.0",
+        ">= 50.0.2"
+      ],
+      "commit_sha": "f8bdba018c3d4c8779136362c11a691237ff6e22",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::Instance::guest_cancel_read",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/wasmtime/src/runtime/component/concurrent/futures_and_streams.rs",
+          "function": "wasmtime::runtime::component::concurrent::futures_and_streams::Instance::guest_cancel_write",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0573",
+      "package": "wasmtime",
+      "title": "Process abort when a GC heap's reservation isn't a multiple of the page size",
+      "date": "2026-11-16",
+      "patched_versions": [
+        ">= 48.0.9, < 49.0.0",
+        ">= 49.0.6, < 50.0.0",
+        ">= 50.0.2"
+      ],
+      "commit_sha": "dff0517fbe508954a6db241d755c5b346c1502cb",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/wasmtime/src/runtime/vm/memory.rs",
+          "function": "wasmtime::runtime::vm::memory::LocalMemory::grow",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0574",
+      "package": "heapless",
+      "title": "`FindMutView::pop` after mutating the value would lead to a use after free",
+      "date": "2026-11-18",
+      "patched_versions": [
+        ">= 0.9.4"
+      ],
+      "commit_sha": "87db2748765f1f95d0c2915d0087047cebe219e5",
+      "vulnerable_symbols": [
+        {
+          "file": "src/sorted_linked_list.rs",
+          "function": "heapless::sorted_linked_list::FindMutView::pop",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0575",
+      "package": "heapless",
+      "title": "`Spsc::peek` used `Relaxed` ordering where it should have use `Acquire`",
+      "date": "2026-11-18",
+      "patched_versions": [
+        ">= 0.9.4"
+      ],
+      "commit_sha": "85ceec5498a4fa3eabbeb34c9136c74a6141478c",
+      "vulnerable_symbols": [
+        {
+          "file": "src/spsc.rs",
+          "function": "heapless::spsc::QueueInner::peek",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0576",
+      "package": "heapless",
+      "title": "`IndexMap::truncate` could lead to an inconsistent state",
+      "date": "2026-11-18",
+      "patched_versions": [
+        ">= 0.9.4"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0577",
+      "package": "heapless",
+      "title": "Panicking `Drop` implementation could lead to UB",
+      "date": "2026-11-18",
+      "patched_versions": [
+        ">= 0.9.4"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0578",
+      "package": "heapless",
+      "title": "`SortedLinkedList::zeroize` lead to an inconsistent state",
+      "date": "2026-11-18",
+      "patched_versions": [
+        ">= 0.9.4"
+      ],
+      "commit_sha": "a6b7841ef499e343072660e4464b0174075e9424",
+      "vulnerable_symbols": [
+        {
+          "file": "src/sorted_linked_list.rs",
+          "function": "heapless::sorted_linked_list::SortedLinkedList::default",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/sorted_linked_list.rs",
+          "function": "heapless::sorted_linked_list::SortedLinkedList::new",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/sorted_linked_list.rs",
+          "function": "heapless::sorted_linked_list::SortedLinkedListInner::zeroize",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0579",
+      "package": "heapless",
+      "title": "The `Deque` implementation from `TryFrom` was wrong when the `Deque` ended up full",
+      "date": "2026-11-18",
+      "patched_versions": [
+        ">= 0.9.4"
+      ],
+      "commit_sha": "b26b95328dd315647a355ba69733039e6eb2b952",
+      "vulnerable_symbols": [
+        {
+          "file": "src/deque.rs",
+          "function": "heapless::deque::Deque::try_from",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0580",
+      "package": "heapless",
+      "title": "The treiber stack implementation in heapless had a race condition",
+      "date": "2026-11-18",
+      "patched_versions": [
+        ">= 0.9.4"
+      ],
+      "commit_sha": "570f47c15122bffd308ef5b6cba87ea47df990d7",
+      "vulnerable_symbols": [
+        {
+          "file": "src/pool/arc.rs",
+          "function": "heapless::pool::arc::Arc::deref",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/arc.rs",
+          "function": "heapless::pool::arc::Arc::get_mut_unchecked",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/arc.rs",
+          "function": "heapless::pool::arc::Arc::inner",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/arc.rs",
+          "function": "heapless::pool::arc::ArcBlock::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/arc.rs",
+          "function": "heapless::pool::arc::ArcPoolImpl::alloc",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/boxed.rs",
+          "function": "heapless::pool::boxed::Box::deref",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/boxed.rs",
+          "function": "heapless::pool::boxed::Box::deref_mut",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/boxed.rs",
+          "function": "heapless::pool::boxed::Box::drop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/boxed.rs",
+          "function": "heapless::pool::boxed::Box::from_raw",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/boxed.rs",
+          "function": "heapless::pool::boxed::BoxBlock::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/boxed.rs",
+          "function": "heapless::pool::boxed::BoxPoolImpl::alloc",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/object.rs",
+          "function": "heapless::pool::object::Object::deref",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/object.rs",
+          "function": "heapless::pool::object::Object::deref_mut",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/object.rs",
+          "function": "heapless::pool::object::ObjectBlock::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/treiber.rs",
+          "function": "heapless::pool::treiber::Node::next",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/pool/treiber.rs",
+          "function": "heapless::pool::treiber::Node::next_mut",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/pool/treiber.rs",
+          "function": "heapless::pool::treiber::Node::unlinked",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/pool/treiber.rs",
+          "function": "heapless::pool::treiber::StructNode::next",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/pool/treiber.rs",
+          "function": "heapless::pool::treiber::StructNode::next_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/pool/treiber.rs",
+          "function": "heapless::pool::treiber::UnionNode::next",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/pool/treiber.rs",
+          "function": "heapless::pool::treiber::UnionNode::next_mut",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/pool/treiber.rs",
+          "function": "heapless::pool::treiber::UnionNode::unlinked",
+          "change_type": "Deleted"
+        },
+        {
+          "file": "src/pool/treiber/cas.rs",
+          "function": "heapless::pool::treiber::cas::push",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/treiber/cas.rs",
+          "function": "heapless::pool::treiber::cas::try_pop",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/treiber/llsc.rs",
+          "function": "heapless::pool::treiber::llsc::push",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/pool/treiber/llsc.rs",
+          "function": "heapless::pool::treiber::llsc::try_pop",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0581",
+      "package": "heapless",
+      "title": "`Deque::make_contiguous` could lead to broken invariants",
+      "date": "2026-11-18",
+      "patched_versions": [
+        ">= 0.9.4"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0582",
+      "package": "heapless",
+      "title": "On maps of `u16::MAX` elements, `IndexMap::insert` could lead to a broken invariant",
+      "date": "2026-11-18",
+      "patched_versions": [
+        ">= 0.9.4"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
