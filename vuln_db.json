@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1795085804",
+  "generated_at": "unix:1795198150",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -31455,6 +31455,29 @@
         ">= 0.9.4"
       ],
       "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0586",
+      "package": "pqcrypto-mldsa",
+      "title": "ML-DSA verification accepts non-conforming signatures with the `avx2` feature",
+      "date": "2026-11-20",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0587",
+      "package": "wasmtime-wasi",
+      "title": "WASI filesystem sandbox escape on Windows through a drive-prefixed path component",
+      "date": "2026-11-19",
+      "patched_versions": [
+        ">= 36.0.22, < 37.0.0",
+        ">= 48.0.10, < 49.0.0",
+        ">= 49.0.7, < 50.0.0",
+        ">= 50.0.3"
+      ],
+      "commit_sha": "d1d8aa45eccbe31549dd0088a863a10d3e2d4b09",
       "vulnerable_symbols": []
     }
   ]
