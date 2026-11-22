@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1795198150",
+  "generated_at": "unix:1795366736",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -31479,6 +31479,73 @@
       ],
       "commit_sha": "d1d8aa45eccbe31549dd0088a863a10d3e2d4b09",
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0588",
+      "package": "ruma-identifiers-validation",
+      "title": "Validating Matrix Content URIs may panic",
+      "date": "2026-11-19",
+      "patched_versions": [
+        ">= 0.13.0"
+      ],
+      "commit_sha": "caf1ac05a9fd347158b60505ef8546a2ff18ae7c",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/ruma-identifiers-validation/src/mxc_uri.rs",
+          "function": "ruma_identifiers_validation::mxc_uri::validate",
+          "change_type": "Modified"
+        },
+        {
+          "file": "crates/ruma-identifiers-validation/src/server_name.rs",
+          "function": "ruma_identifiers_validation::server_name::validate",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0589",
+      "package": "ruma-identifiers-validation",
+      "title": "Validating Matrix key IDs may panic",
+      "date": "2026-11-19",
+      "patched_versions": [
+        ">= 0.14.0"
+      ],
+      "commit_sha": "b2cb9b43efbe082e4d9292560d4c9f0db5734038",
+      "vulnerable_symbols": [
+        {
+          "file": "crates/ruma-identifiers-validation/src/key_id.rs",
+          "function": "ruma_identifiers_validation::key_id::validate",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0591",
+      "package": "secmem-proc",
+      "title": "Ineffective default DACL on Windows",
+      "date": "2026-10-27",
+      "patched_versions": [
+        ">= 0.3.9"
+      ],
+      "commit_sha": null,
+      "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0592",
+      "package": "url",
+      "title": "Stack overflow in `Url::origin()` on nested `blob:` URLs",
+      "date": "2026-11-20",
+      "patched_versions": [
+        ">= 2.5.9"
+      ],
+      "commit_sha": "e9613c33733ef33015964ec7c1399961469983c8",
+      "vulnerable_symbols": [
+        {
+          "file": "url/src/origin.rs",
+          "function": "url::origin::url_origin",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
