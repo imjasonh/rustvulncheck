@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1795366736",
+  "generated_at": "unix:1795385798",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -31546,6 +31546,15 @@
           "change_type": "Modified"
         }
       ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0593",
+      "package": "pqcrypto-dilithium",
+      "title": "Dilithium verification accepts non-conforming signatures with the `avx2` feature",
+      "date": "2026-11-21",
+      "patched_versions": [],
+      "commit_sha": null,
+      "vulnerable_symbols": []
     }
   ]
 }
