@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1795385798",
+  "generated_at": "unix:1795441964",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -31555,6 +31555,23 @@
       "patched_versions": [],
       "commit_sha": null,
       "vulnerable_symbols": []
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0594",
+      "package": "cookie",
+      "title": "Private cookie nonces can repeat in processes that fork",
+      "date": "2026-11-23",
+      "patched_versions": [
+        ">= 0.18.3"
+      ],
+      "commit_sha": "98de6032defb10ad5e49d83fa1a9bbed1873cbe4",
+      "vulnerable_symbols": [
+        {
+          "file": "src/secure/private.rs",
+          "function": "cookie::secure::private::PrivateJar::encrypt_cookie",
+          "change_type": "Modified"
+        }
+      ]
     }
   ]
 }
