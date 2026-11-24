@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1795441964",
+  "generated_at": "unix:1795483442",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -31569,6 +31569,26 @@
         {
           "file": "src/secure/private.rs",
           "function": "cookie::secure::private::PrivateJar::encrypt_cookie",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0595",
+      "package": "parquet",
+      "title": "Apache Arrow Rust: Bloom filters written as plaintext when writing encrypted Parquet",
+      "date": "2026-11-23",
+      "patched_versions": [
+        ">= 60.2.0",
+        ">= 59.3.3, < 60.0.0",
+        ">= 58.4.2, < 59.0.0",
+        ">= 57.3.3, < 58.0.0"
+      ],
+      "commit_sha": "4213ecfee2871df8cf46e44f6a50c4b5ebeaf677",
+      "vulnerable_symbols": [
+        {
+          "file": "parquet/src/file/writer.rs",
+          "function": "parquet::file::writer::SerializedFileWriter::get_file_encryptor",
           "change_type": "Modified"
         }
       ]
