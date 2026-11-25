@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1795521004",
+  "generated_at": "unix:1795581828",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -31738,6 +31738,33 @@
           "file": "src/lib.rs",
           "function": "hugepage_rs::default_allocator",
           "change_type": "Deleted"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0599",
+      "package": "xmloxide",
+      "title": "Stack overflow from unbounded recursion in DTD content-model parsing",
+      "date": "2026-07-20",
+      "patched_versions": [
+        ">= 0.4.4"
+      ],
+      "commit_sha": "d606e11ddaf033272d85c5422addd91b79788aba",
+      "vulnerable_symbols": [
+        {
+          "file": "src/validation/dtd.rs",
+          "function": "xmloxide::validation::dtd::DtdParser::parse_content_model",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/validation/dtd.rs",
+          "function": "xmloxide::validation::dtd::DtdParser::parse_content_particle",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/validation/dtd.rs",
+          "function": "xmloxide::validation::dtd::DtdParser::parse_content_spec_group",
+          "change_type": "Modified"
         }
       ]
     }
