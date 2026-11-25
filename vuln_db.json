@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1795581828",
+  "generated_at": "unix:1795619467",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -31764,6 +31764,24 @@
         {
           "file": "src/validation/dtd.rs",
           "function": "xmloxide::validation::dtd::DtdParser::parse_content_spec_group",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0600",
+      "package": "kube-client",
+      "title": "`openssl-tls` trusts OpenSSL's default CA store in addition to the configured cluster CA",
+      "date": "2026-11-24",
+      "patched_versions": [
+        ">= 4.2.1, < 5.0.0",
+        ">= 5.2.0"
+      ],
+      "commit_sha": "bc27fdc58380d8ba78347145999193e00fe1b030",
+      "vulnerable_symbols": [
+        {
+          "file": "kube-client/src/client/tls.rs",
+          "function": "kube_client::client::tls::openssl_tls::ssl_connector_builder",
           "change_type": "Modified"
         }
       ]
