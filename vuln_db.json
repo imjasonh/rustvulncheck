@@ -1,5 +1,5 @@
 {
-  "generated_at": "unix:1795619467",
+  "generated_at": "unix:1795807075",
   "entries": [
     {
       "advisory_id": "RUSTSEC-0000-0000",
@@ -31783,6 +31783,312 @@
           "file": "kube-client/src/client/tls.rs",
           "function": "kube_client::client::tls::openssl_tls::ssl_connector_builder",
           "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0601",
+      "package": "wsts",
+      "title": "FROST coordinator accepts unvalidated DKG polynomial commitments",
+      "date": "2026-11-26",
+      "patched_versions": [
+        ">= 15.0.1"
+      ],
+      "commit_sha": "1aa6902f4e8d98460d5a6760a657125670938a48",
+      "vulnerable_symbols": [
+        {
+          "file": "src/state_machine/coordinator/fire.rs",
+          "function": "wsts::state_machine::coordinator::fire::Coordinator::dkg_end_gathered",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/state_machine/coordinator/frost.rs",
+          "function": "wsts::state_machine::coordinator::frost::Coordinator::dkg_end_gathered",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/state_machine/coordinator/frost.rs",
+          "function": "wsts::state_machine::coordinator::frost::Coordinator::gather_public_shares",
+          "change_type": "Modified"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0602",
+      "package": "dryoc",
+      "title": "Ed25519 signing key pairs with an inconsistent embedded public key are accepted",
+      "date": "2026-11-16",
+      "patched_versions": [
+        ">= 2.0.1"
+      ],
+      "commit_sha": "77452a54f820a831bcd25c7cd67ea9a128e334da",
+      "vulnerable_symbols": [
+        {
+          "file": "src/sign.rs",
+          "function": "dryoc::sign::Ed25519phSigner::finalize",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "dryoc::sign::SigningKeyPair::deserialize",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "dryoc::sign::SigningKeyPair::from_slices",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "dryoc::sign::SigningKeyPair::sign",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "dryoc::sign::SigningKeyPair::validate",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "dryoc::sign::normalized_keypair",
+          "change_type": "Added"
+        }
+      ]
+    },
+    {
+      "advisory_id": "RUSTSEC-2026-0603",
+      "package": "dryoc",
+      "title": "X25519 accepts low-order public keys, yielding session keys computable without a private key",
+      "date": "2026-11-16",
+      "patched_versions": [
+        ">= 1.0.0"
+      ],
+      "commit_sha": "709bf9e794cb1cea2bc127615245fec84b5055be",
+      "vulnerable_symbols": [
+        {
+          "file": "src/argon2/mod.rs",
+          "function": "dryoc::argon2::Argon2Instance::drop",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/argon2/mod.rs",
+          "function": "dryoc::argon2::Argon2Instance::new",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/argon2/mod.rs",
+          "function": "dryoc::argon2::argon2_fill_first_blocks",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/argon2/mod.rs",
+          "function": "dryoc::argon2::argon2_finalize",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/argon2/mod.rs",
+          "function": "dryoc::argon2::argon2_initial_hash",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_box.rs",
+          "function": "dryoc::classic::crypto_box::crypto_box_detached",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_box.rs",
+          "function": "dryoc::classic::crypto_box::crypto_box_detached_inplace",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_box.rs",
+          "function": "dryoc::classic::crypto_box::crypto_box_easy",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_box.rs",
+          "function": "dryoc::classic::crypto_box::crypto_box_open_detached",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_box.rs",
+          "function": "dryoc::classic::crypto_box::crypto_box_open_detached_inplace",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_box.rs",
+          "function": "dryoc::classic::crypto_box::crypto_box_open_easy",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_box.rs",
+          "function": "dryoc::classic::crypto_box::crypto_box_seal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_box_impl.rs",
+          "function": "dryoc::classic::crypto_box_impl::crypto_box_curve25519xsalsa20poly1305_beforenm",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_core.rs",
+          "function": "dryoc::classic::crypto_core::crypto_scalarmult",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_kx.rs",
+          "function": "dryoc::classic::crypto_kx::crypto_kx",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_kx.rs",
+          "function": "dryoc::classic::crypto_kx::crypto_kx_client_session_keys",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_kx.rs",
+          "function": "dryoc::classic::crypto_kx::crypto_kx_server_session_keys",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_secretbox.rs",
+          "function": "dryoc::classic::crypto_secretbox::crypto_secretbox_detached",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_secretbox.rs",
+          "function": "dryoc::classic::crypto_secretbox::crypto_secretbox_easy",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_secretbox.rs",
+          "function": "dryoc::classic::crypto_secretbox::crypto_secretbox_easy_inplace",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_secretbox.rs",
+          "function": "dryoc::classic::crypto_secretbox::crypto_secretbox_open_detached",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_secretbox.rs",
+          "function": "dryoc::classic::crypto_secretbox::crypto_secretbox_open_easy",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_sign_ed25519.rs",
+          "function": "dryoc::classic::crypto_sign_ed25519::crypto_sign_ed25519_detached_impl",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_sign_ed25519.rs",
+          "function": "dryoc::classic::crypto_sign_ed25519::crypto_sign_ed25519_keypair_inplace",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_sign_ed25519.rs",
+          "function": "dryoc::classic::crypto_sign_ed25519::crypto_sign_ed25519_seed_keypair_inplace",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/classic/crypto_sign_ed25519.rs",
+          "function": "dryoc::classic::crypto_sign_ed25519::crypto_sign_ed25519_sk_to_curve25519",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/dryocbox.rs",
+          "function": "dryoc::dryocbox::DryocBox::encrypt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/dryocbox.rs",
+          "function": "dryoc::dryocbox::DryocBox::precalc_encrypt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/dryocbox.rs",
+          "function": "dryoc::dryocbox::DryocBox::seal",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/dryocsecretbox.rs",
+          "function": "dryoc::dryocsecretbox::DryocSecretBox::encrypt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/keypair.rs",
+          "function": "dryoc::keypair::KeyPair::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/keypair.rs",
+          "function": "dryoc::keypair::KeyPair::is_valid_public_key",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/kx.rs",
+          "function": "dryoc::kx::Session::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/precalc.rs",
+          "function": "dryoc::precalc::PrecalcSecretKey::eq",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/precalc.rs",
+          "function": "dryoc::precalc::PrecalcSecretKey::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/precalc.rs",
+          "function": "dryoc::precalc::PrecalcSecretKey::precalculate",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/protected.rs",
+          "function": "dryoc::protected::PageAlignedAllocator::allocate",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/protected.rs",
+          "function": "dryoc::protected::ProtectedBuffer::eq",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/protected.rs",
+          "function": "dryoc::protected::ProtectedBuffer::fmt",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/scalarmult_curve25519.rs",
+          "function": "dryoc::scalarmult_curve25519::crypto_scalarmult_curve25519",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/scalarmult_curve25519.rs",
+          "function": "dryoc::scalarmult_curve25519::crypto_scalarmult_curve25519_base",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "dryoc::sign::SigningKeyPair::fmt",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/sign.rs",
+          "function": "dryoc::sign::SigningKeyPair::from_secret_key",
+          "change_type": "Modified"
+        },
+        {
+          "file": "src/types.rs",
+          "function": "dryoc::types::StackByteArray::eq",
+          "change_type": "Added"
+        },
+        {
+          "file": "src/types.rs",
+          "function": "dryoc::types::StackByteArray::fmt",
+          "change_type": "Added"
         }
       ]
     }
